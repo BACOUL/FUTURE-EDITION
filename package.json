@@ -31,6 +31,10 @@
     "test:fe03:external-seed": "node benchmarks/fe03/test-external-seed.mjs",
     "test:fe03:independence": "node pipeline/test-fe03-independence.mjs",
     "test:fe03:matrix": "node benchmarks/fe03/validate-collection-matrix.mjs",
-    "test:fe03:confirmation": "node pipeline/test-fe03-confirmation-gate.mjs"
+    "test:fe03:confirmation": "node pipeline/test-fe03-confirmation-gate.mjs",
+    "test:fe03:acquisition": "node benchmarks/fe03/validate-acquisition-plan.mjs",
+    "test:fe03:crossref-collection": "node benchmarks/fe03/test-crossref-collection.mjs",
+    "test:fe03:clinicaltrials-collection": "node benchmarks/fe03/test-clinicaltrials-collection.mjs",
+    "test:fe03:rxiv-collection": "node benchmarks/fe03/test-rxiv-collection.mjs"
   }
 }
