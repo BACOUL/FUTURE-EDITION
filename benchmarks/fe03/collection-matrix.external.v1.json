@@ -1,0 +1,34 @@
+{
+  "version": "external-v1",
+  "purpose": "Minimum public dev+validation coverage before any sealed holdout evaluation.",
+  "dev_target": 100,
+  "validation_target": 50,
+  "dev_validation_target": 150,
+  "sealed_holdout_minimum": 50,
+  "families": [
+    {"family":"active_peer_reviewed","dev":8,"validation":4,"critical":false,"preferred_authorities":["pubmed","crossref","publisher"]},
+    {"family":"preprint","dev":6,"validation":3,"critical":true,"preferred_authorities":["medrxiv","biorxiv","arxiv"]},
+    {"family":"retracted_publication","dev":8,"validation":4,"critical":true,"preferred_authorities":["pubmed","crossref","publisher"]},
+    {"family":"retraction_notice","dev":5,"validation":2,"critical":false,"preferred_authorities":["pubmed","crossref","publisher"]},
+    {"family":"corrected_publication","dev":6,"validation":3,"critical":true,"preferred_authorities":["pubmed","crossref","publisher"]},
+    {"family":"expression_of_concern","dev":5,"validation":2,"critical":true,"preferred_authorities":["pubmed","crossref","publisher"]},
+    {"family":"invalid_identifier","dev":6,"validation":3,"critical":true,"preferred_authorities":["benchmark_design"]},
+    {"family":"animal_only","dev":7,"validation":4,"critical":true,"preferred_authorities":["pubmed","publisher"]},
+    {"family":"early_human","dev":7,"validation":4,"critical":true,"preferred_authorities":["pubmed","clinicaltrials","publisher"]},
+    {"family":"controlled_human","dev":7,"validation":4,"critical":false,"preferred_authorities":["pubmed","clinicaltrials","publisher"]},
+    {"family":"systematic_review","dev":6,"validation":3,"critical":false,"preferred_authorities":["pubmed","crossref","publisher"]},
+    {"family":"trial_registry","dev":6,"validation":3,"critical":true,"preferred_authorities":["clinicaltrials"]},
+    {"family":"dependent_echo","dev":5,"validation":2,"critical":true,"preferred_authorities":["publisher","regulator"]},
+    {"family":"contradiction","dev":5,"validation":2,"critical":true,"preferred_authorities":["pubmed","crossref","publisher","regulator"]},
+    {"family":"negative_result","dev":5,"validation":3,"critical":true,"preferred_authorities":["pubmed","clinicaltrials","publisher"]},
+    {"family":"technology_benchmark","dev":4,"validation":2,"critical":false,"preferred_authorities":["arxiv","publisher"]},
+    {"family":"real_world_deployment","dev":4,"validation":2,"critical":false,"preferred_authorities":["publisher","regulator"]}
+  ],
+  "rules": [
+    "Targets are minimums, not quotas.",
+    "Every admitted case requires human-reviewed labels and label evidence.",
+    "The same candidate identifier may not occupy more than one dev/validation case.",
+    "Critical cases other than deterministic invalid identifiers require external authority evidence.",
+    "Holdout labels remain outside the public tuning repository until the single final evaluation."
+  ]
+}
