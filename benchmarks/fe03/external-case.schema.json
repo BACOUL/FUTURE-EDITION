@@ -175,6 +175,67 @@
           }
         }
       }
+    },
+    "relations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "relation_type",
+          "candidate",
+          "basis"
+        ],
+        "properties": {
+          "relation_type": {
+            "enum": [
+              "same_primary_origin",
+              "materially_conflicts"
+            ]
+          },
+          "candidate": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "signal_kind",
+              "raw_value",
+              "origin"
+            ],
+            "properties": {
+              "signal_kind": {
+                "enum": [
+                  "doi",
+                  "pmid",
+                  "nct",
+                  "arxiv",
+                  "biorxiv",
+                  "medrxiv",
+                  "url",
+                  "title"
+                ]
+              },
+              "raw_value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "origin": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "basis": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
     }
   }
 }
