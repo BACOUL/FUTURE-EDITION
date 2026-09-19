@@ -78,7 +78,9 @@
     "external_benchmark_critical_seed_cases": 7,
     "external_benchmark_label_evidence_links": 13,
     "pubmed_curation_families": 6,
-    "pubmed_curation_auto_admission": false
+    "pubmed_curation_auto_admission": false,
+    "cross_provider_independence_dedup": true,
+    "unverified_locator_publish_blocked": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
