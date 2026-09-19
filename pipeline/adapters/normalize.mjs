@@ -117,7 +117,7 @@ export function normalizePubMed(record){
   const id=String(record.pmid);
   return {status:"resolved",provider:"pubmed",reason:null,publication_status:record.publication_status||"active",integrity_relations:record.integrity_relations||[],source:{
     external_id:id,
-    kind:"paper",
+    kind:record.kind||"paper",
     tier:"A",
     title:record.title||"PMID "+id,
     url:record.url||"https://pubmed.ncbi.nlm.nih.gov/"+id+"/",
