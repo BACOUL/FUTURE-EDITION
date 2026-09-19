@@ -181,6 +181,6 @@ export function parsePubmedXml(xml){
     peer_reviewed:true,
     integrity_relations:relations,
     url:"https://pubmed.ncbi.nlm.nih.gov/"+pmid+"/",
-    independence_group:"pubmed:"+pmid
+    independence_group:doi?"doi:"+doi:"pubmed:"+pmid
   };
 }
