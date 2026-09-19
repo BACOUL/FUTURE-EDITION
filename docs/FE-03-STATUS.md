@@ -17,6 +17,8 @@
 - revue humaine obligatoire ;
 - file de revue humaine ;
 - pont FE-03 → objets FE-02 en état `machine_proposed` ;
+- contrat `EvidenceDocument` avec périmètre de licence explicite ;
+- locators vérifiables `document#section:start-end` avec hash d’extrait ;
 - résolveur avec `fetchFn` injecté pour tests reproductibles ;
 - routes réseau préparées pour Crossref, PubMed ESummary, ClinicalTrials.gov v2 et bioRxiv/medRxiv ;
 - arXiv réseau échoue explicitement tant que son parseur XML n'est pas gelé.
@@ -34,6 +36,9 @@
 
 ### Bridge / revue
 `FE03_BRIDGE_TEST_PASS|review_queue=1|fe02_compatible_draft=1|human_gate_preserved=1`
+
+### Locators
+`FE03_LOCATOR_TEST_PASS|verified=1|tamper_rejected=1|wrong_document_rejected=1|bounds_rejected=1`
 
 ### Corpus synthétique
 240 cas : 120 dev / 60 validation / 60 holdout synthétique.
@@ -54,7 +59,7 @@ Le corpus synthétique **ne peut pas valider FE-03**. Il verrouille uniquement l
 1. parseur réseau arXiv ;
 2. vérification live des statuts/corrections/rétractations sur un corpus réel ;
 3. extraction de claims atomiques depuis contenu réel autorisé ;
-4. locators vérifiés vers texte/table/résultat ;
+4. locators vérifiés sur corpus réel et sur plusieurs formats documentaires ;
 5. classification domaine/niveau de preuve sur exemples réels ;
 6. benchmark externe curaté d'au moins 200 cas ;
 7. séparation dev / validation / holdout externe ;
