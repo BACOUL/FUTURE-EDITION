@@ -31,32 +31,42 @@ Future Edition ne cherche pas à publier le plus vite ni le plus souvent. Il che
 
 Le projet progresse par stages gelés : **FE-00 → FE-15 → FE-CONTINUOUS**.
 
-Voir `docs/PROGRAM.md` et `docs/CONSTITUTION.md`.
+Voir `docs/PROGRAM.md`, `docs/CONSTITUTION.md` et `project-state.json`.
 
 ## Développement local
 
-Pré-requis : Node.js 22+ et pnpm.
+Pré-requis : **Node.js 22+ uniquement**.
+
+Aucun `npm install`, aucun framework et aucune GitHub Action ne sont requis pour construire la fondation.
 
 ```bash
-pnpm install
-pnpm validate:data
-pnpm build:graph
-pnpm dev
+node pipeline/run-local.mjs
+node pipeline/serve.mjs
 ```
 
-Les GitHub Actions ne sont pas requises pour construire ou tester le projet. Toute l’automatisation doit d’abord être reproductible localement.
+Ou :
+
+```bash
+npm run build
+npm run dev
+```
+
+Le build exécute : validation des données → validation des relations → Future Graph → site statique → validation des sorties.
 
 ## Structure
 
 ```text
-apps/web/           média public
-data/               Future Graph versionné
+data/               données canoniques du Future Graph
 schemas/            contrats de données
-pipeline/           ingestion, vérification, graph, publication
+pipeline/           validation, graphe, publication
+dist/               média statique généré (non versionné)
+generated/          artefacts reconstruisibles (non versionnés)
 docs/               constitution, méthode, architecture, décisions
-generated/          artefacts reconstruisibles
+project-state.json  état machine du programme
 ```
 
 ## Statut
 
-**FE-00 / FE-01 en construction.** Les états scientifiques des grandes questions restent volontairement non renseignés tant qu’ils n’ont pas été établis par le pipeline de preuve.
+**FE-01 PROVED · FE-02 IN_PROGRESS.**
+
+Les états scientifiques restent volontairement non évalués tant qu’ils n’ont pas été établis par une chaîne de preuve.
