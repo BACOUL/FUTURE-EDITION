@@ -2,6 +2,10 @@ import { pathToFileURL } from "node:url";
 
 const families=[
   {
+    family:"active_peer_reviewed",
+    query:'"journal article"[pt] AND 2024:3000[pdat]'
+  },
+  {
     family:"controlled_human",
     query:'"randomized controlled trial"[pt] AND 2024:3000[pdat]'
   },
@@ -24,6 +28,10 @@ const families=[
   {
     family:"retraction_notice",
     query:'"retraction notice"[pt]'
+  },
+  {
+    family:"expression_of_concern",
+    query:'"expression of concern"[pt]'
   }
 ];
 
