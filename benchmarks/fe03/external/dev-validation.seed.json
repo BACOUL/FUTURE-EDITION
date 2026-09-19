@@ -702,5 +702,438 @@
       }
     ],
     "notes": "Materially conflicting evidence landscape. Engine should surface the conflict and preserve scope differences rather than collapsing to a single verdict."
+  },
+  {
+    "id": "FE03-EXT-0022",
+    "split": "validation",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42716303",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42716303/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "journal_article",
+          "randomized_controlled_trial",
+          "human_participants"
+        ]
+      }
+    ],
+    "notes": "Independent validation control: current peer-reviewed randomized trial."
+  },
+  {
+    "id": "FE03-EXT-0023",
+    "split": "validation",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.08.28.26361654",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.08.28.26361654v1",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "preprint",
+          "randomized_feasibility_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Randomized human feasibility preprint; controlled design must not override the non-peer-reviewed confidence ceiling."
+  },
+  {
+    "id": "FE03-EXT-0024",
+    "split": "validation",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40443548",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40443548/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "randomized_double_blind_placebo_controlled_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41567852/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "published_erratum",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Independent corrected-publication validation case with linked PubMed erratum."
+  },
+  {
+    "id": "FE03-EXT-0025",
+    "split": "validation",
+    "case_family": "expression_of_concern",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40424461",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "expression_of_concern",
+      "critical_safety_case": true,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "technology_demo"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40424461/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "original_publication",
+          "deep_learning_disease_detection"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41701686/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "expression_of_concern",
+          "ExpressionOfConcernFor",
+          "PMID_40424461"
+        ]
+      }
+    ],
+    "notes": "Technology paper with an explicit PubMed expression-of-concern notice."
+  },
+  {
+    "id": "FE03-EXT-0026",
+    "split": "validation",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42697929",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42697929/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "mouse_model",
+          "murine_progenitors",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Current mouse-model paper; must not be interpreted as human efficacy evidence."
+  },
+  {
+    "id": "FE03-EXT-0027",
+    "split": "validation",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42747486",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42747486/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "systematic_review",
+          "meta_analysis",
+          "randomized_trials",
+          "human_adults"
+        ]
+      }
+    ],
+    "notes": "Recent systematic review and meta-analysis of randomized human trials."
+  },
+  {
+    "id": "FE03-EXT-0028",
+    "split": "validation",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT04808362",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT04808362",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "interventional",
+          "first_in_human",
+          "phase_1_phase_2",
+          "terminated_registry_record"
+        ]
+      }
+    ],
+    "notes": "Registry remains a resolvable official record even though recruitment status is terminated; trial-registry evidence is not confirmatory efficacy."
+  },
+  {
+    "id": "FE03-EXT-0029",
+    "split": "validation",
+    "case_family": "negative_result",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT00549809",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT00549809",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "randomized_clinical_trial",
+          "results_available",
+          "no_statistically_significant_difference"
+        ]
+      }
+    ],
+    "notes": "Randomized pediatric ventilation trial with explicitly reported non-significant between-group differences."
+  },
+  {
+    "id": "FE03-EXT-0030",
+    "split": "validation",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42011999",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42011999/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "RetractedPublication",
+          "RetractionIn",
+          "human_case_report"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42054650/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_42011999"
+        ]
+      }
+    ],
+    "notes": "Independent known-retracted human publication."
+  },
+  {
+    "id": "FE03-EXT-0031",
+    "split": "validation",
+    "case_family": "retraction_notice",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42054650",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42054650/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_42011999"
+        ]
+      }
+    ],
+    "notes": "The notice itself is active and must not be classified as the retracted target publication."
+  },
+  {
+    "id": "FE03-EXT-0032",
+    "split": "validation",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42462750",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42462750/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "phase_2b",
+          "randomized",
+          "placebo_controlled",
+          "human_trial"
+        ]
+      }
+    ],
+    "notes": "Independent controlled-human validation case."
+  },
+  {
+    "id": "FE03-EXT-0033",
+    "split": "validation",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "10.12/no",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Second deterministic invalid DOI syntax case, distinct from the dev malformed identifier."
+  },
+  {
+    "id": "FE03-EXT-0034",
+    "split": "validation",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42664979",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42664979/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "randomized",
+          "double_blind",
+          "placebo_controlled",
+          "phase_1"
+        ]
+      }
+    ],
+    "notes": "First-in-human randomized phase I trial; efficacy-like signals must remain below confirmed."
   }
 ]
