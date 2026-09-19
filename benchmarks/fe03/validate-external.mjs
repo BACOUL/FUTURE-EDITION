@@ -10,26 +10,86 @@ if(!path){
 
 const root=new URL("../../",import.meta.url);
 const schema=JSON.parse(await readFile(new URL("benchmarks/fe03/external-case.schema.json",root),"utf8"));
+const matrix=JSON.parse(await readFile(new URL("benchmarks/fe03/collection-matrix.external.v1.json",root),"utf8"));
 const cases=JSON.parse(await readFile(path,"utf8"));
 const errors=[];
+
+function candidateKey(item){
+  const kind=String(item?.candidate?.signal_kind??"").trim().toLowerCase();
+  const value=String(item?.candidate?.raw_value??"").trim().toLowerCase();
+  return kind+":"+value;
+}
 
 if(!Array.isArray(cases)){
   errors.push("corpus must be an array");
 }else{
   const ids=new Set();
+  const candidates=new Set();
+  const coverage=new Map(
+    matrix.families.map(row=>[
+      row.family,
+      {dev:0,validation:0,target_dev:row.dev,target_validation:row.validation}
+    ])
+  );
+
   for(let i=0;i<cases.length;i++){
-    errors.push(...validateSchema(cases[i],schema,"case["+i+"]"));
-    if(ids.has(cases[i]?.id)) errors.push("duplicate case id: "+cases[i]?.id);
-    ids.add(cases[i]?.id);
-    if(cases[i]?.split==="holdout") errors.push("holdout labels must not be present in tuning corpus");
+    const item=cases[i];
+    errors.push(...validateSchema(item,schema,"case["+i+"]"));
+
+    if(ids.has(item?.id)) errors.push("duplicate case id: "+item?.id);
+    ids.add(item?.id);
+
+    const key=candidateKey(item);
+    if(candidates.has(key)) errors.push("duplicate candidate: "+key);
+    candidates.add(key);
+
+    if(item?.split==="holdout") errors.push("holdout labels must not be present in tuning corpus");
+
+    if(!Array.isArray(item?.label_evidence)||item.label_evidence.length===0){
+      errors.push(item?.id+": no label evidence");
+    }
+
+    if(item?.labels?.critical_safety_case&&item?.case_family!=="invalid_identifier"){
+      const externalEvidence=(item.label_evidence||[]).some(
+        evidence=>evidence.authority!=="benchmark_design"&&Boolean(evidence.url)
+      );
+      if(!externalEvidence) errors.push(item?.id+": critical case lacks external authority evidence");
+    }
+
+    if(item?.labels?.primary_source_resolvable===false&&item?.labels?.publication_status!=="unresolved"){
+      errors.push(item?.id+": unresolved source has non-unresolved publication status");
+    }
+
+    if(item?.labels?.publication_status==="retracted"&&item?.labels?.primary_source_resolvable!==true){
+      errors.push(item?.id+": retracted source must be resolvable");
+    }
+
+    const bucket=coverage.get(item?.case_family);
+    if(bucket&&["dev","validation"].includes(item?.split)){
+      bucket[item.split]++;
+    }
   }
 
   const dev=cases.filter(item=>item.split==="dev").length;
   const validation=cases.filter(item=>item.split==="validation").length;
 
-  if(cases.length<150) errors.push("dev+validation corpus must contain at least 150 cases before holdout");
-  if(dev<100) errors.push("dev split must contain at least 100 cases");
-  if(validation<50) errors.push("validation split must contain at least 50 cases");
+  if(cases.length<matrix.dev_validation_target){
+    errors.push("dev+validation corpus must contain at least "+matrix.dev_validation_target+" cases before holdout");
+  }
+  if(dev<matrix.dev_target) errors.push("dev split must contain at least "+matrix.dev_target+" cases");
+  if(validation<matrix.validation_target){
+    errors.push("validation split must contain at least "+matrix.validation_target+" cases");
+  }
+
+  for(const row of matrix.families){
+    const got=coverage.get(row.family);
+    if((got?.dev??0)<row.dev){
+      errors.push(row.family+": dev coverage "+String(got?.dev??0)+"/"+row.dev);
+    }
+    if((got?.validation??0)<row.validation){
+      errors.push(row.family+": validation coverage "+String(got?.validation??0)+"/"+row.validation);
+    }
+  }
 }
 
 if(errors.length){
@@ -41,5 +101,7 @@ if(errors.length){
 console.log(
   "FE03_EXTERNAL_CORPUS_VALID|cases="+cases.length+
   "|dev="+cases.filter(item=>item.split==="dev").length+
-  "|validation="+cases.filter(item=>item.split==="validation").length
+  "|validation="+cases.filter(item=>item.split==="validation").length+
+  "|families="+matrix.families.length+
+  "|unique_candidates="+new Set(cases.map(candidateKey)).size
 );
