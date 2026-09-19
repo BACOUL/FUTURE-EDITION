@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Organization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "kind"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^ORG-[0-9]{6}$"},
+    "name": {"type": "string"},
+    "kind": {"enum": ["university", "research_institute", "company", "regulator", "government", "nonprofit", "publisher", "other"]},
+    "ror": {"type": ["string", "null"]},
+    "country": {"type": ["string", "null"]}
+  }
+}

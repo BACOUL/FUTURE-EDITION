@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Person",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "display_name"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^PERSON-[0-9]{6}$"},
+    "display_name": {"type": "string"},
+    "orcid": {"type": ["string", "null"]},
+    "organization_ids": {"type": "array", "items": {"type": "string"}}
+  }
+}

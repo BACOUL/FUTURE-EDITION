@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Provenance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "source_id", "retrieved_at", "canonical_url", "independence_group"],
+  "properties": {
+    "id": {"type": "string"},
+    "source_id": {"type": "string"},
+    "retrieved_at": {"type": "string", "format": "date-time"},
+    "canonical_url": {"type": "string", "format": "uri"},
+    "external_version": {"type": ["string", "null"]},
+    "content_hash": {"type": ["string", "null"]},
+    "license": {"type": ["string", "null"]},
+    "independence_group": {"type": "string", "minLength": 1},
+    "derived_from_source_ids": {"type": "array", "items": {"type": "string"}},
+    "notes": {"type": ["string", "null"]}
+  }
+}

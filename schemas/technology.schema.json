@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Technology",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "canonical_name", "status"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^TECH-[0-9]{4}$"},
+    "canonical_name": {"type": "string"},
+    "status": {"enum": ["active", "merged", "deprecated"]},
+    "aliases": {"type": "array", "items": {"type": "string"}},
+    "description": {"type": ["string", "null"]}
+  }
+}
