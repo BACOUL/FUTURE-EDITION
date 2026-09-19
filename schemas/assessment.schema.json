@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Milestone Assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "milestone_id", "status", "confidence", "basis_claim_ids", "basis_event_ids", "review_state", "observed_at", "effective_at", "valid_from", "valid_to"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^ASSESS-[0-9]{6}$"},
+    "milestone_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["not_met", "partially_met", "met", "invalidated"]},
+    "confidence": {"enum": ["confirmed", "solid_preliminary", "needs_confirmation", "contested"]},
+    "basis_claim_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^CLAIM-[0-9]{6}$"}},
+    "basis_event_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EV-[0-9]{4}-[0-9]{6}$"}},
+    "review_state": {"enum": ["machine_proposed", "human_approved", "human_rejected"]},
+    "review_id": {"type": ["string", "null"], "pattern": "^REVIEW-[0-9]{6}$"},
+    "supersedes_assessment_id": {"type": ["string", "null"], "pattern": "^ASSESS-[0-9]{6}$"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "effective_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": ["string", "null"], "format": "date-time"},
+    "valid_to": {"type": ["string", "null"], "format": "date-time"}
+  }
+}
