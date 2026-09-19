@@ -1,4 +1,5 @@
 import { normalizeIdentifier } from "./evidence-engine.mjs";
+import { buildEvidenceDocument } from "./evidence-document.mjs";
 import { adapterByProvider } from "../adapters/normalize.mjs";
 import { parseArxivAtom } from "../adapters/arxiv-atom.mjs";
 import { parsePubmedXml } from "../adapters/pubmed-xml.mjs";
@@ -84,7 +85,7 @@ function shapeProviderPayload(request,payload){
   return payload;
 }
 
-export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
+export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedAt=null}={}){
   if(typeof fetchFn!=="function") throw new Error("fetchFn is required");
 
   const request=buildProviderRequest(candidate,{mailto});
@@ -95,6 +96,7 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
       provider:request.provider,
       reason:request.reason,
       source:null,
+      document:null,
       publication_status:"unresolved",
       request
     };
@@ -106,6 +108,7 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
       provider:request.provider,
       reason:request.reason,
       source:null,
+      document:null,
       publication_status:"unresolved",
       request
     };
@@ -121,6 +124,7 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
       provider:request.provider,
       reason:"network_error",
       source:null,
+      document:null,
       publication_status:"unresolved",
       request,
       error:String(error?.message??error)
@@ -133,6 +137,7 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
       provider:request.provider,
       reason:"http_"+String(response?.status??"unknown"),
       source:null,
+      document:null,
       publication_status:"unresolved",
       request
     };
@@ -150,6 +155,7 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
           provider:request.provider,
           reason:"invalid_or_empty_atom",
           source:null,
+          document:null,
           publication_status:"unresolved",
           request
         };
@@ -163,6 +169,7 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
       provider:request.provider,
       reason:request.format==="xml"?"invalid_xml":"invalid_json",
       source:null,
+      document:null,
       publication_status:"unresolved",
       request
     };
@@ -177,11 +184,20 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
       provider:request.provider,
       reason:"adapter_missing",
       source:null,
+      document:null,
       publication_status:"unresolved",
       request
     };
   }
 
   const result=adapter(shaped);
-  return {...result,request};
+  const document=result?.status==="resolved"
+    ?buildEvidenceDocument(request.provider,shaped,{
+      candidate,
+      source:result.source,
+      retrievedAt:retrievedAt??new Date().toISOString()
+    })
+    :null;
+
+  return {...result,document,request};
 }
