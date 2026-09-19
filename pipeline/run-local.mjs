@@ -8,6 +8,7 @@ const steps = [
   ["build-graph", ["pipeline/build-graph.mjs"]],
   ["validate-graph", ["pipeline/validate-graph.mjs"]],
   ["verify-determinism", ["pipeline/verify-determinism.mjs"]],
+  ["validate-current-state", ["pipeline/validate-current-state.mjs"]],
   ["build-site", ["pipeline/build-site.mjs"]],
   ["validate-output", ["pipeline/validate-output.mjs"]]
 ];
