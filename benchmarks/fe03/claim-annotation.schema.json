@@ -1,0 +1,39 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Future Edition FE-03 Claim Evidence Annotation",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["id","external_case_id","split","claim","gold_evidence","checked_on"],
+  "properties":{
+    "id":{"type":"string","pattern":"^FE03-CLAIM-[0-9]{4}$"},
+    "external_case_id":{"type":"string","pattern":"^FE03-EXT-[0-9]{4}$"},
+    "split":{"enum":["dev","validation"]},
+    "claim":{
+      "type":"object",
+      "additionalProperties":false,
+      "required":["text","claim_kind","subject_scope"],
+      "properties":{
+        "text":{"type":"string","minLength":5},
+        "claim_kind":{"enum":["result","safety","efficacy","mechanism","association","performance","deployment","regulatory","negative_result","limitation"]},
+        "subject_scope":{"enum":["in_vitro","animal","human","technology","mixed","unknown"]}
+      }
+    },
+    "gold_evidence":{
+      "type":"array",
+      "minItems":1,
+      "items":{
+        "type":"object",
+        "additionalProperties":false,
+        "required":["relation","exact_text","authority","url"],
+        "properties":{
+          "relation":{"enum":["supports","contradicts","limits","context"]},
+          "exact_text":{"type":"string","minLength":4,"maxLength":240},
+          "authority":{"enum":["pubmed","clinicaltrials","arxiv","medrxiv","biorxiv","crossref","publisher","regulator"]},
+          "url":{"type":"string","format":"uri"}
+        }
+      }
+    },
+    "checked_on":{"type":"string","format":"date"},
+    "notes":{"type":["string","null"]}
+  }
+}
