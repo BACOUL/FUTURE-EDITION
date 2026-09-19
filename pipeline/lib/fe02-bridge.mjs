@@ -56,7 +56,7 @@ export function dossierToFe02Draft(dossier,ids){
         provenance_id:ids.provenance_id,
         support:item.support,
         locator:item.locator,
-        excerpt_hash:null,
+        excerpt_hash:item.excerpt_hash??null,
         notes:null,
         observed_at:dossier.observed_at,
         valid_from:dossier.observed_at,
