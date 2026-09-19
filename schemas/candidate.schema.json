@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Future Edition Candidate",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["id","received_at","signal_kind","raw_value","question_ids","origin"],
+  "properties":{
+    "id":{"type":"string","pattern":"^CAND-[0-9]{6}$"},
+    "received_at":{"type":"string","format":"date-time"},
+    "signal_kind":{"enum":["doi","pmid","nct","arxiv","biorxiv","medrxiv","url","title"]},
+    "raw_value":{"type":"string","minLength":1},
+    "question_ids":{"type":"array","items":{"type":"string","pattern":"^Q-[0-9]{3}$"},"uniqueItems":true},
+    "origin":{"enum":["crossref","pubmed","clinicaltrials","arxiv","biorxiv","medrxiv","regulator","institution","media","social","manual"]},
+    "signal_url":{"type":["string","null"],"format":"uri"},
+    "notes":{"type":["string","null"]}
+  }
+}
