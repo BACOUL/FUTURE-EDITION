@@ -1,47 +1,276 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema",
-  "title":"Future Edition Evidence Dossier",
-  "type":"object",
-  "additionalProperties":false,
-  "required":["id","candidate_id","observed_at","resolution","publication_status","source","claims","independence","contradictions","limitations","safety"],
-  "properties":{
-    "id":{"type":"string","pattern":"^DOS-[0-9]{6}$"},
-    "candidate_id":{"type":"string","pattern":"^CAND-[0-9]{6}$"},
-    "observed_at":{"type":"string","format":"date-time"},
-    "resolution":{"type":"object","additionalProperties":false,"required":["status","provider","reason"],"properties":{
-      "status":{"enum":["resolved","unresolved","invalid"]},
-      "provider":{"type":"string","minLength":1},
-      "reason":{"type":["string","null"]}
-    }},
-    "publication_status":{"enum":["active","corrected","expression_of_concern","retracted","unresolved"]},
-    "source":{"type":["object","null"],"additionalProperties":false,"properties":{
-      "external_id":{"type":"string","minLength":1},
-      "kind":{"enum":["paper","preprint","trial_registry","regulator","official_data","technical_report","institution_release","media","social","other"]},
-      "title":{"type":"string","minLength":1},
-      "url":{"type":"string","format":"uri"},
-      "peer_reviewed":{"type":"boolean"},
-      "study_stage":{"enum":["unknown","in_vitro","preclinical_animal","observational_human","phase1","phase2","phase3","randomized_trial","systematic_review","regulatory_approval","technology_benchmark","real_world_deployment"]}
-    }},
-    "claims":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","text","evidence_level","evidence"],"properties":{
-      "id":{"type":"string","pattern":"^CP-[0-9]{6}$"},
-      "text":{"type":"string","minLength":5},
-      "evidence_level":{"enum":["unknown","preclinical","early_human","controlled_human","replicated_human","regulatory","technology_demo","real_world"]},
-      "evidence":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["locator","support"],"properties":{
-        "locator":{"type":"string","minLength":1},
-        "support":{"enum":["supports","contradicts","limits","context"]}
-      }}}
-    }}},
-    "independence":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["source_key","group"],"properties":{
-      "source_key":{"type":"string","minLength":1},
-      "group":{"type":"string","minLength":1}
-    }}},
-    "contradictions":{"type":"array","items":{"type":"string"}},
-    "limitations":{"type":"array","items":{"type":"string"}},
-    "safety":{"type":"object","additionalProperties":false,"required":["decision","confidence_ceiling","human_review_required","reasons"],"properties":{
-      "decision":{"enum":["publish","hold","reject","investigate"]},
-      "confidence_ceiling":{"enum":["unverifiable","needs_confirmation","solid_preliminary","confirmed"]},
-      "human_review_required":{"type":"boolean"},
-      "reasons":{"type":"array","items":{"type":"string"}}
-    }}
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Evidence Dossier",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "candidate_id",
+    "observed_at",
+    "resolution",
+    "publication_status",
+    "source",
+    "claims",
+    "independence",
+    "contradictions",
+    "limitations",
+    "safety"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^DOS-[0-9]{6}$"
+    },
+    "candidate_id": {
+      "type": "string",
+      "pattern": "^CAND-[0-9]{6}$"
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "provider",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "resolved",
+            "unresolved",
+            "invalid"
+          ]
+        },
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "publication_status": {
+      "enum": [
+        "active",
+        "corrected",
+        "expression_of_concern",
+        "retracted",
+        "unresolved"
+      ]
+    },
+    "source": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "external_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "paper",
+            "preprint",
+            "trial_registry",
+            "regulator",
+            "official_data",
+            "technical_report",
+            "institution_release",
+            "media",
+            "social",
+            "other"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "peer_reviewed": {
+          "type": "boolean"
+        },
+        "study_stage": {
+          "enum": [
+            "unknown",
+            "in_vitro",
+            "preclinical_animal",
+            "observational_human",
+            "phase1",
+            "phase2",
+            "phase3",
+            "randomized_trial",
+            "systematic_review",
+            "regulatory_approval",
+            "technology_benchmark",
+            "real_world_deployment"
+          ]
+        },
+        "tier": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        "independence_group": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "external_id",
+        "kind",
+        "tier",
+        "title",
+        "url",
+        "peer_reviewed",
+        "study_stage",
+        "independence_group"
+      ]
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "text",
+          "evidence_level",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CP-[0-9]{6}$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 5
+          },
+          "evidence_level": {
+            "enum": [
+              "unknown",
+              "preclinical",
+              "early_human",
+              "controlled_human",
+              "replicated_human",
+              "regulatory",
+              "technology_demo",
+              "real_world"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "locator",
+                "support"
+              ],
+              "properties": {
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "support": {
+                  "enum": [
+                    "supports",
+                    "contradicts",
+                    "limits",
+                    "context"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "independence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_key",
+          "group"
+        ],
+        "properties": {
+          "source_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "group": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "confidence_ceiling",
+        "human_review_required",
+        "reasons"
+      ],
+      "properties": {
+        "decision": {
+          "enum": [
+            "publish",
+            "hold",
+            "reject",
+            "investigate"
+          ]
+        },
+        "confidence_ceiling": {
+          "enum": [
+            "unverifiable",
+            "needs_confirmation",
+            "solid_preliminary",
+            "confirmed"
+          ]
+        },
+        "human_review_required": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
   }
 }
