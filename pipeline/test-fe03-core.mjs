@@ -12,7 +12,7 @@ assert(classifyEvidenceLevel({study_stage:"randomized_trial"})==="controlled_hum
 const cross=adapterByProvider.crossref({message:{DOI:"10.1000/test",type:"journal-article",title:["Test"],URL:"https://doi.org/10.1000/test","update-to":[]}});
 assert(cross.status==="resolved"&&cross.source.peer_reviewed===true,"crossref normalize");
 
-const retracted=adapterByProvider.crossref({message:{DOI:"10.1000/bad",type:"journal-article",title:["Bad"],URL:"https://doi.org/10.1000/bad","update-to":[{type:"retraction"}]}});
+const retracted=adapterByProvider.crossref({message:{DOI:"10.1000/bad",type:"journal-article",title:["Bad"],URL:"https://doi.org/10.1000/bad","updated-by":[{DOI:"10.1000/retraction",type:"retraction",source:"publisher",label:"Retraction"}]}});
 assert(retracted.publication_status==="retracted","retraction normalize");
 
 const candidate={id:"CAND-000001"};
