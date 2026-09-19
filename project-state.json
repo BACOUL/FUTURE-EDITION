@@ -61,7 +61,10 @@
     "fe03_to_fe02_bridge": true,
     "evidence_document_contract": true,
     "verified_evidence_locators": true,
-    "locator_tamper_detection": true
+    "locator_tamper_detection": true,
+    "semantic_claim_scope": true,
+    "animal_to_human_overclaim_blocked": true,
+    "phase1_efficacy_ceiling": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
