@@ -8,6 +8,7 @@ const steps = [
   ["test-state-resolution", ["pipeline/test-state-resolution.mjs"]],
   ["test-fe03-core", ["pipeline/test-fe03-core.mjs"]],
   ["test-fe03-crossref", ["pipeline/test-fe03-crossref-integrity.mjs"]],
+  ["test-fe03-pubmed", ["pipeline/test-fe03-pubmed-integrity.mjs"]],
   ["test-fe03-contracts", ["pipeline/test-fe03-contracts.mjs"]],
   ["test-fe03-resolver", ["pipeline/test-fe03-resolver.mjs"]],
   ["test-fe03-bridge", ["pipeline/test-fe03-bridge.mjs"]],
