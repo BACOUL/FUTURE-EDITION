@@ -11,6 +11,23 @@ The external benchmark must contain at least:
 - 50 hidden holdout cases;
 - 200 total cases.
 
+The public dev+validation corpus is additionally constrained by
+`collection-matrix.external.v1.json`. The matrix freezes minimum coverage
+across all 17 required case families so the 150 public cases cannot be
+satisfied by over-sampling easy categories.
+
+Validate the matrix with:
+
+`node benchmarks/fe03/validate-collection-matrix.mjs`
+
+Validate a completed public corpus with:
+
+`node benchmarks/fe03/validate-external.mjs <dev-validation.json>`
+
+The corpus validator rejects duplicate case IDs, duplicate candidate
+identifiers, insufficient family coverage, missing label evidence, and
+critical cases without external authority evidence.
+
 ## Leakage rule
 
 The holdout is **not stored with labels in the public repository before evaluation**.
@@ -32,6 +49,7 @@ The external set must include real examples of:
 - corrected publication;
 - expression of concern;
 - retracted publication;
+- retraction notice;
 - invalid DOI / missing source;
 - animal evidence;
 - early human / phase I;
