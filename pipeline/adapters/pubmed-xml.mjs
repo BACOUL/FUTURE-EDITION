@@ -115,13 +115,21 @@ function publicationKind(pubtypes){
   return "paper";
 }
 
-function studyStage(pubtypes){
+function studyStage(pubtypes,meshTerms=[]){
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase I"))) return "phase1";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase II"))) return "phase2";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase III"))) return "phase3";
   if(pubtypes.includes("Randomized Controlled Trial")) return "randomized_trial";
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
   if(pubtypes.includes("Observational Study")) return "observational_human";
+
+  const normalized=new Set(meshTerms.map(value=>String(value).trim().toLowerCase()));
+  const hasHuman=normalized.has("humans");
+  const hasAnimal=
+    normalized.has("animals")||
+    [...normalized].some(value=>["mice","rats","rabbits","swine","dogs","cats","primates"].some(term=>value===term||value.startsWith(term+"/")));
+
+  if(hasAnimal&&!hasHuman) return "preclinical_animal";
   return "unknown";
 }
 
@@ -137,6 +145,10 @@ export function parsePubmedXml(xml){
   if(!pmid||!title) return null;
 
   const pubtypes=allBlocks(article.inner,"PublicationType")
+    .map(item=>stripTags(item.inner))
+    .filter(Boolean);
+
+  const meshTerms=allBlocks(article.inner,"DescriptorName")
     .map(item=>stripTags(item.inner))
     .filter(Boolean);
 
@@ -177,7 +189,7 @@ export function parsePubmedXml(xml){
     pubtypes,
     publication_status:publicationStatus(pubtypes,relations),
     kind:publicationKind(pubtypes),
-    study_stage:studyStage(pubtypes),
+    study_stage:studyStage(pubtypes,meshTerms),
     peer_reviewed:true,
     integrity_relations:relations,
     url:"https://pubmed.ncbi.nlm.nih.gov/"+pmid+"/",
