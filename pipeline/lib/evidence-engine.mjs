@@ -117,7 +117,9 @@ export function evaluateSafety(dossier){
   if(dossier.publication_status==="expression_of_concern") reasons.push("expression_of_concern");
   if(dossier.publication_status==="corrected") reasons.push("source_corrected_review_update_required");
   if(["retraction_notice","correction_notice"].includes(dossier.source.kind)) reasons.push("integrity_notice");
-  const nonPeerReviewed=dossier.source.kind==="preprint"||\n    (dossier.source.peer_reviewed===false&&!["regulator","official_data"].includes(dossier.source.kind));\n  if(nonPeerReviewed) reasons.push("not_peer_reviewed");
+  const nonPeerReviewed=dossier.source.kind==="preprint"||
+    (dossier.source.peer_reviewed===false&&!["regulator","official_data"].includes(dossier.source.kind));
+  if(nonPeerReviewed) reasons.push("not_peer_reviewed");
 
   const noClaims=!Array.isArray(dossier.claims)||dossier.claims.length===0;
 
