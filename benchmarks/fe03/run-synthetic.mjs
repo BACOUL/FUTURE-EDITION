@@ -34,7 +34,7 @@ for(const c of cases){
 
   const claimDrafts=c.has_locator?[{
     text:"Synthetic claim "+c.id,
-    evidence:[{locator:"fixture:1",support:"supports"}]
+    evidence:[{locator:"fixture:1",support:"supports",excerpt_hash:null,verification_status:"verified"}]
   }]:[];
 
   const dossier=buildDossier({
