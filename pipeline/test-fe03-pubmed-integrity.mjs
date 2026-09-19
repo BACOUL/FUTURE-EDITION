@@ -93,6 +93,8 @@ const notice=adapterByProvider.pubmed(noticeRecord);
 
 if(original.publication_status!=="retracted") throw new Error("PubMed adapter lost retracted status");
 if(notice.source.kind!=="retraction_notice") throw new Error("PubMed adapter lost notice kind");
+if(original.source.independence_group!=="doi:10.1021/am300292v") throw new Error("PubMed DOI independence canonicalization failed");
+if(notice.source.independence_group!=="doi:10.1021/acsami.9b11759") throw new Error("PubMed notice DOI independence canonicalization failed");
 
 const noticeDossier=buildDossier({
   id:"DOS-000301",
@@ -116,4 +118,4 @@ if(noticeDossier.safety.decision!=="investigate"){
   throw new Error("PubMed retraction notice bypassed integrity gate");
 }
 
-console.log("FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|notice_review_gate=1");
+console.log("FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|doi_independence=1|notice_review_gate=1");
