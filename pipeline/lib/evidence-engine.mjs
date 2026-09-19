@@ -191,6 +191,69 @@ export function evaluateSafety(dossier){
   };
 }
 
+
+export function finalizeHumanConfirmation(dossier,{approved=false}={}){
+  const fallback=dossier?.safety?.confidence_ceiling??"unverifiable";
+  const reasons=[];
+
+  if(!approved){
+    return {
+      confirmed:false,
+      confidence:fallback,
+      reasons:["human_approval_missing"]
+    };
+  }
+
+  if(dossier?.safety?.human_review_required!==true) reasons.push("human_review_contract_missing");
+  if(dossier?.safety?.decision!=="publish") reasons.push("safety_decision_not_publish");
+  if(dossier?.publication_status!=="active") reasons.push("publication_status_not_active");
+  if(!dossier?.source) reasons.push("primary_source_missing");
+
+  if(dossier?.source?.kind==="preprint"||dossier?.source?.peer_reviewed===false){
+    reasons.push("non_peer_reviewed_source");
+  }
+
+  const claims=Array.isArray(dossier?.claims)?dossier.claims:[];
+  if(claims.length===0) reasons.push("no_atomic_claim");
+
+  const locatorFailure=claims.some(claim=>
+    !Array.isArray(claim.evidence)||
+    claim.evidence.length===0||
+    claim.evidence.some(item=>!item.locator||item.verification_status!=="verified")
+  );
+  if(locatorFailure) reasons.push("verified_evidence_locator_required");
+
+  if((dossier?.contradictions||[]).length) reasons.push("material_contradiction_present");
+
+  const levels=claims.map(claim=>claim.evidence_level);
+  const replicatedOrAuthoritative=levels.length>0&&levels.every(level=>
+    ["replicated_human","regulatory","real_world"].includes(level)
+  );
+  if(!replicatedOrAuthoritative) reasons.push("confirmation_evidence_strength_insufficient");
+
+  const hasRealWorld=levels.includes("real_world");
+  if(hasRealWorld){
+    const independentGroups=new Set(
+      (dossier?.independence||[]).map(item=>item.group).filter(Boolean)
+    );
+    if(independentGroups.size<2) reasons.push("real_world_independent_confirmation_missing");
+  }
+
+  if(reasons.length){
+    return {
+      confirmed:false,
+      confidence:fallback,
+      reasons:[...new Set(reasons)]
+    };
+  }
+
+  return {
+    confirmed:true,
+    confidence:"confirmed",
+    reasons:["human_approved","confirmation_gate_passed"]
+  };
+}
+
 export function buildDossier(args){
   const {
     id,
