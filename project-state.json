@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.5.0",
+  "authority_version": "0.5.1",
   "current_stage": "FE-03",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -80,7 +80,13 @@
     "pubmed_curation_families": 6,
     "pubmed_curation_auto_admission": false,
     "cross_provider_independence_dedup": true,
-    "unverified_locator_publish_blocked": true
+    "unverified_locator_publish_blocked": true,
+    "external_collection_matrix": "external-v1",
+    "external_collection_matrix_families": 17,
+    "external_dev_target": 100,
+    "external_validation_target": 50,
+    "external_candidate_uniqueness_required": true,
+    "external_family_coverage_required": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
