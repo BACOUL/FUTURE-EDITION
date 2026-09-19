@@ -14,6 +14,7 @@ const steps = [
   ["test-fe03-bridge", ["pipeline/test-fe03-bridge.mjs"]],
   ["test-fe03-locators", ["pipeline/test-fe03-locators.mjs"]],
   ["test-fe03-semantic", ["pipeline/test-fe03-semantic-safety.mjs"]],
+  ["test-fe03-independence", ["pipeline/test-fe03-independence.mjs"]],
   ["bench-fe03-synthetic", ["benchmarks/fe03/run-synthetic.mjs"]],
   ["test-fe03-collection", ["benchmarks/fe03/test-collection-plan.mjs"]],
   ["test-fe03-external-seed", ["benchmarks/fe03/test-external-seed.mjs"]],
