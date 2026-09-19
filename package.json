@@ -15,6 +15,11 @@
     "build": "node pipeline/run-local.mjs",
     "dev": "node pipeline/run-local.mjs && node pipeline/serve.mjs",
     "validate:state": "node pipeline/validate-current-state.mjs",
-    "test:state": "node pipeline/test-state-resolution.mjs"
+    "test:state": "node pipeline/test-state-resolution.mjs",
+    "test:fe03:core": "node pipeline/test-fe03-core.mjs",
+    "test:fe03:contracts": "node pipeline/test-fe03-contracts.mjs",
+    "test:fe03:resolver": "node pipeline/test-fe03-resolver.mjs",
+    "test:fe03:bridge": "node pipeline/test-fe03-bridge.mjs",
+    "bench:fe03:synthetic": "node benchmarks/fe03/run-synthetic.mjs"
   }
 }
