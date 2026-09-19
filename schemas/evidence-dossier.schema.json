@@ -14,7 +14,8 @@
     "independence",
     "contradictions",
     "limitations",
-    "safety"
+    "safety",
+    "integrity_relations"
   ],
   "properties": {
     "id": {
@@ -88,7 +89,9 @@
             "institution_release",
             "media",
             "social",
-            "other"
+            "other",
+            "correction_notice",
+            "retraction_notice"
           ]
         },
         "title": {
@@ -294,6 +297,52 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        }
+      }
+    },
+    "integrity_relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "direction",
+          "type",
+          "external_id",
+          "source",
+          "label"
+        ],
+        "properties": {
+          "direction": {
+            "enum": [
+              "updated_by",
+              "updates"
+            ]
+          },
+          "type": {
+            "enum": [
+              "retraction",
+              "correction",
+              "expression_of_concern",
+              "other"
+            ]
+          },
+          "external_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       }
