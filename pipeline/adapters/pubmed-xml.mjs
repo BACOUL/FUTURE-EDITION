@@ -133,6 +133,16 @@ function studyStage(pubtypes,meshTerms=[]){
   return "unknown";
 }
 
+function abstractSections(articleXml){
+  return allBlocks(articleXml,"AbstractText")
+    .map(item=>({
+      label:attribute(item.open,"Label")||attribute(item.open,"NlmCategory")||null,
+      nlm_category:attribute(item.open,"NlmCategory")||null,
+      text:stripTags(item.inner)
+    }))
+    .filter(item=>item.text);
+}
+
 export function parsePubmedXml(xml){
   if(typeof xml!=="string"||!xml.includes("<PubmedArticle")) return null;
 
@@ -151,6 +161,9 @@ export function parsePubmedXml(xml){
   const meshTerms=allBlocks(article.inner,"DescriptorName")
     .map(item=>stripTags(item.inner))
     .filter(Boolean);
+
+  const abstract_sections=abstractSections(article.inner);
+  const abstract=abstract_sections.map(item=>item.text).join(" ").trim()||null;
 
   let doi=null;
   for(const item of allBlocks(article.inner,"ArticleId")){
@@ -186,6 +199,8 @@ export function parsePubmedXml(xml){
     pmid,
     title,
     doi,
+    abstract,
+    abstract_sections,
     pubtypes,
     publication_status:publicationStatus(pubtypes,relations),
     kind:publicationKind(pubtypes),
