@@ -1,0 +1,31 @@
+{
+  "version": "external-v1",
+  "auto_admit": false,
+  "human_label_required": true,
+  "strategies": [
+    {"family":"active_peer_reviewed","mode":"pubmed_search","providers":["pubmed"],"collector":"benchmarks/fe03/collect-pubmed-candidates.mjs"},
+    {"family":"preprint","mode":"rxiv_recent","providers":["medrxiv","biorxiv"],"collector":"benchmarks/fe03/collect-rxiv-candidates.mjs"},
+    {"family":"retracted_publication","mode":"pubmed_search","providers":["pubmed","crossref"],"collector":"benchmarks/fe03/collect-pubmed-candidates.mjs"},
+    {"family":"retraction_notice","mode":"crossref_update_notice","providers":["crossref","pubmed"],"collector":"benchmarks/fe03/collect-crossref-updates.mjs"},
+    {"family":"corrected_publication","mode":"crossref_has_update","providers":["crossref"],"collector":"benchmarks/fe03/collect-crossref-updates.mjs"},
+    {"family":"expression_of_concern","mode":"pubmed_search","providers":["pubmed"],"collector":"benchmarks/fe03/collect-pubmed-candidates.mjs"},
+    {"family":"invalid_identifier","mode":"deterministic_design","providers":["benchmark_design"],"collector":null},
+    {"family":"animal_only","mode":"pubmed_search","providers":["pubmed"],"collector":"benchmarks/fe03/collect-pubmed-candidates.mjs"},
+    {"family":"early_human","mode":"pubmed_search","providers":["pubmed","clinicaltrials"],"collector":"benchmarks/fe03/collect-pubmed-candidates.mjs"},
+    {"family":"controlled_human","mode":"pubmed_search","providers":["pubmed","clinicaltrials"],"collector":"benchmarks/fe03/collect-pubmed-candidates.mjs"},
+    {"family":"systematic_review","mode":"pubmed_search","providers":["pubmed"],"collector":"benchmarks/fe03/collect-pubmed-candidates.mjs"},
+    {"family":"trial_registry","mode":"clinicaltrials_search","providers":["clinicaltrials"],"collector":"benchmarks/fe03/collect-clinicaltrials-candidates.mjs"},
+    {"family":"dependent_echo","mode":"manual_relational","providers":["publisher","regulator"],"collector":null},
+    {"family":"contradiction","mode":"manual_relational","providers":["pubmed","crossref","publisher","regulator"],"collector":null},
+    {"family":"negative_result","mode":"clinicaltrials_results_review","providers":["clinicaltrials","pubmed","publisher"],"collector":"benchmarks/fe03/collect-clinicaltrials-candidates.mjs"},
+    {"family":"technology_benchmark","mode":"manual_technical_primary","providers":["arxiv","publisher"],"collector":null},
+    {"family":"real_world_deployment","mode":"manual_authoritative_deployment","providers":["regulator","publisher"],"collector":null}
+  ],
+  "rules": [
+    "Collectors discover candidates only; they never create benchmark labels.",
+    "Every non-deterministic admitted case requires human-reviewed label evidence.",
+    "Manual relational families require explicit evidence for each side of the relation.",
+    "A provider suggestion is not evidence that the candidate belongs to the target family.",
+    "The sealed holdout is produced outside the tuning workspace."
+  ]
+}
