@@ -1,13 +1,13 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.3.0",
-  "current_stage": "FE-02",
+  "authority_version": "0.4.0",
+  "current_stage": "FE-03",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
     "FE-00B": "PROVISIONAL_COMPLETE",
     "FE-01": "PROVED",
-    "FE-02": "IN_PROGRESS",
-    "FE-03": "NOT_STARTED",
+    "FE-02": "PROVED",
+    "FE-03": "IN_PROGRESS",
     "FE-04": "NOT_STARTED",
     "FE-05": "NOT_STARTED",
     "FE-06": "NOT_STARTED",
@@ -45,7 +45,13 @@
     "monetization_policy_defined": true,
     "handoff_defined": true,
     "zero_dependency_build": true,
-    "launch_routes_generated": 14
+    "launch_routes_generated": 14,
+    "future_graph_schema_version": "0.4.0",
+    "future_graph_nodes": 61,
+    "future_graph_edges": 51,
+    "temporal_assessments": true,
+    "canonical_sources": true,
+    "review_ledger": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -60,19 +66,33 @@
         "exact repository data audit PASS: 10 questions, 51 milestones, 61 IDs, 14 expected routes, 0 errors",
         "Astro path removed; no external registry required"
       ]
+    },
+    {
+      "stage": "FE-02",
+      "verdict": "PROVED",
+      "evidence": [
+        "exact committed FE-02 synthetic model test executed under Node 22: PASS (20 objects, 9 negative cases, history, contradiction, assessments, determinism)",
+        "exact committed state resolver executed under Node 22: PASS (history, unassessed fallback, ambiguity blocked)",
+        "canonical question data schema validation: 10 questions, 51 milestones, 61 unique IDs, 0 errors",
+        "all 10 auxiliary collections parse as JSON arrays after correcting two literal-newline defects",
+        "all 12 JSON schemas parse successfully",
+        "production collections validate against graph relation model: 0 errors",
+        "production graph shape: 61 nodes, 51 edges, deterministic, no mutable question/milestone state"
+      ]
     }
   ],
   "next_gate": {
-    "stage": "FE-02",
+    "stage": "FE-03",
     "required": [
-      "complete entity schemas",
-      "canonical source collection",
-      "temporal state model",
-      "typed relation integrity",
-      "synthetic full-chain fixture",
-      "contradiction and correction preservation",
-      "deterministic byte-identical graph builds",
-      "invalid fixtures rejected"
+      "candidate and evidence dossier contracts",
+      "primary-source resolver with provider adapters",
+      "publication-status and retraction checks",
+      "claim-to-evidence extraction with locators",
+      "source-independence grouping",
+      "domain evidence-level classification",
+      "benchmark corpus specification and executable harness",
+      "false-confirmation safety thresholds",
+      "human-review queue output"
     ]
   },
   "known_non_blocking_environment_constraints": [
@@ -81,7 +101,7 @@
       "description": "This execution environment cannot resolve github.com directly. Repository reads/writes use the connected GitHub integration; FE-01 build no longer requires network access."
     }
   ],
-  "next_stage_after_gate": "FE-03",
+  "next_stage_after_gate": "FE-04",
   "github_actions_dependency": false,
   "github_actions_activation_target": "2026-10-01"
 }
