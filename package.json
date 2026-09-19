@@ -25,6 +25,7 @@
     "test:fe03:semantic": "node pipeline/test-fe03-semantic-safety.mjs",
     "validate:fe03:external": "node benchmarks/fe03/validate-external.mjs",
     "seal:fe03:holdout": "node benchmarks/fe03/seal-holdout.mjs",
-    "test:fe03:crossref": "node pipeline/test-fe03-crossref-integrity.mjs"
+    "test:fe03:crossref": "node pipeline/test-fe03-crossref-integrity.mjs",
+    "test:fe03:pubmed": "node pipeline/test-fe03-pubmed-integrity.mjs"
   }
 }
