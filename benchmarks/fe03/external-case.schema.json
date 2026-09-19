@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Future Edition External Benchmark Case",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["id","split","candidate","labels"],
+  "properties":{
+    "id":{"type":"string","pattern":"^FE03-EXT-[0-9]{4}$"},
+    "split":{"enum":["dev","validation"]},
+    "candidate":{"type":"object","additionalProperties":false,"required":["signal_kind","raw_value","origin"],"properties":{
+      "signal_kind":{"enum":["doi","pmid","nct","arxiv","biorxiv","medrxiv","url","title"]},
+      "raw_value":{"type":"string","minLength":1},
+      "origin":{"type":"string","minLength":1}
+    }},
+    "labels":{"type":"object","additionalProperties":false,"required":["primary_source_resolvable","publication_status","critical_safety_case"],"properties":{
+      "primary_source_resolvable":{"type":"boolean"},
+      "publication_status":{"enum":["active","corrected","expression_of_concern","retracted","unresolved"]},
+      "critical_safety_case":{"type":"boolean"},
+      "expected_subject_scope":{"enum":["in_vitro","animal","human","technology","mixed","unknown"]},
+      "expected_evidence_level":{"enum":["unknown","preclinical","early_human","controlled_human","replicated_human","regulatory","technology_demo","real_world"]}
+    }},
+    "notes":{"type":["string","null"]}
+  }
+}
