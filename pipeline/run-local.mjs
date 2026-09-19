@@ -11,6 +11,7 @@ const steps = [
   ["test-fe03-resolver", ["pipeline/test-fe03-resolver.mjs"]],
   ["test-fe03-bridge", ["pipeline/test-fe03-bridge.mjs"]],
   ["test-fe03-locators", ["pipeline/test-fe03-locators.mjs"]],
+  ["test-fe03-semantic", ["pipeline/test-fe03-semantic-safety.mjs"]],
   ["bench-fe03-synthetic", ["benchmarks/fe03/run-synthetic.mjs"]],
   ["build-graph", ["pipeline/build-graph.mjs"]],
   ["validate-graph", ["pipeline/validate-graph.mjs"]],
