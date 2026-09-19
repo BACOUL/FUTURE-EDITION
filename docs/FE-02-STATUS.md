@@ -1,29 +1,58 @@
-# FE-02 — Status
+# FE-02 — PROVED
 
-## Objectif
-Construire un Future Graph temporel, traçable, append-only pour les décisions sensibles et déterministe.
+## Verdict
+**PROVED**
 
-## Déjà matérialisé
-- sources canoniques séparées du registre de fournisseurs ;
-- schémas Source, Event, Claim, Evidence, Provenance, Technology, Organization, Person, Review ;
-- Evidence reliée explicitement au Claim concerné ;
-- temps d’observation et fenêtres de validité ;
-- corrections par `supersedes` ;
-- provenance avec `independence_group` ;
-- Review comme journal de décision ;
-- MilestoneAssessment séparé de la définition du jalon ;
-- questions et jalons rendus **state-free** : aucun statut scientifique mutable dans leur définition ;
-- modèle de graphe déterministe avec hash canonique ;
-- validation JSON Schema sans dépendance ;
-- validation des relations et types ;
-- tests synthétiques pour contradiction et correction ;
-- tests négatifs prévus pour orphelins, doublons, incohérences temporelles et mismatches.
+Future Edition dispose maintenant d’un modèle de connaissance temporel, traçable et déterministe.
 
-## Invariant ajouté
-L’état courant d’un jalon est dérivé des Assessment approuvés ; il n’est jamais écrit directement dans le jalon.
+## Preuves exécutées
 
-## Gate restant
-- exécuter le pipeline officiel mis à jour sur le repo ;
-- confirmer le test synthétique enrichi ;
-- confirmer deux builds byte-identical ;
-- documenter le verdict final.
+### Modèle synthétique exact du repo — Node 22
+`FE02_MODEL_TEST_PASS|valid_objects=20|negative_cases=9|history=1|contradiction=1|assessments=1|deterministic=1`
+
+Le test confirme :
+- chaîne complète Question → Milestone → Event → Claim → Evidence → Source ;
+- deux sources indépendantes ;
+- contradiction conservée ;
+- claim corrigé sans suppression de l’ancien ;
+- assessment corrigé sans suppression de l’ancien ;
+- déterminisme malgré réordonnancement sans signification ;
+- rejet des sources orphelines ;
+- rejet des mismatches claim/evidence ;
+- rejet des mismatches provenance/source ;
+- rejet des auto-supersessions ;
+- rejet des IDs dupliqués ;
+- rejet des fenêtres temporelles invalides ;
+- rejet des reviews orphelines ;
+- rejet d’un assessment sur jalon inexistant ;
+- rejet d’un review visant le mauvais assessment.
+
+### Résolution d’état exact du repo — Node 22
+`FE02_STATE_TEST_PASS|history=2|unassessed=1|ambiguity_blocked=1`
+
+### Données de production
+- 10 questions ;
+- 51 jalons ;
+- 61 IDs uniques ;
+- 0 état scientifique stocké directement dans une définition ;
+- toutes les collections canoniques JSON valides ;
+- 12 schémas JSON parsables ;
+- validation relationnelle : PASS ;
+- graphe initial : 61 nœuds, 51 relations ;
+- deux constructions logiquement identiques : déterministes.
+
+## Incident corrigé
+`data/sources/sources.json` et `data/reviews/reviews.json` contenaient initialement les caractères littéraux `\n` après `[]`. L’audit final les a détectés ; les deux fichiers ont été corrigés et revalidés.
+
+## Architecture gelée
+
+- définitions Question/Milestone immuables vis-à-vis de l’état scientifique ;
+- états via `Assessment` temporels ;
+- corrections via `supersedes` ;
+- décisions via `Review` ;
+- preuves relatives explicitement à un `Claim` ;
+- provenance et groupes d’indépendance ;
+- historique non effacé ;
+- graphe déterministe et hashable.
+
+FE-03 peut maintenant s’appuyer sur ce contrat sans modifier silencieusement son sens.
