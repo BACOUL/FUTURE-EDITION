@@ -22,6 +22,8 @@
     "test:fe03:bridge": "node pipeline/test-fe03-bridge.mjs",
     "bench:fe03:synthetic": "node benchmarks/fe03/run-synthetic.mjs",
     "test:fe03:locators": "node pipeline/test-fe03-locators.mjs",
-    "test:fe03:semantic": "node pipeline/test-fe03-semantic-safety.mjs"
+    "test:fe03:semantic": "node pipeline/test-fe03-semantic-safety.mjs",
+    "validate:fe03:external": "node benchmarks/fe03/validate-external.mjs",
+    "seal:fe03:holdout": "node benchmarks/fe03/seal-holdout.mjs"
   }
 }
