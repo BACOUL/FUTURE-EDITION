@@ -10,6 +10,7 @@ export function normalizeCrossref(payload){
   return {status:"resolved",provider:"crossref",reason:null,publication_status:status,source:{
     external_id:doi,
     kind:m.type==="posted-content"?"preprint":"paper",
+    tier:"A",
     title:getTitle(m.title)||doi,
     url:m.URL||"https://doi.org/"+m.DOI,
     peer_reviewed:m.type!=="posted-content",
@@ -24,6 +25,7 @@ export function normalizePubMed(record){
   return {status:"resolved",provider:"pubmed",reason:null,publication_status:record.publication_status||"active",source:{
     external_id:id,
     kind:"paper",
+    tier:"A",
     title:record.title||"PMID "+id,
     url:record.url||"https://pubmed.ncbi.nlm.nih.gov/"+id+"/",
     peer_reviewed:record.peer_reviewed!==false,
@@ -39,6 +41,7 @@ export function normalizeClinicalTrial(study){
   return {status:"resolved",provider:"clinicaltrials",reason:null,publication_status:"active",source:{
     external_id:id,
     kind:"trial_registry",
+    tier:"A",
     title,
     url:"https://clinicaltrials.gov/study/"+id,
     peer_reviewed:false,
@@ -53,6 +56,7 @@ export function normalizeArxiv(entry){
   return {status:"resolved",provider:"arxiv",reason:null,publication_status:"active",source:{
     external_id:id,
     kind:"preprint",
+    tier:"A",
     title:entry.title||id,
     url:entry.url||"https://arxiv.org/abs/"+id,
     peer_reviewed:false,
@@ -67,6 +71,7 @@ export function normalizeRxiv(record,server){
   return {status:"resolved",provider:server,reason:null,publication_status:"active",source:{
     external_id:doi,
     kind:"preprint",
+    tier:"A",
     title:record.title||doi,
     url:"https://www."+server+".org/content/"+doi,
     peer_reviewed:false,
