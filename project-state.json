@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.5.5",
+  "authority_version": "0.5.6",
   "current_stage": "FE-03",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -123,7 +123,24 @@
     "external_seed_validation_remaining": 33,
     "external_coverage_report": true,
     "external_seed_validation_families_covered": 17,
-    "external_public_cases_remaining": 112
+    "external_public_cases_remaining": 112,
+    "external_resolution_evaluator": true,
+    "external_resolution_evaluator_fixture_pass": true,
+    "external_resolution_metrics": [
+      "primary_source_precision",
+      "primary_source_recall",
+      "publication_status_precision",
+      "evidence_level_precision",
+      "subject_scope_precision",
+      "source_independence_precision",
+      "known_retracted_detection_rate"
+    ],
+    "external_claim_metrics_fail_closed": true,
+    "external_claim_evidence_precision_available": false,
+    "external_false_confirmed_rate_available": false,
+    "pubmed_doi_independence_canonicalization": true,
+    "pubmed_animal_mesh_stage": true,
+    "clinicaltrials_structured_stage": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
