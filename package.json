@@ -14,6 +14,7 @@
     "build:web": "node pipeline/build-site.mjs && node pipeline/validate-output.mjs",
     "build": "node pipeline/run-local.mjs",
     "dev": "node pipeline/run-local.mjs && node pipeline/serve.mjs",
-    "validate:state": "node pipeline/validate-current-state.mjs"
+    "validate:state": "node pipeline/validate-current-state.mjs",
+    "test:state": "node pipeline/test-state-resolution.mjs"
   }
 }

@@ -5,6 +5,7 @@ const steps = [
   ["validate-schemas", ["pipeline/validate-schemas.mjs"]],
   ["validate-relations", ["pipeline/validate-relations.mjs"]],
   ["test-fe02-model", ["pipeline/test-fe02-model.mjs"]],
+  ["test-state-resolution", ["pipeline/test-state-resolution.mjs"]],
   ["build-graph", ["pipeline/build-graph.mjs"]],
   ["validate-graph", ["pipeline/validate-graph.mjs"]],
   ["verify-determinism", ["pipeline/verify-determinism.mjs"]],
