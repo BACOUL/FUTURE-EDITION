@@ -151,7 +151,9 @@
           "id",
           "text",
           "evidence_level",
-          "evidence"
+          "evidence",
+          "claim_kind",
+          "subject_scope"
         ],
         "properties": {
           "id": {
@@ -198,6 +200,30 @@
                 }
               }
             }
+          },
+          "claim_kind": {
+            "enum": [
+              "result",
+              "safety",
+              "efficacy",
+              "mechanism",
+              "association",
+              "performance",
+              "deployment",
+              "regulatory",
+              "negative_result",
+              "limitation"
+            ]
+          },
+          "subject_scope": {
+            "enum": [
+              "in_vitro",
+              "animal",
+              "human",
+              "technology",
+              "mixed",
+              "unknown"
+            ]
           }
         }
       }
