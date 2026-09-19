@@ -29,6 +29,7 @@
     "test:fe03:pubmed": "node pipeline/test-fe03-pubmed-integrity.mjs",
     "test:fe03:collection": "node benchmarks/fe03/test-collection-plan.mjs",
     "test:fe03:external-seed": "node benchmarks/fe03/test-external-seed.mjs",
-    "test:fe03:independence": "node pipeline/test-fe03-independence.mjs"
+    "test:fe03:independence": "node pipeline/test-fe03-independence.mjs",
+    "test:fe03:matrix": "node benchmarks/fe03/validate-collection-matrix.mjs"
   }
 }
