@@ -54,7 +54,7 @@
     "review_ledger": true,
     "evidence_engine_contracts": true,
     "evidence_provider_adapters": 6,
-    "network_resolver_routes": 5,
+    "network_resolver_routes": 6,
     "synthetic_safety_cases": 240,
     "synthetic_false_confirmed_rate": 0,
     "human_review_queue": true,
@@ -70,7 +70,9 @@
     "external_holdout_minimum": 50,
     "external_holdout_labels_in_repo": false,
     "external_holdout_consumed": false,
-    "external_benchmark_cases_collected": 0
+    "external_benchmark_cases_collected": 0,
+    "arxiv_atom_parser": true,
+    "crossref_directional_integrity": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -103,7 +105,6 @@
   "next_gate": {
     "stage": "FE-03",
     "required": [
-      "arXiv network parser frozen",
       "live source status and retraction verification",
       "atomic claim extraction from permitted real content",
       "verified claim-to-evidence locators on real multi-format corpus",
