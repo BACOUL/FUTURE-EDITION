@@ -23,7 +23,7 @@
 - locators vérifiables `document#section:start-end` avec hash d’extrait ;
 - résolveur avec `fetchFn` injecté pour tests reproductibles ;
 - routes réseau préparées pour Crossref, PubMed ESummary, ClinicalTrials.gov v2 et bioRxiv/medRxiv ;
-- arXiv réseau échoue explicitement tant que son parseur XML n'est pas gelé.
+- arXiv réseau utilise désormais un parseur Atom XML zéro dépendance, avec rejet explicite des feeds d’erreur.
 
 ## Tests exécutés
 
@@ -37,6 +37,9 @@ La relation `updated-by` détermine le statut du travail consulté ; `update-to`
 
 ### Contrats
 `FE03_CONTRACT_TEST_PASS|candidate=1|dossier=1|fe02_bridge=1`
+
+### arXiv Atom
+Parseur exact du repo vérifié : ID/version, titre, auteurs, catégorie primaire et DOI associés ; feed d’erreur rejeté.
 
 ### Résolveur offline
 `FE03_RESOLVER_TEST_PASS|routes=4|offline_fixtures=4|invalid_id=1|network_error=1|arxiv_explicitly_unsupported=1`
@@ -88,8 +91,7 @@ Le corpus synthétique **ne peut pas valider FE-03**. Il verrouille uniquement l
 
 ## Reste à prouver avant FE-03 PROVED
 
-1. parseur réseau arXiv ;
-2. vérification live des statuts/corrections/rétractations sur un corpus réel ;
+1. vérification live des statuts/corrections/rétractations sur un corpus réel ;
 3. extraction de claims atomiques depuis contenu réel autorisé ;
 4. locators vérifiés sur corpus réel et sur plusieurs formats documentaires ;
 5. classification domaine/niveau de preuve sur exemples réels ;
