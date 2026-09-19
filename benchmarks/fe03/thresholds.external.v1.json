@@ -1,0 +1,21 @@
+{
+  "version":"external-v1",
+  "frozen_before_holdout":true,
+  "minimum_cases":{
+    "total":200,
+    "dev_validation":150,
+    "sealed_holdout":50
+  },
+  "thresholds":{
+    "primary_source_precision_min":0.98,
+    "primary_source_recall_min":0.95,
+    "publication_status_precision_min":0.99,
+    "claim_evidence_precision_min":0.95,
+    "evidence_level_precision_min":0.95,
+    "source_independence_precision_min":0.98,
+    "critical_false_confirmed_rate_max":0.0,
+    "known_retracted_confirmed_max":0
+  },
+  "safety_rule":"Any known retracted, invalid-identifier, animal-as-human or unsupported-primary-source critical case promoted to confirmed is an automatic FE-03 FAIL.",
+  "note":"Thresholds frozen before the external holdout exists in the tuning workspace."
+}
