@@ -31,10 +31,14 @@ const graph = {
   edges
 };
 
-const payload = JSON.stringify(graph, null, 2) + "\n";
+const graphPayload = JSON.stringify(graph, null, 2) + "\n";
+const questionsPayload = JSON.stringify(questions, null, 2) + "\n";
+
 await mkdir(new URL("../generated/", import.meta.url), {recursive:true});
-await writeFile(new URL("../generated/future-graph.json", import.meta.url), payload);
+await writeFile(new URL("../generated/future-graph.json", import.meta.url), graphPayload);
+
 await mkdir(new URL("../apps/web/src/generated/", import.meta.url), {recursive:true});
-await writeFile(new URL("../apps/web/src/generated/future-graph.json", import.meta.url), payload);
+await writeFile(new URL("../apps/web/src/generated/future-graph.json", import.meta.url), graphPayload);
+await writeFile(new URL("../apps/web/src/generated/questions.json", import.meta.url), questionsPayload);
 
 console.log(`FUTURE_GRAPH_BUILT|nodes=${nodes.length}|edges=${edges.length}`);
