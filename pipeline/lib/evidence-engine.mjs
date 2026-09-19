@@ -116,6 +116,7 @@ export function evaluateSafety(dossier){
 
   if(dossier.publication_status==="expression_of_concern") reasons.push("expression_of_concern");
   if(dossier.publication_status==="corrected") reasons.push("source_corrected_review_update_required");
+  if(["retraction_notice","correction_notice"].includes(dossier.source.kind)) reasons.push("integrity_notice");
   if(dossier.source.kind==="preprint"||dossier.source.peer_reviewed===false) reasons.push("not_peer_reviewed");
 
   const noClaims=!Array.isArray(dossier.claims)||dossier.claims.length===0;
@@ -169,7 +170,8 @@ export function evaluateSafety(dossier){
   if(reasons.some(reason=>[
     "expression_of_concern",
     "material_contradiction_present",
-    "source_corrected_review_update_required"
+    "source_corrected_review_update_required",
+    "integrity_notice"
   ].includes(reason))){
     decision="investigate";
   }else if(ceiling==="needs_confirmation"){
@@ -195,6 +197,7 @@ export function buildDossier(args){
     relatedSources=[],
     contradictions=[],
     limitations=[],
+    integrity_relations=[],
     observed_at
   }=args;
 
@@ -227,6 +230,7 @@ export function buildDossier(args){
     ),
     contradictions,
     limitations,
+    integrity_relations,
     safety:null
   };
 
