@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.4.0",
+  "authority_version": "0.5.0",
   "current_stage": "FE-03",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -51,7 +51,14 @@
     "future_graph_edges": 51,
     "temporal_assessments": true,
     "canonical_sources": true,
-    "review_ledger": true
+    "review_ledger": true,
+    "evidence_engine_contracts": true,
+    "evidence_provider_adapters": 6,
+    "network_resolver_routes": 5,
+    "synthetic_safety_cases": 240,
+    "synthetic_false_confirmed_rate": 0,
+    "human_review_queue": true,
+    "fe03_to_fe02_bridge": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -84,15 +91,18 @@
   "next_gate": {
     "stage": "FE-03",
     "required": [
-      "candidate and evidence dossier contracts",
-      "primary-source resolver with provider adapters",
-      "publication-status and retraction checks",
-      "claim-to-evidence extraction with locators",
-      "source-independence grouping",
-      "domain evidence-level classification",
-      "benchmark corpus specification and executable harness",
-      "false-confirmation safety thresholds",
-      "human-review queue output"
+      "arXiv network parser frozen",
+      "live source status and retraction verification",
+      "atomic claim extraction from permitted real content",
+      "verified claim-to-evidence locators",
+      "real-domain evidence-level benchmark",
+      "externally curated benchmark >= 200 cases",
+      "external dev/validation/holdout split frozen before holdout",
+      "primary-source precision and recall measured",
+      "claim-to-evidence precision measured",
+      "source-independence detection measured",
+      "critical holdout false-confirmed rate = 0",
+      "human review queue remains mandatory"
     ]
   },
   "known_non_blocking_environment_constraints": [
