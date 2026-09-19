@@ -123,7 +123,7 @@ export function normalizePubMed(record){
     url:record.url||"https://pubmed.ncbi.nlm.nih.gov/"+id+"/",
     peer_reviewed:record.peer_reviewed!==false,
     study_stage:record.study_stage||"unknown",
-    independence_group:record.independence_group||"pubmed:"+id
+    independence_group:record.independence_group||(record.doi?"doi:"+String(record.doi).toLowerCase():"pubmed:"+id)
   }};
 }
 
@@ -154,7 +154,7 @@ export function normalizeArxiv(entry){
     url:entry.url||"https://arxiv.org/abs/"+id,
     peer_reviewed:false,
     study_stage:entry.study_stage||"unknown",
-    independence_group:"arxiv:"+id
+    independence_group:entry.doi?"doi:"+String(entry.doi).toLowerCase():"arxiv:"+id
   }};
 }
 
@@ -169,7 +169,7 @@ export function normalizeRxiv(record,server){
     url:"https://www."+server+".org/content/"+doi,
     peer_reviewed:false,
     study_stage:record.study_stage||"unknown",
-    independence_group:server+":"+doi
+    independence_group:"doi:"+doi
   }};
 }
 
