@@ -59,8 +59,11 @@ function addPubmedSections(sections,payload){
 function addClinicalTrialsSections(sections,payload){
   const protocol=payload?.protocolSection??{};
   const description=protocol.descriptionModule??{};
+  const status=protocol.statusModule??{};
+
   addSection(sections,"brief-summary","Brief summary",description.briefSummary);
   addSection(sections,"detailed-description","Detailed description",description.detailedDescription);
+  addSection(sections,"why-stopped","Why stopped",status.whyStopped);
 
   const outcomes=protocol.outcomesModule??{};
   const groups=[
@@ -84,6 +87,22 @@ function addClinicalTrialsSections(sections,payload){
         text
       );
     }
+  }
+
+  const resultOutcomes=payload?.resultsSection?.outcomeMeasuresModule?.outcomeMeasures??[];
+  for(let index=0;index<resultOutcomes.length;index++){
+    const item=resultOutcomes[index]??{};
+    const text=[
+      item.title,
+      item.description,
+      item.timeFrame
+    ].filter(Boolean).join(". ");
+    addSection(
+      sections,
+      "result-outcome-"+String(index+1),
+      normalizeSpace(item.title)||"Result outcome "+String(index+1),
+      text
+    );
   }
 }
 
