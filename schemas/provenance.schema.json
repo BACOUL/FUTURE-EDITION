@@ -3,17 +3,20 @@
   "title": "Future Edition Provenance",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "source_id", "retrieved_at", "canonical_url", "independence_group"],
+  "required": ["id", "source_id", "retrieved_at", "canonical_url", "independence_group", "observed_at", "valid_from", "valid_to"],
   "properties": {
-    "id": {"type": "string"},
-    "source_id": {"type": "string"},
+    "id": {"type": "string", "pattern": "^PROV-[0-9]{6}$"},
+    "source_id": {"type": "string", "pattern": "^SRC-[0-9]{6}$"},
     "retrieved_at": {"type": "string", "format": "date-time"},
     "canonical_url": {"type": "string", "format": "uri"},
     "external_version": {"type": ["string", "null"]},
     "content_hash": {"type": ["string", "null"]},
     "license": {"type": ["string", "null"]},
     "independence_group": {"type": "string", "minLength": 1},
-    "derived_from_source_ids": {"type": "array", "items": {"type": "string"}},
-    "notes": {"type": ["string", "null"]}
+    "derived_from_source_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^SRC-[0-9]{6}$"}},
+    "notes": {"type": ["string", "null"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": ["string", "null"], "format": "date-time"},
+    "valid_to": {"type": ["string", "null"], "format": "date-time"}
   }
 }

@@ -3,12 +3,17 @@
   "title": "Future Edition Claim",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "text", "claim_type", "evidence_ids", "confidence"],
+  "required": ["id", "text", "claim_type", "evidence_ids", "confidence", "review_state", "observed_at", "valid_from", "valid_to"],
   "properties": {
-    "id": {"type": "string"},
+    "id": {"type": "string", "pattern": "^CLAIM-[0-9]{6}$"},
     "text": {"type": "string", "minLength": 5},
     "claim_type": {"enum": ["result", "limitation", "context", "milestone", "negative_result", "correction"]},
-    "evidence_ids": {"type": "array", "items": {"type": "string"}},
-    "confidence": {"enum": ["confirmed", "solid_preliminary", "needs_confirmation", "contested", "misleading", "unverifiable", "retracted_invalidated"]}
+    "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EVID-[0-9]{6}$"}},
+    "confidence": {"enum": ["confirmed", "solid_preliminary", "needs_confirmation", "contested", "misleading", "unverifiable", "retracted_invalidated"]},
+    "review_state": {"enum": ["machine_proposed", "human_approved", "human_rejected", "not_required"]},
+    "supersedes_claim_id": {"type": ["string", "null"], "pattern": "^CLAIM-[0-9]{6}$"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": ["string", "null"], "format": "date-time"},
+    "valid_to": {"type": ["string", "null"], "format": "date-time"}
   }
 }

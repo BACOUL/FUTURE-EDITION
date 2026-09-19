@@ -3,16 +3,21 @@
   "title": "Future Edition Source",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "kind", "tier", "title", "url", "status"],
+  "required": ["id", "kind", "tier", "title", "canonical_url", "status", "observed_at", "valid_from", "valid_to", "review_state"],
   "properties": {
-    "id": {"type": "string"},
-    "kind": {"enum": ["paper", "preprint", "trial_registry", "regulator", "official_data", "technical_report", "institution_release", "media", "social", "other"]},
+    "id": {"type": "string", "pattern": "^SRC-[0-9]{6}$"},
+    "kind": {"enum": ["paper", "preprint", "trial_registry", "regulator", "official_data", "technical_report", "institution_release", "media", "social", "correction_notice", "retraction_notice", "other"]},
     "tier": {"enum": ["A", "B", "C", "D"]},
-    "title": {"type": "string"},
-    "url": {"type": "string", "format": "uri"},
-    "doi": {"type": ["string", "null"]},
+    "title": {"type": "string", "minLength": 1},
+    "canonical_url": {"type": "string", "format": "uri"},
+    "external_ids": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
     "published_at": {"type": ["string", "null"], "format": "date"},
     "status": {"enum": ["active", "corrected", "expression_of_concern", "retracted", "unknown"]},
-    "checked_at": {"type": ["string", "null"], "format": "date-time"}
+    "version": {"type": "integer", "minimum": 1},
+    "supersedes_source_id": {"type": ["string", "null"], "pattern": "^SRC-[0-9]{6}$"},
+    "review_state": {"enum": ["machine_proposed", "human_approved", "human_rejected", "not_required"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": ["string", "null"], "format": "date-time"},
+    "valid_to": {"type": ["string", "null"], "format": "date-time"}
   }
 }

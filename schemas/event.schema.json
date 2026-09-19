@@ -3,17 +3,21 @@
   "title": "Future Edition Event",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "title", "event_date", "question_ids", "status", "change_type", "human_review"],
+  "required": ["id", "title", "event_date", "question_ids", "status", "change_type", "human_review", "observed_at", "valid_from", "valid_to"],
   "properties": {
     "id": {"type": "string", "pattern": "^EV-[0-9]{4}-[0-9]{6}$"},
-    "title": {"type": "string"},
+    "title": {"type": "string", "minLength": 1},
     "event_date": {"type": "string", "format": "date"},
-    "question_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-    "technology_ids": {"type": "array", "items": {"type": "string"}},
-    "claim_ids": {"type": "array", "items": {"type": "string"}},
-    "source_ids": {"type": "array", "items": {"type": "string"}},
+    "question_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^Q-[0-9]{3}$"}},
+    "technology_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^TECH-[0-9]{4}$"}},
+    "claim_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^CLAIM-[0-9]{6}$"}},
+    "source_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^SRC-[0-9]{6}$"}},
+    "milestone_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
     "status": {"enum": ["candidate", "verified", "published", "rejected", "invalidated"]},
     "change_type": {"enum": ["none", "minor_progress", "evidence_upgrade", "milestone_reached", "setback", "invalidation", "unassessed"]},
-    "human_review": {"enum": ["required", "approved", "rejected", "not_required"]}
+    "human_review": {"enum": ["required", "approved", "rejected", "not_required"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": ["string", "null"], "format": "date-time"},
+    "valid_to": {"type": ["string", "null"], "format": "date-time"}
   }
 }

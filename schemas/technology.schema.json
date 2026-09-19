@@ -3,12 +3,15 @@
   "title": "Future Edition Technology",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "canonical_name", "status"],
+  "required": ["id", "canonical_name", "status", "observed_at", "valid_from", "valid_to"],
   "properties": {
     "id": {"type": "string", "pattern": "^TECH-[0-9]{4}$"},
-    "canonical_name": {"type": "string"},
+    "canonical_name": {"type": "string", "minLength": 1},
     "status": {"enum": ["active", "merged", "deprecated"]},
-    "aliases": {"type": "array", "items": {"type": "string"}},
-    "description": {"type": ["string", "null"]}
+    "aliases": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "description": {"type": ["string", "null"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": ["string", "null"], "format": "date-time"},
+    "valid_to": {"type": ["string", "null"], "format": "date-time"}
   }
 }

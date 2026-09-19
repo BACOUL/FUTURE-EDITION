@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "entity_id", "decision", "reviewed_at", "reviewer_role", "reason", "observed_at", "valid_from", "valid_to"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^REVIEW-[0-9]{6}$"},
+    "entity_id": {"type": "string", "minLength": 1},
+    "decision": {"enum": ["approve", "approve_contested", "hold", "reject", "supersede", "invalidate"]},
+    "reviewed_at": {"type": "string", "format": "date-time"},
+    "reviewer_role": {"enum": ["editorial_gate", "domain_reviewer", "system"]},
+    "reason": {"type": "string", "minLength": 5},
+    "previous_state_hash": {"type": ["string", "null"]},
+    "new_state_hash": {"type": ["string", "null"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": ["string", "null"], "format": "date-time"},
+    "valid_to": {"type": ["string", "null"], "format": "date-time"}
+  }
+}

@@ -3,13 +3,17 @@
   "title": "Future Edition Evidence",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "source_id", "support", "locator"],
+  "required": ["id", "source_id", "support", "locator", "observed_at", "valid_from", "valid_to"],
   "properties": {
-    "id": {"type": "string"},
-    "source_id": {"type": "string"},
+    "id": {"type": "string", "pattern": "^EVID-[0-9]{6}$"},
+    "source_id": {"type": "string", "pattern": "^SRC-[0-9]{6}$"},
+    "provenance_id": {"type": ["string", "null"], "pattern": "^PROV-[0-9]{6}$"},
     "support": {"enum": ["supports", "contradicts", "limits", "context"]},
     "locator": {"type": "string", "minLength": 1},
     "excerpt_hash": {"type": ["string", "null"]},
-    "notes": {"type": ["string", "null"]}
+    "notes": {"type": ["string", "null"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": ["string", "null"], "format": "date-time"},
+    "valid_to": {"type": ["string", "null"], "format": "date-time"}
   }
 }
