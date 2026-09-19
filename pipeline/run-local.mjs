@@ -24,6 +24,7 @@ const steps = [
   ["test-fe03-clinicaltrials-collection", ["benchmarks/fe03/test-clinicaltrials-collection.mjs"]],
   ["test-fe03-rxiv-collection", ["benchmarks/fe03/test-rxiv-collection.mjs"]],
   ["test-fe03-external-seed", ["benchmarks/fe03/test-external-seed.mjs"]],
+  ["test-fe03-external-evaluator", ["benchmarks/fe03/test-external-evaluator.mjs"]],
   ["build-graph", ["pipeline/build-graph.mjs"]],
   ["validate-graph", ["pipeline/validate-graph.mjs"]],
   ["verify-determinism", ["pipeline/verify-determinism.mjs"]],
