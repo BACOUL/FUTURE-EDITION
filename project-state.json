@@ -70,11 +70,15 @@
     "external_holdout_minimum": 50,
     "external_holdout_labels_in_repo": false,
     "external_holdout_consumed": false,
-    "external_benchmark_cases_collected": 0,
+    "external_benchmark_cases_collected": 12,
     "arxiv_atom_parser": true,
     "crossref_directional_integrity": true,
     "pubmed_full_xml_integrity": true,
-    "pubmed_directional_integrity": true
+    "pubmed_directional_integrity": true,
+    "external_benchmark_critical_seed_cases": 7,
+    "external_benchmark_label_evidence_links": 13,
+    "pubmed_curation_families": 6,
+    "pubmed_curation_auto_admission": false
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
