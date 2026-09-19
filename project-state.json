@@ -64,7 +64,13 @@
     "locator_tamper_detection": true,
     "semantic_claim_scope": true,
     "animal_to_human_overclaim_blocked": true,
-    "phase1_efficacy_ceiling": true
+    "phase1_efficacy_ceiling": true,
+    "external_benchmark_thresholds": "external-v1",
+    "external_benchmark_thresholds_frozen": true,
+    "external_holdout_minimum": 50,
+    "external_holdout_labels_in_repo": false,
+    "external_holdout_consumed": false,
+    "external_benchmark_cases_collected": 0
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -102,8 +108,7 @@
       "atomic claim extraction from permitted real content",
       "verified claim-to-evidence locators on real multi-format corpus",
       "real-domain evidence-level benchmark",
-      "externally curated benchmark >= 200 cases",
-      "external dev/validation/holdout split frozen before holdout",
+      "collect externally curated benchmark >= 200 cases under frozen external-v1 protocol",
       "primary-source precision and recall measured",
       "claim-to-evidence precision measured",
       "source-independence detection measured",
