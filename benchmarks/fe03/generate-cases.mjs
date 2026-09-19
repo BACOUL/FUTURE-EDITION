@@ -31,7 +31,8 @@ for(let i=0;i<240;i++){
     contradiction:s[0]==="contradiction",
     expected_decision:s[5],
     expected_confidence_ceiling:s[6],
-    must_not_confirm:true
+    expected_confirm:["valid_systematic","regulatory","real_world"].includes(s[0]),
+    must_not_confirm:!["valid_systematic","regulatory","real_world"].includes(s[0])
   });
 }
 
