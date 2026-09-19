@@ -55,6 +55,28 @@ Résultat exact sur le code commité :
 - rétractations rejetées : 100 % ;
 - préprints non confirmés : 100 %.
 
+## Benchmark externe gelé avant holdout
+
+Le protocole externe est maintenant versionné avant consommation du holdout :
+
+- minimum 200 cas réels ;
+- ≥100 dev ;
+- ≥50 validation ;
+- ≥50 holdout caché ;
+- holdout absent du repo public avant verdict ;
+- scellement SHA-256 + taille avant consommation ;
+- seuils `external-v1` gelés avant collecte finale ;
+- cas critique faussement `confirmed` = FAIL automatique.
+
+Seuils principaux :
+- précision résolution source primaire ≥ 98 % ;
+- rappel source primaire ≥ 95 % ;
+- précision statut publication ≥ 99 % ;
+- précision claim↔evidence ≥ 95 % ;
+- précision niveau de preuve ≥ 95 % ;
+- précision indépendance des sources ≥ 98 % ;
+- false confirmed critique = 0 %.
+
 ## Important
 
 Le corpus synthétique **ne peut pas valider FE-03**. Il verrouille uniquement les invariants de sécurité avant confrontation à des données externes.
@@ -66,9 +88,9 @@ Le corpus synthétique **ne peut pas valider FE-03**. Il verrouille uniquement l
 3. extraction de claims atomiques depuis contenu réel autorisé ;
 4. locators vérifiés sur corpus réel et sur plusieurs formats documentaires ;
 5. classification domaine/niveau de preuve sur exemples réels ;
-6. benchmark externe curaté d'au moins 200 cas ;
-7. séparation dev / validation / holdout externe ;
-8. thresholds gelés avant consommation du holdout externe ;
+6. benchmark externe curaté d'au moins 200 cas — protocole prêt, corpus à constituer ;
+7. séparation dev / validation / holdout externe — protocole gelé ;
+8. exécuter le holdout scellé une seule fois ;
 9. mesure résolution source primaire précision/rappel ;
 10. mesure claim↔evidence ;
 11. mesure indépendance des sources ;
