@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Future Edition Evidence Document",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["id","source_external_id","retrieved_at","license_scope","sections"],
+  "properties":{
+    "id":{"type":"string","pattern":"^DOC-[0-9]{6}$"},
+    "source_external_id":{"type":"string","minLength":1},
+    "retrieved_at":{"type":"string","format":"date-time"},
+    "license_scope":{"enum":["metadata_only","open_fulltext","permitted_excerpt","registry_record","official_record"]},
+    "sections":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","title","text"],"properties":{
+      "id":{"type":"string","pattern":"^[a-z0-9_-]+$"},
+      "title":{"type":"string","minLength":1},
+      "text":{"type":"string","minLength":1}
+    }}}
+  }
+}
