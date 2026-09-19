@@ -1,0 +1,32 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Future Edition PubMed Curation Queue Item",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["queue_id","family","candidate","suggested_by","needs_human_label","benchmark_eligible"],
+  "properties":{
+    "queue_id":{"type":"string","pattern":"^CUR-PUBMED-[0-9]{5}$"},
+    "family":{"enum":["controlled_human","early_human","systematic_review","animal_only","retracted_publication","retraction_notice"]},
+    "candidate":{
+      "type":"object",
+      "additionalProperties":false,
+      "required":["signal_kind","raw_value","origin"],
+      "properties":{
+        "signal_kind":{"const":"pmid"},
+        "raw_value":{"type":"string","pattern":"^[0-9]+$"},
+        "origin":{"const":"pubmed"}
+      }
+    },
+    "suggested_by":{
+      "type":"object",
+      "additionalProperties":false,
+      "required":["provider","query"],
+      "properties":{
+        "provider":{"const":"pubmed"},
+        "query":{"type":"string","minLength":1}
+      }
+    },
+    "needs_human_label":{"const":true},
+    "benchmark_eligible":{"const":false}
+  }
+}
