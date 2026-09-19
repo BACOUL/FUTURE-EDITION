@@ -1,3 +1,5 @@
+import { pathToFileURL } from "node:url";
+
 const families=[
   {
     family:"controlled_human",
@@ -80,7 +82,7 @@ export async function collectPubmedCandidateQueue({fetchFn=fetch,perFamily=25}={
   return queue;
 }
 
-if(import.meta.url===new URL(process.argv[1],"file://").href){
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
   const arg=process.argv.find(value=>value.startsWith("--per-family="));
   const perFamily=arg?Number(arg.split("=")[1]):25;
   const queue=await collectPubmedCandidateQueue({perFamily});
