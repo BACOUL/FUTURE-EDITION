@@ -535,5 +535,67 @@
       }
     ],
     "notes": "Randomized controlled trial stopped after interim analysis found no statistically significant difference between arms."
+  },
+  {
+    "id": "FE03-EXT-0018",
+    "split": "dev",
+    "case_family": "technology_benchmark",
+    "candidate": {
+      "signal_kind": "arxiv",
+      "raw_value": "2608.03416",
+      "origin": "arxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "technology_demo"
+    },
+    "label_evidence": [
+      {
+        "authority": "arxiv",
+        "url": "https://arxiv.org/abs/2608.03416",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "benchmark",
+          "shared_protocol",
+          "reported_model_scores"
+        ]
+      }
+    ],
+    "notes": "Primary technical benchmark with a shared evaluation protocol; benchmark performance is not real-world deployment evidence."
+  },
+  {
+    "id": "FE03-EXT-0019",
+    "split": "dev",
+    "case_family": "real_world_deployment",
+    "candidate": {
+      "signal_kind": "url",
+      "raw_value": "https://www.england.nhs.uk/2026/07/nhs-accelerates-artificial-intelligence-rollout-to-cut-waiting-times-and-improve-care-for-millions/",
+      "origin": "nhs_england"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "real_world"
+    },
+    "label_evidence": [
+      {
+        "authority": "publisher",
+        "url": "https://www.england.nhs.uk/2026/07/nhs-accelerates-artificial-intelligence-rollout-to-cut-waiting-times-and-improve-care-for-millions/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "official_nhs_source",
+          "real_world_rollout",
+          "multiple_nhs_trusts",
+          "reported_pilot_results"
+        ]
+      }
+    ],
+    "notes": "Official NHS England evidence of AI tools moving from pilots into operational rollout; not treated as proof of general clinical efficacy."
   }
 ]
