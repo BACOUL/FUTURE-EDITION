@@ -2,8 +2,11 @@ import { spawnSync } from "node:child_process";
 
 const steps = [
   ["validate-data", ["pipeline/validate-data.mjs"]],
+  ["validate-schemas", ["pipeline/validate-schemas.mjs"]],
   ["validate-relations", ["pipeline/validate-relations.mjs"]],
+  ["test-fe02-model", ["pipeline/test-fe02-model.mjs"]],
   ["build-graph", ["pipeline/build-graph.mjs"]],
+  ["validate-graph", ["pipeline/validate-graph.mjs"]],
   ["build-site", ["pipeline/build-site.mjs"]],
   ["validate-output", ["pipeline/validate-output.mjs"]]
 ];

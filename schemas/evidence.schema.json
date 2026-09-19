@@ -3,9 +3,10 @@
   "title": "Future Edition Evidence",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "source_id", "support", "locator", "observed_at", "valid_from", "valid_to"],
+  "required": ["id", "claim_id", "source_id", "support", "locator", "observed_at", "valid_from", "valid_to"],
   "properties": {
     "id": {"type": "string", "pattern": "^EVID-[0-9]{6}$"},
+    "claim_id": {"type": "string", "pattern": "^CLAIM-[0-9]{6}$"},
     "source_id": {"type": "string", "pattern": "^SRC-[0-9]{6}$"},
     "provenance_id": {"type": ["string", "null"], "pattern": "^PROV-[0-9]{6}$"},
     "support": {"enum": ["supports", "contradicts", "limits", "context"]},

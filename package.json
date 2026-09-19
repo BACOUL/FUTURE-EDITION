@@ -2,12 +2,12 @@
   "name": "future-edition",
   "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=22"
-  },
+  "engines": {"node": ">=22"},
   "scripts": {
-    "validate:data": "node pipeline/validate-data.mjs && node pipeline/validate-relations.mjs",
-    "build:graph": "node pipeline/build-graph.mjs",
+    "validate:schemas": "node pipeline/validate-schemas.mjs",
+    "validate:data": "node pipeline/validate-data.mjs && node pipeline/validate-schemas.mjs && node pipeline/validate-relations.mjs",
+    "test:fe02": "node pipeline/test-fe02-model.mjs",
+    "build:graph": "node pipeline/build-graph.mjs && node pipeline/validate-graph.mjs",
     "build:web": "node pipeline/build-site.mjs && node pipeline/validate-output.mjs",
     "build": "node pipeline/run-local.mjs",
     "dev": "node pipeline/run-local.mjs && node pipeline/serve.mjs"

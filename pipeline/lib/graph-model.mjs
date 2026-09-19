@@ -5,7 +5,7 @@ export const sortById = (items = []) => [...items].sort((a, b) => String(a.id).l
 export function stableStringify(value) {
   if (Array.isArray(value)) return `[${value.map(stableStringify).join(",")}]`;
   if (value && typeof value === "object") {
-    return `{${Object.keys(value).sort().map((k) => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(",")}}`;
+    return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stableStringify(value[key])}`).join(",")}}`;
   }
   return JSON.stringify(value);
 }
@@ -30,6 +30,7 @@ const idPatterns = {
 export function buildRegistry(collections) {
   const errors = [];
   const registry = new Map();
+
   const add = (obj, type) => {
     if (!obj?.id) { errors.push(`missing id in ${type}`); return; }
     if (registry.has(obj.id)) { errors.push(`duplicate global id: ${obj.id}`); return; }
@@ -70,7 +71,7 @@ function checkWindow(errors, obj) {
 }
 
 function detectSupersedesCycle(items, field, errors) {
-  const next = new Map(items.filter((x) => x[field]).map((x) => [x.id, x[field]]));
+  const next = new Map(items.filter((item) => item[field]).map((item) => [item.id, item[field]]));
   for (const start of next.keys()) {
     const seen = new Set();
     let current = start;
@@ -100,7 +101,11 @@ export function validateCollections(collections) {
   }
 
   for (const claim of collections.claims ?? []) {
-    for (const id of claim.evidence_ids ?? []) requireType(registry, errors, claim.id, id, "Evidence", "evidence");
+    for (const id of claim.evidence_ids ?? []) {
+      requireType(registry, errors, claim.id, id, "Evidence", "evidence");
+      const item = registry.get(id)?.obj;
+      if (item && item.claim_id !== claim.id) errors.push(`${claim.id}: evidence ${id} points to claim ${item.claim_id}`);
+    }
     if (claim.supersedes_claim_id) {
       requireType(registry, errors, claim.id, claim.supersedes_claim_id, "Claim", "supersedes_claim");
       if (claim.supersedes_claim_id === claim.id) errors.push(`${claim.id}: cannot supersede itself`);
@@ -108,8 +113,15 @@ export function validateCollections(collections) {
   }
 
   for (const item of collections.evidence ?? []) {
+    requireType(registry, errors, item.id, item.claim_id, "Claim", "claim");
     requireType(registry, errors, item.id, item.source_id, "Source", "source");
-    if (item.provenance_id) requireType(registry, errors, item.id, item.provenance_id, "Provenance", "provenance");
+    if (item.provenance_id) {
+      requireType(registry, errors, item.id, item.provenance_id, "Provenance", "provenance");
+      const provenance = registry.get(item.provenance_id)?.obj;
+      if (provenance && provenance.source_id !== item.source_id) errors.push(`${item.id}: provenance source mismatch`);
+    }
+    const claim = registry.get(item.claim_id)?.obj;
+    if (claim && !claim.evidence_ids?.includes(item.id)) errors.push(`${item.id}: not listed by claim ${item.claim_id}`);
   }
 
   for (const source of collections.sources ?? []) {
@@ -131,12 +143,25 @@ export function validateCollections(collections) {
 
   for (const review of collections.reviews ?? []) {
     requireType(registry, errors, review.id, review.entity_id, null, "entity");
+    if (review.entity_id === review.id) errors.push(`${review.id}: cannot review itself`);
   }
 
   detectSupersedesCycle(collections.claims ?? [], "supersedes_claim_id", errors);
   detectSupersedesCycle(collections.sources ?? [], "supersedes_source_id", errors);
 
   return { ok: errors.length === 0, errors, registry };
+}
+
+const sortIdArray = (value) => Array.isArray(value) ? [...value].sort() : value;
+function canonicalNode(obj, type) {
+  const node = { ...obj, type };
+  for (const key of [
+    "aliases", "question_ids", "technology_ids", "claim_ids", "source_ids",
+    "milestone_ids", "evidence_ids", "derived_from_source_ids", "organization_ids"
+  ]) {
+    if (Array.isArray(node[key])) node[key] = sortIdArray(node[key]);
+  }
+  return node;
 }
 
 export function buildGraph(collections) {
@@ -148,9 +173,9 @@ export function buildGraph(collections) {
 
   for (const q of sortById(collections.questions)) {
     const { milestones, ...question } = q;
-    nodes.push({ ...question, type: "Question" });
+    nodes.push(canonicalNode(question, "Question"));
     for (const milestone of sortById(milestones)) {
-      nodes.push({ ...milestone, type: "Milestone" });
+      nodes.push(canonicalNode(milestone, "Milestone"));
       edges.push({ from: q.id, relation: "HAS_MILESTONE", to: milestone.id });
     }
   }
@@ -160,7 +185,7 @@ export function buildGraph(collections) {
     ["evidence", "Evidence"], ["sources", "Source"], ["provenance", "Provenance"],
     ["organizations", "Organization"], ["people", "Person"], ["reviews", "Review"]
   ]) {
-    for (const obj of sortById(collections[key])) nodes.push({ ...obj, type });
+    for (const obj of sortById(collections[key])) nodes.push(canonicalNode(obj, type));
   }
 
   for (const event of collections.events ?? []) {
@@ -171,17 +196,21 @@ export function buildGraph(collections) {
     for (const id of event.milestone_ids ?? []) edges.push({ from: event.id, relation: "MAY_CHANGE", to: id });
   }
 
+  const evidenceById = new Map((collections.evidence ?? []).map((item) => [item.id, item]));
   for (const claim of collections.claims ?? []) {
-    for (const id of claim.evidence_ids ?? []) edges.push({ from: claim.id, relation: "SUPPORTED_BY", to: id });
+    for (const id of claim.evidence_ids ?? []) {
+      const item = evidenceById.get(id);
+      const relation = item?.support === "contradicts" ? "CONTRADICTED_BY"
+        : item?.support === "limits" ? "LIMITED_BY"
+        : item?.support === "context" ? "CONTEXTUALIZED_BY"
+        : "SUPPORTED_BY";
+      edges.push({ from: claim.id, relation, to: id });
+    }
     if (claim.supersedes_claim_id) edges.push({ from: claim.id, relation: "SUPERSEDES", to: claim.supersedes_claim_id });
   }
 
   for (const item of collections.evidence ?? []) {
-    edges.push({
-      from: item.id,
-      relation: item.support === "contradicts" ? "CONTRADICTS" : item.support === "limits" ? "LIMITS" : "DERIVED_FROM",
-      to: item.source_id
-    });
+    edges.push({ from: item.id, relation: "DERIVED_FROM", to: item.source_id });
   }
 
   for (const item of collections.provenance ?? []) {
