@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Future Edition Relation",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["from","relation","to"],
+  "properties":{
+    "from":{"type":"string","minLength":1},
+    "relation":{"enum":["HAS_MILESTONE","USES_TECHNOLOGY","RELATES_TO","PRODUCES_CLAIM","SUPPORTED_BY","CONTRADICTED_BY","LIMITED_BY","DERIVED_FROM","AFFILIATED_WITH","AUTHORED_BY","MAY_CHANGE"]},
+    "to":{"type":"string","minLength":1},
+    "valid_from":{"type":["string","null"],"format":"date"},
+    "valid_to":{"type":["string","null"],"format":"date"}
+  }
+}

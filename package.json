@@ -1,12 +1,12 @@
 {
-  "name": "future-edition",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "pnpm build:graph && pnpm --filter @future-edition/web dev",
-    "validate:data": "node pipeline/validate-data.mjs",
-    "build:graph": "node pipeline/build-graph.mjs",
-    "pipeline:local": "node pipeline/run-local.mjs",
-    "build": "pnpm validate:data && pnpm build:graph && pnpm --filter @future-edition/web build"
+  "name":"future-edition",
+  "private":true,
+  "type":"module",
+  "scripts":{
+    "dev":"pnpm build:graph && pnpm --filter @future-edition/web dev",
+    "validate:data":"node pipeline/validate-data.mjs && node pipeline/validate-relations.mjs",
+    "build:graph":"node pipeline/build-graph.mjs",
+    "pipeline:local":"node pipeline/run-local.mjs",
+    "build":"pnpm validate:data && pnpm build:graph && pnpm --filter @future-edition/web build"
   }
 }
