@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.5.2",
+  "authority_version": "0.5.3",
   "current_stage": "FE-03",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -77,7 +77,7 @@
     "pubmed_directional_integrity": true,
     "external_benchmark_critical_seed_cases": 7,
     "external_benchmark_label_evidence_links": 13,
-    "pubmed_curation_families": 6,
+    "pubmed_curation_families": 8,
     "pubmed_curation_auto_admission": false,
     "cross_provider_independence_dedup": true,
     "unverified_locator_publish_blocked": true,
@@ -95,7 +95,25 @@
     "external_collection_matrix_validated": true,
     "external_collection_matrix_dev": 100,
     "external_collection_matrix_validation": 50,
-    "external_collection_matrix_holdout_minimum": 50
+    "external_collection_matrix_holdout_minimum": 50,
+    "pubmed_default_candidate_capacity": 200,
+    "external_acquisition_plan": "external-v1",
+    "external_acquisition_plan_families": 17,
+    "external_acquisition_automated_families": 12,
+    "external_acquisition_manual_or_deterministic_families": 5,
+    "external_candidate_collectors": 4,
+    "external_automated_discovery_providers": [
+      "pubmed",
+      "crossref",
+      "clinicaltrials",
+      "medrxiv",
+      "biorxiv"
+    ],
+    "external_candidate_auto_admission": false,
+    "external_candidate_human_label_required": true,
+    "crossref_update_collection": true,
+    "clinicaltrials_candidate_collection": true,
+    "rxiv_candidate_collection": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
