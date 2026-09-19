@@ -25,7 +25,7 @@ const arxivXml=`<?xml version="1.0" encoding="utf-8"?>
 const fixtures={
   crossref:{message:{DOI:"10.1000/test",type:"journal-article",title:["Crossref synthetic"],URL:"https://doi.org/10.1000/test","updated-by":[],"update-to":[]}},
   pubmedXml:`<PubmedArticleSet><PubmedArticle><MedlineCitation><PMID>12345</PMID><Article><ArticleTitle>PubMed synthetic</ArticleTitle><PublicationTypeList><PublicationType>Journal Article</PublicationType></PublicationTypeList></Article></MedlineCitation><PubmedData><ArticleIdList><ArticleId IdType="pubmed">12345</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>`,
-  clinicaltrials:{protocolSection:{identificationModule:{nctId:"NCT12345678",briefTitle:"Trial synthetic"}}},
+  clinicaltrials:{protocolSection:{identificationModule:{nctId:"NCT12345678",briefTitle:"Trial synthetic"},designModule:{phases:["PHASE1","PHASE2"],designInfo:{allocation:"RANDOMIZED"}}}},
   medrxiv:{collection:[{doi:"10.1101/2026.01.01.123456",title:"medRxiv synthetic"}]}
 };
 
@@ -62,6 +62,7 @@ for(const [name,result] of [["crossref",r1],["pubmed",r2],["clinicaltrials",r3],
   assert(result.source?.tier==="A",name+" tier missing");
 }
 
+assert(r3.source.study_stage==="phase1","clinicaltrials conservative phase mapping");
 assert(r5.source.kind==="preprint"&&r5.source.peer_reviewed===false,"arxiv preprint safety metadata");
 
 const bad=await resolveCandidate(
@@ -77,4 +78,4 @@ const arxivError=`<feed xmlns="http://www.w3.org/2005/Atom"><entry><id>http://ar
 const badArxiv=await resolveCandidate(arxiv,{fetchFn:fakeXml(arxivError)});
 assert(badArxiv.status==="unresolved"&&badArxiv.reason==="invalid_or_empty_atom","arxiv error feed accepted");
 
-console.log("FE03_RESOLVER_TEST_PASS|routes=5|offline_fixtures=5|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
+console.log("FE03_RESOLVER_TEST_PASS|routes=5|offline_fixtures=5|clinicaltrials_stage=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
