@@ -58,7 +58,10 @@
     "synthetic_safety_cases": 240,
     "synthetic_false_confirmed_rate": 0,
     "human_review_queue": true,
-    "fe03_to_fe02_bridge": true
+    "fe03_to_fe02_bridge": true,
+    "evidence_document_contract": true,
+    "verified_evidence_locators": true,
+    "locator_tamper_detection": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -94,7 +97,7 @@
       "arXiv network parser frozen",
       "live source status and retraction verification",
       "atomic claim extraction from permitted real content",
-      "verified claim-to-evidence locators",
+      "verified claim-to-evidence locators on real multi-format corpus",
       "real-domain evidence-level benchmark",
       "externally curated benchmark >= 200 cases",
       "external dev/validation/holdout split frozen before holdout",
