@@ -186,7 +186,9 @@
               "additionalProperties": false,
               "required": [
                 "locator",
-                "support"
+                "support",
+                "excerpt_hash",
+                "verification_status"
               ],
               "properties": {
                 "locator": {
@@ -199,6 +201,19 @@
                     "contradicts",
                     "limits",
                     "context"
+                  ]
+                },
+                "excerpt_hash": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "verification_status": {
+                  "enum": [
+                    "verified",
+                    "unverified"
                   ]
                 }
               }
