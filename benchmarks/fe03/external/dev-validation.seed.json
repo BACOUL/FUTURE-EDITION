@@ -597,5 +597,110 @@
       }
     ],
     "notes": "Official NHS England evidence of AI tools moving from pilots into operational rollout; not treated as proof of general clinical efficacy."
+  },
+  {
+    "id": "FE03-EXT-0020",
+    "split": "dev",
+    "case_family": "dependent_echo",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42721339",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "same_primary_origin",
+        "candidate": {
+          "signal_kind": "doi",
+          "raw_value": "10.1037/hea0001641",
+          "origin": "crossref"
+        },
+        "basis": [
+          "PubMed record maps PMID 42721339 to DOI 10.1037/hea0001641",
+          "PMID and DOI are alternate identifiers for one scientific publication",
+          "They must count as one independent scientific origin"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42721339/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "doi_mapping",
+          "journal_article",
+          "randomized_controlled_trial",
+          "same_primary_origin"
+        ]
+      }
+    ],
+    "notes": "Cross-provider identity case: PubMed and Crossref paths must not inflate one publication into two independent sources."
+  },
+  {
+    "id": "FE03-EXT-0021",
+    "split": "dev",
+    "case_family": "contradiction",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "37897465",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "materially_conflicts",
+        "candidate": {
+          "signal_kind": "nct",
+          "raw_value": "NCT01546168",
+          "origin": "clinicaltrials"
+        },
+        "basis": [
+          "Both are randomized controlled evaluations of esophageal deviation during atrial fibrillation ablation",
+          "Both assess ablation-related esophageal injury",
+          "EASY AF reports a significant reduction in injury while NCT01546168 reports no statistically significant difference between study arms",
+          "Different devices and study designs mean this is material evidence conflict, not a claim of logically identical interventions"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37897465/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "esophageal_deviation",
+          "significant_reduction_in_esophageal_injury"
+        ]
+      },
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT01546168?tab=results",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "randomized",
+          "esophageal_deviation",
+          "same_clinical_context",
+          "no_statistically_significant_difference"
+        ]
+      }
+    ],
+    "notes": "Materially conflicting evidence landscape. Engine should surface the conflict and preserve scope differences rather than collapsing to a single verdict."
   }
 ]
