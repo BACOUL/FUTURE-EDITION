@@ -64,6 +64,15 @@ export function classifyEvidenceLevel(source){
   return "unknown";
 }
 
+export function inferSubjectScope(source){
+  const stage=source?.study_stage??"unknown";
+  if(stage==="in_vitro") return "in_vitro";
+  if(stage==="preclinical_animal") return "animal";
+  if(["observational_human","phase1","phase2","phase3","randomized_trial","systematic_review","regulatory_approval"].includes(stage)) return "human";
+  if(["technology_benchmark","real_world_deployment"].includes(stage)) return "technology";
+  return "unknown";
+}
+
 export function groupIndependentSources(sources=[]){
   const byOrigin=new Map();
 
@@ -110,6 +119,27 @@ export function evaluateSafety(dossier){
   if(dossier.source.kind==="preprint"||dossier.source.peer_reviewed===false) reasons.push("not_peer_reviewed");
 
   const noClaims=!Array.isArray(dossier.claims)||dossier.claims.length===0;
+
+  const scopeMismatch=(dossier.claims||[]).some(claim=>
+    (dossier.source.study_stage==="preclinical_animal"&&claim.subject_scope==="human")||
+    (dossier.source.study_stage==="in_vitro"&&["human","animal"].includes(claim.subject_scope))
+  );
+
+  if(scopeMismatch){
+    reasons.push("claim_scope_exceeds_source_scope");
+    return {
+      decision:"reject",
+      confidence_ceiling:"unverifiable",
+      human_review_required:true,
+      reasons
+    };
+  }
+
+  const phase1Efficacy=(dossier.claims||[]).some(claim=>
+    dossier.source.study_stage==="phase1"&&claim.claim_kind==="efficacy"
+  );
+
+  if(phase1Efficacy) reasons.push("phase1_efficacy_not_confirmatory");
   if(noClaims) reasons.push("no_atomic_claim");
 
   const locatorMissing=(dossier.claims||[]).some(
@@ -128,6 +158,10 @@ export function evaluateSafety(dossier){
     ceiling="needs_confirmation";
   }
   if(dossier.source.kind==="preprint"||dossier.source.peer_reviewed===false){
+    ceiling="needs_confirmation";
+  }
+
+  if(phase1Efficacy){
     ceiling="needs_confirmation";
   }
 
@@ -167,6 +201,8 @@ export function buildDossier(args){
   const claims=claimDrafts.map((claim,index)=>({
     id:claim.id||"CP-"+String(index+1).padStart(6,"0"),
     text:claim.text,
+    claim_kind:claim.claim_kind||"result",
+    subject_scope:claim.subject_scope||inferSubjectScope(source),
     evidence_level:claim.evidence_level||classifyEvidenceLevel(source),
     evidence:(claim.evidence||[]).map(item=>({
       locator:item.locator,
