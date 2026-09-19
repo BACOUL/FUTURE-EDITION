@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.5.1",
+  "authority_version": "0.5.2",
   "current_stage": "FE-03",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -86,7 +86,16 @@
     "external_dev_target": 100,
     "external_validation_target": 50,
     "external_candidate_uniqueness_required": true,
-    "external_family_coverage_required": true
+    "external_family_coverage_required": true,
+    "synthetic_confirmation_positive_cases": 60,
+    "synthetic_confirmation_positive_confirmed": 60,
+    "synthetic_must_not_confirm_cases": 180,
+    "synthetic_unsafe_confirmed": 0,
+    "human_confirmation_safety_gate": true,
+    "external_collection_matrix_validated": true,
+    "external_collection_matrix_dev": 100,
+    "external_collection_matrix_validation": 50,
+    "external_collection_matrix_holdout_minimum": 50
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
