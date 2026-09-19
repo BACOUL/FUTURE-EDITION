@@ -1,72 +1,87 @@
 {
-  "project":"Future Edition",
-  "authority_version":"0.2.0",
-  "current_stage":"FE-01",
-  "stage_status":{
-    "FE-00":"PROVISIONAL_COMPLETE",
-    "FE-00B":"PROVISIONAL_COMPLETE",
-    "FE-01":"IN_PROGRESS",
-    "FE-02":"NOT_STARTED",
-    "FE-03":"NOT_STARTED",
-    "FE-04":"NOT_STARTED",
-    "FE-05":"NOT_STARTED",
-    "FE-06":"NOT_STARTED",
-    "FE-07":"NOT_STARTED",
-    "FE-08":"NOT_STARTED",
-    "FE-09":"NOT_STARTED",
-    "FE-10":"NOT_STARTED",
-    "FE-11":"NOT_STARTED",
-    "FE-12":"NOT_STARTED",
-    "FE-13":"NOT_STARTED",
-    "FE-14":"NOT_STARTED",
-    "FE-15":"NOT_STARTED",
-    "FE-CONTINUOUS":"NOT_STARTED"
+  "project": "Future Edition",
+  "authority_version": "0.3.0",
+  "current_stage": "FE-02",
+  "stage_status": {
+    "FE-00": "PROVISIONAL_COMPLETE",
+    "FE-00B": "PROVISIONAL_COMPLETE",
+    "FE-01": "PROVED",
+    "FE-02": "IN_PROGRESS",
+    "FE-03": "NOT_STARTED",
+    "FE-04": "NOT_STARTED",
+    "FE-05": "NOT_STARTED",
+    "FE-06": "NOT_STARTED",
+    "FE-07": "NOT_STARTED",
+    "FE-08": "NOT_STARTED",
+    "FE-09": "NOT_STARTED",
+    "FE-10": "NOT_STARTED",
+    "FE-11": "NOT_STARTED",
+    "FE-12": "NOT_STARTED",
+    "FE-13": "NOT_STARTED",
+    "FE-14": "NOT_STARTED",
+    "FE-15": "NOT_STARTED",
+    "FE-CONTINUOUS": "NOT_STARTED"
   },
-  "invariants":[
+  "invariants": [
     "repo_is_authority",
     "data_before_article",
     "evidence_before_claim",
     "human_gate_for_sensitive_changes",
     "no_fake_precision",
     "static_first_public_media",
+    "zero_dependency_foundation",
     "local_first_automation",
     "history_and_corrections_preserved",
     "language_independent_graph",
     "editorial_commercial_separation"
   ],
-  "current_assets":{
-    "launch_questions":10,
-    "milestones":51,
-    "scientific_states_assessed":0,
-    "validated_events":0,
-    "core_collections_initialized":true,
-    "provenance_policy_defined":true,
-    "monetization_policy_defined":true,
-    "handoff_defined":true
+  "current_assets": {
+    "launch_questions": 10,
+    "milestones": 51,
+    "scientific_states_assessed": 0,
+    "validated_events": 0,
+    "core_collections_initialized": true,
+    "provenance_policy_defined": true,
+    "monetization_policy_defined": true,
+    "handoff_defined": true,
+    "zero_dependency_build": true,
+    "launch_routes_generated": 14
   },
-  "open_preflight_gates":[
+  "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
     "final legal compliance review before public launch"
   ],
-  "next_gate":{
-    "stage":"FE-01",
-    "required":[
-      "local data validation passes",
-      "relation validation passes",
-      "Future Graph build passes",
-      "Astro production build passes",
-      "repository structure documented",
-      "no scientific placeholder presented as established fact"
-    ]
-  },
-  "known_blockers":[
+  "completed_gates": [
     {
-      "id":"ENV-NETWORK-001",
-      "scope":"verification environment only",
-      "description":"Current execution environment could not resolve github.com for clone/install, so Astro production build is not yet independently proven."
+      "stage": "FE-01",
+      "verdict": "PROVED",
+      "evidence": [
+        "zero-dependency generator local PASS after one detected-and-fixed root-route bug",
+        "exact repository data audit PASS: 10 questions, 51 milestones, 61 IDs, 14 expected routes, 0 errors",
+        "Astro path removed; no external registry required"
+      ]
     }
   ],
-  "next_stage_after_gate":"FE-02",
-  "github_actions_dependency":false,
-  "github_actions_activation_target":"2026-10-01"
+  "next_gate": {
+    "stage": "FE-02",
+    "required": [
+      "complete entity schemas",
+      "canonical source collection",
+      "temporal state model",
+      "typed relation integrity",
+      "synthetic full-chain fixture",
+      "contradiction and correction preservation",
+      "deterministic byte-identical graph builds",
+      "invalid fixtures rejected"
+    ]
+  },
+  "known_non_blocking_environment_constraints": [
+    {
+      "id": "ENV-NETWORK-001",
+      "description": "This execution environment cannot resolve github.com directly. Repository reads/writes use the connected GitHub integration; FE-01 build no longer requires network access."
+    }
+  ],
+  "next_stage_after_gate": "FE-03",
+  "github_actions_dependency": false,
+  "github_actions_activation_target": "2026-10-01"
 }
