@@ -15,9 +15,33 @@ const cases=JSON.parse(await readFile(path,"utf8"));
 const errors=[];
 
 function candidateKey(item){
-  const kind=String(item?.candidate?.signal_kind??"").trim().toLowerCase();
-  const value=String(item?.candidate?.raw_value??"").trim().toLowerCase();
+  const candidate=item?.candidate??item;
+  const kind=String(candidate?.signal_kind??"").trim().toLowerCase();
+  const value=String(candidate?.raw_value??"").trim().toLowerCase();
   return kind+":"+value;
+}
+
+function validateRelations(item){
+  const relations=Array.isArray(item?.relations)?item.relations:[];
+  const relationKeys=new Set();
+  const requiredType=
+    item?.case_family==="dependent_echo"?"same_primary_origin":
+    item?.case_family==="contradiction"?"materially_conflicts":
+    null;
+
+  if(requiredType&&!relations.some(relation=>relation.relation_type===requiredType)){
+    errors.push(item?.id+": relational family missing "+requiredType);
+  }
+
+  for(const relation of relations){
+    const key=relation.relation_type+":"+candidateKey(relation.candidate);
+    if(relationKeys.has(key)) errors.push(item?.id+": duplicate relation "+key);
+    relationKeys.add(key);
+
+    if(candidateKey(relation.candidate)===candidateKey(item)){
+      errors.push(item?.id+": relation points to primary candidate itself");
+    }
+  }
 }
 
 if(!Array.isArray(cases)){
@@ -42,6 +66,8 @@ if(!Array.isArray(cases)){
     const key=candidateKey(item);
     if(candidates.has(key)) errors.push("duplicate candidate: "+key);
     candidates.add(key);
+
+    validateRelations(item);
 
     if(item?.split==="holdout") errors.push("holdout labels must not be present in tuning corpus");
 
