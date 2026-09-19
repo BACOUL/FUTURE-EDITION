@@ -163,7 +163,7 @@ export function evaluateSafety(dossier){
   if(noClaims||locatorMissing||locatorUnverified||levels.some(level=>["unknown","preclinical","early_human"].includes(level))){
     ceiling="needs_confirmation";
   }
-  if(dossier.source.kind==="preprint"||dossier.source.peer_reviewed===false){
+  if(nonPeerReviewed){
     ceiling="needs_confirmation";
   }
 
@@ -209,7 +209,9 @@ export function finalizeHumanConfirmation(dossier,{approved=false}={}){
   if(dossier?.publication_status!=="active") reasons.push("publication_status_not_active");
   if(!dossier?.source) reasons.push("primary_source_missing");
 
-  if(dossier?.source?.kind==="preprint"||dossier?.source?.peer_reviewed===false){
+  const confirmationNonPeerReviewed=dossier?.source?.kind==="preprint"||
+    (dossier?.source?.peer_reviewed===false&&!["regulator","official_data"].includes(dossier?.source?.kind));
+  if(confirmationNonPeerReviewed){
     reasons.push("non_peer_reviewed_source");
   }
 
