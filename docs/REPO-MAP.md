@@ -1,8 +1,6 @@
 # Repository map
 
 ```text
-apps/
-  web/                    média public Astro
 data/
   questions/              questions et jalons de lancement
   technologies/           technologies canoniques
@@ -12,11 +10,18 @@ data/
   provenance/             origine/version/indépendance
   organizations/          institutions, entreprises, agences
   people/                 personnes citées dans le graphe
-  sources/                registre des sources
+  sources/                registres et futures sources canoniques
   benchmarks/             jeux d'évaluation
 schemas/                  contrats JSON
-pipeline/                 validation, build graph, futurs ingestors
-generated/                artefacts reconstruisibles
+pipeline/
+  validate-data.mjs       invariants de données
+  validate-relations.mjs  intégrité référentielle
+  build-graph.mjs         graphe machine-readable
+  build-site.mjs          média statique
+  validate-output.mjs     QA du build
+  serve.mjs               preview locale sans dépendance
+generated/                artefacts reconstruisibles, non versionnés
+dist/                     site généré, non versionné
 docs/
   adr/                    décisions d'architecture
   ...                     vision, programme, méthode, gouvernance
@@ -28,4 +33,4 @@ project-state.json        état machine du projet
 - vérité scientifique structurée : `data/`
 - contrats : `schemas/`
 - règles : `docs/CONSTITUTION.md` + ADR
-- artefacts web : dérivés, jamais source primaire de vérité.
+- `generated/` et `dist/` sont dérivés et reconstruisibles.
