@@ -60,6 +60,40 @@ const noticeXml=`<?xml version="1.0"?>
 const originalRecord=parsePubmedXml(originalXml);
 const noticeRecord=parsePubmedXml(noticeXml);
 
+const animalXml=`<?xml version="1.0"?>
+<PubmedArticleSet>
+  <PubmedArticle>
+    <MedlineCitation>
+      <PMID>90000001</PMID>
+      <Article>
+        <ArticleTitle>Animal-only structured fixture</ArticleTitle>
+        <PublicationTypeList>
+          <PublicationType>Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MeshHeadingList>
+        <MeshHeading><DescriptorName>Animals</DescriptorName></MeshHeading>
+        <MeshHeading><DescriptorName>Mice</DescriptorName></MeshHeading>
+      </MeshHeadingList>
+    </MedlineCitation>
+    <PubmedData>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">90000001</ArticleId>
+        <ArticleId IdType="doi">10.1000/animal-fixture</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+</PubmedArticleSet>`;
+
+const animalRecord=parsePubmedXml(animalXml);
+if(animalRecord?.study_stage!=="preclinical_animal"){
+  throw new Error("PubMed animal-only MeSH mapping failed");
+}
+if(animalRecord?.independence_group!=="doi:10.1000/animal-fixture"){
+  throw new Error("PubMed animal DOI canonicalization failed");
+}
+
+
 if(originalRecord?.publication_status!=="retracted"){
   throw new Error("PubMed retracted publication not detected");
 }
@@ -118,4 +152,4 @@ if(noticeDossier.safety.decision!=="investigate"){
   throw new Error("PubMed retraction notice bypassed integrity gate");
 }
 
-console.log("FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|doi_independence=1|notice_review_gate=1");
+console.log("FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|doi_independence=1|animal_mesh_stage=1|notice_review_gate=1");
