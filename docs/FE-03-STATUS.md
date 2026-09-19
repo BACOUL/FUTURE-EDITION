@@ -27,6 +27,11 @@
 
 ## Tests exécutés
 
+### Crossref integrity semantics
+`FE03_CROSSREF_INTEGRITY_PASS|notice_active=1|target_retracted=1|direction_preserved=1|notice_review_gate=1`
+
+La relation `updated-by` détermine le statut du travail consulté ; `update-to` décrit un document qui corrige/rétracte une autre ressource.
+
 ### Core
 `FE03_CORE_TEST_PASS|normalization=1|adapters=6|retraction=1|human_gate=1|contradiction=1|independence=1`
 
