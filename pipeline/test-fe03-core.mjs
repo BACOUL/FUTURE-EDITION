@@ -28,7 +28,7 @@ const mk=(id,resolution,source,status,claims=[],extra={})=>buildDossier({
   limitations:extra.limitations||[],
   observed_at:"2099-01-01T00:00:00Z"
 });
-const ev=[{locator:"results:primary",support:"supports"}];
+const ev=[{locator:"results:primary",support:"supports",excerpt_hash:null,verification_status:"verified"}];
 
 const strong=mk("DOS-000001",{status:"resolved",provider:"fixture",reason:null},{external_id:"x",kind:"paper",title:"x",url:"https://example.invalid/x",peer_reviewed:true,study_stage:"randomized_trial",independence_group:"origin-x"},"active",[{text:"Strong synthetic claim",evidence:ev}]);
 assert(strong.safety.decision==="publish","strong evidence not publish candidate");
