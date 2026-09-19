@@ -1,0 +1,42 @@
+---
+import Base from "../layouts/Base.astro";
+import questions from "../../../data/questions/questions.json";
+---
+<Base title="Future Edition — Nous suivons ce qui devient possible">
+  <section class="shell hero">
+    <div class="eyebrow">Observatoire du progrès réel</div>
+    <h1>Ce qui devient possible.</h1>
+    <p class="lead">Future Edition suit les avancées qui peuvent changer notre vie, remonte aux preuves et montre ce qui a réellement changé — pas ce que le titre promet.</p>
+  </section>
+
+  <section class="shell section rule">
+    <div class="today">
+      <div class="eyebrow">Aujourd’hui</div>
+      <strong>Aucune avancée n’est encore déclarée validée.</strong>
+      <p>Le projet démarre volontairement sans remplir artificiellement ses radars. Les premiers états seront publiés après constitution de la base de preuves.</p>
+      <a href="/methodologie">Voir comment nous vérifions →</a>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">10 observatoires</div>
+        <h2>Les grandes questions</h2>
+      </div>
+      <a class="muted" href="/questions">Tout voir →</a>
+    </div>
+    <div class="grid">
+      {questions.map((q, index) => (
+        <a class="card" href={`/questions#${q.slug}`}>
+          <span class="card-number">{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>{q.title}</h3>
+            <p>{q.summary}</p>
+            <span class="status">État initial à établir par preuve</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

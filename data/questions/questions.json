@@ -1,0 +1,153 @@
+[
+  {
+    "id": "Q-001",
+    "slug": "guerir-davantage-de-cancers",
+    "title": "Peut-on guérir davantage de cancers ?",
+    "summary": "Suivre les progrès qui transforment réellement la prévention, la détection et le traitement des cancers.",
+    "evidence_profile": "medical",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-001-M1","order":1,"title":"Preuve préclinique robuste","criterion":"Une approche montre un effet reproductible dans des modèles précliniques pertinents.","status":"unassessed"},
+      {"id":"Q-001-M2","order":2,"title":"Premiers résultats humains","criterion":"Une efficacité ou activité mesurable est démontrée chez des humains.","status":"unassessed"},
+      {"id":"Q-001-M3","order":3,"title":"Essai contrôlé concluant","criterion":"Un essai contrôlé montre un bénéfice clinique pertinent.","status":"unassessed"},
+      {"id":"Q-001-M4","order":4,"title":"Validation avancée","criterion":"Le bénéfice est confirmé à plus grande échelle ou par réplication.","status":"unassessed"},
+      {"id":"Q-001-M5","order":5,"title":"Usage clinique","criterion":"L’approche est autorisée et utilisée dans une population définie.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-002",
+    "slug": "ralentir-le-vieillissement",
+    "title": "Peut-on ralentir le vieillissement biologique ?",
+    "summary": "Distinguer les biomarqueurs prometteurs d’un ralentissement réellement démontré du vieillissement humain.",
+    "evidence_profile": "medical",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-002-M1","order":1,"title":"Mécanisme causal","criterion":"Un mécanisme du vieillissement est modifiable de façon causale et reproductible.","status":"unassessed"},
+      {"id":"Q-002-M2","order":2,"title":"Bénéfice animal robuste","criterion":"Une intervention améliore santé ou longévité dans plusieurs modèles pertinents.","status":"unassessed"},
+      {"id":"Q-002-M3","order":3,"title":"Signal humain","criterion":"Un effet biologique humain crédible est mesuré.","status":"unassessed"},
+      {"id":"Q-002-M4","order":4,"title":"Bénéfice clinique humain","criterion":"Une amélioration de santé liée à l’âge est démontrée de façon contrôlée.","status":"unassessed"},
+      {"id":"Q-002-M5","order":5,"title":"Ralentissement humain démontré","criterion":"Un ralentissement global du vieillissement humain est démontré avec suivi suffisant.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-003",
+    "slug": "restaurer-mobilite-paralysie",
+    "title": "Peut-on restaurer la mobilité après une paralysie ?",
+    "summary": "Suivre les technologies capables de rendre une fonction motrice volontaire, utile et durable.",
+    "evidence_profile": "medical",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-003-M1","order":1,"title":"Signal moteur volontaire","criterion":"Un contrôle moteur volontaire est démontré dans un contexte expérimental.","status":"unassessed"},
+      {"id":"Q-003-M2","order":2,"title":"Fonction utile","criterion":"Le mouvement permet une tâche fonctionnelle pertinente.","status":"unassessed"},
+      {"id":"Q-003-M3","order":3,"title":"Durabilité","criterion":"Le bénéfice persiste avec un suivi significatif.","status":"unassessed"},
+      {"id":"Q-003-M4","order":4,"title":"Réplication","criterion":"Le bénéfice est reproduit chez plusieurs patients ou centres.","status":"unassessed"},
+      {"id":"Q-003-M5","order":5,"title":"Accès clinique","criterion":"Une solution est disponible pour une population définie.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-004",
+    "slug": "restaurer-la-vue",
+    "title": "Peut-on restaurer la vue ?",
+    "summary": "Mesurer les progrès vers une récupération visuelle fonctionnelle plutôt qu’un simple signal biologique.",
+    "evidence_profile": "medical",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-004-M1","order":1,"title":"Restauration préclinique","criterion":"Une fonction visuelle est restaurée de façon reproductible dans un modèle pertinent.","status":"unassessed"},
+      {"id":"Q-004-M2","order":2,"title":"Perception humaine","criterion":"Une amélioration perceptive mesurable apparaît chez l’humain.","status":"unassessed"},
+      {"id":"Q-004-M3","order":3,"title":"Vision fonctionnelle","criterion":"L’amélioration permet des tâches utiles de la vie réelle.","status":"unassessed"},
+      {"id":"Q-004-M4","order":4,"title":"Durabilité et sécurité","criterion":"Le bénéfice est durable avec un profil de sécurité acceptable.","status":"unassessed"},
+      {"id":"Q-004-M5","order":5,"title":"Usage clinique","criterion":"Une solution est autorisée et accessible pour une indication définie.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-005",
+    "slug": "robot-reellement-polyvalent",
+    "title": "Peut-on créer un robot réellement polyvalent ?",
+    "summary": "Suivre le passage des démonstrations scénarisées à des robots fiables, autonomes et utiles dans des environnements variés.",
+    "evidence_profile": "technology",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-005-M1","order":1,"title":"Compétences multiples","criterion":"Un même robot exécute plusieurs familles de tâches sans reconfiguration lourde.","status":"unassessed"},
+      {"id":"Q-005-M2","order":2,"title":"Adaptation en environnement réel","criterion":"Le robot s’adapte à des variations non scénarisées.","status":"unassessed"},
+      {"id":"Q-005-M3","order":3,"title":"Autonomie prolongée","criterion":"Le système fonctionne durablement avec supervision limitée.","status":"unassessed"},
+      {"id":"Q-005-M4","order":4,"title":"Déploiement utile","criterion":"Des organisations l’utilisent pour une valeur opérationnelle mesurable.","status":"unassessed"},
+      {"id":"Q-005-M5","order":5,"title":"Usage large","criterion":"Coût, fiabilité et sécurité permettent une diffusion significative.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-006",
+    "slug": "energie-de-fusion-commerciale",
+    "title": "Peut-on produire commercialement de l’énergie par fusion ?",
+    "summary": "Suivre les jalons physiques, techniques et économiques menant d’une réaction de fusion à une production électrique commerciale.",
+    "evidence_profile": "technology",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-006-M1","order":1,"title":"Gain scientifique","criterion":"Un gain scientifique pertinent est démontré dans un dispositif de fusion.","status":"unassessed"},
+      {"id":"Q-006-M2","order":2,"title":"Reproductibilité","criterion":"Le résultat clé est répété de façon contrôlée.","status":"unassessed"},
+      {"id":"Q-006-M3","order":3,"title":"Fonctionnement prolongé","criterion":"Le système maintient les conditions utiles sur une durée technologiquement significative.","status":"unassessed"},
+      {"id":"Q-006-M4","order":4,"title":"Production électrique","criterion":"Un démonstrateur convertit effectivement la fusion en électricité exploitable.","status":"unassessed"},
+      {"id":"Q-006-M5","order":5,"title":"Démonstrateur industriel","criterion":"Un système intégré fonctionne avec contraintes industrielles.","status":"unassessed"},
+      {"id":"Q-006-M6","order":6,"title":"Viabilité commerciale","criterion":"Coût, disponibilité et maintenance rendent l’exploitation commercialement crédible.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-007",
+    "slug": "corriger-maladies-genetiques",
+    "title": "Peut-on corriger durablement les maladies génétiques ?",
+    "summary": "Mesurer la capacité des thérapies géniques et d’édition à produire des corrections sûres, durables et accessibles.",
+    "evidence_profile": "medical",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-007-M1","order":1,"title":"Correction ciblée","criterion":"La modification génétique voulue est obtenue avec spécificité mesurable.","status":"unassessed"},
+      {"id":"Q-007-M2","order":2,"title":"Bénéfice humain","criterion":"Une amélioration clinique est démontrée chez des patients.","status":"unassessed"},
+      {"id":"Q-007-M3","order":3,"title":"Durabilité","criterion":"Le bénéfice persiste avec un suivi pertinent.","status":"unassessed"},
+      {"id":"Q-007-M4","order":4,"title":"Sécurité confirmée","criterion":"Les risques hors cible et effets tardifs sont suffisamment caractérisés.","status":"unassessed"},
+      {"id":"Q-007-M5","order":5,"title":"Accès clinique","criterion":"Une thérapie est autorisée et réellement accessible pour une indication définie.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-008",
+    "slug": "ia-decouvertes-scientifiques",
+    "title": "Une IA peut-elle faire des découvertes scientifiques originales ?",
+    "summary": "Distinguer l’assistance à l’analyse d’une véritable contribution originale ensuite validée par la méthode scientifique.",
+    "evidence_profile": "fundamental_science",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-008-M1","order":1,"title":"Hypothèse originale","criterion":"Une IA produit une hypothèse ou structure non explicitement fournie par les données d’entrée.","status":"unassessed"},
+      {"id":"Q-008-M2","order":2,"title":"Prédiction testable","criterion":"L’hypothèse conduit à une prédiction falsifiable.","status":"unassessed"},
+      {"id":"Q-008-M3","order":3,"title":"Validation expérimentale","criterion":"Une expérience confirme la prédiction dans les conditions annoncées.","status":"unassessed"},
+      {"id":"Q-008-M4","order":4,"title":"Réplication indépendante","criterion":"Une équipe indépendante reproduit le résultat.","status":"unassessed"},
+      {"id":"Q-008-M5","order":5,"title":"Usage scientifique récurrent","criterion":"Le processus IA contribue de manière répétée à de nouvelles connaissances validées.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-009",
+    "slug": "ordinateur-quantique-utile",
+    "title": "Peut-on construire un ordinateur quantique réellement utile ?",
+    "summary": "Suivre l’avantage utile, la correction d’erreurs et les applications réelles plutôt que le seul nombre de qubits.",
+    "evidence_profile": "technology",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-009-M1","order":1,"title":"Qubits logiques fiables","criterion":"La correction d’erreurs produit des qubits logiques aux performances pertinentes.","status":"unassessed"},
+      {"id":"Q-009-M2","order":2,"title":"Calcul reproductible","criterion":"Un calcul non trivial est exécuté de façon reproductible.","status":"unassessed"},
+      {"id":"Q-009-M3","order":3,"title":"Avantage utile","criterion":"Le système surpasse une alternative classique sur une tâche à valeur réelle.","status":"unassessed"},
+      {"id":"Q-009-M4","order":4,"title":"Application externe","criterion":"Une organisation utilise le calcul quantique pour un problème scientifique ou industriel concret.","status":"unassessed"},
+      {"id":"Q-009-M5","order":5,"title":"Usage significatif","criterion":"L’avantage est assez fiable et économique pour un usage récurrent.","status":"unassessed"}
+    ]
+  },
+  {
+    "id": "Q-010",
+    "slug": "presence-humaine-hors-terre",
+    "title": "Peut-on établir une présence humaine durable hors de la Terre ?",
+    "summary": "Suivre les capacités nécessaires à une présence humaine durable sur la Lune, Mars ou au-delà.",
+    "evidence_profile": "technology",
+    "current_state": "baseline_pending_evidence",
+    "milestones": [
+      {"id":"Q-010-M1","order":1,"title":"Missions humaines répétées","criterion":"Des missions humaines au-delà de l’orbite basse sont menées de façon répétée.","status":"unassessed"},
+      {"id":"Q-010-M2","order":2,"title":"Séjour prolongé","criterion":"Des équipages vivent hors de la Terre pendant des durées significatives avec sécurité démontrée.","status":"unassessed"},
+      {"id":"Q-010-M3","order":3,"title":"Infrastructure locale","criterion":"Habitat, énergie et logistique fonctionnent durablement sur place.","status":"unassessed"},
+      {"id":"Q-010-M4","order":4,"title":"Ressources locales","criterion":"Une part significative des besoins est produite ou extraite localement.","status":"unassessed"},
+      {"id":"Q-010-M5","order":5,"title":"Présence permanente","criterion":"Une implantation humaine est maintenue de façon continue.","status":"unassessed"}
+    ]
+  }
+]

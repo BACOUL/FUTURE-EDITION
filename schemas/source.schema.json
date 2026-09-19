@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Source",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "tier", "title", "url", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "kind": {"enum": ["paper", "preprint", "trial_registry", "regulator", "official_data", "technical_report", "institution_release", "media", "social", "other"]},
+    "tier": {"enum": ["A", "B", "C", "D"]},
+    "title": {"type": "string"},
+    "url": {"type": "string", "format": "uri"},
+    "doi": {"type": ["string", "null"]},
+    "published_at": {"type": ["string", "null"], "format": "date"},
+    "status": {"enum": ["active", "corrected", "expression_of_concern", "retracted", "unknown"]},
+    "checked_at": {"type": ["string", "null"], "format": "date-time"}
+  }
+}

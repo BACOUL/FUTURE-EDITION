@@ -1,0 +1,25 @@
+---
+import Base from "../../layouts/Base.astro";
+import questions from "../../../../data/questions/questions.json";
+---
+<Base title="Les grandes questions — Future Edition">
+  <section class="shell hero content">
+    <div class="eyebrow">Observatoires</div>
+    <h1>10 questions que nous suivrons pendant des années.</h1>
+    <p class="lead">Chaque question possède des jalons prédéfinis. Un événement ne fait progresser un sujet que si les preuves permettent de franchir ou de renforcer un de ces jalons.</p>
+  </section>
+  <section class="shell section rule">
+    <div class="grid">
+      {questions.map((q) => (
+        <article class="card" id={q.slug}>
+          <span class="card-number">{q.id}</span>
+          <div>
+            <h3>{q.title}</h3>
+            <p>{q.summary}</p>
+            <span class="status">{q.milestones.length} jalons · non évalués</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

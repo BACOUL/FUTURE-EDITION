@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "text", "claim_type", "evidence_ids", "confidence"],
+  "properties": {
+    "id": {"type": "string"},
+    "text": {"type": "string", "minLength": 5},
+    "claim_type": {"enum": ["result", "limitation", "context", "milestone", "negative_result", "correction"]},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"enum": ["confirmed", "solid_preliminary", "needs_confirmation", "contested", "misleading", "unverifiable", "retracted_invalidated"]}
+  }
+}

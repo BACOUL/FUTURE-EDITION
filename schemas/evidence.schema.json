@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "source_id", "support", "locator"],
+  "properties": {
+    "id": {"type": "string"},
+    "source_id": {"type": "string"},
+    "support": {"enum": ["supports", "contradicts", "limits", "context"]},
+    "locator": {"type": "string", "minLength": 1},
+    "excerpt_hash": {"type": ["string", "null"]},
+    "notes": {"type": ["string", "null"]}
+  }
+}

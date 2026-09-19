@@ -1,0 +1,12 @@
+[
+  {"id":"REG-CROSSREF","name":"Crossref","role":"metadata_resolution","tier":"A","base_url":"https://api.crossref.org"},
+  {"id":"REG-PUBMED","name":"PubMed","role":"biomedical_index","tier":"A","base_url":"https://pubmed.ncbi.nlm.nih.gov"},
+  {"id":"REG-CLINICALTRIALS","name":"ClinicalTrials.gov","role":"trial_registry","tier":"A","base_url":"https://clinicaltrials.gov"},
+  {"id":"REG-ARXIV","name":"arXiv","role":"preprint_repository","tier":"A","base_url":"https://arxiv.org"},
+  {"id":"REG-BIORXIV","name":"bioRxiv","role":"preprint_repository","tier":"A","base_url":"https://www.biorxiv.org"},
+  {"id":"REG-MEDRXIV","name":"medRxiv","role":"preprint_repository","tier":"A","base_url":"https://www.medrxiv.org"},
+  {"id":"REG-EMA","name":"European Medicines Agency","role":"regulator","tier":"A","base_url":"https://www.ema.europa.eu"},
+  {"id":"REG-FDA","name":"U.S. Food and Drug Administration","role":"regulator","tier":"A","base_url":"https://www.fda.gov"},
+  {"id":"REG-NASA","name":"NASA","role":"official_agency","tier":"A","base_url":"https://www.nasa.gov"},
+  {"id":"REG-IAEA","name":"IAEA","role":"official_agency","tier":"A","base_url":"https://www.iaea.org"}
+]
