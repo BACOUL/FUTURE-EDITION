@@ -24,7 +24,7 @@ const arxivXml=`<?xml version="1.0" encoding="utf-8"?>
 
 const fixtures={
   crossref:{message:{DOI:"10.1000/test",type:"journal-article",title:["Crossref synthetic"],URL:"https://doi.org/10.1000/test","updated-by":[],"update-to":[]}},
-  pubmed:{result:{"12345":{uid:"12345",title:"PubMed synthetic"}}},
+  pubmedXml:`<PubmedArticleSet><PubmedArticle><MedlineCitation><PMID>12345</PMID><Article><ArticleTitle>PubMed synthetic</ArticleTitle><PublicationTypeList><PublicationType>Journal Article</PublicationType></PublicationTypeList></Article></MedlineCitation><PubmedData><ArticleIdList><ArticleId IdType="pubmed">12345</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>`,
   clinicaltrials:{protocolSection:{identificationModule:{nctId:"NCT12345678",briefTitle:"Trial synthetic"}}},
   medrxiv:{collection:[{doi:"10.1101/2026.01.01.123456",title:"medRxiv synthetic"}]}
 };
@@ -39,7 +39,7 @@ const med={id:"CAND-000004",signal_kind:"medrxiv",raw_value:"10.1101/2026.01.01.
 const arxiv={id:"CAND-000005",signal_kind:"arxiv",raw_value:"2601.12345v2",origin:"arxiv"};
 
 if(!buildProviderRequest(doi,{mailto:"test@example.invalid"}).url.includes("api.crossref.org/works/")) throw new Error("crossref request");
-if(!buildProviderRequest(pubmed).url.includes("esummary.fcgi")) throw new Error("pubmed request");
+if(!buildProviderRequest(pubmed).url.includes("efetch.fcgi")) throw new Error("pubmed request");
 if(!buildProviderRequest(nct).url.includes("/api/v2/studies/NCT12345678")) throw new Error("clinicaltrials request");
 if(!buildProviderRequest(med).url.includes("api.biorxiv.org/details/medrxiv/")) throw new Error("medrxiv request");
 if(!buildProviderRequest(arxiv).url.includes("export.arxiv.org/api/query?id_list=")) throw new Error("arxiv request");
@@ -52,7 +52,7 @@ assert(parsed?.primary_category==="cs.AI","arxiv primary category parse");
 assert(parsed?.doi==="10.1000/arxiv-fixture","arxiv DOI parse");
 
 const r1=await resolveCandidate(doi,{fetchFn:fakeJson(fixtures.crossref)});
-const r2=await resolveCandidate(pubmed,{fetchFn:fakeJson(fixtures.pubmed)});
+const r2=await resolveCandidate(pubmed,{fetchFn:fakeXml(fixtures.pubmedXml)});
 const r3=await resolveCandidate(nct,{fetchFn:fakeJson(fixtures.clinicaltrials)});
 const r4=await resolveCandidate(med,{fetchFn:fakeJson(fixtures.medrxiv)});
 const r5=await resolveCandidate(arxiv,{fetchFn:fakeXml(arxivXml)});
