@@ -27,8 +27,25 @@ function stripTags(text){
     .trim();
 }
 
+function findOpen(xml,tag,start=0){
+  let cursor=start;
+  const token="<"+tag;
+
+  while(cursor<xml.length){
+    const index=xml.indexOf(token,cursor);
+    if(index<0) return -1;
+    const next=xml[index+token.length];
+    if(next===">"||next==="/"||next===" "||next==="\n"||next==="\r"||next==="\t"){
+      return index;
+    }
+    cursor=index+token.length;
+  }
+
+  return -1;
+}
+
 function block(xml,tag,start=0){
-  const openStart=xml.indexOf("<"+tag,start);
+  const openStart=findOpen(xml,tag,start);
   if(openStart<0) return null;
   const openEnd=xml.indexOf(">",openStart);
   if(openEnd<0) return null;
