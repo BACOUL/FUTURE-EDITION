@@ -1,0 +1,366 @@
+[
+  {
+    "id": "FE03-EXT-0001",
+    "split": "dev",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42730842",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42730842/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "publication_record"
+        ]
+      }
+    ],
+    "notes": "Current human randomized controlled trial."
+  },
+  {
+    "id": "FE03-EXT-0002",
+    "split": "dev",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42243349",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42243349/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "phase_1",
+          "first_in_human"
+        ]
+      }
+    ],
+    "notes": "Phase I efficacy-overclaim safety case."
+  },
+  {
+    "id": "FE03-EXT-0003",
+    "split": "dev",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42250455",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42250455/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "systematic_review"
+        ]
+      }
+    ],
+    "notes": "Systematic review control."
+  },
+  {
+    "id": "FE03-EXT-0004",
+    "split": "dev",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42686906",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42686906/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "mice",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Must not be promoted into a human longevity claim."
+  },
+  {
+    "id": "FE03-EXT-0005",
+    "split": "dev",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.09.03.26362134",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.09.03.26362134v1",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "preprint",
+          "pilot_randomized_trial"
+        ]
+      }
+    ],
+    "notes": "Controlled-design signal but preprint confidence ceiling must remain below confirmed."
+  },
+  {
+    "id": "FE03-EXT-0006",
+    "split": "dev",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40549585",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40549585/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "offspring_mice"
+        ]
+      }
+    ],
+    "notes": "Known retracted animal publication."
+  },
+  {
+    "id": "FE03-EXT-0007",
+    "split": "dev",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "22489770",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "mixed",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22489770/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "crossref",
+        "url": "https://www.crossref.org/labs/retraction-watch",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "updated_by_retraction"
+        ]
+      }
+    ],
+    "notes": "Regression pair with FE03-EXT-0008."
+  },
+  {
+    "id": "FE03-EXT-0008",
+    "split": "dev",
+    "case_family": "retraction_notice",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "31347354",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31347354/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "retraction_notice",
+          "RetractionOf"
+        ]
+      }
+    ],
+    "notes": "Notice itself must not be marked retracted."
+  },
+  {
+    "id": "FE03-EXT-0009",
+    "split": "dev",
+    "case_family": "retraction_notice",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41115411",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41115411/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "retraction_notice",
+          "RetractionOf"
+        ]
+      }
+    ],
+    "notes": "Notice for PMID 40549585."
+  },
+  {
+    "id": "FE03-EXT-0010",
+    "split": "dev",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42269727",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42269727/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "mice",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Mouse mechanistic study."
+  },
+  {
+    "id": "FE03-EXT-0011",
+    "split": "dev",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42720586",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42720586/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial"
+        ]
+      }
+    ],
+    "notes": "Current RCT control."
+  },
+  {
+    "id": "FE03-EXT-0012",
+    "split": "dev",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "not-a-doi",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Deterministic invalid-identifier safety case."
+  }
+]
