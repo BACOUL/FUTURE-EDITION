@@ -148,6 +148,11 @@ export function evaluateSafety(dossier){
   );
   if(locatorMissing) reasons.push("evidence_locator_missing");
 
+  const locatorUnverified=(dossier.claims||[]).some(
+    claim=>(claim.evidence||[]).some(item=>item.verification_status!=="verified")
+  );
+  if(locatorUnverified) reasons.push("evidence_locator_unverified");
+
   const levels=(dossier.claims||[]).map(claim=>claim.evidence_level);
   if(levels.includes("preclinical")) reasons.push("preclinical_not_human_efficacy");
   if(levels.includes("early_human")) reasons.push("early_human_not_confirmatory");
@@ -155,7 +160,7 @@ export function evaluateSafety(dossier){
   if((dossier.contradictions||[]).length) reasons.push("material_contradiction_present");
 
   let ceiling="solid_preliminary";
-  if(noClaims||locatorMissing||levels.some(level=>["unknown","preclinical","early_human"].includes(level))){
+  if(noClaims||locatorMissing||locatorUnverified||levels.some(level=>["unknown","preclinical","early_human"].includes(level))){
     ceiling="needs_confirmation";
   }
   if(dossier.source.kind==="preprint"||dossier.source.peer_reviewed===false){
@@ -209,7 +214,9 @@ export function buildDossier(args){
     evidence_level:claim.evidence_level||classifyEvidenceLevel(source),
     evidence:(claim.evidence||[]).map(item=>({
       locator:item.locator,
-      support:item.support||"supports"
+      support:item.support||"supports",
+      excerpt_hash:item.excerpt_hash??null,
+      verification_status:item.verification_status==="verified"?"verified":"unverified"
     }))
   }));
 
