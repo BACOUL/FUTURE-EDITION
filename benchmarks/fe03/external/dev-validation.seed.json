@@ -362,5 +362,178 @@
       }
     ],
     "notes": "Deterministic invalid-identifier safety case."
+  },
+  {
+    "id": "FE03-EXT-0013",
+    "split": "dev",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42600454",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42600454/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "journal_article",
+          "randomized_controlled_trial",
+          "multicenter_study"
+        ]
+      }
+    ],
+    "notes": "Current peer-reviewed randomized journal article used as an active-publication control."
+  },
+  {
+    "id": "FE03-EXT-0014",
+    "split": "dev",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42446481",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42446481/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42573186/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "published_erratum",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Original randomized trial has a linked published erratum; engine must not silently treat correction state as ordinary active."
+  },
+  {
+    "id": "FE03-EXT-0015",
+    "split": "dev",
+    "case_family": "expression_of_concern",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40296705",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "expression_of_concern",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40296705/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "publication_record"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42033379/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "expression_of_concern",
+          "ExpressionOfConcernFor",
+          "PMID_40296705"
+        ]
+      }
+    ],
+    "notes": "Original human publication is explicitly covered by a PubMed expression-of-concern notice."
+  },
+  {
+    "id": "FE03-EXT-0016",
+    "split": "dev",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT07578571",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT07578571",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "interventional",
+          "phase_1",
+          "human_trial_registry"
+        ]
+      }
+    ],
+    "notes": "Current phase I registry record; registry evidence must not be promoted as confirmatory efficacy."
+  },
+  {
+    "id": "FE03-EXT-0017",
+    "split": "dev",
+    "case_family": "negative_result",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT01546168",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT01546168?tab=results",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "randomized",
+          "double_blind",
+          "results_posted",
+          "no_statistically_significant_difference"
+        ]
+      }
+    ],
+    "notes": "Randomized controlled trial stopped after interim analysis found no statistically significant difference between arms."
   }
 ]
