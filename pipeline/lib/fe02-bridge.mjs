@@ -68,7 +68,7 @@ export function dossierToFe02Draft(dossier,ids){
       claim:{
         id:claimIds[index],
         text:claim.text,
-        claim_type:"result",
+        claim_type:claim.claim_kind==="negative_result"?"negative_result":claim.claim_kind==="limitation"?"limitation":"result",
         evidence_ids:localEvidence.map(x=>x.id),
         confidence:dossier.safety.confidence_ceiling,
         review_state:"machine_proposed",
