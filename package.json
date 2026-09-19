@@ -7,7 +7,8 @@
     "validate:schemas": "node pipeline/validate-schemas.mjs",
     "validate:data": "node pipeline/validate-data.mjs && node pipeline/validate-schemas.mjs && node pipeline/validate-relations.mjs",
     "test:fe02": "node pipeline/test-fe02-model.mjs",
-    "build:graph": "node pipeline/build-graph.mjs && node pipeline/validate-graph.mjs",
+    "verify:determinism": "node pipeline/verify-determinism.mjs",
+    "build:graph": "node pipeline/build-graph.mjs && node pipeline/validate-graph.mjs && node pipeline/verify-determinism.mjs",
     "build:web": "node pipeline/build-site.mjs && node pipeline/validate-output.mjs",
     "build": "node pipeline/run-local.mjs",
     "dev": "node pipeline/run-local.mjs && node pipeline/serve.mjs"

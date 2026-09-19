@@ -24,13 +24,13 @@ const idPatterns = {
   Provenance: /^PROV-\d{6}$/,
   Organization: /^ORG-\d{6}$/,
   Person: /^PERSON-\d{6}$/,
-  Review: /^REVIEW-\d{6}$/
+  Review: /^REVIEW-\d{6}$/,
+  Assessment: /^ASSESS-\d{6}$/
 };
 
 export function buildRegistry(collections) {
   const errors = [];
   const registry = new Map();
-
   const add = (obj, type) => {
     if (!obj?.id) { errors.push(`missing id in ${type}`); return; }
     if (registry.has(obj.id)) { errors.push(`duplicate global id: ${obj.id}`); return; }
@@ -47,7 +47,8 @@ export function buildRegistry(collections) {
   for (const [key, type] of [
     ["technologies", "Technology"], ["events", "Event"], ["claims", "Claim"],
     ["evidence", "Evidence"], ["sources", "Source"], ["provenance", "Provenance"],
-    ["organizations", "Organization"], ["people", "Person"], ["reviews", "Review"]
+    ["organizations", "Organization"], ["people", "Person"], ["reviews", "Review"],
+    ["assessments", "Assessment"]
   ]) {
     for (const obj of collections[key] ?? []) add(obj, type);
   }
@@ -68,6 +69,7 @@ function checkWindow(errors, obj) {
   if (to !== null && Number.isNaN(to)) errors.push(`${obj.id}: invalid valid_to`);
   if (from !== null && to !== null && from > to) errors.push(`${obj.id}: valid_from after valid_to`);
   if (obj.observed_at && Number.isNaN(Date.parse(obj.observed_at))) errors.push(`${obj.id}: invalid observed_at`);
+  if (obj.effective_at && Number.isNaN(Date.parse(obj.effective_at))) errors.push(`${obj.id}: invalid effective_at`);
 }
 
 function detectSupersedesCycle(items, field, errors) {
@@ -89,7 +91,7 @@ export function validateCollections(collections) {
   for (const group of [
     collections.technologies, collections.events, collections.claims, collections.evidence,
     collections.sources, collections.provenance, collections.organizations,
-    collections.people, collections.reviews
+    collections.people, collections.reviews, collections.assessments
   ]) for (const obj of group ?? []) checkWindow(errors, obj);
 
   for (const event of collections.events ?? []) {
@@ -125,6 +127,8 @@ export function validateCollections(collections) {
   }
 
   for (const source of collections.sources ?? []) {
+    for (const id of source.author_ids ?? []) requireType(registry, errors, source.id, id, "Person", "author");
+    for (const id of source.organization_ids ?? []) requireType(registry, errors, source.id, id, "Organization", "organization");
     if (source.supersedes_source_id) {
       requireType(registry, errors, source.id, source.supersedes_source_id, "Source", "supersedes_source");
       if (source.supersedes_source_id === source.id) errors.push(`${source.id}: cannot supersede itself`);
@@ -146,8 +150,29 @@ export function validateCollections(collections) {
     if (review.entity_id === review.id) errors.push(`${review.id}: cannot review itself`);
   }
 
+  for (const assessment of collections.assessments ?? []) {
+    requireType(registry, errors, assessment.id, assessment.milestone_id, "Milestone", "milestone");
+    for (const id of assessment.basis_claim_ids ?? []) requireType(registry, errors, assessment.id, id, "Claim", "basis_claim");
+    for (const id of assessment.basis_event_ids ?? []) requireType(registry, errors, assessment.id, id, "Event", "basis_event");
+    if (assessment.review_id) {
+      requireType(registry, errors, assessment.id, assessment.review_id, "Review", "review");
+      const review = registry.get(assessment.review_id)?.obj;
+      if (review && review.entity_id !== assessment.id) errors.push(`${assessment.id}: review ${assessment.review_id} targets ${review.entity_id}`);
+    }
+    if (assessment.review_state === "human_approved" && !assessment.review_id) {
+      errors.push(`${assessment.id}: human_approved assessment requires review_id`);
+    }
+    if (assessment.supersedes_assessment_id) {
+      requireType(registry, errors, assessment.id, assessment.supersedes_assessment_id, "Assessment", "supersedes_assessment");
+      if (assessment.supersedes_assessment_id === assessment.id) errors.push(`${assessment.id}: cannot supersede itself`);
+      const previous = registry.get(assessment.supersedes_assessment_id)?.obj;
+      if (previous && previous.milestone_id !== assessment.milestone_id) errors.push(`${assessment.id}: cannot supersede assessment of another milestone`);
+    }
+  }
+
   detectSupersedesCycle(collections.claims ?? [], "supersedes_claim_id", errors);
   detectSupersedesCycle(collections.sources ?? [], "supersedes_source_id", errors);
+  detectSupersedesCycle(collections.assessments ?? [], "supersedes_assessment_id", errors);
 
   return { ok: errors.length === 0, errors, registry };
 }
@@ -157,10 +182,9 @@ function canonicalNode(obj, type) {
   const node = { ...obj, type };
   for (const key of [
     "aliases", "question_ids", "technology_ids", "claim_ids", "source_ids",
-    "milestone_ids", "evidence_ids", "derived_from_source_ids", "organization_ids"
-  ]) {
-    if (Array.isArray(node[key])) node[key] = sortIdArray(node[key]);
-  }
+    "milestone_ids", "evidence_ids", "derived_from_source_ids", "organization_ids",
+    "author_ids", "basis_claim_ids", "basis_event_ids"
+  ]) if (Array.isArray(node[key])) node[key] = sortIdArray(node[key]);
   return node;
 }
 
@@ -183,10 +207,9 @@ export function buildGraph(collections) {
   for (const [key, type] of [
     ["technologies", "Technology"], ["events", "Event"], ["claims", "Claim"],
     ["evidence", "Evidence"], ["sources", "Source"], ["provenance", "Provenance"],
-    ["organizations", "Organization"], ["people", "Person"], ["reviews", "Review"]
-  ]) {
-    for (const obj of sortById(collections[key])) nodes.push(canonicalNode(obj, type));
-  }
+    ["organizations", "Organization"], ["people", "Person"], ["reviews", "Review"],
+    ["assessments", "Assessment"]
+  ]) for (const obj of sortById(collections[key])) nodes.push(canonicalNode(obj, type));
 
   for (const event of collections.events ?? []) {
     for (const id of event.question_ids ?? []) edges.push({ from: event.id, relation: "RELATES_TO", to: id });
@@ -209,8 +232,12 @@ export function buildGraph(collections) {
     if (claim.supersedes_claim_id) edges.push({ from: claim.id, relation: "SUPERSEDES", to: claim.supersedes_claim_id });
   }
 
-  for (const item of collections.evidence ?? []) {
-    edges.push({ from: item.id, relation: "DERIVED_FROM", to: item.source_id });
+  for (const item of collections.evidence ?? []) edges.push({ from: item.id, relation: "DERIVED_FROM", to: item.source_id });
+
+  for (const source of collections.sources ?? []) {
+    for (const id of source.author_ids ?? []) edges.push({ from: source.id, relation: "AUTHORED_BY", to: id });
+    for (const id of source.organization_ids ?? []) edges.push({ from: source.id, relation: "PUBLISHED_BY", to: id });
+    if (source.supersedes_source_id) edges.push({ from: source.id, relation: "SUPERSEDES", to: source.supersedes_source_id });
   }
 
   for (const item of collections.provenance ?? []) {
@@ -222,15 +249,20 @@ export function buildGraph(collections) {
     for (const id of person.organization_ids ?? []) edges.push({ from: person.id, relation: "AFFILIATED_WITH", to: id });
   }
 
-  for (const review of collections.reviews ?? []) {
-    edges.push({ from: review.id, relation: "REVIEWS", to: review.entity_id });
+  for (const review of collections.reviews ?? []) edges.push({ from: review.id, relation: "REVIEWS", to: review.entity_id });
+
+  for (const assessment of collections.assessments ?? []) {
+    edges.push({ from: assessment.id, relation: "ASSESSES", to: assessment.milestone_id });
+    for (const id of assessment.basis_claim_ids ?? []) edges.push({ from: assessment.id, relation: "JUSTIFIED_BY", to: id });
+    for (const id of assessment.basis_event_ids ?? []) edges.push({ from: assessment.id, relation: "BASED_ON_EVENT", to: id });
+    if (assessment.supersedes_assessment_id) edges.push({ from: assessment.id, relation: "SUPERSEDES", to: assessment.supersedes_assessment_id });
   }
 
   nodes.sort((a, b) => a.id.localeCompare(b.id));
   edges.sort((a, b) => `${a.from}|${a.relation}|${a.to}`.localeCompare(`${b.from}|${b.relation}|${b.to}`));
 
   const body = {
-    schema_version: "0.3.0",
+    schema_version: "0.4.0",
     status: (collections.events ?? []).length ? "contains_events" : "baseline_pending_evidence",
     counts: {
       questions: (collections.questions ?? []).length,
@@ -243,7 +275,8 @@ export function buildGraph(collections) {
       provenance: (collections.provenance ?? []).length,
       organizations: (collections.organizations ?? []).length,
       people: (collections.people ?? []).length,
-      reviews: (collections.reviews ?? []).length
+      reviews: (collections.reviews ?? []).length,
+      assessments: (collections.assessments ?? []).length
     },
     nodes,
     edges

@@ -11,6 +11,8 @@
     "title": {"type": "string", "minLength": 1},
     "canonical_url": {"type": "string", "format": "uri"},
     "external_ids": {"type": "object", "additionalProperties": {"type": ["string", "null"]}},
+    "author_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^PERSON-[0-9]{6}$"}},
+    "organization_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^ORG-[0-9]{6}$"}},
     "published_at": {"type": ["string", "null"], "format": "date"},
     "status": {"enum": ["active", "corrected", "expression_of_concern", "retracted", "unknown"]},
     "version": {"type": "integer", "minimum": 1},

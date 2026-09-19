@@ -6,7 +6,7 @@
   "required": ["from", "relation", "to"],
   "properties": {
     "from": {"type": "string", "minLength": 1},
-    "relation": {"enum": ["HAS_MILESTONE", "USES_TECHNOLOGY", "RELATES_TO", "PRODUCES_CLAIM", "SUPPORTED_BY", "CONTRADICTED_BY", "LIMITED_BY", "CONTEXTUALIZED_BY", "DERIVED_FROM", "PROVENANCE_OF", "AFFILIATED_WITH", "AUTHORED_BY", "MAY_CHANGE", "SUPERSEDES", "REVIEWS"]},
+    "relation": {"enum": ["HAS_MILESTONE", "USES_TECHNOLOGY", "RELATES_TO", "PRODUCES_CLAIM", "SUPPORTED_BY", "CONTRADICTED_BY", "LIMITED_BY", "CONTEXTUALIZED_BY", "DERIVED_FROM", "PROVENANCE_OF", "AFFILIATED_WITH", "AUTHORED_BY", "PUBLISHED_BY", "MAY_CHANGE", "SUPERSEDES", "REVIEWS", "ASSESSES", "JUSTIFIED_BY", "BASED_ON_EVENT"]},
     "to": {"type": "string", "minLength": 1},
     "valid_from": {"type": ["string", "null"], "format": "date-time"},
     "valid_to": {"type": ["string", "null"], "format": "date-time"}

@@ -13,6 +13,7 @@ export async function loadCollections(root = new URL("../../", import.meta.url))
     provenance: await read(root, "data/provenance/provenance.json"),
     organizations: await read(root, "data/organizations/organizations.json"),
     people: await read(root, "data/people/people.json"),
-    reviews: await read(root, "data/reviews/reviews.json")
+    reviews: await read(root, "data/reviews/reviews.json"),
+    assessments: await read(root, "data/assessments/assessments.json")
   };
 }

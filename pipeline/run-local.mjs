@@ -7,6 +7,7 @@ const steps = [
   ["test-fe02-model", ["pipeline/test-fe02-model.mjs"]],
   ["build-graph", ["pipeline/build-graph.mjs"]],
   ["validate-graph", ["pipeline/validate-graph.mjs"]],
+  ["verify-determinism", ["pipeline/verify-determinism.mjs"]],
   ["build-site", ["pipeline/build-site.mjs"]],
   ["validate-output", ["pipeline/validate-output.mjs"]]
 ];
@@ -18,5 +19,4 @@ for (const [label, args] of steps) {
     process.exit(result.status ?? 1);
   }
 }
-
 console.log("PIPELINE_LOCAL_PASS");

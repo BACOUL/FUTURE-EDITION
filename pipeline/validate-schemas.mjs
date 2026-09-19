@@ -12,7 +12,8 @@ const specs = [
   ["Provenance", "data/provenance/provenance.json", "schemas/provenance.schema.json"],
   ["Organization", "data/organizations/organizations.json", "schemas/organization.schema.json"],
   ["Person", "data/people/people.json", "schemas/person.schema.json"],
-  ["Review", "data/reviews/reviews.json", "schemas/review.schema.json"]
+  ["Review", "data/reviews/reviews.json", "schemas/review.schema.json"],
+  ["Assessment", "data/assessments/assessments.json", "schemas/assessment.schema.json"]
 ];
 
 const errors = [];
