@@ -38,6 +38,9 @@
     "test:fe03:rxiv-collection": "node benchmarks/fe03/test-rxiv-collection.mjs",
     "report:fe03:external": "node benchmarks/fe03/report-external-coverage.mjs",
     "test:fe03:external-evaluator": "node benchmarks/fe03/test-external-evaluator.mjs",
-    "bench:fe03:external-resolution": "node benchmarks/fe03/run-external-resolution.mjs"
+    "bench:fe03:external-resolution": "node benchmarks/fe03/run-external-resolution.mjs",
+    "validate:fe03:claims": "node benchmarks/fe03/validate-claim-annotations.mjs",
+    "test:fe03:claim-linker": "node pipeline/test-fe03-claim-linker.mjs",
+    "bench:fe03:claim-linker": "node benchmarks/fe03/run-claim-linker.mjs"
   }
 }
