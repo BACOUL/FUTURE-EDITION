@@ -27,6 +27,11 @@
 
 ## Tests exécutés
 
+### PubMed integrity semantics
+`FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|notice_review_gate=1`
+
+PubMed est maintenant résolu via EFetch XML complet afin de conserver PublicationType et Comments/Corrections.
+
 ### Crossref integrity semantics
 `FE03_CROSSREF_INTEGRITY_PASS|notice_active=1|target_retracted=1|direction_preserved=1|notice_review_gate=1`
 
