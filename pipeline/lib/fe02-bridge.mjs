@@ -13,7 +13,7 @@ export function dossierToFe02Draft(dossier,ids){
   const source={
     id:ids.source_id,
     kind:dossier.source.kind,
-    tier:"A",
+    tier:dossier.source.tier,
     title:dossier.source.title,
     canonical_url:dossier.source.url,
     external_ids:{primary:dossier.source.external_id},
