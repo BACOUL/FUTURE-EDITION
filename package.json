@@ -36,6 +36,8 @@
     "test:fe03:crossref-collection": "node benchmarks/fe03/test-crossref-collection.mjs",
     "test:fe03:clinicaltrials-collection": "node benchmarks/fe03/test-clinicaltrials-collection.mjs",
     "test:fe03:rxiv-collection": "node benchmarks/fe03/test-rxiv-collection.mjs",
-    "report:fe03:external": "node benchmarks/fe03/report-external-coverage.mjs"
+    "report:fe03:external": "node benchmarks/fe03/report-external-coverage.mjs",
+    "test:fe03:external-evaluator": "node benchmarks/fe03/test-external-evaluator.mjs",
+    "bench:fe03:external-resolution": "node benchmarks/fe03/run-external-resolution.mjs"
   }
 }
