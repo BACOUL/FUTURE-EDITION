@@ -1,5 +1,6 @@
 import { normalizeIdentifier } from "./evidence-engine.mjs";
 import { adapterByProvider } from "../adapters/normalize.mjs";
+import { parseArxivAtom } from "../adapters/arxiv-atom.mjs";
 
 export function buildProviderRequest(candidate,{mailto=null}={}){
   const normalized=normalizeIdentifier(candidate.signal_kind,candidate.raw_value);
@@ -58,10 +59,11 @@ export function buildProviderRequest(candidate,{mailto=null}={}){
 
   if(candidate.signal_kind==="arxiv"){
     return {
-      status:"unsupported",
+      status:"ready",
       provider:"arxiv",
-      reason:"xml_network_parser_not_frozen",
-      identifier:id
+      format:"xml",
+      identifier:id,
+      url:"https://export.arxiv.org/api/query?id_list="+encodeURIComponent(id)+"&max_results=1"
     };
   }
 
@@ -153,12 +155,27 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
   let payload;
 
   try{
-    payload=await response.json();
+    if(request.format==="xml"){
+      const xml=await response.text();
+      payload=parseArxivAtom(xml);
+      if(!payload){
+        return {
+          status:"unresolved",
+          provider:request.provider,
+          reason:"invalid_or_empty_atom",
+          source:null,
+          publication_status:"unresolved",
+          request
+        };
+      }
+    }else{
+      payload=await response.json();
+    }
   }catch{
     return {
       status:"unresolved",
       provider:request.provider,
-      reason:"invalid_json",
+      reason:request.format==="xml"?"invalid_xml":"invalid_json",
       source:null,
       publication_status:"unresolved",
       request
