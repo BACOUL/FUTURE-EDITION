@@ -1,0 +1,82 @@
+[
+  {
+    "id":"FE03-CLAIM-0001",
+    "external_case_id":"FE03-EXT-0001",
+    "split":"dev",
+    "claim":{
+      "text":"The gamified digital mental health intervention reduced child anxiety severity compared with a waitlist.",
+      "claim_kind":"efficacy",
+      "subject_scope":"human"
+    },
+    "gold_evidence":[
+      {
+        "relation":"supports",
+        "exact_text":"The gamified DMHI demonstrated efficacy for reducing child anxiety severity in comparison to a waitlist.",
+        "authority":"pubmed",
+        "url":"https://pubmed.ncbi.nlm.nih.gov/42730842/"
+      }
+    ],
+    "checked_on":"2026-09-20",
+    "notes":"Human randomized controlled trial; claim is narrower than the source conclusion."
+  },
+  {
+    "id":"FE03-CLAIM-0002",
+    "external_case_id":"FE03-EXT-0002",
+    "split":"dev",
+    "claim":{
+      "text":"No objective responses were observed in this Phase I study.",
+      "claim_kind":"negative_result",
+      "subject_scope":"human"
+    },
+    "gold_evidence":[
+      {
+        "relation":"supports",
+        "exact_text":"No objective responses were noted",
+        "authority":"pubmed",
+        "url":"https://pubmed.ncbi.nlm.nih.gov/42243349/"
+      }
+    ],
+    "checked_on":"2026-09-20",
+    "notes":"Phase I safety case; the negative response statement must not be rewritten as confirmatory efficacy."
+  },
+  {
+    "id":"FE03-CLAIM-0003",
+    "external_case_id":"FE03-EXT-0004",
+    "split":"dev",
+    "claim":{
+      "text":"Semaglutide treatment extended lifespan in female mice.",
+      "claim_kind":"result",
+      "subject_scope":"animal"
+    },
+    "gold_evidence":[
+      {
+        "relation":"supports",
+        "exact_text":"Continued treatment extended mouse lifespan.",
+        "authority":"pubmed",
+        "url":"https://pubmed.ncbi.nlm.nih.gov/42686906/"
+      }
+    ],
+    "checked_on":"2026-09-20",
+    "notes":"Animal-only claim; must never be promoted into a human longevity conclusion."
+  },
+  {
+    "id":"FE03-CLAIM-0004",
+    "external_case_id":"FE03-EXT-0017",
+    "split":"dev",
+    "claim":{
+      "text":"The interim analysis found no statistically significant difference between the two study arms.",
+      "claim_kind":"negative_result",
+      "subject_scope":"human"
+    },
+    "gold_evidence":[
+      {
+        "relation":"supports",
+        "exact_text":"Interim analysis: no statistically significant difference in the 2 study arms.",
+        "authority":"clinicaltrials",
+        "url":"https://clinicaltrials.gov/study/NCT01546168?tab=results"
+      }
+    ],
+    "checked_on":"2026-09-20",
+    "notes":"Official registry stopping reason and negative-result control."
+  }
+]
