@@ -1,6 +1,7 @@
 import { normalizeIdentifier } from "./evidence-engine.mjs";
 import { adapterByProvider } from "../adapters/normalize.mjs";
 import { parseArxivAtom } from "../adapters/arxiv-atom.mjs";
+import { parsePubmedXml } from "../adapters/pubmed-xml.mjs";
 
 export function buildProviderRequest(candidate,{mailto=null}={}){
   const normalized=normalizeIdentifier(candidate.signal_kind,candidate.raw_value);
@@ -31,9 +32,9 @@ export function buildProviderRequest(candidate,{mailto=null}={}){
     return {
       status:"ready",
       provider:"pubmed",
-      format:"json",
+      format:"xml",
       identifier:id,
-      url:"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id="+encodeURIComponent(id)+"&retmode=json"
+      url:"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id="+encodeURIComponent(id)+"&retmode=xml"
     };
   }
 
@@ -76,21 +77,6 @@ export function buildProviderRequest(candidate,{mailto=null}={}){
 }
 
 function shapeProviderPayload(request,payload){
-  if(request.provider==="pubmed"){
-    const record=payload?.result?.[request.identifier];
-    if(!record) return null;
-
-    return {
-      pmid:request.identifier,
-      title:record.title,
-      url:"https://pubmed.ncbi.nlm.nih.gov/"+request.identifier+"/",
-      peer_reviewed:true,
-      publication_status:"active",
-      study_stage:"unknown",
-      independence_group:"pubmed:"+request.identifier
-    };
-  }
-
   if(request.provider==="biorxiv"||request.provider==="medrxiv"){
     return payload?.collection?.[0]??null;
   }
@@ -157,7 +143,7 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null}={}){
   try{
     if(request.format==="xml"){
       const xml=await response.text();
-      payload=parseArxivAtom(xml);
+      payload=request.provider==="arxiv"?parseArxivAtom(xml):request.provider==="pubmed"?parsePubmedXml(xml):null;
       if(!payload){
         return {
           status:"unresolved",
