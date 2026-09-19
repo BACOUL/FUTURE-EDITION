@@ -127,6 +127,21 @@ export function normalizePubMed(record){
   }};
 }
 
+function clinicalTrialStage(study){
+  const design=study?.protocolSection?.designModule??{};
+  const phases=Array.isArray(design.phases)?design.phases:(Array.isArray(study?.phases)?study.phases:[]);
+  const normalized=phases.map(value=>String(value).toUpperCase().replaceAll("_",""));
+
+  if(normalized.some(value=>value.includes("PHASE1"))) return "phase1";
+  if(normalized.some(value=>value.includes("PHASE2"))) return "phase2";
+  if(normalized.some(value=>value.includes("PHASE3"))) return "phase3";
+
+  const allocation=String(design?.designInfo?.allocation??study?.allocation??"").toUpperCase();
+  if(allocation==="RANDOMIZED") return "randomized_trial";
+
+  return "unknown";
+}
+
 export function normalizeClinicalTrial(study){
   const id=study?.protocolSection?.identificationModule?.nctId||study?.nctId;
   if(!id) return {status:"unresolved",provider:"clinicaltrials",reason:"nct_not_found",source:null,publication_status:"unresolved",integrity_relations:[]};
@@ -138,7 +153,7 @@ export function normalizeClinicalTrial(study){
     title,
     url:"https://clinicaltrials.gov/study/"+id,
     peer_reviewed:false,
-    study_stage:study.study_stage||"unknown",
+    study_stage:study.study_stage||clinicalTrialStage(study),
     independence_group:"trial:"+id
   }};
 }
