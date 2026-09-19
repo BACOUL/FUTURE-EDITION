@@ -10,6 +10,8 @@
 - adapters communs : Crossref, PubMed, ClinicalTrials.gov, arXiv, bioRxiv, medRxiv ;
 - détection de correction/rétractation dans la normalisation Crossref ;
 - classification déterministe du niveau de preuve ;
+- scope sémantique des claims : in vitro / animal / humain / technologie ;
+- rejet explicite animal→claim humain et plafond renforcé pour efficacité phase I ;
 - séparation source primaire / niveau de preuve ;
 - groupes d'indépendance des sources ;
 - safety gate explicable ;
@@ -39,6 +41,9 @@
 
 ### Locators
 `FE03_LOCATOR_TEST_PASS|verified=1|tamper_rejected=1|wrong_document_rejected=1|bounds_rejected=1`
+
+### Sécurité sémantique
+`FE03_SEMANTIC_SAFETY_PASS|animal_to_human_rejected=1|phase1_ceiling=1|technology_scope=1`
 
 ### Corpus synthétique
 240 cas : 120 dev / 60 validation / 60 holdout synthétique.
