@@ -72,7 +72,9 @@
     "external_holdout_consumed": false,
     "external_benchmark_cases_collected": 0,
     "arxiv_atom_parser": true,
-    "crossref_directional_integrity": true
+    "crossref_directional_integrity": true,
+    "pubmed_full_xml_integrity": true,
+    "pubmed_directional_integrity": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
