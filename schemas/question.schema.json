@@ -4,27 +4,25 @@
   "title": "Future Edition Question",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "slug", "title", "summary", "evidence_profile", "current_state", "milestones"],
+  "required": ["id", "slug", "title", "summary", "evidence_profile", "milestones"],
   "properties": {
     "id": {"type": "string", "pattern": "^Q-[0-9]{3}$"},
     "slug": {"type": "string", "pattern": "^[a-z0-9-]+$"},
     "title": {"type": "string", "minLength": 10},
     "summary": {"type": "string", "minLength": 20},
     "evidence_profile": {"enum": ["medical", "technology", "fundamental_science", "mixed"]},
-    "current_state": {"enum": ["baseline_pending_evidence", "assessed"]},
     "milestones": {
       "type": "array",
       "minItems": 3,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "order", "title", "criterion", "status"],
+        "required": ["id", "order", "title", "criterion"],
         "properties": {
           "id": {"type": "string"},
           "order": {"type": "integer", "minimum": 1},
-          "title": {"type": "string"},
-          "criterion": {"type": "string"},
-          "status": {"enum": ["unassessed", "not_met", "partially_met", "met", "invalidated"]}
+          "title": {"type": "string", "minLength": 1},
+          "criterion": {"type": "string", "minLength": 5}
         }
       }
     }
