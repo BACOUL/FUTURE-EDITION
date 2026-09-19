@@ -86,7 +86,7 @@ export function groupIndependentSources(sources=[]){
     .sort((a,b)=>String(a[0]).localeCompare(String(b[0])))
     .map(([group,items])=>({
       group,
-      source_keys:items.map(x=>x.external_id||x.url).sort()
+      source_keys:[...new Set(items.map(x=>x.external_id||x.url))].sort()
     }));
 }
 
