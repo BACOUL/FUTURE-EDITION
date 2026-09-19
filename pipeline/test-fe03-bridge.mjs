@@ -6,6 +6,7 @@ const candidate={id:"CAND-000001"};
 const source={
   external_id:"10.1000/x",
   kind:"paper",
+  tier:"A",
   title:"Synthetic",
   url:"https://doi.org/10.1000/x",
   peer_reviewed:true,
