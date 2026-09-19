@@ -1135,5 +1135,174 @@
       }
     ],
     "notes": "First-in-human randomized phase I trial; efficacy-like signals must remain below confirmed."
+  },
+  {
+    "id": "FE03-EXT-0035",
+    "split": "validation",
+    "case_family": "dependent_echo",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42722888",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "relations": [
+      {
+        "relation_type": "same_primary_origin",
+        "candidate": {
+          "signal_kind": "doi",
+          "raw_value": "10.1038/s41591-026-04572-7",
+          "origin": "crossref"
+        },
+        "basis": [
+          "PubMed record identifies DOI 10.1038/s41591-026-04572-7 for PMID 42722888",
+          "The PMID and DOI are alternate identifiers for the same phase 1 publication",
+          "Provider diversity must not be counted as independent scientific corroboration"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42722888/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "doi_mapping",
+          "phase_1",
+          "human_study",
+          "same_primary_origin"
+        ]
+      }
+    ],
+    "notes": "Independent validation of cross-provider deduplication on a recent phase I publication."
+  },
+  {
+    "id": "FE03-EXT-0036",
+    "split": "validation",
+    "case_family": "contradiction",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "34717820",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "materially_conflicts",
+        "candidate": {
+          "signal_kind": "pmid",
+          "raw_value": "36633838",
+          "origin": "pubmed"
+        },
+        "basis": [
+          "Both are randomized placebo-controlled outpatient COVID-19 trials evaluating fluvoxamine",
+          "TOGETHER reported reduced need for extended emergency observation or tertiary-hospital transfer with 100 mg twice daily",
+          "ACTIV-6 reported that 50 mg twice daily did not improve time to sustained recovery and did not support use at that dose and duration",
+          "Dose, population, calendar period and primary outcomes differ, so the engine must preserve scope differences while surfacing materially conflicting efficacy evidence"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34717820/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "fluvoxamine",
+          "reported_benefit"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36633838/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "related_randomized_controlled_trial",
+          "fluvoxamine",
+          "no_improvement_in_sustained_recovery",
+          "scope_difference"
+        ]
+      }
+    ],
+    "notes": "Materially conflicting trial evidence with explicit differences preserved; not treated as a logically identical replication."
+  },
+  {
+    "id": "FE03-EXT-0037",
+    "split": "validation",
+    "case_family": "technology_benchmark",
+    "candidate": {
+      "signal_kind": "arxiv",
+      "raw_value": "2608.14903",
+      "origin": "arxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "technology_demo"
+    },
+    "label_evidence": [
+      {
+        "authority": "arxiv",
+        "url": "https://arxiv.org/abs/2608.14903",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "identifier",
+          "versioned_benchmarks",
+          "graded_events",
+          "measurement_audit",
+          "technology_evaluation"
+        ]
+      }
+    ],
+    "notes": "Independent technical evaluation case focused on benchmark measurement and provenance rather than real-world deployment."
+  },
+  {
+    "id": "FE03-EXT-0038",
+    "split": "validation",
+    "case_family": "real_world_deployment",
+    "candidate": {
+      "signal_kind": "url",
+      "raw_value": "https://www.england.nhs.uk/2026/06/500000-nhs-staff-to-get-new-artificial-intelligence-tools-to-help-free-up-more-time-for-patients/",
+      "origin": "nhs_england"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "real_world"
+    },
+    "label_evidence": [
+      {
+        "authority": "publisher",
+        "url": "https://www.england.nhs.uk/2026/06/500000-nhs-staff-to-get-new-artificial-intelligence-tools-to-help-free-up-more-time-for-patients/",
+        "checked_on": "2026-09-19",
+        "supports": [
+          "official_nhs_source",
+          "505000_staff_rollout",
+          "prior_30000_worker_trial",
+          "90_nhs_organisations",
+          "reported_time_saving"
+        ]
+      }
+    ],
+    "notes": "Official operational rollout following a large NHS workforce trial; deployment evidence is kept distinct from clinical-efficacy evidence."
   }
 ]
