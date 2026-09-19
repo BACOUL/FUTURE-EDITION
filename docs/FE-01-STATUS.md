@@ -1,7 +1,7 @@
 # FE-01 — Status
 
 ## Objectif
-Obtenir une fondation locale reproductible, sans dépendance à GitHub Actions.
+Obtenir une fondation locale reproductible, sans dépendance à GitHub Actions ni à un registre npm.
 
 ## Proved
 - repo public initialisé ;
@@ -11,22 +11,25 @@ Obtenir une fondation locale reproductible, sans dépendance à GitHub Actions.
 - IDs question uniques ;
 - slugs uniques ;
 - ordre des jalons vérifié ;
-- site Astro statique défini ;
-- pipeline local défini ;
-- snapshots générés prévus ;
+- pipeline Node local défini ;
+- build Future Graph déterministe ;
+- générateur statique zéro dépendance testé localement ;
+- 14 routes de lancement générables (home, Aujourd’hui, Questions, Méthodologie + 10 observatoires) ;
+- sitemap et robots.txt générables ;
+- contrôle de sortie défini ;
 - preflight FE-00B documenté ;
 - aucune question présentée publiquement comme évaluée scientifiquement.
 
-## Non prouvé dans l’environnement actuel
-- `pnpm install` ;
-- build Astro de production.
+## Incident trouvé et corrigé pendant le gate
+Le premier test du générateur écrivait la route `/` hors du dossier `dist` à cause de la résolution d’URL. Le bug a été reproduit, corrigé puis le build de test a produit toutes les pages attendues.
 
-La tentative de build externe n’a pas pu atteindre github.com depuis l’environnement d’exécution. Ce blocage n’est pas assimilé à un PASS.
+## Gate final
+Après commit de l’architecture zéro dépendance :
+1. validation des données ;
+2. validation des relations ;
+3. build du Future Graph ;
+4. build statique ;
+5. validation des sorties ;
+6. mise à jour de `project-state.json` vers FE-01 PROVED.
 
-## Gate restant
-1. exécuter `pnpm install` ;
-2. exécuter `pnpm validate:data` ;
-3. exécuter `pnpm build:graph` ;
-4. exécuter `pnpm --filter @future-edition/web build` ;
-5. enregistrer le résultat dans ce document ;
-6. seulement ensuite passer FE-01 à PROVED et ouvrir FE-02.
+Le réseau externe n’est plus requis par le build.

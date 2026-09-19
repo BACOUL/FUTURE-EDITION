@@ -17,12 +17,22 @@ Le média visible est une vue du Future Graph. Les articles ne sont jamais la ba
 ## Stack FE-01
 
 - Node.js 22+
-- pnpm workspaces
-- Astro en génération statique
+- **zéro dépendance npm requise pour construire la fondation**
 - JSON versionné pour le graphe initial
-- scripts Node déterministes
+- générateur statique Node déterministe
+- HTML/CSS natif
 - GitHub comme historique
 - Cloudflare Pages comme cible d’hébergement
+
+## Pourquoi zéro dépendance au socle
+
+FE-01 doit pouvoir être reconstruite hors ligne à partir d’une installation Node standard. Cela :
+- supprime le blocage npm/GitHub Actions ;
+- réduit la surface supply-chain ;
+- améliore la reproductibilité ;
+- maintient le coût d’exploitation proche de zéro.
+
+Un framework pourra être introduit plus tard via ADR uniquement si sa valeur dépasse le coût de complexité.
 
 ## Contraintes
 
