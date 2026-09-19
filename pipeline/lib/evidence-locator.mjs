@@ -95,3 +95,25 @@ export function verifyClaimEvidenceLocators(document,claimDrafts=[]){
 
   return {ok:errors.length===0,errors};
 }
+
+
+export function stampVerifiedClaimEvidence(document,claimDrafts=[]){
+  return claimDrafts.map((claim,claimIndex)=>({
+    ...claim,
+    evidence:(claim.evidence||[]).map((reference,evidenceIndex)=>{
+      const result=verifyEvidenceReference(document,reference);
+
+      if(!result.ok){
+        throw new Error(
+          "claim["+claimIndex+"].evidence["+evidenceIndex+"]: "+result.reason
+        );
+      }
+
+      return {
+        ...reference,
+        excerpt_hash:sha256(result.excerpt),
+        verification_status:"verified"
+      };
+    })
+  }));
+}
