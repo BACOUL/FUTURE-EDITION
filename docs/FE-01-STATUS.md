@@ -1,35 +1,35 @@
-# FE-01 — Status
+# FE-01 — PROVED
 
 ## Objectif
 Obtenir une fondation locale reproductible, sans dépendance à GitHub Actions ni à un registre npm.
 
-## Proved
+## Résultat
+**VERDICT: PROVED**
+
+## Preuves
+
 - repo public initialisé ;
 - constitution et programme présents ;
-- 10 questions présentes ;
-- 51 jalons présents ;
-- IDs question uniques ;
+- 10 questions exactes dans le repo ;
+- 51 jalons ;
+- 61 IDs question/jalon uniques ;
 - slugs uniques ;
-- ordre des jalons vérifié ;
-- pipeline Node local défini ;
-- build Future Graph déterministe ;
-- générateur statique zéro dépendance testé localement ;
-- 14 routes de lancement générables (home, Aujourd’hui, Questions, Méthodologie + 10 observatoires) ;
-- sitemap et robots.txt générables ;
-- contrôle de sortie défini ;
-- preflight FE-00B documenté ;
-- aucune question présentée publiquement comme évaluée scientifiquement.
+- ordre des jalons valide ;
+- relation collections initialisées ;
+- pipeline Node zéro dépendance ;
+- générateur statique testé localement ;
+- première exécution détectée en échec sur la route `/` ;
+- bug de résolution corrigé ;
+- relance PASS : 14 routes, Future Graph, sitemap, robots.txt ;
+- contrôle des données exactes du repo : 10 questions, 51 jalons, 61 IDs, 14 routes, 0 erreur ;
+- 0 question marquée `assessed` ;
+- ancien chemin Astro supprimé du repo ;
+- aucun accès réseau requis pour le build.
 
-## Incident trouvé et corrigé pendant le gate
-Le premier test du générateur écrivait la route `/` hors du dossier `dist` à cause de la résolution d’URL. Le bug a été reproduit, corrigé puis le build de test a produit toutes les pages attendues.
+## Invariant gelé
 
-## Gate final
-Après commit de l’architecture zéro dépendance :
-1. validation des données ;
-2. validation des relations ;
-3. build du Future Graph ;
-4. build statique ;
-5. validation des sorties ;
-6. mise à jour de `project-state.json` vers FE-01 PROVED.
+La fondation doit rester reconstructible avec **Node.js 22+ uniquement** tant qu’un ADR ultérieur n’a pas prouvé la nécessité d’une dépendance externe.
 
-Le réseau externe n’est plus requis par le build.
+## Ce que FE-01 ne prétend pas prouver
+
+FE-01 ne valide aucun état scientifique. Il valide seulement la fondation technique et les contrats initiaux.
