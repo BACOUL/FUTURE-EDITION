@@ -16,7 +16,11 @@ export function resolveClaimState(versions = [], asOf) {
   if (active.length > 1) throw new Error("ambiguous active claim versions");
   if (active.length === 1) return { status: "active", claim: active[0], history: versions.map((x) => x.id) };
 
-  const retracted = eligible.find((item) => item.status === "retracted" || item.status === "invalidated");
+  const retracted = versions.find((item) =>
+    (item.status === "retracted" || item.status === "invalidated") &&
+    Number.isFinite(iso(item.lifecycle_effective_at)) &&
+    iso(item.lifecycle_effective_at) <= t
+  );
   if (retracted) return { status: "retracted", claim: retracted, history: versions.map((x) => x.id) };
 
   const corrected = eligible.find((item) => item.status === "corrected" || item.status === "superseded");
@@ -43,6 +47,7 @@ export function propagateClaimLifecycle({
   target.valid_to = effectiveAt;
   target.status = kind === "retraction" ? "retracted" : kind === "correction" ? "corrected" : "superseded";
   target.lifecycle_reason = reason;
+  target.lifecycle_effective_at = effectiveAt;
   target.superseded_by = nextClaim?.id ?? null;
 
   if (kind === "retraction") {
