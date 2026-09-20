@@ -162,8 +162,8 @@ function textStudyStage(title="",abstract=""){
 function subjectScope(meshTerms=[],title="",abstract=""){
   const scope=meshScope(meshTerms);
   const text=(String(title)+" "+String(abstract)).toLowerCase();
-  const explicitAnimal=/\b(?:mice|mouse|rats|rat|rabbits|rabbit|murine|porcine|swine)\b/.test(text);
-  const explicitHuman=/\b(?:patients?|participants?|adults?|children|humans?)\b/.test(text);
+  const explicitAnimal=/\b(?:mice|rats|rabbits|murine|porcine|swine)\b/.test(text);
+  const explicitHuman=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/.test(text);
 
   if(scope==="mixed"){
     if(explicitAnimal&&!explicitHuman) return "animal";
@@ -179,18 +179,18 @@ function subjectScope(meshTerms=[],title="",abstract=""){
 function studyStage(pubtypes,meshTerms=[],title="",abstract=""){
   const scope=meshScope(meshTerms);
   const text=(String(title)+" "+String(abstract)).toLowerCase();
-  const explicitAnimal=/\b(?:mice|mouse|rats|rat|rabbits|rabbit|murine|porcine|swine)\b/.test(text);
-  const explicitHuman=/\b(?:patients?|participants?|adults?|children|humans?)\b/.test(text);
+  const explicitAnimal=/\b(?:mice|rats|rabbits|murine|porcine|swine)\b/.test(text);
+  const explicitHuman=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/.test(text);
 
   if(scope==="animal"||(scope==="unknown"&&explicitAnimal&&!explicitHuman)) return "preclinical_animal";
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase I"))) return "phase1";
-  if(pubtypes.includes("Randomized Controlled Trial")) return "randomized_trial";
+  const textual=textStudyStage(title,abstract);
+  if(pubtypes.includes("Randomized Controlled Trial")||textual==="randomized_trial") return "randomized_trial";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase III"))) return "phase3";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase II"))) return "phase2";
   if(pubtypes.includes("Observational Study")) return "observational_human";
 
-  const textual=textStudyStage(title,abstract);
   if(textual!=="unknown") return textual;
 
   if(scope==="mixed") return "preclinical_animal";
