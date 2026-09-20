@@ -115,6 +115,19 @@ function publicationKind(pubtypes){
   return "paper";
 }
 
+function meshScope(meshTerms=[]){
+  const normalized=new Set(meshTerms.map(value=>String(value).trim().toLowerCase()));
+  const hasHuman=normalized.has("humans");
+  const hasAnimal=
+    normalized.has("animals")||
+    [...normalized].some(value=>["mice","rats","rabbits","swine","dogs","cats","primates"].some(term=>value===term||value.startsWith(term+"/")));
+
+  if(hasHuman&&hasAnimal) return "mixed";
+  if(hasHuman) return "human";
+  if(hasAnimal) return "animal";
+  return "unknown";
+}
+
 function studyStage(pubtypes,meshTerms=[]){
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase I"))) return "phase1";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase II"))) return "phase2";
@@ -123,13 +136,8 @@ function studyStage(pubtypes,meshTerms=[]){
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
   if(pubtypes.includes("Observational Study")) return "observational_human";
 
-  const normalized=new Set(meshTerms.map(value=>String(value).trim().toLowerCase()));
-  const hasHuman=normalized.has("humans");
-  const hasAnimal=
-    normalized.has("animals")||
-    [...normalized].some(value=>["mice","rats","rabbits","swine","dogs","cats","primates"].some(term=>value===term||value.startsWith(term+"/")));
-
-  if(hasAnimal&&!hasHuman) return "preclinical_animal";
+  const scope=meshScope(meshTerms);
+  if(scope==="animal"||scope==="mixed") return "preclinical_animal";
   return "unknown";
 }
 
@@ -205,6 +213,7 @@ export function parsePubmedXml(xml){
     publication_status:publicationStatus(pubtypes,relations),
     kind:publicationKind(pubtypes),
     study_stage:studyStage(pubtypes,meshTerms),
+    subject_scope:meshScope(meshTerms),
     peer_reviewed:true,
     integrity_relations:relations,
     url:"https://pubmed.ncbi.nlm.nih.gov/"+pmid+"/",
