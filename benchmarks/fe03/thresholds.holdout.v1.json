@@ -1,0 +1,13 @@
+{
+  "version":"holdout-v1",
+  "frozen_before_holdout":true,
+  "candidate_sha":"d3aa028642bbfd78bdd334c1f8186f6eb5d58591",
+  "minimum_hidden_cases":50,
+  "minimum_hidden_claim_annotations":15,
+  "minimum_claim_prediction_coverage":0.25,
+  "atomic_gold_passage_recall_min":0.85,
+  "require_zero_transport_failures":true,
+  "require_verified_locator_rate":1.0,
+  "require_machine_proposed_rate":1.0,
+  "note":"Adds only anti-abstention and atomic-extraction safeguards; it does not weaken external-v1."
+}
