@@ -92,14 +92,15 @@ for (const [path, html] of htmlByPath) baseChecks(path, html);
 
 const home = htmlByPath.get("dist/index.html") ?? "";
 for (const text of [
-  "Le futur,",
-  "preuve à l’appui.",
-  "50",
-  "événements fondateurs sourcés",
-  "10 observatoires",
-  "51 jalons",
-  "Les derniers repères du socle"
-]) if (!home.includes(text)) errors.push(`home missing FE-06 content: ${text}`);
+  "Ce qui devient",
+  "possible.",
+  "Reality Check",
+  "Des repères, pas un faux fil d’actualité.",
+  "Un média qui conserve l’état du monde",
+  "Dix questions qui valent des années de suivi.",
+  "Future Graph",
+  "354"
+]) if (!home.includes(text)) errors.push(`home missing FE-06R reference content: ${text}`);
 
 if (home.includes("Aucune avancée n’est encore déclarée validée.")) {
   errors.push("home still contains obsolete FE-01 placeholder");
@@ -195,7 +196,7 @@ const css = await readFile(new URL("dist/assets/styles.css", root), "utf8");
 const cssBytes = Buffer.byteLength(css);
 const homeBytes = Buffer.byteLength(home);
 if (cssBytes > 60000) errors.push(`CSS budget exceeded: ${cssBytes}`);
-if (homeBytes > 180000) errors.push(`home HTML budget exceeded: ${homeBytes}`);
+if (homeBytes > 70000) errors.push(`home HTML budget exceeded: ${homeBytes}`);
 if (!css.includes("@media(max-width:620px)")) errors.push("mobile breakpoint missing");
 if (!css.includes("@media(prefers-reduced-motion:reduce)")) errors.push("reduced-motion support missing");
 if (!css.includes(":focus")) errors.push("focus affordance missing");
@@ -210,8 +211,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(
-  `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
+console.log(`FE06R_REFERENCE_HOME_PASS|reality_check=1|future_graph_visual=1|historical_news_separation=1|observatory_links=10|home_bytes=${homeBytes}`);\n\nconsole.log(\n  `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
   `|proof_pages=${events.length}|orphan_public_claims=0|broken_internal_links=0` +
   `|client_js=0|milestone_overclaims=0|css_bytes=${cssBytes}|home_bytes=${homeBytes}` +
   "|mobile_breakpoint=1|reduced_motion=1|skip_link=1"
