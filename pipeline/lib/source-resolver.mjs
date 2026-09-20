@@ -270,25 +270,36 @@ async function nhsWordpressFallback(request,{fetchFn}){
 
 async function rxivHtmlFallback(request,{fetchFn}){
   if(!["biorxiv","medrxiv"].includes(request.provider)) return null;
-  const url="https://www."+request.provider+".org/content/"+request.identifier;
-  const {response,error}=await fetchWithRetry(url,{
-    headers:{...DEFAULT_HEADERS,accept:"text/html"}
-  },{fetchFn,maxAttempts:3,baseDelayMs:600});
-  if(error||!response?.ok) return null;
 
-  try{
-    const parsed=parseOfficialWebHtml(await response.text(),{url});
-    if(!parsed) return null;
-    return {
-      doi:request.identifier,
-      title:parsed.title,
-      abstract:parsed.description||parsed.paragraphs?.find(item=>String(item).length>=180)||parsed.body||"",
-      page_body:parsed.body||"",
-      url
-    };
-  }catch{
-    return null;
+  // Newer bioRxiv/medRxiv records can return 404 on the unversioned content
+  // route while the canonical v1 record is live. Try both deterministically.
+  const urls=[
+    "https://www."+request.provider+".org/content/"+request.identifier,
+    "https://www."+request.provider+".org/content/"+request.identifier+"v1"
+  ];
+
+  for(const url of urls){
+    const {response,error}=await fetchWithRetry(url,{
+      headers:{...DEFAULT_HEADERS,accept:"text/html"}
+    },{fetchFn,maxAttempts:3,baseDelayMs:600});
+    if(error||!response?.ok) continue;
+
+    try{
+      const parsed=parseOfficialWebHtml(await response.text(),{url});
+      if(!parsed) continue;
+      return {
+        doi:request.identifier,
+        title:parsed.title,
+        abstract:parsed.description||parsed.paragraphs?.find(item=>String(item).length>=180)||parsed.body||"",
+        page_body:parsed.body||"",
+        url
+      };
+    }catch{
+      continue;
+    }
   }
+
+  return null;
 }
 
 export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedAt=null}={}){
