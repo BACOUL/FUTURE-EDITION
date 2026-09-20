@@ -1,0 +1,305 @@
+{
+  "locale": "fr-FR",
+  "entries": {
+    "EV-1998-001001": {
+      "title": "La FDA autorise le trastuzumab (Herceptin)",
+      "claim": "Le registre Purple Book de la FDA indique le 25 septembre 1998 comme date d’autorisation initiale du trastuzumab (Herceptin).",
+      "technology": "Trastuzumab / anticorps ciblant HER2",
+      "tech_desc": "Thérapie par anticorps monoclonal ciblant HER2."
+    },
+    "EV-2001-001002": {
+      "title": "La FDA autorise l’imatinib (Gleevec) contre la leucémie myéloïde chronique",
+      "claim": "Le registre des médicaments orphelins de la FDA indique une autorisation de mise sur le marché le 10 mai 2001 pour l’imatinib (Gleevec) dans la leucémie myéloïde chronique.",
+      "technology": "Imatinib / inhibition de BCR-ABL",
+      "tech_desc": "Inhibition ciblée de BCR-ABL et de kinases apparentées par une petite molécule."
+    },
+    "EV-2010-001003": {
+      "title": "La FDA autorise le sipuleucel-T (Provenge)",
+      "claim": "Le Purple Book de la FDA indique le 29 avril 2010 comme date d’autorisation initiale du sipuleucel-T (Provenge).",
+      "technology": "Immunothérapie cellulaire sipuleucel-T",
+      "tech_desc": "Immunothérapie cellulaire autologue utilisée dans le cancer de la prostate."
+    },
+    "EV-2017-001004": {
+      "title": "La FDA autorise le tisagenlecleucel (Kymriah), une thérapie CAR-T",
+      "claim": "La FDA indique une autorisation initiale du tisagenlecleucel (Kymriah) le 30 août 2017 ; il s’agit d’une thérapie CAR-T dirigée contre CD19.",
+      "technology": "Thérapie cellulaire CAR-T anti-CD19",
+      "tech_desc": "Lymphocytes T autologues modifiés pour exprimer un récepteur antigénique chimérique dirigé contre CD19."
+    },
+    "EV-2020-001005": {
+      "title": "Le pembrolizumab est autorisé en première ligne dans certains cancers colorectaux MSI-H/dMMR",
+      "claim": "Le 29 juin 2020, la FDA a autorisé le pembrolizumab en première ligne pour certains cancers colorectaux MSI-H/dMMR non résécables ou métastatiques, sur la base de l’essai randomisé KEYNOTE-177.",
+      "technology": "Inhibition du point de contrôle PD-1",
+      "tech_desc": "Blocage immunitaire du point de contrôle PD-1."
+    },
+    "EV-2009-002001": {
+      "title": "La rapamycine prolonge la durée de vie de souris génétiquement hétérogènes",
+      "claim": "Une étude multicentrique publiée en 2009 a rapporté qu’un traitement tardif par rapamycine prolongeait la durée de vie de souris génétiquement hétérogènes.",
+      "technology": "Inhibition de mTOR par la rapamycine",
+      "tech_desc": "Inhibition pharmacologique de la voie mTOR par la rapamycine."
+    },
+    "EV-2011-002002": {
+      "title": "L’élimination de cellules sénescentes retarde certains troubles liés à l’âge chez la souris",
+      "claim": "Dans un modèle murin de vieillissement accéléré, l’élimination inductible de cellules sénescentes p16Ink4a positives a retardé ou atténué plusieurs troubles associés à l’âge.",
+      "technology": "Élimination des cellules sénescentes",
+      "tech_desc": "Élimination sélective des cellules sénescentes p16Ink4a positives."
+    },
+    "EV-2016-002003": {
+      "title": "L’élimination de cellules sénescentes augmente la durée de vie médiane chez la souris",
+      "claim": "Une étude de 2016 a rapporté que l’élimination de cellules p16Ink4a positives augmentait la durée de vie médiane de souris mâles et femelles issues de deux fonds génétiques.",
+      "technology": "Élimination des cellules sénescentes",
+      "tech_desc": "Élimination sélective des cellules sénescentes p16Ink4a positives."
+    },
+    "EV-2018-002004": {
+      "title": "Deux ans de restriction calorique ralentissent le métabolisme chez des adultes non obèses",
+      "claim": "Chez les participants à CALERIE, une restriction calorique d’environ 15 % pendant deux ans a été associée à une adaptation métabolique durable et à une baisse de marqueurs du stress oxydatif.",
+      "technology": "Restriction calorique",
+      "tech_desc": "Réduction durable de l’apport calorique sans malnutrition."
+    },
+    "EV-2023-002005": {
+      "title": "Une analyse de CALERIE observe un léger ralentissement de DunedinPACE",
+      "claim": "Une analyse secondaire de CALERIE a rapporté un ralentissement d’environ 2 à 3 % de DunedinPACE sous restriction calorique, tandis que d’autres mesures épigénétiques de l’âge n’ont pas montré de changement significatif.",
+      "technology": "Restriction calorique",
+      "tech_desc": "Réduction durable de l’apport calorique sans malnutrition."
+    },
+    "EV-2011-003001": {
+      "title": "La stimulation épidurale permet la station debout et certains mouvements volontaires après une paraplégie motrice complète",
+      "claim": "Un cas clinique publié en 2011 a montré qu’une stimulation épidurale lombo-sacrée permettait la station debout avec appui et certains mouvements volontaires des membres inférieurs chez une personne atteinte de paraplégie motrice complète.",
+      "technology": "Stimulation épidurale de la moelle épinière",
+      "tech_desc": "Stimulation électrique délivrée par voie épidurale aux réseaux lombo-sacrés de la moelle."
+    },
+    "EV-2018-003002": {
+      "title": "Une neurostimulation ciblée soutient la marche après une lésion chronique de la moelle épinière",
+      "claim": "Une étude de 2018 a rapporté qu’une stimulation spatio-temporelle ciblée de la moelle permettait un contrôle volontaire de mouvements liés à la marche chez des personnes atteintes de lésions médullaires chroniques.",
+      "technology": "Stimulation épidurale spatio-temporelle",
+      "tech_desc": "Stimulation ciblée de la moelle, synchronisée avec l’intention de mouvement."
+    },
+    "EV-2019-003003": {
+      "title": "Une personne tétraplégique contrôle un exosquelette à quatre membres par des signaux cérébraux implantés",
+      "claim": "Un rapport de 2019 décrit une personne tétraplégique contrôlant un exosquelette à quatre membres grâce à une interface cerveau-machine implantée au cours d’une étude de 24 mois.",
+      "technology": "Exosquelette à quatre membres contrôlé par le cerveau",
+      "tech_desc": "Interface cerveau-ordinateur implantée pour piloter un exosquelette à quatre membres."
+    },
+    "EV-2022-003004": {
+      "title": "La neuromodulation médullaire restaure plusieurs fonctions motrices chez des personnes totalement paralysées",
+      "claim": "Une étude de 2022 a rapporté une restauration rapide de plusieurs fonctions motrices du tronc et des jambes grâce à une neuromodulation ciblée de la moelle chez des participants présentant une paralysie sensorimotrice complète.",
+      "technology": "Neuromodulation médullaire dépendante de l’activité",
+      "tech_desc": "Schémas de neuromodulation de la moelle conçus pour restaurer des fonctions motrices."
+    },
+    "EV-2023-003005": {
+      "title": "Une interface cerveau–moelle permet un contrôle naturel de la station debout et de la marche",
+      "claim": "Une étude de 2023 sur une interface cerveau–moelle a rapporté un contrôle naturel de la station debout et de la marche chez une personne atteinte de tétraplégie chronique, avec une utilisation stable pendant un an.",
+      "technology": "Interface cerveau–moelle",
+      "tech_desc": "Pont numérique traduisant l’activité corticale en stimulation de la moelle épinière."
+    },
+    "EV-2013-004001": {
+      "title": "La FDA accorde une autorisation humanitaire à la prothèse rétinienne Argus II",
+      "claim": "La base de données des dispositifs humanitaires de la FDA enregistre une décision d’autorisation du système de prothèse rétinienne Argus II le 13 février 2013.",
+      "technology": "Prothèse rétinienne",
+      "tech_desc": "Implant rétinien fournissant une stimulation électrique structurée."
+    },
+    "EV-2014-004002": {
+      "title": "Suivi prolongé d’une greffe d’épithélium pigmentaire rétinien dérivé de cellules souches embryonnaires",
+      "claim": "Un suivi ouvert de 18 yeux traités a rapporté des données de sécurité à moyen et long terme ainsi qu’une amélioration de l’acuité visuelle dans 10 yeux après transplantation d’épithélium pigmentaire rétinien dérivé de cellules souches embryonnaires humaines.",
+      "technology": "Greffe d’épithélium pigmentaire rétinien dérivé de cellules souches embryonnaires",
+      "tech_desc": "Transplantation de cellules de l’épithélium pigmentaire rétinien différenciées à partir de cellules souches embryonnaires humaines."
+    },
+    "EV-2017-004003": {
+      "title": "Essai randomisé de phase 3 du voretigene neparvovec",
+      "claim": "Un essai randomisé de phase 3 a rapporté une amélioration de la vision fonctionnelle au test de mobilité multi-luminance après traitement par voretigene neparvovec chez des patients atteints d’une dystrophie rétinienne liée à des mutations bialléliques de RPE65.",
+      "technology": "Thérapie génique rétinienne RPE65",
+      "tech_desc": "Administration par vecteur AAV d’une copie fonctionnelle du gène RPE65 aux cellules rétiniennes."
+    },
+    "EV-2017-004004": {
+      "title": "La FDA autorise Luxturna",
+      "claim": "La FDA indique le 19 décembre 2017 comme date d’autorisation initiale de Luxturna pour une dystrophie rétinienne héréditaire associée à des mutations bialléliques de RPE65.",
+      "technology": "Thérapie génique rétinienne RPE65",
+      "tech_desc": "Administration par vecteur AAV d’une copie fonctionnelle du gène RPE65 aux cellules rétiniennes."
+    },
+    "EV-2021-004005": {
+      "title": "Une récupération visuelle partielle est rapportée après une thérapie optogénétique",
+      "claim": "Un cas clinique publié en 2021 a décrit une récupération partielle de fonctions visuelles chez une personne aveugle après une thérapie optogénétique associée à des lunettes spécialement conçues.",
+      "technology": "Restauration visuelle par optogénétique",
+      "tech_desc": "Sensibilisation optogénétique de cellules rétiniennes combinée à des lunettes délivrant une stimulation lumineuse."
+    },
+    "EV-2022-005001": {
+      "title": "RT-1 applique une même politique robotique à des centaines de tâches",
+      "claim": "La prépublication RT-1 décrit une politique unique de type transformer entraînée sur plus de 130 000 épisodes réalisés avec de vrais robots, couvrant plus de 700 tâches et 13 robots.",
+      "technology": "RT-1",
+      "tech_desc": "Politique de type transformer entraînée sur des centaines de tâches robotiques en environnement réel."
+    },
+    "EV-2023-005002": {
+      "title": "PaLM-E montre un transfert multimodal entre plusieurs types de robots",
+      "claim": "La prépublication PaLM-E décrit un même modèle multimodal incarné entraîné sur plusieurs tâches et plusieurs plateformes robotiques, tout en conservant des capacités de langage.",
+      "technology": "PaLM-E",
+      "tech_desc": "Modèle de langage multimodal incarné combinant vision, langage et état du robot."
+    },
+    "EV-2023-005003": {
+      "title": "RT-2 transfère des connaissances du Web vers des actions robotiques",
+      "claim": "La prépublication RT-2 rapporte une amélioration de la généralisation robotique et du raisonnement sémantique grâce à un co-entraînement mêlant actions robotiques et données vision-langage à grande échelle issues du Web.",
+      "technology": "RT-2",
+      "tech_desc": "Modèle vision-langage-action qui convertit des connaissances visuelles et linguistiques en actions robotiques."
+    },
+    "EV-2023-005004": {
+      "title": "Open X-Embodiment agrège des données issues de nombreuses plateformes robotiques",
+      "claim": "La prépublication Open X-Embodiment décrit un jeu de données inter-institutions couvrant 22 types de robots et rapporte des transferts positifs entre plateformes.",
+      "technology": "Open X-Embodiment / RT-X",
+      "tech_desc": "Jeu de données multi-plateformes et politiques robotiques entraînées sur des robots hétérogènes."
+    },
+    "EV-2024-005005": {
+      "title": "GXO et Agility annoncent un déploiement commercial pluriannuel du robot humanoïde Digit",
+      "claim": "GXO et Agility Robotics ont annoncé le 27 juin 2024 un accord pluriannuel pour utiliser des robots humanoïdes Digit dans un flux réel de manutention de bacs en entrepôt.",
+      "technology": "Robot humanoïde logistique Digit",
+      "tech_desc": "Robot humanoïde bipède déployé pour des tâches logistiques de manutention en entrepôt."
+    },
+    "EV-2021-006001": {
+      "title": "Le NIF atteint 1,35 MJ d’énergie de fusion et se rapproche du seuil d’ignition",
+      "claim": "Une expérience menée au NIF le 8 août 2021 a produit environ 1,35 MJ d’énergie de fusion, soit près de 70 % de l’énergie laser délivrée à la cible.",
+      "technology": "Fusion par confinement inertiel au NIF",
+      "tech_desc": "Fusion par confinement inertiel entraînée par laser au National Ignition Facility."
+    },
+    "EV-2022-006002": {
+      "title": "Le NIF atteint l’ignition de fusion en laboratoire",
+      "claim": "Le tir du 5 décembre 2022 au NIF a délivré 2,05 MJ d’énergie laser à la cible et produit environ 3,15 MJ d’énergie de fusion.",
+      "technology": "Fusion par confinement inertiel au NIF",
+      "tech_desc": "Fusion par confinement inertiel entraînée par laser au National Ignition Facility."
+    },
+    "EV-2023-006003": {
+      "title": "Le NIF répète l’ignition avec un rendement supérieur",
+      "claim": "Le LLNL rapporte qu’une expérience menée au NIF le 30 juillet 2023 a produit 3,88 MJ à partir de 2,05 MJ d’énergie laser délivrée à la cible, répétant l’ignition avec un rendement supérieur.",
+      "technology": "Fusion par confinement inertiel au NIF",
+      "tech_desc": "Fusion par confinement inertiel entraînée par laser au National Ignition Facility."
+    },
+    "EV-2024-006004": {
+      "title": "JET établit un record de 69,26 MJ d’énergie de fusion",
+      "claim": "EUROfusion a rapporté qu’une impulsion de JET avait libéré 69,26 MJ d’énergie de fusion pendant six secondes et que les conditions pertinentes avaient été reproduites sur plusieurs impulsions.",
+      "technology": "Tokamak JET au deutérium-tritium",
+      "tech_desc": "Expériences de confinement magnétique en tokamak utilisant un combustible deutérium-tritium."
+    },
+    "EV-2025-006005": {
+      "title": "Wendelstein 7-X établit un record de produit triple sur une impulsion longue de 43 secondes",
+      "claim": "L’Institut Max-Planck de physique des plasmas a rapporté une impulsion plasma de 43 secondes sur Wendelstein 7-X avec un produit triple record pour un stellarator en fonctionnement prolongé.",
+      "technology": "Stellarator Wendelstein 7-X",
+      "tech_desc": "Stellarator supraconducteur conçu pour un confinement magnétique du plasma en régime quasi continu."
+    },
+    "EV-2019-007001": {
+      "title": "La FDA autorise Zolgensma contre l’amyotrophie spinale",
+      "claim": "Le 24 mai 2019, la FDA a autorisé l’onasemnogene abeparvovec (Zolgensma), une thérapie de remplacement génique par AAV destinée à une population pédiatrique définie atteinte d’amyotrophie spinale.",
+      "technology": "Remplacement génique par AAV9",
+      "tech_desc": "Administration systémique par AAV9 d’une copie fonctionnelle du gène SMN1."
+    },
+    "EV-2021-007002": {
+      "title": "Premiers résultats cliniques d’une édition CRISPR in vivo systémique contre l’amylose à transthyrétine",
+      "claim": "Un premier rapport clinique chez six patients a observé une diminution dose-dépendante de la transthyrétine sérique après une injection intraveineuse unique d’une thérapie CRISPR-Cas9 in vivo.",
+      "technology": "CRISPR-Cas9 in vivo contre l’amylose à transthyrétine",
+      "tech_desc": "Nanoparticules lipidiques délivrant les composants CRISPR-Cas9 afin d’éditer le gène TTR in vivo."
+    },
+    "EV-2022-007003": {
+      "title": "La FDA autorise Zynteglo pour la bêta-thalassémie transfusion-dépendante",
+      "claim": "La FDA enregistre une autorisation de Zynteglo le 17 août 2022 pour des patients atteints de bêta-thalassémie nécessitant des transfusions régulières de globules rouges.",
+      "technology": "Ajout génique lentiviral de bêta-globine",
+      "tech_desc": "Cellules souches hématopoïétiques autologues modifiées ex vivo par un vecteur lentiviral portant un gène de bêta-globine."
+    },
+    "EV-2022-007004": {
+      "title": "La FDA autorise Hemgenix contre l’hémophilie B",
+      "claim": "La FDA indique le 22 novembre 2022 comme date d’autorisation initiale de Hemgenix pour une population adulte définie atteinte d’hémophilie B.",
+      "technology": "Thérapie génique AAV5 du facteur IX",
+      "tech_desc": "Administration hépatique par AAV5 d’un transgène de facteur IX à activité élevée."
+    },
+    "EV-2023-007005": {
+      "title": "La FDA autorise Casgevy contre la drépanocytose",
+      "claim": "La FDA enregistre une autorisation de Casgevy le 8 décembre 2023 dans la drépanocytose ; il s’agit du premier traitement approuvé par la FDA utilisant l’édition génomique fondée sur CRISPR.",
+      "technology": "Édition CRISPR-Cas9 ex vivo de cellules hématopoïétiques",
+      "tech_desc": "Édition ex vivo par CRISPR-Cas9 de cellules souches hématopoïétiques autologues."
+    },
+    "EV-2020-008001": {
+      "title": "L’apprentissage profond identifie l’halicine comme candidat antibiotique",
+      "claim": "Une étude de 2020 a utilisé un réseau neuronal pour identifier l’halicine comme candidat antibactérien puis a validé expérimentalement une activité antibactérienne large, y compris dans des modèles murins d’infection.",
+      "technology": "Découverte d’antibiotiques par apprentissage profond",
+      "tech_desc": "Criblage de bibliothèques chimiques par réseau neuronal pour prédire une activité antibactérienne."
+    },
+    "EV-2022-008002": {
+      "title": "AlphaTensor découvre de nouveaux algorithmes de multiplication matricielle",
+      "claim": "AlphaTensor a découvert des algorithmes de multiplication matricielle utilisant moins d’opérations pour plusieurs tailles de matrices que les algorithmes précédemment connus.",
+      "technology": "AlphaTensor",
+      "tech_desc": "Système d’apprentissage par renforcement destiné à découvrir des algorithmes de multiplication matricielle."
+    },
+    "EV-2023-008003": {
+      "title": "AlphaDev découvre des algorithmes de tri plus rapides",
+      "claim": "AlphaDev a découvert des algorithmes de tri plus rapides sur les petites tâches de taille fixe évaluées ; certaines routines résultantes ont ensuite été intégrées à la bibliothèque C++ LLVM.",
+      "technology": "AlphaDev",
+      "tech_desc": "Système d’apprentissage par renforcement explorant des séquences d’instructions de bas niveau pour découvrir des algorithmes."
+    },
+    "EV-2023-008004": {
+      "title": "GNoME élargit fortement l’espace des matériaux stables prédits",
+      "claim": "L’étude GNoME a rapporté 2,2 millions de structures cristallines prédites comme stables et indiqué que plusieurs centaines de structures prédites figuraient indépendamment dans des bases de données expérimentales.",
+      "technology": "GNoME",
+      "tech_desc": "Modèles de réseaux de graphes destinés à prédire des structures cristallines inorganiques stables."
+    },
+    "EV-2023-008005": {
+      "title": "FunSearch découvre de nouvelles constructions pour des problèmes mathématiques",
+      "claim": "FunSearch a combiné un modèle de langage et un évaluateur pour trouver de nouvelles constructions pour le problème des ensembles sans progression et de meilleures heuristiques pour un problème de rangement en ligne.",
+      "technology": "FunSearch",
+      "tech_desc": "Recherche guidée par modèle de langage faisant évoluer des programmes exécutables évalués automatiquement."
+    },
+    "EV-2019-009001": {
+      "title": "Sycamore exécute un important test d’échantillonnage de circuits quantiques aléatoires",
+      "claim": "Une étude de 2019 a rapporté qu’une expérience d’échantillonnage de circuits aléatoires sur le processeur Sycamore à 53 qubits avait été réalisée en environ 200 secondes, avec à l’époque une estimation bien plus longue pour un supercalculateur classique.",
+      "technology": "Processeur quantique supraconducteur Sycamore",
+      "tech_desc": "Processeur à qubits supraconducteurs utilisé pour des expériences d’échantillonnage de circuits aléatoires."
+    },
+    "EV-2021-009002": {
+      "title": "Un contrôle tolérant aux fautes est démontré sur un qubit logique corrigé",
+      "claim": "Une expérience sur ions piégés a démontré la préparation, les portes logiques et la mesure tolérantes aux fautes d’un qubit logique corrigé, avec une réduction des échecs dans les scénarios de fautes testés.",
+      "technology": "Qubit logique à ions piégés tolérant aux fautes",
+      "tech_desc": "Contrôle d’un qubit logique corrigé sur un processeur quantique à ions piégés."
+    },
+    "EV-2023-009003": {
+      "title": "Un code de surface plus grand améliore modestement les performances d’erreur logique",
+      "claim": "Une expérience de 2023 sur les codes de surface a rapporté qu’un qubit logique de distance 5 surpassait modestement un qubit logique de distance 3, constituant une première démonstration de suppression des erreurs avec l’augmentation d’échelle.",
+      "technology": "Qubits logiques à code de surface",
+      "tech_desc": "Correction d’erreurs quantiques par code de surface utilisant des qubits physiques supraconducteurs."
+    },
+    "EV-2023-009004": {
+      "title": "Un processeur programmable à atomes neutres fait fonctionner des qubits logiques",
+      "claim": "Une étude de 2023 a démontré un processeur logique programmable fondé sur des réseaux reconfigurables d’atomes neutres, avec des opérations logiques et des protocoles de détection ou de correction d’erreurs.",
+      "technology": "Processeur quantique logique à atomes neutres",
+      "tech_desc": "Processeur programmable à atomes neutres faisant fonctionner des qubits logiques encodés."
+    },
+    "EV-2024-009005": {
+      "title": "Willow démontre une mémoire logique à code de surface sous le seuil d’erreur",
+      "claim": "L’étude de Google sur les codes de surface a rapporté une diminution de l’erreur logique lorsque la distance du code augmente ainsi qu’une mémoire logique de distance 7 avec une erreur par cycle inférieure à l’échelle d’erreur physique pertinente.",
+      "technology": "Mémoire logique Willow à code de surface",
+      "tech_desc": "Architecture supraconductrice à code de surface démontrant une mémoire logique fonctionnant sous le seuil d’erreur."
+    },
+    "EV-1968-010001": {
+      "title": "Apollo 8 devient la première mission habitée à orbiter autour de la Lune",
+      "claim": "Apollo 8 a décollé le 21 décembre 1968 et est devenue la première mission habitée à orbiter autour de la Lune.",
+      "technology": "Architecture lunaire habitée Apollo",
+      "tech_desc": "Saturn V, module de commande et de service et opérations de mission lunaire pour des vols habités au-delà de l’orbite terrestre basse."
+    },
+    "EV-1969-010002": {
+      "title": "Apollo 11 réalise le premier alunissage habité",
+      "claim": "Apollo 11 a réalisé le premier alunissage habité en juillet 1969 et a ramené son équipage sain et sauf sur Terre.",
+      "technology": "Architecture lunaire habitée Apollo",
+      "tech_desc": "Saturn V, module de commande et de service et opérations de mission lunaire pour des vols habités au-delà de l’orbite terrestre basse."
+    },
+    "EV-1971-010003": {
+      "title": "Apollo 15 étend les opérations de surface grâce au premier rover lunaire habité",
+      "claim": "Apollo 15 s’est posé sur la Lune en juillet 1971 et a utilisé le premier Lunar Roving Vehicle habité, augmentant fortement la distance et la durée des déplacements de surface.",
+      "technology": "Rover lunaire Lunar Roving Vehicle",
+      "tech_desc": "Rover électrique utilisé par les équipages Apollo pour effectuer des parcours plus longs à la surface de la Lune."
+    },
+    "EV-1972-010004": {
+      "title": "Apollo 17 mène la dernière et la plus longue mission de surface du programme Apollo",
+      "claim": "Apollo 17 s’est posé sur la Lune en décembre 1972 et a mené la dernière expédition lunaire de surface du programme Apollo, avec un séjour prolongé et plusieurs sorties extravéhiculaires.",
+      "technology": "Architecture lunaire habitée Apollo",
+      "tech_desc": "Saturn V, module de commande et de service et opérations de mission lunaire pour des vols habités au-delà de l’orbite terrestre basse."
+    },
+    "EV-2000-010005": {
+      "title": "L’Expédition 1 inaugure la présence humaine continue à bord de l’ISS",
+      "claim": "L’arrivée de l’Expédition 1 le 2 novembre 2000 marque le début d’une présence humaine continue à bord de la Station spatiale internationale.",
+      "technology": "Habitat orbital longue durée de la Station spatiale internationale",
+      "tech_desc": "Habitat orbital occupé en continu, doté de systèmes de support-vie et d’une logistique de ravitaillement."
+    }
+  }
+}
