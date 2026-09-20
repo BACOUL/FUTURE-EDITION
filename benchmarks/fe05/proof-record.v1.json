@@ -1,0 +1,33 @@
+{
+  "protocol": "FE05-TEN-OBSERVATORIES-PROOF-v1",
+  "workflow_run_id": 35518608481,
+  "workflow_job_id": 106098682010,
+  "tested_head_sha": "60ac07c68cee06c0e4c3a18bf2829eb67dea2626",
+  "verdict": "PROVED",
+  "baseline_manifest": "benchmarks/fe05/foundational-baseline.v1.json",
+  "counts": {
+    "observatories": 10,
+    "verified_events": 50,
+    "minimum_verified_events_per_question": 5,
+    "claims": 50,
+    "evidence": 50,
+    "sources": 50,
+    "technologies": 43,
+    "graph_nodes": 354,
+    "graph_edges": 451,
+    "milestone_assessments": 0,
+    "milestone_changes": 0,
+    "unassessed_milestones": 51
+  },
+  "integrity": {
+    "orphan_relations": 0,
+    "fabricated_assessments": 0,
+    "human_review_preserved": true,
+    "prior_fe02_compatibility": true,
+    "prior_fe04_compatibility": true,
+    "graph_deterministic": true,
+    "static_media_build_pass": true
+  },
+  "graph_content_hash": "97cf4f8342b7f2cbd4aea569699327404a3269428b77deae2ba2f869985716ed",
+  "gate_statement": "All ten canonical questions have an active observatory and at least five verified source-backed historical events, each linked to technology, milestone relevance, claim, evidence, source and provenance; no milestone state was fabricated."
+}
