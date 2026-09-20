@@ -1,13 +1,13 @@
 {
   "project": "Future Edition",
   "authority_version": "0.5.9",
-  "current_stage": "FE-03",
+  "current_stage": "FE-04",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
     "FE-00B": "PROVISIONAL_COMPLETE",
     "FE-01": "PROVED",
     "FE-02": "PROVED",
-    "FE-03": "IN_PROGRESS",
+    "FE-03": "PROVED",
     "FE-04": "NOT_STARTED",
     "FE-05": "NOT_STARTED",
     "FE-06": "NOT_STARTED",
@@ -228,7 +228,35 @@
     "fe03_hidden_critical_false_confirmed_rate_v2": 0,
     "fe03_hidden_atomic_gold_passage_recall_v2": 0.9583333333333334,
     "fe03_hidden_holdout_v2_rerun_forbidden": true,
-    "fe03_candidate_v2_sha": "61d247da71a03e80a7275ba0c792a079f7221701"
+    "fe03_candidate_v2_sha": "61d247da71a03e80a7275ba0c792a079f7221701",
+    "fe03_candidate_v3_sha": "28451d3207a630ac53fed377c5a4a1e126ced87a",
+    "fe03_public_candidate_v3_sha": "28451d3207a630ac53fed377c5a4a1e126ced87a",
+    "fe03_public_proof_v3_run_id": 35513109784,
+    "fe03_provider_diagnostic_v3_run_id": 35512926434,
+    "fe03_provider_diagnostic_v3_cases": 24,
+    "fe03_provider_diagnostic_v3_resolution_rate": 1,
+    "fe03_hidden_holdout_v3_cases": 64,
+    "fe03_hidden_holdout_v3_claims": 24,
+    "fe03_hidden_holdout_v3_families": 13,
+    "fe03_hidden_holdout_v3_sha256": "db351081aef1e661b601883fea7b75cab02ca8236b57a8e2c4944b53132a6172",
+    "fe03_hidden_holdout_v3_verdict": "PROVED",
+    "fe03_hidden_holdout_v3_workflow_run_id": 35513338535,
+    "fe03_hidden_primary_source_precision_v3": 1,
+    "fe03_hidden_primary_source_recall_v3": 1,
+    "fe03_hidden_publication_status_precision_v3": 1,
+    "fe03_hidden_evidence_level_precision_v3": 0.9761904761904762,
+    "fe03_hidden_subject_scope_precision_v3": 0.9787234042553191,
+    "fe03_hidden_source_independence_precision_v3": 1,
+    "fe03_hidden_known_retracted_detection_rate_v3": 1,
+    "fe03_hidden_claim_evidence_precision_v3": 1,
+    "fe03_hidden_claim_prediction_coverage_v3": 0.6666666666666666,
+    "fe03_hidden_critical_false_confirmed_rate_v3": 0,
+    "fe03_hidden_known_retracted_confirmed_v3": 0,
+    "fe03_hidden_atomic_gold_passage_recall_v3": 1,
+    "fe03_hidden_verified_locator_rate_v3": 1,
+    "fe03_hidden_machine_proposed_rate_v3": 1,
+    "fe03_hidden_transport_failures_v3": 0,
+    "fe03_hidden_holdout_v3_rerun_forbidden": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -256,19 +284,24 @@
         "production collections validate against graph relation model: 0 errors",
         "production graph shape: 61 nodes, 51 edges, deterministic, no mutable question/milestone state"
       ]
+    },
+    {
+      "stage": "FE-03",
+      "verdict": "PROVED",
+      "evidence": [
+        "frozen candidate V3 28451d3207a630ac53fed377c5a4a1e126ced87a passed FE03 public proof run 35513109784",
+        "fresh 24-case rxiv provider diagnostic passed 24/24 without reading prior hidden identities",
+        "fresh encrypted one-shot hidden holdout V3 run 35513338535: 64 cases, 24 claim annotations, 13 families, all frozen checks passed, verdict PROVED",
+        "hidden holdout V3 sha256 db351081aef1e661b601883fea7b75cab02ca8236b57a8e2c4944b53132a6172; rerun forbidden",
+        "historical hidden holdout V1 and V2 FAIL results preserved"
+      ]
     }
   ],
   "next_gate": {
-    "stage": "FE-03",
+    "stage": "FE-04",
     "required": [
-      "diagnose the aggregate V2 provider-resolution failure on a fresh non-holdout provider corpus without reading hidden case identities",
-      "fix provider resolution without weakening any frozen threshold or safety gate",
-      "pass fresh provider diagnostic and the full public FE-03 proof",
-      "freeze candidate-v3 SHA and critical file manifest",
-      "create and seal a fresh independent hidden holdout V3 with >=50 cases and >=15 claim annotations",
-      "consume holdout V3 once",
-      "all frozen external-v1, atomic-v1 and holdout safeguards pass",
-      "human review queue remains mandatory"
+      "implement traceable state-before -> new-evidence -> state-after transitions with an explicit change type",
+      "prove zero milestone modification without traceable justification"
     ]
   },
   "known_non_blocking_environment_constraints": [
@@ -277,7 +310,7 @@
       "description": "This execution environment cannot resolve github.com directly. Repository reads/writes use the connected GitHub integration; FE-01 build no longer requires network access."
     }
   ],
-  "next_stage_after_gate": "FE-04",
+  "next_stage_after_gate": "FE-05",
   "github_actions_dependency": false,
   "github_actions_activation_target": "2026-10-01",
   "failed_gates": [
