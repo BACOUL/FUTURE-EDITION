@@ -1,82 +1,282 @@
 [
   {
-    "id":"FE03-CLAIM-0001",
-    "external_case_id":"FE03-EXT-0001",
-    "split":"dev",
-    "claim":{
-      "text":"The gamified digital mental health intervention reduced child anxiety severity compared with a waitlist.",
-      "claim_kind":"efficacy",
-      "subject_scope":"human"
+    "id": "FE03-CLAIM-0001",
+    "external_case_id": "FE03-EXT-0001",
+    "split": "dev",
+    "claim": {
+      "text": "The gamified digital mental health intervention reduced child anxiety severity compared with a waitlist.",
+      "claim_kind": "efficacy",
+      "subject_scope": "human"
     },
-    "gold_evidence":[
+    "gold_evidence": [
       {
-        "relation":"supports",
-        "exact_text":"The gamified DMHI demonstrated efficacy for reducing child anxiety severity in comparison to a waitlist.",
-        "authority":"pubmed",
-        "url":"https://pubmed.ncbi.nlm.nih.gov/42730842/"
+        "relation": "supports",
+        "exact_text": "The gamified DMHI demonstrated efficacy for reducing child anxiety severity in comparison to a waitlist.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42730842/"
       }
     ],
-    "checked_on":"2026-09-20",
-    "notes":"Human randomized controlled trial; claim is narrower than the source conclusion."
+    "checked_on": "2026-09-20",
+    "notes": "Human randomized controlled trial; claim is narrower than the source conclusion."
   },
   {
-    "id":"FE03-CLAIM-0002",
-    "external_case_id":"FE03-EXT-0002",
-    "split":"dev",
-    "claim":{
-      "text":"No objective responses were observed in this Phase I study.",
-      "claim_kind":"negative_result",
-      "subject_scope":"human"
+    "id": "FE03-CLAIM-0002",
+    "external_case_id": "FE03-EXT-0002",
+    "split": "dev",
+    "claim": {
+      "text": "No objective responses were observed in this Phase I study.",
+      "claim_kind": "negative_result",
+      "subject_scope": "human"
     },
-    "gold_evidence":[
+    "gold_evidence": [
       {
-        "relation":"supports",
-        "exact_text":"No objective responses were noted",
-        "authority":"pubmed",
-        "url":"https://pubmed.ncbi.nlm.nih.gov/42243349/"
+        "relation": "supports",
+        "exact_text": "No objective responses were noted",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42243349/"
       }
     ],
-    "checked_on":"2026-09-20",
-    "notes":"Phase I safety case; the negative response statement must not be rewritten as confirmatory efficacy."
+    "checked_on": "2026-09-20",
+    "notes": "Phase I safety case; the negative response statement must not be rewritten as confirmatory efficacy."
   },
   {
-    "id":"FE03-CLAIM-0003",
-    "external_case_id":"FE03-EXT-0004",
-    "split":"dev",
-    "claim":{
-      "text":"Semaglutide treatment extended lifespan in female mice.",
-      "claim_kind":"result",
-      "subject_scope":"animal"
+    "id": "FE03-CLAIM-0003",
+    "external_case_id": "FE03-EXT-0004",
+    "split": "dev",
+    "claim": {
+      "text": "Semaglutide treatment extended lifespan in female mice.",
+      "claim_kind": "result",
+      "subject_scope": "animal"
     },
-    "gold_evidence":[
+    "gold_evidence": [
       {
-        "relation":"supports",
-        "exact_text":"Continued treatment extended mouse lifespan.",
-        "authority":"pubmed",
-        "url":"https://pubmed.ncbi.nlm.nih.gov/42686906/"
+        "relation": "supports",
+        "exact_text": "Continued treatment extended mouse lifespan.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42686906/"
       }
     ],
-    "checked_on":"2026-09-20",
-    "notes":"Animal-only claim; must never be promoted into a human longevity conclusion."
+    "checked_on": "2026-09-20",
+    "notes": "Animal-only claim; must never be promoted into a human longevity conclusion."
   },
   {
-    "id":"FE03-CLAIM-0004",
-    "external_case_id":"FE03-EXT-0017",
-    "split":"dev",
-    "claim":{
-      "text":"The interim analysis found no statistically significant difference between the two study arms.",
-      "claim_kind":"negative_result",
-      "subject_scope":"human"
+    "id": "FE03-CLAIM-0004",
+    "external_case_id": "FE03-EXT-0017",
+    "split": "dev",
+    "claim": {
+      "text": "The interim analysis found no statistically significant difference between the two study arms.",
+      "claim_kind": "negative_result",
+      "subject_scope": "human"
     },
-    "gold_evidence":[
+    "gold_evidence": [
       {
-        "relation":"supports",
-        "exact_text":"Interim analysis: no statistically significant difference in the 2 study arms.",
-        "authority":"clinicaltrials",
-        "url":"https://clinicaltrials.gov/study/NCT01546168?tab=results"
+        "relation": "supports",
+        "exact_text": "Interim analysis: no statistically significant difference in the 2 study arms.",
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT01546168?tab=results"
       }
     ],
-    "checked_on":"2026-09-20",
-    "notes":"Official registry stopping reason and negative-result control."
+    "checked_on": "2026-09-20",
+    "notes": "Official registry stopping reason and negative-result control."
+  },
+  {
+    "id": "FE03-CLAIM-0005",
+    "external_case_id": "FE03-EXT-0040",
+    "split": "dev",
+    "claim": {
+      "text": "Esketamine did not significantly improve quality of recovery on postoperative day 1 compared with sufentanil.",
+      "claim_kind": "negative_result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "esketamine did not significantly improve quality of recovery on POD1 compared to sufentanil.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42693883/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Recent randomized controlled human trial with a null primary outcome."
+  },
+  {
+    "id": "FE03-CLAIM-0006",
+    "external_case_id": "FE03-EXT-0041",
+    "split": "dev",
+    "claim": {
+      "text": "In this phase I study, the overall objective response rate was 19%.",
+      "claim_kind": "efficacy",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "The objective response rate and median duration of response were 19% and 11.3 months in the overall population, respectively",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42008777/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Phase I activity signal; confirmation gate must keep this below confirmed."
+  },
+  {
+    "id": "FE03-CLAIM-0007",
+    "external_case_id": "FE03-EXT-0043",
+    "split": "dev",
+    "claim": {
+      "text": "DMA treatment improved function in aged mice and extended lifespan after prolonged dosing.",
+      "claim_kind": "result",
+      "subject_scope": "animal"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "improves the functional performance of aged mice after acute administration and extends lifespan after prolonged dosing.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42474306/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Animal-only longevity evidence; human extrapolation is prohibited."
+  },
+  {
+    "id": "FE03-CLAIM-0008",
+    "external_case_id": "FE03-EXT-0044",
+    "split": "dev",
+    "claim": {
+      "text": "None of the tested interventions significantly increased lifespan in male or female UM-HET3 mice.",
+      "claim_kind": "negative_result",
+      "subject_scope": "animal"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "none of the tested compounds significantly increased lifespan in male or female mice.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41843349/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Negative preclinical result control."
+  },
+  {
+    "id": "FE03-CLAIM-0009",
+    "external_case_id": "FE03-EXT-0048",
+    "split": "validation",
+    "claim": {
+      "text": "The OTO-104 program was stopped after no statistically significant primary endpoint difference was observed.",
+      "claim_kind": "negative_result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "no statistically significant difference in the primary endpoint",
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT02717442?tab=results"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Official registry stopping-reason evidence."
+  },
+  {
+    "id": "FE03-CLAIM-0010",
+    "external_case_id": "FE03-EXT-0049",
+    "split": "validation",
+    "claim": {
+      "text": "The first-in-human phase I study enrolled 35 patients in dose escalation and 69 in expansion.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Thirty-five (dose-escalation) and sixty-nine patients (expansion) were enrolled.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41945490/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Phase I enrollment claim used to test exact factual linking without efficacy inflation."
+  },
+  {
+    "id": "FE03-CLAIM-0011",
+    "external_case_id": "FE03-EXT-0050",
+    "split": "validation",
+    "claim": {
+      "text": "The circadian intervention reduced aging biomarkers and extended lifespan in mice.",
+      "claim_kind": "result",
+      "subject_scope": "animal"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "mitigates aging biomarkers, and extends mouse lifespan.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41785851/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Animal-only longevity validation case."
+  },
+  {
+    "id": "FE03-CLAIM-0012",
+    "external_case_id": "FE03-EXT-0051",
+    "split": "validation",
+    "claim": {
+      "text": "Most reviewed unequal-randomization trial reports did not report a justification for unequal randomization.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Justification for unequal randomization was not reported in 77.4% (n = 82) of reports.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25201357/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Systematic-review claim with explicit denominator and percentage."
+  },
+  {
+    "id": "FE03-CLAIM-0013",
+    "external_case_id": "FE03-EXT-0052",
+    "split": "validation",
+    "claim": {
+      "text": "The reported increase in compound drought-heatwave events was primarily driven by heatwave-leading events.",
+      "claim_kind": "result",
+      "subject_scope": "unknown"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "this increase is primarily driven by heatwave-leading CDHEs",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41790886/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Scientific claim remains linkable even though the publication is under an expression of concern; safety must block confirmation."
+  },
+  {
+    "id": "FE03-CLAIM-0014",
+    "external_case_id": "FE03-EXT-0029",
+    "split": "validation",
+    "claim": {
+      "text": "The randomized pediatric ventilation trial found no statistically significant difference in ventilation and weaning duration.",
+      "claim_kind": "negative_result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "There was no statistically significant difference between IMV and SIMV/PS in these children related to MV and weaning duration",
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT00549809"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Existing external validation case gains a claim-level negative-result annotation."
   }
 ]
