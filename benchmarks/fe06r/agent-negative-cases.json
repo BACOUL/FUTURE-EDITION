@@ -1,0 +1,105 @@
+{
+  "schema_version": "fe06r/agent-negative-benchmark/v1",
+  "cases": [
+    {
+      "id": "NEG-001",
+      "scenario": "unassessed",
+      "expected_abstention": "state_unassessed"
+    },
+    {
+      "id": "NEG-002",
+      "scenario": "unassessed_with_claim",
+      "expected_abstention": "state_unassessed"
+    },
+    {
+      "id": "NEG-003",
+      "scenario": "ambiguous_state",
+      "expected_abstention": "state_ambiguous"
+    },
+    {
+      "id": "NEG-004",
+      "scenario": "retracted_claim",
+      "expected_abstention": "claim_retracted"
+    },
+    {
+      "id": "NEG-005",
+      "scenario": "invalidated_claim",
+      "expected_abstention": "claim_retracted"
+    },
+    {
+      "id": "NEG-006",
+      "scenario": "corrected_without_replacement",
+      "expected_abstention": "no_active_supported_claim"
+    },
+    {
+      "id": "NEG-007",
+      "scenario": "superseded_without_replacement",
+      "expected_abstention": "no_active_supported_claim"
+    },
+    {
+      "id": "NEG-008",
+      "scenario": "no_claim",
+      "expected_abstention": "no_active_supported_claim"
+    },
+    {
+      "id": "NEG-009",
+      "scenario": "future_claim",
+      "expected_abstention": "no_active_supported_claim"
+    },
+    {
+      "id": "NEG-010",
+      "scenario": "expired_claim",
+      "expected_abstention": "no_active_supported_claim"
+    },
+    {
+      "id": "NEG-011",
+      "scenario": "source_unavailable",
+      "expected_abstention": "source_unavailable"
+    },
+    {
+      "id": "NEG-012",
+      "scenario": "evidence_unverified",
+      "expected_abstention": "evidence_unverified"
+    },
+    {
+      "id": "NEG-013",
+      "scenario": "unresolved_contradiction",
+      "expected_abstention": "unresolved_contradiction"
+    },
+    {
+      "id": "NEG-014",
+      "scenario": "unresolved_contradiction_with_strong_claim",
+      "expected_abstention": "unresolved_contradiction"
+    },
+    {
+      "id": "NEG-015",
+      "scenario": "state_unassessed_source_available",
+      "expected_abstention": "state_unassessed"
+    },
+    {
+      "id": "NEG-016",
+      "scenario": "state_unassessed_evidence_verified",
+      "expected_abstention": "state_unassessed"
+    },
+    {
+      "id": "NEG-017",
+      "scenario": "retracted_source_available",
+      "expected_abstention": "claim_retracted"
+    },
+    {
+      "id": "NEG-018",
+      "scenario": "ambiguous_with_verified_claim",
+      "expected_abstention": "state_ambiguous"
+    },
+    {
+      "id": "NEG-019",
+      "scenario": "no_active_after_correction_window",
+      "expected_abstention": "no_active_supported_claim"
+    },
+    {
+      "id": "NEG-020",
+      "scenario": "no_active_after_supersession_window",
+      "expected_abstention": "no_active_supported_claim"
+    }
+  ]
+}
