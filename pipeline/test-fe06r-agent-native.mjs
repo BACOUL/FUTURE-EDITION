@@ -60,7 +60,7 @@ const makeScenario = (name) => {
   const state = { status:"confirmed" };
   let versions = [{...baseClaim}];
   const contradictions = [];
-  if (name.startsWith("unassessed")) state.status = "unassessed";
+  if (name.includes("unassessed")) state.status = "unassessed";
   if (name === "ambiguous_state" || name === "ambiguous_with_verified_claim") state.status = "ambiguous";
   if (name === "retracted_claim" || name === "retracted_source_available") versions = [{...baseClaim,status:"retracted"}];
   if (name === "invalidated_claim") versions = [{...baseClaim,status:"invalidated"}];
