@@ -307,10 +307,15 @@
     ],
     "fe06_browser_qa_checks": 256,
     "fe06_browser_qa_overflow_issues": 0,
-    "fe06_proof_run_id": 35519467072,
-    "fe06_proof_job_id": 106100928078,
-    "fe06_artifact_id": 10607448826,
-    "fe06_gate_passed": true
+    "fe06_proof_run_id": 35520529360,
+    "fe06_proof_job_id": 106103707808,
+    "fe06_artifact_id": 10607334892,
+    "fe06_gate_passed": true,
+    "fe06_french_editorial_entries": 50,
+    "fe06_french_editorial_coverage": 1,
+    "fe06_original_source_titles_preserved": true,
+    "fe06_original_source_links_preserved": true,
+    "fe06_english_internal_labels_leaked": 0
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -383,7 +388,9 @@
         "browser QA executed across all 64 pages at 360, 390, 768 and 1440 px: 256 checks, 0 final overflow issues",
         "20 pre-fix responsive findings were detected and corrected before final proof",
         "accessibility structure includes lang=fr, skip link, labelled navigation and reduced-motion support",
-        "FE06 independent proof run 35519467072 completed SUCCESS"
+        "FE06 independent proof run 35519467072 completed SUCCESS",
+        "French editorial layer covers all 50 public events: titles, summaries, technologies, timelines and proof dossiers are rendered in French while original source titles and canonical links are preserved.",
+        "Post-localization Chromium QA: 64 pages × 4 widths (360/390/768/1440) = 256 checks, 0 overflow issues."
       ]
     }
   ],
