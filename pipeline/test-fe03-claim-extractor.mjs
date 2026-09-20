@@ -7,7 +7,7 @@ const document={
   sections:[{
     id:"results",
     title:"Results",
-    text:"Treatment reduced symptoms by 25.4% compared with placebo. No serious safety signal was observed."
+    text:"Treatment reduced symptoms by 25.4% compared with placebo. No significant difference was observed."
   }]
 };
 const source={study_stage:"randomized_trial",subject_scope:"human"};
