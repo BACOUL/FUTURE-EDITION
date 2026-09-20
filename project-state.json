@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.9.0",
+  "authority_version": "0.10.0",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -34,7 +34,12 @@
     "local_first_automation",
     "history_and_corrections_preserved",
     "language_independent_graph",
-    "editorial_commercial_separation"
+    "editorial_commercial_separation",
+    "single_canonical_truth_human_and_machine",
+    "claim_level_machine_addressability",
+    "explicit_temporal_as_of_semantics",
+    "machine_detectable_correction_propagation",
+    "agent_abstention_when_evidence_insufficient"
   ],
   "current_assets": {
     "launch_questions": 10,
@@ -329,7 +334,18 @@
     "fe06r_reference_home_reality_check": true,
     "fe06r_reference_home_future_graph_visual": true,
     "fe06r_current_vs_history_separation": true,
-    "fe06r_reference_surfaces_completed": 1
+    "fe06r_reference_surfaces_completed": 1,
+    "fe06r_gate_version": "v1",
+    "fe06r_gate_document": "docs/FE06R-GATE.md",
+    "agent_native_contract_document": "docs/AGENT-NATIVE-MEDIA.md",
+    "fe06r_gate_v1_verdict": "BLOCKED",
+    "fe06r_gate_media_minimum": 85,
+    "fe06r_gate_intelligence_minimum": 90,
+    "fe06r_gate_reference_minimum": 95,
+    "fe06r_gate_agent_native_minimum": 95,
+    "fe06r_reference_home_proof_scope": "technical_reference_home_pre_gate_v1",
+    "fe06r_r1_requires_gate_v1_reevaluation": true,
+    "fe06r_agent_native_contract_frozen": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -410,13 +426,20 @@
   ],
   "next_gate": {
     "stage": "FE-06R",
+    "authority": "docs/FE06R-GATE.md",
+    "verdict": "BLOCKED",
     "required": [
-      "build and validate reference Home",
+      "reevaluate R1 Home under FE06R-GATE v1",
       "build and validate one complete Advancement/Article page",
       "build and validate one complete Observatory page",
-      "rebuild Methodology to expose the real evidence/change pipeline",
+      "rebuild Methodology to expose the real evidence/change/temporal pipeline",
       "separate current editorial flow from FE-05 historical baseline",
-      "add trust pages and complete responsive/editorial/scientific QA before generalization"
+      "implement reference machine representation for the same scientific objects",
+      "prove claim-level citation, as_of semantics and human-machine consistency",
+      "prove correction/retraction/supersession propagation on synthetic scenarios",
+      "prove agent abstention on insufficient-evidence benchmark",
+      "add trust pages and complete responsive/editorial/scientific/agent-native QA",
+      "pass MEDIA>=85, INTELLIGENCE>=90, REFERENCE>=95, AGENT-NATIVE>=95 with zero veto"
     ]
   },
   "known_non_blocking_environment_constraints": [
