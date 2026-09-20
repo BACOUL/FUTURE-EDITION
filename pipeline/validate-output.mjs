@@ -346,7 +346,7 @@ for (const q of questions) {
 
 const trustPages = [
   ["dist/a-propos/index.html", ["À PROPOS","Une seule vérité canonique.","pré-lancement"]],
-  ["dist/sources/index.html", ["SOURCES","Primaire forte","10 reprises d’une même origine = 1 origine"]],
+  ["dist/sources/index.html", ["SOURCES","Primaire forte","10 reprises de la même origine = 1 origine"]],
   ["dist/corrections/index.html", ["CORRECTION TRAIL","Corriger sans effacer.","Aucune correction publique"]],
   ["dist/responsabilite-editoriale/index.html", ["RESPONSABILITÉ ÉDITORIALE","Pas de faux consensus.","PRÉ-LANCEMENT"]],
   ["dist/signaler-une-erreur/index.html", ["SIGNALER UNE ERREUR","Candidate → revue → correction éventuelle.","Canal dédié avant lancement."]],
