@@ -2,7 +2,7 @@ import { readFile, mkdir, rm, writeFile } from "node:fs/promises";
 
 const root = new URL("../", import.meta.url);
 const read = async (path) => JSON.parse(await readFile(new URL(path, root), "utf8"));
-const [questions, observatories, events, claims, evidence, sources, technologies, graph, editorialFr, editorialArticles] = await Promise.all([
+const [questions, observatories, events, claims, evidence, sources, technologies, graph, editorialFr, editorialArticles, editorialObservatories] = await Promise.all([
   read("data/questions/questions.json"),
   read("data/observatories/observatories.json"),
   read("data/events/events.json"),
@@ -12,7 +12,8 @@ const [questions, observatories, events, claims, evidence, sources, technologies
   read("data/technologies/technologies.json"),
   read("generated/future-graph.json"),
   read("data/editorial/fr/events.json"),
-  read("data/editorial/fr/articles.json")
+  read("data/editorial/fr/articles.json"),
+  read("data/editorial/fr/observatories.json")
 ]);
 
 const out = new URL("../dist/", import.meta.url);
@@ -26,6 +27,8 @@ const techById = byId(technologies);
 const obsByQuestion = new Map(observatories.map((o) => [o.question_id, o]));
 const editorialFrByEvent = new Map(Object.entries(editorialFr.entries ?? {}));
 const articles = editorialArticles.entries ?? [];
+const editorialObs = editorialObservatories.entries ?? [];
+const editorialObsByQuestion = new Map(editorialObs.map((o) => [o.question_id, o]));
 const articleByEvent = new Map(articles.map((a) => [a.event_id, a]));
 const evidenceById = byId(evidence);
 const eventById = byId(events);
@@ -360,6 +363,8 @@ await writePage("/questions", layout(
 for (const q of questions) {
   const qe = qEvents(q.id);
   const obs = obsByQuestion.get(q.id);
+  const editorialObsEntry = editorialObsByQuestion.get(q.id);
+
   const milestoneHtml = q.milestones.map((m, i) =>
     `<li><div class="milestone-index">${String(i + 1).padStart(2, "0")}</div><div><strong>${esc(m.title)}</strong><p>${esc(m.criterion)}</p></div><span class="state">Non évalué</span></li>`
   ).join("");
@@ -367,10 +372,167 @@ for (const q of questions) {
   const timeline = qe.map((e) => {
     const claim = claimById.get(e.claim_ids?.[0]);
     const source = sourceById.get(e.source_ids?.[0]);
-    const tech = techById.get(e.technology_ids?.[0]);
     const fr = localizeEvent(e);
     return `<article class="timeline-item"><time>${fmtDate(e.event_date)}</time><div><span class="timeline-tech">${esc(fr.technology)}</span><h3>${esc(fr.title)}</h3><p>${esc(fr.claim)}</p><a href="/preuves/${esc(e.id.toLowerCase())}/">${sourceLabel[source?.kind] ?? "Source"} · niveau ${esc(source?.tier ?? "–")} ${icon("arrow")}</a></div></article>`;
   }).join("");
+
+  if (editorialObsEntry) {
+    const evidenceCards = editorialObsEntry.evidence_landscape.supporting_event_ids.map((eventId, i) => {
+      const event = eventById.get(eventId);
+      const claim = claimById.get(event?.claim_ids?.[0]);
+      const ev = evidenceById.get(claim?.evidence_ids?.[0]);
+      const source = sourceById.get(ev?.source_id);
+      const fr = localizeEvent(event);
+      return `<article class="obs2-evidence-card">
+        <div class="obs2-evidence-index">${String(i + 1).padStart(2, "0")}</div>
+        <div class="obs2-evidence-main">
+          <div class="obs2-evidence-top"><span>${esc(eventId)}</span><time>${fmtDate(event?.event_date)}</time></div>
+          <h3>${esc(fr.title)}</h3>
+          <p>${esc(fr.claim)}</p>
+          <div class="obs2-evidence-meta"><span>${esc(confidenceLabel[claim?.confidence] ?? "Non évalué")}</span><span>${esc(sourceLabel[source?.kind] ?? "Source")} · niveau ${esc(source?.tier ?? "–")}</span><span>${esc(localizeLocator(ev?.locator ?? ""))}</span></div>
+          <a href="/preuves/${esc(eventId.toLowerCase())}/">Remonter à la preuve ${icon("arrow")}</a>
+        </div>
+      </article>`;
+    }).join("");
+
+    const pathCards = editorialObsEntry.paths.map((path, i) => {
+      const pathEvents = path.event_ids.map((id) => eventById.get(id)).filter(Boolean).sort((a,b)=>a.event_date.localeCompare(b.event_date));
+      const first = pathEvents[0];
+      const last = pathEvents[pathEvents.length - 1];
+      return `<article class="obs2-path">
+        <span class="obs2-path-index">${String(i + 1).padStart(2, "0")}</span>
+        <h3>${esc(path.label)}</h3>
+        <p>${esc(path.summary)}</p>
+        <div class="obs2-path-range"><span>${first ? fmtDate(first.event_date) : "—"}</span><i></i><span>${last ? fmtDate(last.event_date) : "—"}</span></div>
+        <strong>${pathEvents.length} repère${pathEvents.length > 1 ? "s" : ""} du corpus</strong>
+      </article>`;
+    }).join("");
+
+    const timeglass = qe.slice().sort((a,b)=>a.event_date.localeCompare(b.event_date)).map((e, i) => {
+      const fr = localizeEvent(e);
+      const claim = claimById.get(e.claim_ids?.[0]);
+      const source = sourceById.get(e.source_ids?.[0]);
+      const milestone = q.milestones.find((m)=>e.milestone_ids?.includes(m.id));
+      return `<article class="timeglass-event">
+        <div class="timeglass-time"><span>${String(i + 1).padStart(2, "0")}</span><time>${fmtDate(e.event_date)}</time></div>
+        <div class="timeglass-node" aria-hidden="true"></div>
+        <div class="timeglass-content">
+          <span>${esc(milestone?.id ?? "")} · ${esc(milestone?.title ?? "Repère")}</span>
+          <h3>${esc(fr.title)}</h3>
+          <p>${esc(fr.claim)}</p>
+          <div><b>${esc(confidenceLabel[claim?.confidence] ?? "Non évalué")}</b><em>${esc(sourceLabel[source?.kind] ?? "Source")} ${esc(source?.tier ?? "")}</em></div>
+          <a href="${articleHrefForEvent(e)}">${articleByEvent.has(e.id) ? "Lire l’avancée" : "Ouvrir le dossier"} ${icon("arrow")}</a>
+        </div>
+      </article>`;
+    }).join("");
+
+    const watch = editorialObsEntry.watch_next.map((item) =>
+      `<article><span>${esc(item.milestone_id)}</span><h3>${esc(item.title)}</h3><p>${esc(item.condition)}</p></article>`
+    ).join("");
+
+    const limits = editorialObsEntry.evidence_landscape.limiting_notes.map((note) => `<li>${esc(note)}</li>`).join("");
+
+    const obsMachinePacket = {
+      schema_version: "fe/observatory-state/v1",
+      id: editorialObsEntry.id,
+      canonical_url: `https://future-edition.pages.dev/questions/${q.slug}/`,
+      language: "fr",
+      question_id: q.id,
+      as_of: editorialObsEntry.as_of,
+      state: editorialObsEntry.state,
+      milestone_states: q.milestones.map((m) => ({ milestone_id: m.id, status: "unassessed", criterion: m.criterion })),
+      paths: editorialObsEntry.paths,
+      events: qe.map((e) => ({
+        event_id: e.id,
+        event_at: e.event_date,
+        claim_ids: e.claim_ids,
+        source_ids: e.source_ids,
+        milestone_ids: e.milestone_ids,
+        change_type: e.change_type
+      })),
+      evidence_landscape: editorialObsEntry.evidence_landscape,
+      watch_next: editorialObsEntry.watch_next,
+      reference_article_id: editorialObsEntry.reference_article_id,
+      reference_reality_check_id: editorialObsEntry.reference_reality_check_id
+    };
+
+    await writePage("/questions/" + q.slug, layout(
+      q.title + " — Future Edition",
+      q.summary,
+      `<article class="obs2">
+        <header class="obs2-hero">
+          <div class="shell obs2-hero-grid">
+            <div>
+              <a class="back" href="/questions/">← Les observatoires</a>
+              <div class="obs2-overline"><span>${esc(obs?.id)}</span><span>STATE ROOM</span><span>as of ${fmtDate(editorialObsEntry.as_of)}</span></div>
+              <h1>${esc(q.title)}</h1>
+              <p>${esc(q.summary)}</p>
+            </div>
+            ${statePlate({ question: q, latestEvent: qe[0], asOf: editorialObsEntry.as_of })}
+          </div>
+        </header>
+
+        <nav class="obs2-index shell" aria-label="Sommaire de l’observatoire">
+          <a href="#trajectoire">Trajectoire</a><a href="#jalons">Jalons</a><a href="#voies">Voies</a><a href="#preuves">Preuves</a><a href="#surveiller">À surveiller</a>
+        </nav>
+
+        <section class="obs2-section obs2-timeglass" id="trajectoire">
+          <div class="shell">
+            <div class="obs2-heading"><div><p class="r1-kicker">TIMEGLASS</p><h2>La trajectoire des preuves.</h2></div><p>Cette chronologie montre les repères du corpus. Elle ne prétend pas reconstruire des états humains validés qui n’existent pas encore dans le ledger.</p></div>
+            <div class="timeglass">${timeglass}</div>
+          </div>
+        </section>
+
+        <section class="obs2-section obs2-milestones" id="jalons">
+          <div class="shell">
+            <div class="obs2-heading"><div><p class="r1-kicker">MILESTONE FIELD</p><h2>Six conditions. Aucun raccourci.</h2></div><p>Un événement peut être pertinent pour un jalon sans suffire à le déclarer atteint. Tous restent explicitement non évalués dans l’état canonique actuel.</p></div>
+            <ol class="obs2-milestone-grid">${q.milestones.map((m,i)=>`<li><span>${String(i+1).padStart(2,"0")}</span><div><b>${esc(m.id)}</b><h3>${esc(m.title)}</h3><p>${esc(m.criterion)}</p></div><em>UNASSESSED</em></li>`).join("")}</ol>
+          </div>
+        </section>
+
+        <section class="obs2-section obs2-paths-section" id="voies">
+          <div class="shell">
+            <div class="obs2-heading"><div><p class="r1-kicker">COMPETING PATHS</p><h2>Trois architectures, trois trajectoires.</h2></div><p>Future Edition ne les classe pas ici. Elles apportent des preuves différentes à des problèmes différents de la route vers l’énergie de fusion commerciale.</p></div>
+            <div class="obs2-paths">${pathCards}</div>
+          </div>
+        </section>
+
+        <section class="obs2-section obs2-landscape" id="preuves">
+          <div class="shell">
+            <div class="obs2-heading"><div><p class="r1-kicker">EVIDENCE LANDSCAPE</p><h2>Ce que contient réellement le corpus.</h2></div><p>${editorialObsEntry.evidence_landscape.supporting_event_ids.length} preuves fondatrices soutiennent leurs affirmations expérimentales respectives. Elles ne sont pas additionnées en score.</p></div>
+            <div class="obs2-evidence-grid">${evidenceCards}</div>
+            <div class="obs2-contradiction">
+              <div><span>CONTRADICTION SPLIT</span><strong>Aucune contradiction explicitement enregistrée dans ce corpus de référence.</strong></div>
+              <ul>${limits}</ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="obs2-section obs2-reference-delta">
+          <div class="shell">
+            <div class="obs2-heading"><div><p class="r1-kicker">REFERENCE ADVANCEMENT</p><h2>Le changement expliqué sur un cas réel.</h2></div><a href="/avance/nif-ignition-fusion-2022/">Lire l’article complet ${icon("arrow")}</a></div>
+            ${referenceArticle ? deltaBlock(referenceArticle) : ""}
+          </div>
+        </section>
+
+        <section class="watch-horizon" id="surveiller"><div class="shell">
+          <div class="watch-heading"><span>WATCH HORIZON</span><h2>Les preuves qui changeraient vraiment la réponse.</h2><p>Le système ne prédit pas quand ces conditions seront remplies. Il rend explicite ce qu’il faudrait observer.</p></div>
+          <div class="watch-grid">${watch}</div>
+        </div></section>
+
+        <section class="shell obs2-agent-dock">
+          <div><span>AGENT STATE</span><h2>Un observatoire lisible comme un état versionné.</h2><p>Question, as_of, jalons non évalués, événements, preuves et Watch Next sont exportés sans que l’agent doive interpréter la mise en page.</p></div>
+          <div class="obs2-agent-actions"><a class="r1-primary" href="/machine/observatoires/${esc(q.slug)}.json">Voir l’état structuré ${icon("arrow")}</a><a class="r1-text-link" href="/reality-check/ignition-nest-pas-electricite-commerciale/">Reality Check associé ${icon("arrow")}</a></div>
+        </section>
+      </article>`,
+      { active: "questions" }
+    ));
+
+    const machineDir = new URL("machine/observatoires/", out);
+    await mkdir(machineDir, { recursive: true });
+    await writeFile(new URL(q.slug + ".json", machineDir), JSON.stringify(obsMachinePacket, null, 2) + "\n");
+    continue;
+  }
 
   await writePage("/questions/" + q.slug, layout(
     q.title + " — Future Edition",
@@ -382,7 +544,6 @@ for (const q of questions) {
     { active: "questions" }
   ));
 }
-
 
 for (const article of articles) {
   const event = eventById.get(article.event_id);
@@ -650,6 +811,16 @@ await writeFile(new URL("assets/styles.css", out), `
 .r1-reality-actions{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:28px}.r1-reality-actions .r1-inline-link{margin-top:0}
 @media(max-width:1050px){.article-hero-grid,.article-reading-grid{grid-template-columns:1fr}.evidence-spine{border-left:0;border-top:2px solid #071014;padding:25px 0 0}.spine-head{position:static}.article-summary-band>.shell,.article-agent-dock{grid-template-columns:1fr}.watch-heading{grid-template-columns:1fr}.search-types{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){body{padding-bottom:62px}.desktop-nav{display:none}.mobile-dock{position:fixed;display:grid;grid-template-columns:repeat(5,1fr);left:0;right:0;bottom:0;height:62px;background:rgba(6,11,16,.96);border-top:1px solid #263943;z-index:40;backdrop-filter:blur(16px)}.mobile-dock a{display:grid;place-items:center;text-align:center;color:#81949d;font-size:.62rem;font-weight:750}.mobile-dock a.active{color:#d9ff74}.article-hero{padding-top:48px}.article-title h1{font-size:clamp(3rem,15vw,5.6rem)}.article-visual{margin-top:10px}.article-meta{grid-template-columns:1fr}.state-meta{grid-template-columns:1fr}.article-delta{padding:48px 0}.delta-block{grid-template-columns:1fr;border:0}.delta-block article{min-height:auto;border-top:1px solid #aebbb8;padding:28px 0}.delta-block article+article{border-left:0}.delta-evidence{transform:none;margin:0 -14px;padding:30px 14px!important}.delta-line{display:none}.article-summary-band>.shell{display:block}.article-summary-band a{margin-top:24px}.article-reading-grid{padding-top:55px;gap:50px}.article-section{grid-template-columns:1fr;gap:10px;padding-bottom:50px}.article-section-title h2{font-size:2rem}.evidence-paragraph>p{font-size:1.08rem}.article-boundaries{margin-left:-14px;margin-right:-14px;padding:30px 14px}.watch-horizon{padding:65px 0}.watch-grid{grid-template-columns:1fr}.watch-grid article,.watch-grid article+article{border-right:0;border-bottom:1px solid #2a3e47;padding:22px 0}.article-agent-dock{padding:55px 0}.reality-verdict{grid-template-columns:1fr}.reality-proof-path{grid-template-columns:1fr}.reality-proof-path>div+div{border-left:0}.ask-preview{grid-template-columns:1fr;margin-left:14px;margin-right:14px}.search-types{width:min(100% - 28px,1240px);grid-template-columns:1fr}.nav{justify-content:flex-start}}
+/* FE-06R R3 — Observatory State Room */
+.obs2{background:#071014;color:#edf5f4}.obs2-hero{padding:72px 0 48px;border-bottom:1px solid #283c45}.obs2-hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr);gap:62px;align-items:end}.obs2-overline{display:flex;gap:10px 20px;flex-wrap:wrap;margin:30px 0;color:#78909a;font:750 .65rem ui-monospace,monospace;letter-spacing:.1em}.obs2-overline span:nth-child(2){color:#d9ff74}.obs2-hero h1{font-size:clamp(3.5rem,7.8vw,8rem);line-height:.82;letter-spacing:-.072em;margin:0}.obs2-hero>div>div>p{color:#9fb1b8;font-size:1.15rem;line-height:1.7;max-width:780px}.obs2-index{display:flex;gap:4px;position:sticky;top:82px;z-index:12;background:rgba(7,16,20,.94);backdrop-filter:blur(16px);border-bottom:1px solid #263943}.obs2-index a{padding:14px 18px;color:#879ba4;font-size:.75rem;font-weight:800}.obs2-index a:hover{color:#d9ff74}
+.obs2-section{padding:95px 0;border-bottom:1px solid #22343d}.obs2-heading{display:grid;grid-template-columns:1.2fr .8fr;gap:70px;align-items:end;margin-bottom:50px}.obs2-heading h2{font-size:clamp(2.8rem,5.5vw,6rem);line-height:.9;letter-spacing:-.06em;margin:0}.obs2-heading>p{color:#8da0aa;line-height:1.7;margin:0}.obs2-heading>a{justify-self:end;display:flex;align-items:center;gap:7px;color:#bfefff;font-weight:800}
+.timeglass{position:relative}.timeglass:before{content:"";position:absolute;left:190px;top:0;bottom:0;width:1px;background:linear-gradient(#d9ff74,#73e4ff,#40545e)}.timeglass-event{display:grid;grid-template-columns:150px 80px 1fr;gap:0;min-height:210px}.timeglass-time{padding-top:6px;display:flex;flex-direction:column;align-items:flex-end}.timeglass-time span{font:700 .62rem ui-monospace,monospace;color:#5d747f}.timeglass-time time{color:#a1b2b9;font-size:.76rem;margin-top:8px}.timeglass-node{position:relative}.timeglass-node:before{content:"";position:absolute;left:36px;top:8px;width:15px;height:15px;border-radius:50%;background:#071014;border:3px solid #d9ff74;box-shadow:0 0 0 7px rgba(217,255,116,.06)}.timeglass-content{padding:0 0 48px 20px;max-width:880px}.timeglass-content>span{font:750 .62rem ui-monospace,monospace;letter-spacing:.08em;color:#6f8791}.timeglass-content h3{font-size:clamp(1.6rem,3vw,2.9rem);line-height:1.02;letter-spacing:-.04em;margin:12px 0}.timeglass-content p{color:#8fa2ab;line-height:1.65;max-width:780px}.timeglass-content>div{display:flex;gap:9px;margin:18px 0}.timeglass-content b,.timeglass-content em{font-style:normal;border:1px solid #334a55;padding:5px 8px;font-size:.67rem}.timeglass-content b{color:#d9ff74}.timeglass-content em{color:#8fa2ab}.timeglass-content a{display:inline-flex;align-items:center;gap:7px;color:#bfefff;font-size:.78rem;font-weight:800}
+.obs2-milestones{background:#edf1ee;color:#071014}.obs2-milestones .r1-kicker{color:#0b7188}.obs2-milestones .obs2-heading>p{color:#59686e}.obs2-milestone-grid{padding:0;margin:0;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #aebbb8;border-left:1px solid #aebbb8}.obs2-milestone-grid li{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:26px;border-right:1px solid #aebbb8;border-bottom:1px solid #aebbb8;min-height:260px}.obs2-milestone-grid>li>span{font:700 .65rem ui-monospace,monospace;color:#748187}.obs2-milestone-grid b{font:750 .61rem ui-monospace,monospace;color:#0b7188}.obs2-milestone-grid h3{font-size:1.55rem;line-height:1.05;margin:13px 0}.obs2-milestone-grid p{color:#59686e;line-height:1.55}.obs2-milestone-grid em{grid-column:2;align-self:end;font-style:normal;font:800 .62rem ui-monospace,monospace;letter-spacing:.1em;color:#7c6751}
+.obs2-paths{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #2b404a;border-left:1px solid #2b404a}.obs2-path{padding:30px;border-right:1px solid #2b404a;border-bottom:1px solid #2b404a;min-height:350px;display:flex;flex-direction:column}.obs2-path-index{font:700 .64rem ui-monospace,monospace;color:#617b86}.obs2-path h3{font-size:2rem;line-height:1.02;letter-spacing:-.04em;margin:30px 0 16px}.obs2-path p{color:#8fa2ab;line-height:1.6}.obs2-path-range{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin-top:auto;color:#8197a0;font-size:.67rem}.obs2-path-range i{height:1px;background:linear-gradient(90deg,#73e4ff,#d9ff74)}.obs2-path>strong{font-size:.72rem;color:#c6d3d8;margin-top:12px}
+.obs2-landscape{background:#0b151a}.obs2-evidence-grid{border-top:1px solid #2a3f49}.obs2-evidence-card{display:grid;grid-template-columns:70px 1fr;border-bottom:1px solid #2a3f49;padding:26px 0}.obs2-evidence-index{font:700 .64rem ui-monospace,monospace;color:#627b85}.obs2-evidence-top{display:flex;justify-content:space-between;gap:18px;color:#718993;font:700 .62rem ui-monospace,monospace}.obs2-evidence-main h3{font-size:clamp(1.4rem,2.6vw,2.5rem);line-height:1.02;letter-spacing:-.035em;margin:14px 0}.obs2-evidence-main>p{color:#8fa2ab;max-width:900px;line-height:1.65}.obs2-evidence-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;color:#718993;font-size:.68rem}.obs2-evidence-main>a{display:inline-flex;align-items:center;gap:7px;color:#bfefff;font-size:.78rem;font-weight:800;margin-top:18px}.obs2-contradiction{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;margin-top:55px;background:#101e24;border:1px solid #314751;padding:30px}.obs2-contradiction span{font:800 .62rem ui-monospace,monospace;color:#d9ff74;letter-spacing:.1em}.obs2-contradiction strong{display:block;font-size:1.6rem;line-height:1.15;margin-top:16px}.obs2-contradiction ul{margin:0;padding-left:20px;color:#93a6ae;line-height:1.7}.obs2-reference-delta{background:#edf1ee;color:#071014}.obs2-reference-delta .r1-kicker{color:#0b7188}.obs2-reference-delta .obs2-heading>p{color:#59686e}.obs2-reference-delta .obs2-heading>a{color:#0b7188}.obs2-agent-dock{padding:75px 0;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:end}.obs2-agent-dock>div:first-child>span{font:800 .62rem ui-monospace,monospace;color:#d9ff74;letter-spacing:.1em}.obs2-agent-dock h2{font-size:clamp(2.6rem,5vw,5.3rem);line-height:.9;letter-spacing:-.055em;margin:12px 0}.obs2-agent-dock p{color:#8fa2ab;max-width:700px}.obs2-agent-actions{display:flex;flex-direction:column;gap:14px;align-items:flex-end}.obs2-agent-actions .r1-text-link{color:#bfefff}
+@media(max-width:1050px){.obs2-hero-grid,.obs2-heading,.obs2-agent-dock{grid-template-columns:1fr}.obs2-milestone-grid{grid-template-columns:1fr 1fr}.obs2-paths{grid-template-columns:1fr}.obs2-contradiction{grid-template-columns:1fr}.obs2-agent-actions{align-items:flex-start}.obs2-heading>a{justify-self:start}}
+@media(max-width:700px){.obs2-hero{padding-top:48px}.obs2-hero h1{font-size:clamp(3.4rem,16vw,5.8rem)}.obs2-index{top:70px;overflow-x:auto;margin-left:0;margin-right:0;width:100%;padding-left:14px}.obs2-index a{white-space:nowrap;padding:12px 10px}.obs2-section{padding:68px 0}.timeglass:before{left:31px}.timeglass-event{grid-template-columns:0 64px 1fr}.timeglass-time{display:none}.timeglass-node:before{left:24px}.timeglass-content{padding-left:8px}.obs2-milestone-grid{grid-template-columns:1fr}.obs2-milestone-grid li{min-height:auto}.obs2-evidence-card{grid-template-columns:38px 1fr}.obs2-evidence-top{display:block}.obs2-evidence-top time{display:block;margin-top:6px}.obs2-contradiction{padding:22px}.obs2-agent-dock{padding:58px 0}.obs2-agent-actions{width:100%}.obs2-agent-actions a{width:100%;justify-content:space-between}}
+
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 `);
 
@@ -659,6 +830,7 @@ await writeFile(new URL("data/future-graph.json", out), JSON.stringify(graph, nu
 const urls = [
   "/", "/aujourdhui/", "/questions/", "/methodologie/", "/reality-check/", "/reality-check/ignition-nest-pas-electricite-commerciale/", "/ask/", "/recherche/",
   ...questions.map((q) => "/questions/" + q.slug + "/"),
+  ...editorialObs.map((o) => "/machine/observatoires/" + o.slug + ".json"),
   ...articles.map((a) => "/avance/" + a.slug + "/"),
   ...events.map((e) => "/preuves/" + e.id.toLowerCase() + "/")
 ];
