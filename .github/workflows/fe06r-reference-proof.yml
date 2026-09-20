@@ -1,0 +1,44 @@
+name: FE06R Reference Home proof
+
+on:
+  push:
+    branches: [fe06r-proof]
+
+permissions:
+  contents: read
+
+jobs:
+  prove-fe06r-home:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical graph inputs
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+      - name: Prove prior-stage compatibility
+        run: |
+          node pipeline/test-state-resolution.mjs
+          node pipeline/test-fe04-change-engine.mjs
+          node pipeline/test-fe05-observatories.mjs
+      - name: Build Future Graph
+        run: |
+          node pipeline/build-graph.mjs
+          node pipeline/validate-graph.mjs
+          node pipeline/verify-determinism.mjs
+          node pipeline/validate-current-state.mjs
+      - name: Build and validate FE-06R reference home
+        run: |
+          node pipeline/build-site.mjs
+          node pipeline/validate-output.mjs
+      - name: Upload FE-06R reference artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fe06r-reference-home
+          path: dist
+          retention-days: 7
