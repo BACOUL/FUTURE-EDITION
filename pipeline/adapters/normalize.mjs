@@ -123,6 +123,7 @@ export function normalizePubMed(record){
     url:record.url||"https://pubmed.ncbi.nlm.nih.gov/"+id+"/",
     peer_reviewed:record.peer_reviewed!==false,
     study_stage:record.study_stage||"unknown",
+    subject_scope:record.subject_scope||"unknown",
     independence_group:record.independence_group||(record.doi?"doi:"+String(record.doi).toLowerCase():"pubmed:"+id)
   }};
 }
