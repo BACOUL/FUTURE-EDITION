@@ -2,7 +2,7 @@ import { readFile, mkdir, rm, writeFile } from "node:fs/promises";
 
 const root = new URL("../", import.meta.url);
 const read = async (path) => JSON.parse(await readFile(new URL(path, root), "utf8"));
-const [questions, observatories, events, claims, evidence, sources, technologies, graph] = await Promise.all([
+const [questions, observatories, events, claims, evidence, sources, technologies, graph, editorialFr] = await Promise.all([
   read("data/questions/questions.json"),
   read("data/observatories/observatories.json"),
   read("data/events/events.json"),
@@ -10,7 +10,8 @@ const [questions, observatories, events, claims, evidence, sources, technologies
   read("data/evidence/evidence.json"),
   read("data/sources/sources.json"),
   read("data/technologies/technologies.json"),
-  read("generated/future-graph.json")
+  read("generated/future-graph.json"),
+  read("data/editorial/fr/events.json")
 ]);
 
 const out = new URL("../dist/", import.meta.url);
@@ -22,6 +23,24 @@ const claimById = byId(claims);
 const sourceById = byId(sources);
 const techById = byId(technologies);
 const obsByQuestion = new Map(observatories.map((o) => [o.question_id, o]));
+const editorialFrByEvent = new Map(Object.entries(editorialFr.entries ?? {}));
+const profileLabel = {
+  medical: "médical",
+  technology: "technologie",
+  fundamental_science: "science fondamentale"
+};
+const reviewStateLabel = {
+  machine_proposed: "proposé par la machine",
+  human_approved: "approuvé par un humain",
+  human_rejected: "rejeté par un humain",
+  not_required: "revue non requise"
+};
+const localizeEvent = (event) => editorialFrByEvent.get(event.id) ?? {
+  title: event.title,
+  claim: claimById.get(event.claim_ids?.[0])?.text ?? "",
+  technology: techById.get(event.technology_ids?.[0])?.canonical_name ?? "",
+  tech_desc: techById.get(event.technology_ids?.[0])?.description ?? ""
+};
 
 const esc = (v) => String(v ?? "")
   .replaceAll("&", "&amp;")
@@ -103,11 +122,12 @@ const eventCard = (event, { compact = false } = {}) => {
   const source = sourceById.get(event.source_ids?.[0]);
   const tech = techById.get(event.technology_ids?.[0]);
   const q = questions.find((x) => x.id === event.question_ids?.[0]);
+  const fr = localizeEvent(event);
   return `<article class="event-card ${compact ? "compact" : ""}">
    <div class="event-top"><time datetime="${esc(event.event_date)}">${fmtDate(event.event_date)}</time><span class="evidence-badge ${esc(claim?.confidence)}">${esc(confidenceLabel[claim?.confidence] ?? "Non évalué")}</span></div>
-   <div><h3>${esc(event.title)}</h3>
-   ${tech ? `<p class="tech">${esc(tech.canonical_name)}</p>` : ""}
-   <p>${esc(claim?.text ?? "")}</p>
+   <div><h3>${esc(fr.title)}</h3>
+   ${tech ? `<p class="tech">${esc(fr.technology)}</p>` : ""}
+   <p>${esc(fr.claim)}</p>
    <div class="event-meta"><span>${esc(q?.title ?? "")}</span><span>${esc(sourceLabel[source?.kind] ?? "Source")} · niveau ${esc(source?.tier ?? "–")}</span></div>
    <a class="proof-link" href="/preuves/${esc(event.id.toLowerCase())}/">${icon("proof")} Ouvrir la preuve</a></div>
  </article>`;
@@ -118,7 +138,7 @@ const cards = questions.map((q, index) => {
   const latest = qe[0];
   return `<a class="obs-card" href="/questions/${esc(q.slug)}/">
    <div class="obs-number">${String(index + 1).padStart(2, "0")}</div>
-   <div class="obs-card-main"><span class="obs-kicker">${esc(q.evidence_profile.replace("_", " "))}</span><h3>${esc(q.title)}</h3><p>${esc(q.summary)}</p></div>
+   <div class="obs-card-main"><span class="obs-kicker">${esc(profileLabel[q.evidence_profile] ?? q.evidence_profile)}</span><h3>${esc(q.title)}</h3><p>${esc(q.summary)}</p></div>
    <div class="obs-stats"><span><b>${qe.length}</b> preuves historiques</span><span><b>${q.milestones.length}</b> jalons</span></div>
    <div class="obs-latest">Dernier événement du socle <strong>${latest ? fmtDate(latest.event_date) : "—"}</strong></div>
    <span class="round-arrow">${icon("arrow")}</span>
@@ -171,7 +191,8 @@ for (const q of questions) {
     const claim = claimById.get(e.claim_ids?.[0]);
     const source = sourceById.get(e.source_ids?.[0]);
     const tech = techById.get(e.technology_ids?.[0]);
-    return `<article class="timeline-item"><time>${fmtDate(e.event_date)}</time><div><span class="timeline-tech">${esc(tech?.canonical_name ?? "")}</span><h3>${esc(e.title)}</h3><p>${esc(claim?.text ?? "")}</p><a href="/preuves/${esc(e.id.toLowerCase())}/">${sourceLabel[source?.kind] ?? "Source"} · niveau ${esc(source?.tier ?? "–")} ${icon("arrow")}</a></div></article>`;
+    const fr = localizeEvent(e);
+    return `<article class="timeline-item"><time>${fmtDate(e.event_date)}</time><div><span class="timeline-tech">${esc(fr.technology)}</span><h3>${esc(fr.title)}</h3><p>${esc(fr.claim)}</p><a href="/preuves/${esc(e.id.toLowerCase())}/">${sourceLabel[source?.kind] ?? "Source"} · niveau ${esc(source?.tier ?? "–")} ${icon("arrow")}</a></div></article>`;
   }).join("");
 
   await writePage("/questions/" + q.slug, layout(
@@ -193,15 +214,16 @@ for (const event of events) {
   const q = questions.find((x) => x.id === event.question_ids?.[0]);
   const ev = evidence.find((x) => claim?.evidence_ids?.includes(x.id));
   const milestone = q?.milestones?.find((m) => event.milestone_ids?.includes(m.id));
+  const fr = localizeEvent(event);
   await writePage("/preuves/" + event.id.toLowerCase(), layout(
-    "Preuve — " + event.title + " — Future Edition",
-    "Chaîne de preuve Future Edition pour " + event.title,
-    `<section class="proof-hero shell"><a class="back" href="/questions/${esc(q?.slug ?? "")}/">← Retour à l’observatoire</a><p class="kicker">Dossier de preuve · ${esc(event.id)}</p><h1>${esc(event.title)}</h1><p>${esc(claim?.text ?? "")}</p><div class="proof-summary"><span><b>${fmtDate(event.event_date)}</b>Date de l’événement</span><span><b>${esc(confidenceLabel[claim?.confidence] ?? "Non évalué")}</b>Niveau de confiance</span><span><b>${esc(source?.tier ?? "–")}</b>Niveau de source</span></div></section>
+    "Preuve — " + fr.title + " — Future Edition",
+    "Chaîne de preuve Future Edition pour " + fr.title,
+    `<section class="proof-hero shell"><a class="back" href="/questions/${esc(q?.slug ?? "")}/">← Retour à l’observatoire</a><p class="kicker">Dossier de preuve · ${esc(event.id)}</p><h1>${esc(fr.title)}</h1><p>${esc(fr.claim)}</p><div class="proof-summary"><span><b>${fmtDate(event.event_date)}</b>Date de l’événement</span><span><b>${esc(confidenceLabel[claim?.confidence] ?? "Non évalué")}</b>Niveau de confiance</span><span><b>${esc(source?.tier ?? "–")}</b>Niveau de source</span></div></section>
     <section class="shell proof-chain">
       <article><span class="chain-label">01 · Question</span><h2>${esc(q?.title ?? "")}</h2><p>${esc(q?.summary ?? "")}</p></article>
-      <article><span class="chain-label">02 · Technologie</span><h2>${esc(tech?.canonical_name ?? "")}</h2><p>${esc(tech?.description ?? "")}</p></article>
-      <article><span class="chain-label">03 · Claim</span><h2>Ce que nous retenons</h2><p>${esc(claim?.text ?? "")}</p><div class="chain-meta">Statut : ${esc(claim?.review_state ?? "")} · Confiance : ${esc(confidenceLabel[claim?.confidence] ?? "")}</div></article>
-      <article><span class="chain-label">04 · Preuve</span><h2>${esc(source?.title ?? "")}</h2><p><b>Repère :</b> ${esc(ev?.locator ?? "")}</p><p><b>Type :</b> ${esc(sourceLabel[source?.kind] ?? "Source")} · Tier ${esc(source?.tier ?? "–")}</p><a class="source-button" href="${esc(source?.canonical_url ?? "#")}" rel="noopener noreferrer">Ouvrir la source originale ${icon("arrow")}</a></article>
+      <article><span class="chain-label">02 · Technologie</span><h2>${esc(fr.technology)}</h2><p>${esc(fr.tech_desc)}</p></article>
+      <article><span class="chain-label">03 · Affirmation</span><h2>Ce que nous retenons</h2><p>${esc(fr.claim)}</p><div class="chain-meta">Statut : ${esc(reviewStateLabel[claim?.review_state] ?? claim?.review_state ?? "")} · Confiance : ${esc(confidenceLabel[claim?.confidence] ?? "")}</div></article>
+      <article><span class="chain-label">04 · Preuve</span><p class="source-original-label">Titre original de la source</p><h2>${esc(source?.title ?? "")}</h2><p><b>Repère dans la source :</b> ${esc(ev?.locator ?? "")}</p><p><b>Type :</b> ${esc(sourceLabel[source?.kind] ?? "Source")} · niveau ${esc(source?.tier ?? "–")}</p><a class="source-button" href="${esc(source?.canonical_url ?? "#")}" rel="noopener noreferrer">Ouvrir la source originale ${icon("arrow")}</a></article>
       <article><span class="chain-label">05 · Jalon concerné</span><h2>${esc(milestone?.title ?? "Jalon non attribué")}</h2><p>${esc(milestone?.criterion ?? "")}</p><div class="state-note">État : <b>non évalué</b>. La présence de cette preuve ne signifie pas que le jalon est atteint.</div></article>
     </section>`,
     { active: "questions" }
@@ -215,7 +237,7 @@ await writePage("/methodologie", layout(
  <section class="shell method-grid">
    <article><span>01</span><h2>Question</h2><p>Nous partons d’une grande question durable, pas d’une tendance.</p></article>
    <article><span>02</span><h2>Source</h2><p>Nous remontons à la publication, au registre, au régulateur ou à la donnée officielle.</p></article>
-   <article><span>03</span><h2>Claim</h2><p>Nous isolons précisément ce que la source permet d’affirmer, avec son niveau de confiance.</p></article>
+   <article><span>03</span><h2>Affirmation</h2><p>Nous isolons précisément ce que la source permet d’affirmer, avec son niveau de confiance.</p></article>
    <article><span>04</span><h2>Changement</h2><p>Nous comparons l’état avant et après. Aucun jalon ne bouge sans justification traçable.</p></article>
  </section>
  <section class="shell section"><div class="method-table"><div><span>Hypothèse</span><b>≠ fait</b></div><div><span>Préprint</span><b>≠ validation</b></div><div><span>Animal</span><b>≠ efficacité humaine</b></div><div><span>Annonce</span><b>≠ déploiement</b></div><div><span>Événement sourcé</span><b>≠ jalon atteint</b></div></div></section>
