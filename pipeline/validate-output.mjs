@@ -381,7 +381,7 @@ if (machineManifest.invariants?.claim_level_citations !== true || machineManifes
 
 const deltaContract = await readJson("dist/machine/delta-contract.json");
 if (deltaContract.schema_version !== "fe/delta-feed-contract/v1") errors.push("delta contract schema mismatch");
-if (deltaContract.minimum_synthetic_changes === 0) errors.push("delta contract invalid synthetic threshold");
+if (deltaContract.proof?.minimum_synthetic_changes !== 10) errors.push("delta contract must require 10 synthetic changes");
 if (!deltaContract.change_kinds?.includes("correction") || !deltaContract.change_kinds?.includes("retraction") || !deltaContract.change_kinds?.includes("supersession")) {
   errors.push("delta contract lifecycle kinds incomplete");
 }
