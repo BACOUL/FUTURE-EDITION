@@ -158,6 +158,32 @@ export function normalizeClinicalTrial(study){
   }};
 }
 
+function arxivStudyStage(entry){
+  const categories=[
+    entry?.primary_category,
+    ...(Array.isArray(entry?.categories)?entry.categories:[])
+  ]
+    .filter(Boolean)
+    .map(value=>String(value).toLowerCase());
+
+  const technicalCategory=categories.some(value=>
+    value.startsWith("cs.")||
+    value==="stat.ml"||
+    value.startsWith("eess.")
+  );
+
+  if(!technicalCategory) return "unknown";
+
+  const text=(String(entry?.title??"")+" "+String(entry?.summary??"")).toLowerCase();
+  const explicitBenchmark=
+    /\bbenchmark(?:s|ed|ing)?\b/.test(text)||
+    /\bleaderboard\b/.test(text)||
+    /\bevaluation (?:suite|protocol|benchmark)\b/.test(text)||
+    /\bmeasurement (?:audit|benchmark|protocol)\b/.test(text);
+
+  return explicitBenchmark?"technology_benchmark":"unknown";
+}
+
 export function normalizeArxiv(entry){
   const id=entry?.id?.split("/abs/").pop()||entry?.arxiv_id;
   if(!id) return {status:"unresolved",provider:"arxiv",reason:"arxiv_not_found",source:null,publication_status:"unresolved",integrity_relations:[]};
@@ -168,7 +194,7 @@ export function normalizeArxiv(entry){
     title:entry.title||id,
     url:entry.url||"https://arxiv.org/abs/"+id,
     peer_reviewed:false,
-    study_stage:entry.study_stage||"unknown",
+    study_stage:entry.study_stage||arxivStudyStage(entry),
     independence_group:entry.doi?"doi:"+String(entry.doi).toLowerCase():"arxiv:"+id
   }};
 }
