@@ -28,6 +28,7 @@ const required = [
   ...articles.map((a) => `dist/avance/${a.slug}/index.html`),
   ...articles.map((a) => `dist/machine/avance/${a.slug}.json`),
   ...editorialObs.map((o) => `dist/machine/observatoires/${o.slug}.json`),
+  "dist/machine/methodologie.json",
   "dist/assets/styles.css",
   "dist/data/future-graph.json",
   "dist/robots.txt",
@@ -241,8 +242,65 @@ else {
 }
 
 const method = htmlByPath.get("dist/methodologie/index.html") ?? "";
-for (const phrase of ["Hypothèse", "Préprint", "Animal", "Affirmation", "Événement sourcé", "≠ jalon atteint"]) {
-  if (!method.includes(phrase)) errors.push(`methodology missing epistemic rule: ${phrase}`);
+for (const phrase of [
+  "R4 · OPEN THE MACHINE",
+  "Douze portes avant une conclusion.",
+  "SIGNAL",
+  "SOURCE PRIMAIRE",
+  "AUTHENTICITÉ + STATUT",
+  "CLAIM",
+  "EVIDENCE + LOCATOR",
+  "INDÉPENDANCE",
+  "LIMITES + CONTRADICTIONS",
+  "RÉPLICATION",
+  "ÉTAT PRÉCÉDENT",
+  "CHANGE PROPOSÉ",
+  "REVUE HUMAINE",
+  "PUBLICATION + PROPAGATION",
+  "SOURCE HIERARCHY",
+  "EVIDENCE LADDERS",
+  "STATE RESOLUTION",
+  "CHANGE ENGINE · FE-04",
+  "HUMAN GATE",
+  "CORRECTION TRAIL",
+  "ONE TRUTH · MULTIPLE VIEWS",
+  "ABSTENTION IS A FEATURE",
+  "MACHINE CONTRACT",
+  "Hypothèse",
+  "Préprint",
+  "Animal",
+  "Événement sourcé",
+  "≠ jalon atteint"
+]) if (!method.includes(phrase)) errors.push(`R4 methodology missing: ${phrase}`);
+
+for (const sourceTier of ["Primaire forte","Secondaire spécialisée","Communication","Signal"]) {
+  if (!method.includes(sourceTier)) errors.push(`R4 source hierarchy missing: ${sourceTier}`);
+}
+for (const scale of ["M0 · hypothèse","M7 · usage clinique réel","T0 · concept","T7 · usage courant","S0 · hypothèse","S5 · consensus robuste / usage scientifique"]) {
+  if (!method.includes(scale)) errors.push(`R4 evidence ladder missing: ${scale}`);
+}
+for (const changeType of ["none","minor_progress","evidence_upgrade","milestone_reached","setback","invalidation"]) {
+  if (!method.includes(changeType)) errors.push(`R4 Change type missing: ${changeType}`);
+}
+if (!method.includes("/machine/methodologie.json")) errors.push("R4 methodology missing machine contract route");
+if (!method.includes("/machine/avance/nif-ignition-fusion-2022.json")) errors.push("R4 methodology missing Agent Answer Packet example");
+if (!method.includes("/questions/energie-de-fusion-commerciale/")) errors.push("R4 methodology missing observatory example");
+
+try {
+  const contract = await readJson("dist/machine/methodologie.json");
+  if (contract.schema_version !== "fe/methodology-contract/v1") errors.push("R4 methodology contract schema mismatch");
+  if (contract.canonical_truth !== "future_graph") errors.push("R4 methodology contract canonical truth mismatch");
+  if (contract.source_tiers?.D !== "signal_only") errors.push("R4 methodology contract D source rule mismatch");
+  if (contract.evidence_scales?.medicine?.length !== 8) errors.push("R4 medicine evidence scale mismatch");
+  if (contract.evidence_scales?.technology?.length !== 8) errors.push("R4 technology evidence scale mismatch");
+  if (contract.evidence_scales?.fundamental_science?.length !== 6) errors.push("R4 science evidence scale mismatch");
+  if (contract.change_types?.length !== 6) errors.push("R4 change type count mismatch");
+  if (contract.change_invariants?.human_review_required !== true) errors.push("R4 human review invariant missing");
+  if (contract.change_invariants?.before_after_hash_binding !== true) errors.push("R4 hash binding invariant missing");
+  if (!/unassessed/i.test(contract.state_rule ?? "")) errors.push("R4 state resolution unassessed rule missing");
+  if (!/Insufficient evidence/i.test(contract.publication_rule ?? "")) errors.push("R4 abstention publication rule missing");
+} catch (error) {
+  errors.push("R4 methodology machine contract invalid JSON: " + error.message);
 }
 
 for (const q of questions) {
@@ -319,6 +377,7 @@ const internalRouteSet = new Set([
   "/reality-check/ignition-nest-pas-electricite-commerciale/",
   "/ask/",
   "/recherche/",
+  "/machine/methodologie.json",
   ...articles.map((a) => `/avance/${a.slug}/`),
   ...articles.map((a) => `/machine/avance/${a.slug}.json`),
   ...editorialObs.map((o) => `/machine/observatoires/${o.slug}.json`),
@@ -343,7 +402,7 @@ if (homeBytes > 70000) errors.push(`home HTML budget exceeded: ${homeBytes}`);
 if (!css.includes("@media(max-width:620px)")) errors.push("mobile breakpoint missing");
 if (!css.includes("@media(prefers-reduced-motion:reduce)")) errors.push("reduced-motion support missing");
 if (!css.includes(":focus")) errors.push("focus affordance missing");
-for (const primitive of [".state-plate", ".delta-block", ".evidence-spine", ".watch-horizon", ".mobile-dock", ".obs2-timeglass", ".obs2-evidence-grid", ".obs2-contradiction"]) {
+for (const primitive of [".state-plate", ".delta-block", ".evidence-spine", ".watch-horizon", ".mobile-dock", ".obs2-timeglass", ".obs2-evidence-grid", ".obs2-contradiction", ".method2-flow", ".method2-source-grid", ".method2-state-grid", ".method2-correction-flow", ".method2-machine-stack"]) {
   if (!css.includes(primitive)) errors.push(`media-2.0 primitive CSS missing: ${primitive}`);
 }
 if (!css.includes("@media(max-width:700px)")) errors.push("media-2.0 mobile breakpoint missing");
@@ -358,7 +417,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|reference_observatory=${editorialObs.length}|delta=1|state_plate=1|evidence_spine=1|timeglass=1|evidence_landscape=1|contradiction_split=1|reality_check=1|agent_packet=1|observatory_packet=1|historical_news_separation=1|home_bytes=${homeBytes}`);
+console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|reference_observatory=${editorialObs.length}|reference_methodology=1|delta=1|state_plate=1|evidence_spine=1|timeglass=1|evidence_landscape=1|contradiction_split=1|correction_trail=1|reality_check=1|agent_packet=1|observatory_packet=1|methodology_packet=1|historical_news_separation=1|home_bytes=${homeBytes}`);
 
 console.log(
   `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
