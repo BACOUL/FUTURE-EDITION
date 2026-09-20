@@ -345,7 +345,7 @@ export function buildGraph(collections) {
   edges.sort((a, b) => `${a.from}|${a.relation}|${a.to}`.localeCompare(`${b.from}|${b.relation}|${b.to}`));
 
   const body = {
-    schema_version: "0.4.0",
+    schema_version: "0.5.0",
     status: (collections.events ?? []).length ? "contains_events" : "baseline_pending_evidence",
     counts: {
       questions: (collections.questions ?? []).length,
