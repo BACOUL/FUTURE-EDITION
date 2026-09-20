@@ -3803,5 +3803,1327 @@
       }
     ],
     "notes": "Independent first-in-human phase I CDR404 registry validation case."
+  },
+  {
+    "id": "FE03-EXT-0116",
+    "split": "dev",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.07.23.26358809",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.07.23.26358809v1",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "preprint",
+          "explicit_randomized_design",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Randomized placebo-controlled human preprint; peer-review ceiling remains below confirmed."
+  },
+  {
+    "id": "FE03-EXT-0117",
+    "split": "dev",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.05.20.26353748",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.05.20.26353748v1",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "preprint",
+          "explicit_randomized_design",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Pilot randomized controlled palliative-care preprint."
+  },
+  {
+    "id": "FE03-EXT-0118",
+    "split": "dev",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.06.18.26356023",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.06.18.26356023v1",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "preprint",
+          "explicit_randomized_design",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Clinical randomized controlled gait-training preprint."
+  },
+  {
+    "id": "FE03-EXT-0119",
+    "split": "dev",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.03.07.26347857",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.03.07.26347857v1",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "preprint",
+          "explicit_randomized_design",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Phase 2a randomized placebo-controlled Long COVID preprint."
+  },
+  {
+    "id": "FE03-EXT-0120",
+    "split": "dev",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.06.01.26354267",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.06.01.26354267v1",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "preprint",
+          "explicit_randomized_design",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Randomized double-blind placebo-controlled COVID-19 treatment preprint."
+  },
+  {
+    "id": "FE03-EXT-0121",
+    "split": "validation",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.08.19.26360819",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.08.19.26360819v1",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "preprint",
+          "explicit_randomized_design",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Pilot randomized controlled opioid-use-disorder validation preprint."
+  },
+  {
+    "id": "FE03-EXT-0122",
+    "split": "validation",
+    "case_family": "preprint",
+    "candidate": {
+      "signal_kind": "medrxiv",
+      "raw_value": "10.64898/2026.08.19.26360832",
+      "origin": "medrxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.08.19.26360832v1",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "preprint",
+          "explicit_randomized_design",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Double-blind randomized direct-to-participant Long COVID validation preprint."
+  },
+  {
+    "id": "FE03-EXT-0123",
+    "split": "dev",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "30970518",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30970518/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41997759/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_30970518"
+        ]
+      }
+    ],
+    "notes": "Known retracted necroptosis publication with linked 2026 retraction notice."
+  },
+  {
+    "id": "FE03-EXT-0124",
+    "split": "dev",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41105728",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41105728/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42284233/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_41105728"
+        ]
+      }
+    ],
+    "notes": "Known retracted heart-disease diagnosis publication with linked notice."
+  },
+  {
+    "id": "FE03-EXT-0125",
+    "split": "dev",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "38227609",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38227609/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41801819/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_38227609"
+        ]
+      }
+    ],
+    "notes": "Known retracted SARS-CoV-2 in-silico publication with linked notice."
+  },
+  {
+    "id": "FE03-EXT-0126",
+    "split": "validation",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41351616",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41351616/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42547186/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_41351616"
+        ]
+      }
+    ],
+    "notes": "Known retracted e-cigarette-use publication; validation integrity case."
+  },
+  {
+    "id": "FE03-EXT-0127",
+    "split": "dev",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41534075",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41534075/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42085701/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "published_erratum",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Randomized eHealth cardiac rehabilitation publication with linked correction."
+  },
+  {
+    "id": "FE03-EXT-0128",
+    "split": "validation",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "37925608",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37925608/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41805106/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "published_erratum",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Randomized pediatric augmented-reality trial with linked 2026 correction."
+  },
+  {
+    "id": "FE03-EXT-0129",
+    "split": "dev",
+    "case_family": "dependent_echo",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42176601",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "same_primary_origin",
+        "candidate": {
+          "signal_kind": "doi",
+          "raw_value": "10.1016/j.ijmedinf.2026.106493",
+          "origin": "crossref"
+        },
+        "basis": [
+          "PubMed maps PMID 42176601 to DOI 10.1016/j.ijmedinf.2026.106493",
+          "PMID and DOI are alternate identifiers for the same scientific publication",
+          "Provider diversity must count as one scientific origin"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42176601/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "doi_mapping",
+          "randomized_controlled_trial",
+          "same_primary_origin"
+        ]
+      }
+    ],
+    "notes": "Cross-provider PubMed/Crossref identity case on a randomized trial."
+  },
+  {
+    "id": "FE03-EXT-0130",
+    "split": "dev",
+    "case_family": "dependent_echo",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42693202",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "same_primary_origin",
+        "candidate": {
+          "signal_kind": "doi",
+          "raw_value": "10.1007/s00464-026-13087-8",
+          "origin": "crossref"
+        },
+        "basis": [
+          "PubMed maps PMID 42693202 to DOI 10.1007/s00464-026-13087-8",
+          "PMID and DOI are alternate identifiers for the same scientific publication",
+          "Provider diversity must count as one scientific origin"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42693202/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "doi_mapping",
+          "randomized_controlled_trial",
+          "same_primary_origin"
+        ]
+      }
+    ],
+    "notes": "Cross-provider PubMed/Crossref identity case on a randomized clinical trial."
+  },
+  {
+    "id": "FE03-EXT-0131",
+    "split": "dev",
+    "case_family": "dependent_echo",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42696289",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "same_primary_origin",
+        "candidate": {
+          "signal_kind": "doi",
+          "raw_value": "10.1001/jamahealthforum.2026.3014",
+          "origin": "crossref"
+        },
+        "basis": [
+          "PubMed maps PMID 42696289 to DOI 10.1001/jamahealthforum.2026.3014",
+          "PMID and DOI are alternate identifiers for the same scientific publication",
+          "Provider diversity must count as one scientific origin"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42696289/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "doi_mapping",
+          "randomized_controlled_trial",
+          "same_primary_origin"
+        ]
+      }
+    ],
+    "notes": "Cross-provider PubMed/Crossref identity case; one publication must not count twice."
+  },
+  {
+    "id": "FE03-EXT-0132",
+    "split": "dev",
+    "case_family": "dependent_echo",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42714908",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "same_primary_origin",
+        "candidate": {
+          "signal_kind": "doi",
+          "raw_value": "10.1001/jamanetworkopen.2026.32874",
+          "origin": "crossref"
+        },
+        "basis": [
+          "PubMed maps PMID 42714908 to DOI 10.1001/jamanetworkopen.2026.32874",
+          "PMID and DOI are alternate identifiers for the same scientific publication",
+          "Provider diversity must count as one scientific origin"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42714908/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "doi_mapping",
+          "randomized_controlled_trial",
+          "same_primary_origin"
+        ]
+      }
+    ],
+    "notes": "Recent phase III randomized publication cross-provider deduplication case."
+  },
+  {
+    "id": "FE03-EXT-0133",
+    "split": "validation",
+    "case_family": "dependent_echo",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40625508",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "same_primary_origin",
+        "candidate": {
+          "signal_kind": "doi",
+          "raw_value": "10.7759/cureus.85482",
+          "origin": "crossref"
+        },
+        "basis": [
+          "PubMed maps PMID 40625508 to DOI 10.7759/cureus.85482",
+          "PMID and DOI are alternate identifiers for the same scientific publication",
+          "Provider diversity must count as one scientific origin"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40625508/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "doi_mapping",
+          "randomized_controlled_trial",
+          "same_primary_origin"
+        ]
+      }
+    ],
+    "notes": "Independent validation of PubMed/Crossref same-origin deduplication."
+  },
+  {
+    "id": "FE03-EXT-0134",
+    "split": "dev",
+    "case_family": "contradiction",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40189062",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "materially_conflicts",
+        "candidate": {
+          "signal_kind": "pmid",
+          "raw_value": "26930055",
+          "origin": "pubmed"
+        },
+        "basis": [
+          "Both randomized trials evaluate ASSIP after a suicide attempt",
+          "The original trial reported a large reduction in repeat suicide attempts",
+          "The independent non-replication found no significant reduction and a worse per-protocol re-attempt incidence",
+          "Population, implementation and follow-up differences must be preserved rather than collapsed"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40189062/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "material_result"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26930055/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "related_randomized_evidence",
+          "materially_conflicting_result"
+        ]
+      }
+    ],
+    "notes": "ASSIP independent non-replication versus original positive randomized trial."
+  },
+  {
+    "id": "FE03-EXT-0135",
+    "split": "dev",
+    "case_family": "contradiction",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "21963122",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "materially_conflicts",
+        "candidate": {
+          "signal_kind": "pmid",
+          "raw_value": "15895327",
+          "origin": "pubmed"
+        },
+        "basis": [
+          "Both randomized trials evaluate scheduled telephone counseling after traumatic brain injury",
+          "The earlier single-center trial reported significantly better overall outcome",
+          "The later multicenter trial reported no significant primary or secondary benefit and explicitly failed to replicate",
+          "Severity and site differences are material scope qualifiers"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21963122/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "material_result"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15895327/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "related_randomized_evidence",
+          "materially_conflicting_result"
+        ]
+      }
+    ],
+    "notes": "Multicenter TBI telephone-intervention non-replication versus earlier positive single-center trial."
+  },
+  {
+    "id": "FE03-EXT-0136",
+    "split": "dev",
+    "case_family": "contradiction",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "38520886",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "materially_conflicts",
+        "candidate": {
+          "signal_kind": "pmid",
+          "raw_value": "29049935",
+          "origin": "pubmed"
+        },
+        "basis": [
+          "Both randomized placebo-controlled studies test repeated intranasal oxytocin during anorexia-nervosa refeeding",
+          "The pilot reported improvements in eating concern/cognitive rigidity and reduced cortisol",
+          "The larger phase II study found no significant placebo-group differences on outcomes of interest",
+          "Dose and cohort differences must remain explicit"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38520886/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "material_result"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29049935/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "related_randomized_evidence",
+          "materially_conflicting_result"
+        ]
+      }
+    ],
+    "notes": "Larger anorexia oxytocin non-replication versus earlier promising randomized pilot."
+  },
+  {
+    "id": "FE03-EXT-0137",
+    "split": "dev",
+    "case_family": "contradiction",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "35321092",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "materially_conflicts",
+        "candidate": {
+          "signal_kind": "pmid",
+          "raw_value": "23818591",
+          "origin": "pubmed"
+        },
+        "basis": [
+          "Both randomized studies evaluate the same family-based lower-SES preschool training program lineage",
+          "The original study reported favorable cognitive and behavioral changes",
+          "The replication found no significant intent-to-treat benefit on composite nonverbal IQ, executive function or language",
+          "Sample and implementation differences are preserved as limitations"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35321092/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "material_result"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23818591/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "related_randomized_evidence",
+          "materially_conflicting_result"
+        ]
+      }
+    ],
+    "notes": "Family-based preschool intervention replication versus original positive trial."
+  },
+  {
+    "id": "FE03-EXT-0138",
+    "split": "validation",
+    "case_family": "contradiction",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "34519018",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "relations": [
+      {
+        "relation_type": "materially_conflicts",
+        "candidate": {
+          "signal_kind": "pmid",
+          "raw_value": "17137561",
+          "origin": "pubmed"
+        },
+        "basis": [
+          "Both randomized placebo-controlled studies test intranasal oxytocin on Reading-the-Mind-in-the-Eyes performance",
+          "The original study reported improved mind-reading performance",
+          "The later randomized crossover study found worse performance under oxytocin",
+          "Sample size and protocol differences must be preserved"
+        ]
+      }
+    ],
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34519018/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "material_result"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17137561/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "related_randomized_evidence",
+          "materially_conflicting_result"
+        ]
+      }
+    ],
+    "notes": "Independent oxytocin mind-reading validation conflict with the original positive finding."
+  },
+  {
+    "id": "FE03-EXT-0139",
+    "split": "dev",
+    "case_family": "negative_result",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41881557",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41881557/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "negative_primary_result"
+        ]
+      }
+    ],
+    "notes": "Randomized postoperative duloxetine trial with no broad pain-trajectory benefit and limited secondary effects."
+  },
+  {
+    "id": "FE03-EXT-0140",
+    "split": "dev",
+    "case_family": "negative_result",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41696728",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41696728/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "negative_primary_result"
+        ]
+      }
+    ],
+    "notes": "Randomized double-blind sore-throat trial: tranexamic acid was not significantly better than placebo."
+  },
+  {
+    "id": "FE03-EXT-0141",
+    "split": "dev",
+    "case_family": "negative_result",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41989967",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41989967/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "negative_primary_result"
+        ]
+      }
+    ],
+    "notes": "Randomized obstetric-gel trial: no statistically significant effect on labor outcomes."
+  },
+  {
+    "id": "FE03-EXT-0142",
+    "split": "validation",
+    "case_family": "negative_result",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41608377",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41608377/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "negative_primary_result"
+        ]
+      }
+    ],
+    "notes": "Pilot randomized cardiac-arrest trial: butylphthalide did not significantly improve 90-day neurological prognosis."
+  },
+  {
+    "id": "FE03-EXT-0143",
+    "split": "dev",
+    "case_family": "technology_benchmark",
+    "candidate": {
+      "signal_kind": "arxiv",
+      "raw_value": "2504.10496",
+      "origin": "arxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "technology_demo"
+    },
+    "label_evidence": [
+      {
+        "authority": "arxiv",
+        "url": "https://arxiv.org/abs/2504.10496",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "technology_benchmark",
+          "shared_evaluation_protocol"
+        ]
+      }
+    ],
+    "notes": "ArxivBench standardized benchmark for LLM scientific-response reliability."
+  },
+  {
+    "id": "FE03-EXT-0144",
+    "split": "dev",
+    "case_family": "technology_benchmark",
+    "candidate": {
+      "signal_kind": "arxiv",
+      "raw_value": "2509.18122",
+      "origin": "arxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "technology_demo"
+    },
+    "label_evidence": [
+      {
+        "authority": "arxiv",
+        "url": "https://arxiv.org/abs/2509.18122",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "technology_benchmark",
+          "shared_evaluation_protocol"
+        ]
+      }
+    ],
+    "notes": "GAUSS structured mathematical-skills benchmark."
+  },
+  {
+    "id": "FE03-EXT-0145",
+    "split": "dev",
+    "case_family": "technology_benchmark",
+    "candidate": {
+      "signal_kind": "arxiv",
+      "raw_value": "2407.01231",
+      "origin": "arxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "technology_demo"
+    },
+    "label_evidence": [
+      {
+        "authority": "arxiv",
+        "url": "https://arxiv.org/abs/2407.01231",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "technology_benchmark",
+          "shared_evaluation_protocol"
+        ]
+      }
+    ],
+    "notes": "MIRAI benchmark for LLM-agent event forecasting."
+  },
+  {
+    "id": "FE03-EXT-0146",
+    "split": "validation",
+    "case_family": "technology_benchmark",
+    "candidate": {
+      "signal_kind": "arxiv",
+      "raw_value": "2206.10498",
+      "origin": "arxiv"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "technology_demo"
+    },
+    "label_evidence": [
+      {
+        "authority": "arxiv",
+        "url": "https://arxiv.org/abs/2206.10498",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "technology_benchmark",
+          "shared_evaluation_protocol"
+        ]
+      }
+    ],
+    "notes": "PlanBench extensible planning/reasoning benchmark validation case."
+  },
+  {
+    "id": "FE03-EXT-0147",
+    "split": "dev",
+    "case_family": "real_world_deployment",
+    "candidate": {
+      "signal_kind": "url",
+      "raw_value": "https://www.england.nhs.uk/2026/01/nhs-launches-trailblazing-ai-and-robot-pilot-to-spot-lung-cancer-sooner/",
+      "origin": "nhs_england"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "real_world"
+    },
+    "label_evidence": [
+      {
+        "authority": "publisher",
+        "url": "https://www.england.nhs.uk/2026/01/nhs-launches-trailblazing-ai-and-robot-pilot-to-spot-lung-cancer-sooner/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "official_nhs_source",
+          "operational_use_or_rollout",
+          "real_world_deployment"
+        ]
+      }
+    ],
+    "notes": "Official NHS lung-cancer AI/robot pilot with hundreds of robotic biopsy procedures already performed; evaluation still pending."
+  },
+  {
+    "id": "FE03-EXT-0148",
+    "split": "dev",
+    "case_family": "real_world_deployment",
+    "candidate": {
+      "signal_kind": "url",
+      "raw_value": "https://www.england.nhs.uk/2026/01/nhs-backs-ai-notetaking-free-up-more-face-to-face-care/",
+      "origin": "nhs_england"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "real_world"
+    },
+    "label_evidence": [
+      {
+        "authority": "publisher",
+        "url": "https://www.england.nhs.uk/2026/01/nhs-backs-ai-notetaking-free-up-more-face-to-face-care/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "official_nhs_source",
+          "operational_use_or_rollout",
+          "real_world_deployment"
+        ]
+      }
+    ],
+    "notes": "Official NHS national registry and deployment push for ambient voice technology."
+  },
+  {
+    "id": "FE03-EXT-0149",
+    "split": "dev",
+    "case_family": "real_world_deployment",
+    "candidate": {
+      "signal_kind": "url",
+      "raw_value": "https://www.england.nhs.uk/midlands/2026/07/15/midlands-leads-the-way-on-ambient-voice-technology/",
+      "origin": "nhs_england"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "real_world"
+    },
+    "label_evidence": [
+      {
+        "authority": "publisher",
+        "url": "https://www.england.nhs.uk/midlands/2026/07/15/midlands-leads-the-way-on-ambient-voice-technology/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "official_nhs_source",
+          "operational_use_or_rollout",
+          "real_world_deployment"
+        ]
+      }
+    ],
+    "notes": "Official Midlands at-scale AVT procurement across GP practices and trusts."
+  },
+  {
+    "id": "FE03-EXT-0150",
+    "split": "validation",
+    "case_family": "real_world_deployment",
+    "candidate": {
+      "signal_kind": "url",
+      "raw_value": "https://www.england.nhs.uk/south/2026/02/12/waiting-list-ops-pass-1m-mark-for-the-first-time-as-nhs-steps-up-productivity-in-the-south-west/",
+      "origin": "nhs_england"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "technology",
+      "expected_evidence_level": "real_world"
+    },
+    "label_evidence": [
+      {
+        "authority": "publisher",
+        "url": "https://www.england.nhs.uk/south/2026/02/12/waiting-list-ops-pass-1m-mark-for-the-first-time-as-nhs-steps-up-productivity-in-the-south-west/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "official_nhs_source",
+          "operational_use_or_rollout",
+          "real_world_deployment"
+        ]
+      }
+    ],
+    "notes": "Official South West operational AVT use and rollout validation case."
   }
 ]
