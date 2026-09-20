@@ -381,7 +381,7 @@
     "fe06r_public_pages_after_reference_rebuild": 69,
     "fe06r_public_broken_internal_links": 0,
     "fe06r_public_milestone_overclaims": 0,
-    "fe06r_full_gate_status": "BLOCKED",
+    "fe06r_full_gate_status": "BLOCKED_RECOGNITION_ONLY",
     "fe06r_remaining_reference_surfaces": [],
     "fe06r_visual_recognition_test_passed": false,
     "fe06r_r3_reference_observatory_id": "OBS-006",
@@ -462,7 +462,24 @@
     "fe06r_agent_native_delta_changes": 10,
     "fe06r_agent_native_delta_reconstruction_passed": true,
     "fe06r_agent_native_delta_deterministic": true,
-    "fe06r_machine_discovery_validated": true
+    "fe06r_machine_discovery_validated": true,
+    "fe06r_final_gate_audit_run_id": 35534053468,
+    "fe06r_final_gate_audit_job_id": 106139783302,
+    "fe06r_final_gate_artifact_id": 10611799214,
+    "fe06r_final_gate_artifact_digest": "sha256:67e3b5e4599baf1da82fad695008fb95bfc88242f8074a6b15acd78d2b810c43",
+    "fe06r_final_gate_execution_sha": "aff9bcafc7f3259172ffbff131549595fa2a1527",
+    "fe06r_final_gate_proof_commit_sha": "0b94306985dc566e7c43cc1ead1843ffa50d29c0",
+    "fe06r_automated_gate_passed": true,
+    "fe06r_media_automated_points_passed": 65,
+    "fe06r_media_human_points_pending": 35,
+    "fe06r_intelligence_score": 100,
+    "fe06r_reference_score": 100,
+    "fe06r_agent_native_score": 100,
+    "fe06r_trust_pages_passed": true,
+    "fe06r_internal_links_checked": 2369,
+    "fe06r_final_broken_internal_links": 0,
+    "fe06r_final_gate_verdict": "BLOCKED",
+    "fe06r_final_gate_only_blocker": "5-person independent human recognition test"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -546,16 +563,11 @@
     "authority": "docs/FE06R-GATE.md",
     "verdict": "BLOCKED",
     "required": [
-      "run 5-person design recognition test defined in DESIGN-SYSTEM-VISION v1",
-      "pass 5-person design recognition test defined in DESIGN-SYSTEM-VISION v1",
-      "demonstrate at least three proprietary Future Edition primitives across R1-R4",
-      "build global desktop/mobile navigation from INFORMATION-ARCHITECTURE v1",
-      "build and validate one complete Advancement/Article page",
-      "separate current editorial flow from FE-05 historical baseline",
-      "implement reference machine representation for the same scientific objects",
-      "prove claim-level citation, as_of semantics and human-machine consistency",
-      "add trust pages and complete responsive/editorial/scientific/agent-native QA",
-      "pass MEDIA>=85, INTELLIGENCE>=90, REFERENCE>=95, AGENT-NATIVE>=95 with zero veto"
+      "collect exactly 5 independent unbriefed human recognition evaluations under benchmarks/fe06r/recognition-test.protocol.json",
+      "freeze verbatim responses and binary rubric decisions in benchmarks/fe06r/recognition-test.results.json",
+      "run node benchmarks/fe06r/evaluate-recognition.mjs and require PASS on every frozen recognition threshold",
+      "rerun pipeline/audit-fe06r-final.mjs to obtain the final MEDIA score and overall gate verdict",
+      "mark FE-06R PROVED only if MEDIA>=85, INTELLIGENCE>=90, REFERENCE>=95, AGENT-NATIVE>=95 with zero veto; only then open FE-07"
     ]
   },
   "known_non_blocking_environment_constraints": [
