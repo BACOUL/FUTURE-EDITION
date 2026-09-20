@@ -67,6 +67,6 @@ project-state.json  état machine du programme
 
 ## Statut
 
-**FE-01 PROVED · FE-02 PROVED · FE-03 PROVED · FE-04 PROVED · FE-05 NOT_STARTED.**
+**FE-01 PROVED · FE-02 PROVED · FE-03 PROVED · FE-04 PROVED · FE-05 PROVED · FE-06 NOT_STARTED.**
 
 Les états scientifiques restent volontairement non évalués tant qu’ils n’ont pas été établis par une chaîne de preuve.
