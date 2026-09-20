@@ -160,6 +160,13 @@ function textStudyStage(title="",abstract=""){
   return "unknown";
 }
 
+function humanSemanticText(value=""){
+  return String(value)
+    .toLowerCase()
+    .replace(/\bpatient[- ](?:derived|relevant|specific|matched|like)\b/g," ")
+    .replace(/\bhuman[- ](?:derived|relevant|specific|matched|like)\b/g," ");
+}
+
 function subjectScope(meshTerms=[],title="",abstract=""){
   const scope=meshScope(meshTerms);
   const titleText=String(title).toLowerCase();
@@ -167,9 +174,9 @@ function subjectScope(meshTerms=[],title="",abstract=""){
   const animalRe=/\b(?:mice|rats|rabbits|murine|porcine|swine|mouse model)\b/;
   const humanRe=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/;
   const titleAnimal=animalRe.test(titleText);
-  const titleHuman=humanRe.test(titleText);
+  const titleHuman=humanRe.test(humanSemanticText(titleText));
   const explicitAnimal=titleAnimal||animalRe.test(text);
-  const explicitHuman=titleHuman||humanRe.test(text);
+  const explicitHuman=titleHuman||humanRe.test(humanSemanticText(text));
 
   if(scope==="mixed"){
     if(titleAnimal&&!titleHuman) return "animal";
@@ -191,9 +198,9 @@ function studyStage(pubtypes,meshTerms=[],title="",abstract=""){
   const animalRe=/\b(?:mice|rats|rabbits|murine|porcine|swine|mouse model)\b/;
   const humanRe=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/;
   const titleAnimal=animalRe.test(titleText);
-  const titleHuman=humanRe.test(titleText);
+  const titleHuman=humanRe.test(humanSemanticText(titleText));
   const explicitAnimal=titleAnimal||animalRe.test(text);
-  const explicitHuman=titleHuman||humanRe.test(text);
+  const explicitHuman=titleHuman||humanRe.test(humanSemanticText(text));
 
   if(scope==="animal"||(scope==="unknown"&&titleAnimal&&!titleHuman)||(scope==="unknown"&&explicitAnimal&&!explicitHuman)) return "preclinical_animal";
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
