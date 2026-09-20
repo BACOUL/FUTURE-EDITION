@@ -1,0 +1,23 @@
+name: FE03 evidence-level diagnostic
+
+on:
+  push:
+    branches: [fe03-evidence-level-v2]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fresh non-holdout evidence-level diagnostic
+        shell: bash
+        run: |
+          set -o pipefail
+          node benchmarks/fe03/run-evidence-level-diagnostic.mjs | tee fe03-evidence-diagnostic.log
