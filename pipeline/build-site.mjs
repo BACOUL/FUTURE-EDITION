@@ -62,6 +62,36 @@ const confidenceLabel = {
   retracted_invalidated: "Invalidé"
 };
 
+const locatorFr = {
+  "Product details — Original Approval Date": "Détails du produit — date d’autorisation initiale",
+  "Marketing approved — May 10, 2001": "Autorisation de mise sur le marché — 10 mai 2001",
+  "Supporting documents — August 30, 2017 approval": "Documents d’appui — autorisation du 30 août 2017",
+  "Approval summary and KEYNOTE-177 efficacy section": "Résumé de l’autorisation et section d’efficacité de KEYNOTE-177",
+  "Abstract": "Résumé",
+  "Abstract and results": "Résumé et résultats",
+  "HDE approval record — Decision Date": "Registre d’autorisation HDE — date de décision",
+  "Abstract and primary outcome": "Résumé et critère principal",
+  "Supporting documents — December 19, 2017 approval": "Documents d’appui — autorisation du 19 décembre 2017",
+  "Abstract and evaluation summary": "Résumé et synthèse de l’évaluation",
+  "Announcement body": "Corps de l’annonce",
+  "Experiment summary": "Résumé de l’expérience",
+  "Shot summary": "Résumé du tir expérimental",
+  "July 30, 2023 ignition result": "Résultat d’ignition du 30 juillet 2023",
+  "Deuterium-Tritium campaign — energy record": "Campagne deutérium-tritium — record d’énergie",
+  "Record summary": "Résumé du record",
+  "FDA approval announcement": "Annonce d’autorisation de la FDA",
+  "Results section": "Section des résultats",
+  "Supporting documents — August 17, 2022 approval": "Documents d’appui — autorisation du 17 août 2022",
+  "Supporting documents — November 22, 2022 approval": "Documents d’appui — autorisation du 22 novembre 2022",
+  "Supporting documents — December 8, 2023 approval": "Documents d’appui — autorisation du 8 décembre 2023",
+  "Abstract and experimental validation": "Résumé et validation expérimentale",
+  "Mission overview": "Présentation de la mission",
+  "Mission overview and July 20, 1969 landing": "Présentation de la mission et alunissage du 20 juillet 1969",
+  "Mission overview and lunar rover section": "Présentation de la mission et section sur le rover lunaire",
+  "Expedition 1 and continuous habitation section": "Section sur l’Expédition 1 et la présence humaine continue"
+};
+const localizeLocator = (locator) => locatorFr[locator] ?? locator;
+
 const sourceLabel = {
   paper: "Publication",
   preprint: "Prépublication",
@@ -198,7 +228,7 @@ for (const q of questions) {
   await writePage("/questions/" + q.slug, layout(
     q.title + " — Future Edition",
     q.summary,
-    `<section class="obs-hero shell"><a class="back" href="/questions/">← Les observatoires</a><div class="obs-label"><span>${esc(obs?.id)}</span><span>${esc(q.evidence_profile.replace("_", " "))}</span></div><h1>${esc(q.title)}</h1><p>${esc(q.summary)}</p><div class="obs-hero-stats"><span><b>${qe.length}</b> événements sourcés</span><span><b>${q.milestones.length}</b> jalons prédéfinis</span><span><b>0</b> état approuvé</span></div></section>
+    `<section class="obs-hero shell"><a class="back" href="/questions/">← Les observatoires</a><div class="obs-label"><span>${esc(obs?.id)}</span><span>${esc(profileLabel[q.evidence_profile] ?? q.evidence_profile)}</span></div><h1>${esc(q.title)}</h1><p>${esc(q.summary)}</p><div class="obs-hero-stats"><span><b>${qe.length}</b> événements sourcés</span><span><b>${q.milestones.length}</b> jalons prédéfinis</span><span><b>0</b> état approuvé</span></div></section>
   <section class="shell split-section"><div><p class="kicker">Radar</p><h2>Où en sommes-nous ?</h2><p class="section-copy">Nous avons une base historique, mais aucun jalon n’est automatiquement marqué comme atteint. C’est le Change Engine qui décidera, après revue humaine, si une nouvelle preuve change réellement l’état.</p></div><div class="radar-card"><div class="radar-ring r1"></div><div class="radar-ring r2"></div><div class="radar-ring r3"></div><div class="radar-axis"></div><span class="radar-center">?</span><small>État non évalué</small></div></section>
   <section class="shell section"><div class="section-head"><div><p class="kicker">Jalons</p><h2>La route vers une réponse.</h2></div></div><ol class="milestone-list">${milestoneHtml}</ol></section>
   <section class="shell section"><div class="section-head"><div><p class="kicker">Chronologie fondatrice</p><h2>${qe.length} événements vérifiés.</h2></div><p class="section-copy">Chaque entrée ci-dessous remonte à une source canonique et conserve son niveau de confiance.</p></div><div class="timeline">${timeline}</div></section>`,
@@ -223,7 +253,7 @@ for (const event of events) {
       <article><span class="chain-label">01 · Question</span><h2>${esc(q?.title ?? "")}</h2><p>${esc(q?.summary ?? "")}</p></article>
       <article><span class="chain-label">02 · Technologie</span><h2>${esc(fr.technology)}</h2><p>${esc(fr.tech_desc)}</p></article>
       <article><span class="chain-label">03 · Affirmation</span><h2>Ce que nous retenons</h2><p>${esc(fr.claim)}</p><div class="chain-meta">Statut : ${esc(reviewStateLabel[claim?.review_state] ?? claim?.review_state ?? "")} · Confiance : ${esc(confidenceLabel[claim?.confidence] ?? "")}</div></article>
-      <article><span class="chain-label">04 · Preuve</span><p class="source-original-label">Titre original de la source</p><h2>${esc(source?.title ?? "")}</h2><p><b>Repère dans la source :</b> ${esc(ev?.locator ?? "")}</p><p><b>Type :</b> ${esc(sourceLabel[source?.kind] ?? "Source")} · niveau ${esc(source?.tier ?? "–")}</p><a class="source-button" href="${esc(source?.canonical_url ?? "#")}" rel="noopener noreferrer">Ouvrir la source originale ${icon("arrow")}</a></article>
+      <article><span class="chain-label">04 · Preuve</span><p class="source-original-label">Titre original de la source</p><h2>${esc(source?.title ?? "")}</h2><p><b>Repère dans la source :</b> ${esc(localizeLocator(ev?.locator ?? ""))}</p><p><b>Type :</b> ${esc(sourceLabel[source?.kind] ?? "Source")} · niveau ${esc(source?.tier ?? "–")}</p><a class="source-button" href="${esc(source?.canonical_url ?? "#")}" rel="noopener noreferrer">Ouvrir la source originale ${icon("arrow")}</a></article>
       <article><span class="chain-label">05 · Jalon concerné</span><h2>${esc(milestone?.title ?? "Jalon non attribué")}</h2><p>${esc(milestone?.criterion ?? "")}</p><div class="state-note">État : <b>non évalué</b>. La présence de cette preuve ne signifie pas que le jalon est atteint.</div></article>
     </section>`,
     { active: "questions" }
