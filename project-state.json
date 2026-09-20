@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.11.0",
+  "authority_version": "0.12.0",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -362,7 +362,31 @@
       "Agent Dock"
     ],
     "fe06r_r1_rebuild_required_under_design_v1": true,
-    "fe06r_design_recognition_test_required": true
+    "fe06r_design_recognition_test_required": true,
+    "fe06r_reference_surfaces_proof_run_id": 35525405706,
+    "fe06r_reference_surfaces_candidate_sha": "6f4e5d3d966b88d2f73141dcba9df3a55d998f94",
+    "fe06r_reference_surfaces_implemented_under_gate_v1": 2,
+    "fe06r_r1_knowledge_change_home_implemented": true,
+    "fe06r_r1_build_validation_passed": true,
+    "fe06r_r2_reference_article_id": "ART-000001",
+    "fe06r_r2_reference_article_slug": "nif-ignition-fusion-2022",
+    "fe06r_r2_build_validation_passed": true,
+    "fe06r_delta_primitive_implemented": true,
+    "fe06r_state_plate_primitive_implemented": true,
+    "fe06r_evidence_spine_implemented": true,
+    "fe06r_watch_horizon_implemented": true,
+    "fe06r_agent_dock_implemented": true,
+    "fe06r_reality_check_reference_implemented": true,
+    "fe06r_agent_answer_packet_reference_implemented": true,
+    "fe06r_public_pages_after_reference_rebuild": 69,
+    "fe06r_public_broken_internal_links": 0,
+    "fe06r_public_milestone_overclaims": 0,
+    "fe06r_full_gate_status": "BLOCKED",
+    "fe06r_remaining_reference_surfaces": [
+      "R3 Observatory",
+      "R4 Methodology"
+    ],
+    "fe06r_visual_recognition_test_passed": false
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -446,11 +470,12 @@
     "authority": "docs/FE06R-GATE.md",
     "verdict": "BLOCKED",
     "required": [
-      "reevaluate R1 Home under FE06R-GATE v1",
+      "run 5-person design recognition test defined in DESIGN-SYSTEM-VISION v1",
+      "run responsive visual QA at 360/390/768/1440 on R1-R4",
+      "build R4 Methodology as a truthful visual walkthrough of the real evidence/change/agent pipeline",
+      "build R3 Observatory from State Plate, temporal trajectory, evidence landscape and Watch Horizon",
       "pass 5-person design recognition test defined in DESIGN-SYSTEM-VISION v1",
       "demonstrate at least three proprietary Future Edition primitives across R1-R4",
-      "implement Evidence Spine in R2 reference Article",
-      "implement Delta and State Plate before rebuilding R1",
       "build global desktop/mobile navigation from INFORMATION-ARCHITECTURE v1",
       "build and validate one complete Advancement/Article page",
       "build and validate one complete Observatory page",
