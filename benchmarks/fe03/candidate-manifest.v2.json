@@ -1,0 +1,31 @@
+{
+  "version": "FE03-CANDIDATE-MANIFEST-v2",
+  "frozen_engine_parent_sha": "c8321a19c0bd20043c681f944036ad3727418c01",
+  "purpose": "Cryptographically pin FE-03 engine, public calibration corpus, and frozen thresholds before candidate-v2 is frozen and any new hidden holdout is created.",
+  "previous_hidden_holdout": {
+    "protocol": "FE03-HIDDEN-HOLDOUT-v1",
+    "sha256": "62bd2cbc702bc1da4fb24dfb9a519795c8ca7809eae5df71533142320ea85ee0",
+    "consumed": true,
+    "reusable": false,
+    "verdict": "FAIL"
+  },
+  "critical_git_blob_shas": {
+    "pipeline/lib/source-resolver.mjs": "d0f3fb78339796c9e231cb17908b5406f17d228b",
+    "pipeline/adapters/pubmed-xml.mjs": "b90d2884de08beb1efb942969861fdc95c441651",
+    "pipeline/adapters/normalize.mjs": "fc01b836c06c273176a51c601e9ce58333d12e59",
+    "pipeline/lib/evidence-engine.mjs": "c4558df6c25d15c9119d1c6e73f78737b73cdea6",
+    "pipeline/lib/claim-linker.mjs": "56926c9043bfd886eab8da26d679cf797ec6faca",
+    "pipeline/lib/claim-extractor.mjs": "aaebd22acff8f14f30ef59299d80bcd095e098eb",
+    "pipeline/lib/evidence-document.mjs": "ae4bbcabd33f944305f6ecf98adba7c64171ea72",
+    "pipeline/lib/evidence-locator.mjs": "ecd2aeaa92a15dd85ddae3a777c98622f6349cf9",
+    "benchmarks/fe03/external/dev-validation.seed.json": "cf46f1f6be7d37e1829033c24a0a8a06c25e9eec",
+    "benchmarks/fe03/thresholds.external.v1.json": "513cd8ca33ec301cce556a72dc882bcd59085c17",
+    "benchmarks/fe03/thresholds.atomic.v1.json": "b4b489f70c6b290592da994d086389ba3b42e92d"
+  },
+  "rules": [
+    "No engine or public-label tuning after the candidate-v2 SHA is frozen.",
+    "Hidden holdout V1 labels/results may not be reused as a final evaluation corpus.",
+    "Candidate-v2 requires a new independently generated and sealed hidden holdout.",
+    "Frozen external-v1 and atomic-v1 thresholds are not weakened."
+  ]
+}
