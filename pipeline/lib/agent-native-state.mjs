@@ -16,11 +16,12 @@ export function resolveClaimState(versions = [], asOf) {
   if (active.length > 1) throw new Error("ambiguous active claim versions");
   if (active.length === 1) return { status: "active", claim: active[0], history: versions.map((x) => x.id) };
 
-  const retracted = versions.find((item) =>
-    (item.status === "retracted" || item.status === "invalidated") &&
-    Number.isFinite(iso(item.lifecycle_effective_at)) &&
-    iso(item.lifecycle_effective_at) <= t
-  );
+  const retracted = eligible.find((item) => item.status === "retracted" || item.status === "invalidated")
+    ?? versions.find((item) =>
+      (item.status === "retracted" || item.status === "invalidated") &&
+      Number.isFinite(iso(item.lifecycle_effective_at)) &&
+      iso(item.lifecycle_effective_at) <= t
+    );
   if (retracted) return { status: "retracted", claim: retracted, history: versions.map((x) => x.id) };
 
   const corrected = eligible.find((item) => item.status === "corrected" || item.status === "superseded");
