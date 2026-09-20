@@ -1,0 +1,24 @@
+name: FE03 NHS feed diagnostic
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch official NHS RSS
+        run: |
+          node --input-type=module - <<'NODE'
+          const urls=[
+            "https://www.england.nhs.uk/feed/",
+            "https://www.england.nhs.uk/?s=Copilot&feed=rss2",
+            "https://www.england.nhs.uk/?s=artificial%20intelligence&feed=rss2"
+          ];
+          for(const url of urls){
+            const r=await fetch(url,{headers:{"user-agent":"FutureEditionEvidence/0.1 (+https://github.com/BACOUL/FUTURE-EDITION)","accept":"application/rss+xml,application/xml,text/xml"}});
+            const body=await r.text();
+            console.log("NHS_FEED_DIAG",JSON.stringify({url,status:r.status,type:r.headers.get("content-type"),length:body.length,head:body.slice(0,400)}));
+          }
+          NODE
