@@ -233,99 +233,110 @@ const r1Stories = latestByQuestion.slice(0, 3).map(({ event }, i) => {
 
 const r1Topics = questions.map((q, i) => `<a href="/questions/${esc(q.slug)}/"><span>${String(i + 1).padStart(2, "0")}</span><strong>${esc(q.title)}</strong><em>${esc(profileLabel[q.evidence_profile] ?? q.evidence_profile)}</em>${icon("arrow")}</a>`).join("");
 
+const referenceArticle = articles[0];
+const referenceEvent = referenceArticle ? eventById.get(referenceArticle.event_id) : null;
+const referenceQuestion = referenceArticle ? questions.find((q) => q.id === referenceArticle.question_id) : null;
+const referenceQuestionEvents = referenceQuestion ? qEvents(referenceQuestion.id) : [];
+
 await writePage("/", layout(
-  "Future Edition — L’intelligence du progrès",
-  "Future Edition cartographie ce qui devient possible, ce que les preuves changent et ce qu’il reste à démontrer.",
-  `<section class="r1-cover">
-    <div class="shell r1-cover-grid">
-      <div class="r1-cover-copy">
-        <div class="r1-eyebrow"><span class="r1-live"></span><span>Future Graph · édition de référence</span><span>50 événements vérifiés</span></div>
-        <h1>Ce qui devient<br><em>possible.</em></h1>
-        <p class="r1-deck">Nous ne suivons pas le bruit. Nous suivons le moment précis où une nouvelle preuve change ce que l’on peut raisonnablement dire sur une technologie, une thérapie ou une découverte.</p>
-        <div class="r1-actions">
-          <a class="r1-primary" href="/questions/">Explorer les observatoires ${icon("arrow")}</a>
-          <a class="r1-text-link" href="/methodologie/">Voir comment nous vérifions ${icon("arrow")}</a>
+  "Future Edition — Voir comment la connaissance change",
+  "Future Edition rend visibles l’état, le changement, la preuve, le temps et les limites — pour les humains comme pour les agents IA.",
+  `<section class="home2-clock">
+    <div class="shell home2-clock-grid">
+      <div><span>KNOWLEDGE CLOCK</span><strong>as of 20 sept. 2026</strong></div>
+      <div><span>CURRENT FEED</span><strong>Pas encore ouvert</strong></div>
+      <p>Aucun faux temps réel : cette édition de référence démontre le produit sur un événement historique déjà vérifié. Le flux continu sera ouvert après FE-07/08.</p>
+      <a href="/aujourdhui/">Voir l’état d’aujourd’hui ${icon("arrow")}</a>
+    </div>
+  </section>
+
+  <section class="home2-lead">
+    <div class="shell home2-lead-grid">
+      <div class="home2-lead-copy">
+        <div class="home2-overline"><span>REFERENCE EDITION</span><span>HISTORICAL_BASELINE</span><span>Q-006 · FUSION</span></div>
+        <h1>Le moment où l’ignition a cessé d’être <em>une cible.</em></h1>
+        <p>Le 5 décembre 2022, le NIF a produit environ 3,15 MJ d’énergie de fusion après 2,05 MJ d’énergie laser délivrée à la cible. Future Edition ne s’arrête pas au mot « ignition » : il montre exactement ce que cette preuve change, et ce qu’elle ne change pas.</p>
+        <div class="home2-lead-actions">
+          <a class="r1-primary" href="/avance/nif-ignition-fusion-2022/">Lire l’avancée ${icon("arrow")}</a>
+          <a class="r1-text-link" href="/preuves/ev-2022-006002/">Voir la preuve originale ${icon("proof")}</a>
         </div>
       </div>
-      <figure class="r1-hero-visual" aria-label="Visualisation du Future Graph appliqué à la fusion">
-        <svg viewBox="0 0 760 680" role="img" aria-labelledby="fg-title fg-desc">
-          <title id="fg-title">Future Graph — trajectoire de la fusion</title>
-          <desc id="fg-desc">Visualisation éditoriale reliant des événements vérifiés à une grande question scientifique sans déclarer de jalon atteint.</desc>
-          <defs>
-            <radialGradient id="glow" cx="50%" cy="46%" r="62%"><stop offset="0" stop-color="#7ce7ff" stop-opacity=".24"/><stop offset=".65" stop-color="#7ce7ff" stop-opacity=".03"/><stop offset="1" stop-color="#7ce7ff" stop-opacity="0"/></radialGradient>
-            <linearGradient id="trace" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9ff74"/><stop offset="1" stop-color="#73e4ff"/></linearGradient>
-          </defs>
-          <circle cx="385" cy="328" r="286" fill="url(#glow)"/>
-          <circle cx="385" cy="328" r="230" fill="none" stroke="#29404a"/><circle cx="385" cy="328" r="160" fill="none" stroke="#22343d"/><circle cx="385" cy="328" r="92" fill="none" stroke="#1e2c34"/>
-          <path d="M118 502 C210 420 220 252 340 250 S500 320 610 152" fill="none" stroke="url(#trace)" stroke-width="3"/>
-          <path d="M118 502 C208 452 295 500 365 430 S505 300 640 375" fill="none" stroke="#50646e" stroke-width="1.5" stroke-dasharray="7 9"/>
-          <g fill="#081015" stroke="#d9ff74" stroke-width="3"><circle cx="118" cy="502" r="10"/><circle cx="340" cy="250" r="10"/><circle cx="610" cy="152" r="10"/></g>
-          <g fill="#081015" stroke="#73e4ff" stroke-width="3"><circle cx="365" cy="430" r="10"/><circle cx="640" cy="375" r="10"/></g>
-          <g fill="#eef6f7" font-family="system-ui,sans-serif">
-            <text x="84" y="542" font-size="17" font-weight="700">NIF</text><text x="84" y="565" font-size="13" fill="#8ba0aa">2021 · 1,35 MJ</text>
-            <text x="307" y="218" font-size="17" font-weight="700">Ignition</text><text x="307" y="239" font-size="13" fill="#8ba0aa">2022</text>
-            <text x="560" y="115" font-size="17" font-weight="700">JET</text><text x="560" y="137" font-size="13" fill="#8ba0aa">2024 · 69,26 MJ</text>
-            <text x="318" y="468" font-size="17" font-weight="700">W7-X</text><text x="318" y="491" font-size="13" fill="#8ba0aa">2025 · 43 s</text>
-            <text x="580" y="414" font-size="17" font-weight="700">Commercial</text><text x="580" y="437" font-size="13" fill="#8ba0aa">non évalué</text>
-          </g>
-          <g transform="translate(285 292)"><rect width="200" height="88" rx="44" fill="#eef6f7"/><text x="100" y="38" text-anchor="middle" fill="#071017" font-size="13" font-weight="800" letter-spacing="2">QUESTION</text><text x="100" y="62" text-anchor="middle" fill="#071017" font-size="16" font-weight="700">Fusion commerciale ?</text></g>
+      <figure class="home2-lead-visual" aria-label="Comparaison visuelle du NIF entre 2021 et 2022">
+        <svg viewBox="0 0 760 660" role="img" aria-labelledby="home-v-title home-v-desc">
+          <title id="home-v-title">Avant et après le franchissement du seuil d’ignition</title>
+          <desc id="home-v-desc">Visualisation éditoriale comparant les rendements de fusion 2021 et 2022 au NIF, avec la ligne de 2,05 MJ délivrés à la cible.</desc>
+          <rect width="760" height="660" fill="#071014"/>
+          <text x="64" y="70" fill="#90a5ae" font-size="14" font-family="system-ui" letter-spacing="3">BEFORE / EVIDENCE / AFTER</text>
+          <line x1="86" y1="466" x2="680" y2="466" stroke="#344b55"/>
+          <line x1="86" y1="156" x2="86" y2="466" stroke="#344b55"/>
+          <line x1="86" y1="278" x2="680" y2="278" stroke="#73e4ff" stroke-width="2" stroke-dasharray="9 12"/>
+          <rect x="188" y="344" width="126" height="122" fill="#354a53"/>
+          <rect x="448" y="196" width="126" height="270" fill="#d9ff74"/>
+          <circle cx="511" cy="196" r="9" fill="#071014" stroke="#d9ff74" stroke-width="4"/>
+          <text x="188" y="328" fill="#eef6f5" font-size="28" font-family="system-ui" font-weight="800">1,35 MJ</text>
+          <text x="448" y="177" fill="#d9ff74" font-size="34" font-family="system-ui" font-weight="900">3,15 MJ</text>
+          <text x="188" y="502" fill="#8ba0aa" font-size="17" font-family="system-ui">2021 · seuil approché</text>
+          <text x="448" y="502" fill="#8ba0aa" font-size="17" font-family="system-ui">2022 · ignition</text>
+          <text x="666" y="265" text-anchor="end" fill="#73e4ff" font-size="14" font-family="system-ui">2,05 MJ laser à la cible</text>
+          <text x="86" y="578" fill="#eef6f5" font-size="42" font-family="system-ui" font-weight="800">Un changement mesurable.</text>
+          <text x="86" y="612" fill="#8ba0aa" font-size="16" font-family="system-ui">Pas une promesse de centrale commerciale.</text>
         </svg>
-        <figcaption><span>Observatoire 06 · Fusion</span><strong>5 preuves du socle · aucun jalon automatiquement atteint</strong></figcaption>
       </figure>
     </div>
-    <div class="shell r1-metrics" aria-label="État du graphe">
-      <div><b>10</b><span>questions suivies sur le long terme</span></div>
-      <div><b>50</b><span>événements fondateurs reliés à leurs sources</span></div>
-      <div><b>354</b><span>objets dans le Future Graph</span></div>
-      <div><b>0</b><span>changement de jalon publié sans revue</span></div>
+  </section>
+
+  <section class="home2-core shell">
+    <div class="home2-core-label"><span>STATE</span><span>CHANGE</span><span>EVIDENCE</span><span>TIME</span></div>
+    ${statePlate({ question: referenceQuestion, latestEvent: referenceQuestionEvents[0], asOf: referenceArticle?.as_of ?? "2026-09-20", compact: true })}
+    ${referenceArticle ? deltaBlock(referenceArticle) : ""}
+  </section>
+
+  <section class="home2-now">
+    <div class="shell home2-now-grid">
+      <div><p class="r1-kicker">AUJOURD’HUI</p><h2>Ne rien publier peut être une information.</h2></div>
+      <div><strong>Aucune nouvelle avancée qualifiée dans le flux public.</strong><p>Les événements historiques restent dans les observatoires. Future Edition refuse de les recycler comme actualité pour donner l’impression que le média bouge.</p><a href="/aujourdhui/">Voir pourquoi ${icon("arrow")}</a></div>
     </div>
   </section>
 
-  <section class="r1-editorial">
-    <div class="shell">
-      <div class="r1-section-label"><span>Reality Check</span><span>Fusion · comprendre le niveau de preuve</span></div>
-      <div class="r1-reality-grid">
-        <div class="r1-reality-art" aria-hidden="true">
-          <svg viewBox="0 0 640 620">
-            <defs><linearGradient id="plasma" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9ff74"/><stop offset=".52" stop-color="#7ce7ff"/><stop offset="1" stop-color="#926cff"/></linearGradient></defs>
-            <rect width="640" height="620" fill="#0b1317"/><ellipse cx="320" cy="310" rx="230" ry="74" fill="none" stroke="#263941" stroke-width="62"/><ellipse cx="320" cy="310" rx="182" ry="42" fill="none" stroke="url(#plasma)" stroke-width="9"/><ellipse cx="320" cy="310" rx="122" ry="25" fill="none" stroke="#edf7f7" stroke-width="2" opacity=".6"/>
-            <path d="M96 122h180M96 144h108M432 492h112M476 470h68" stroke="#59727d"/><text x="96" y="96" fill="#8fa4ad" font-size="14" font-family="system-ui">EVIDENCE / 06</text><text x="96" y="520" fill="#f2f6f5" font-size="44" font-family="system-ui" font-weight="800">IGNITION</text><text x="96" y="558" fill="#8fa4ad" font-size="20" font-family="system-ui">≠ électricité commerciale</text>
-          </svg>
-        </div>
-        <article class="r1-reality-copy">
-          <p class="r1-kicker">Ce que la preuve change — et ce qu’elle ne change pas</p>
-          <h2>L’ignition en laboratoire n’est pas encore une centrale électrique.</h2>
-          <p class="r1-lead">Le NIF a démontré l’ignition de fusion en laboratoire. JET et Wendelstein 7-X ont depuis ajouté d’autres repères importants. Mais ces résultats ne suffisent pas, à eux seuls, à démontrer une production électrique commerciale durable.</p>
-          <div class="r1-before-after">
-            <div><span>Avant</span><strong>L’ignition restait un seuil expérimental non franchi au NIF.</strong></div>
-            <div><span>Preuve</span><strong>Le tir du 5 décembre 2022 a produit davantage d’énergie de fusion que l’énergie laser délivrée à la cible.</strong></div>
-            <div><span>Après</span><strong>Une étape scientifique est démontrée ; la viabilité commerciale reste une question distincte.</strong></div>
-          </div>
-          <div class="r1-reality-actions"><a class="r1-primary inverse" href="/avance/nif-ignition-fusion-2022/">Voir l’article Future Edition ${icon("arrow")}</a><a class="r1-inline-link" href="/reality-check/ignition-nest-pas-electricite-commerciale/">Ouvrir le Reality Check ${icon("arrow")}</a></div>
-        </article>
+  <section class="home2-reality">
+    <div class="shell home2-reality-grid">
+      <div class="home2-reality-label"><span>REALITY CHECK · RC-001</span><strong>Claim Stress Test</strong></div>
+      <div class="home2-reality-claim"><span>AFFIRMATION PUBLIQUE</span><blockquote>« L’ignition signifie que l’électricité de fusion commerciale est démontrée. »</blockquote></div>
+      <div class="home2-reality-result">
+        <div><span>PERMIS</span><strong>L’ignition a été démontrée au NIF.</strong></div>
+        <div><span>EXCESSIF</span><strong>Une centrale électrique commerciale est démontrée.</strong></div>
+        <a href="/reality-check/ignition-nest-pas-electricite-commerciale/">Voir le stress test complet ${icon("arrow")}</a>
       </div>
     </div>
   </section>
 
-  <section class="shell r1-foundation">
-    <div class="r1-section-heading"><div><p class="r1-kicker">Base de référence</p><h2>Des repères, pas un faux fil d’actualité.</h2></div><p>Les 50 événements actuels construisent l’histoire vérifiable des dix observatoires. Ils restent dans les chronologies tant que l’intelligence éditoriale continue n’est pas ouverte.</p></div>
-    <div class="r1-story-grid">${r1Stories}</div>
-  </section>
-
-  <section class="r1-system">
-    <div class="shell r1-system-grid">
-      <div class="r1-system-copy"><p class="r1-kicker">Pourquoi Future Edition existe</p><h2>Un média qui conserve l’état du monde, au lieu de reconstruire une réponse à chaque requête.</h2><p>Chaque événement rejoint un graphe temporel. Une nouvelle étude ne remplace pas l’ancienne : elle est comparée à l’état précédent, reliée à ses preuves et peut proposer un changement qui reste soumis à revue.</p><a class="r1-inline-link" href="/methodologie/">Comprendre Evidence Engine + Change Engine ${icon("arrow")}</a></div>
-      <div class="r1-pipeline" aria-label="Chaîne Future Edition"><div><span>01</span><b>Signal</b><small>quelque chose mérite une enquête</small></div><div><span>02</span><b>Preuve</b><small>source primaire, statut, limites</small></div><div><span>03</span><b>État</b><small>comparaison avec ce que nous savions</small></div><div><span>04</span><b>Changement</b><small>avant → preuve → après</small></div><div><span>05</span><b>Publication</b><small>explication humaine + données traçables</small></div></div>
+  <section class="home2-watch">
+    <div class="shell">
+      <div class="r1-section-heading"><div><p class="r1-kicker">WATCH HORIZON</p><h2>Ce qui ferait réellement bouger l’état.</h2></div><p>Pas de date spéculative. Future Edition définit les preuves observables qui comptent ensuite.</p></div>
+      <div class="home2-watch-grid">
+        <article><span>Q-006-M2</span><h3>Reproductibilité</h3><p>Répéter le résultat clé de manière contrôlée.</p></article>
+        <article><span>Q-006-M4</span><h3>Production électrique</h3><p>Convertir effectivement la fusion en électricité exploitable dans un système intégré.</p></article>
+        <article><span>Q-006-M5</span><h3>Démonstrateur industriel</h3><p>Faire fonctionner l’ensemble sous contraintes industrielles.</p></article>
+      </div>
     </div>
   </section>
 
-  <section class="shell r1-observatories">
-    <div class="r1-section-heading"><div><p class="r1-kicker">Observatoires</p><h2>Dix questions qui valent des années de suivi.</h2></div><a class="r1-inline-link" href="/questions/">Voir les dix observatoires ${icon("arrow")}</a></div>
+  <section class="shell r1-observatories home2-observatories">
+    <div class="r1-section-heading"><div><p class="r1-kicker">OBSERVATOIRES</p><h2>Dix questions qui valent des années de suivi.</h2></div><a class="r1-inline-link" href="/questions/">Explorer les dix questions ${icon("arrow")}</a></div>
     <div class="r1-topic-list">${r1Topics}</div>
   </section>
 
+  <section class="home2-graph">
+    <div class="shell home2-graph-grid">
+      <div><p class="r1-kicker">FUTURE GRAPH</p><h2>Le média visible n’est qu’une vue de la mémoire.</h2><p>354 objets et 451 relations relient questions, événements, claims, preuves, sources et états. L’article raconte ; le graphe conserve.</p></div>
+      <div class="home2-graph-metrics"><span><b>354</b>objets</span><span><b>451</b>relations</span><span><b>50</b>événements fondateurs</span><span><b>0</b>jalon promu sans revue</span></div>
+      <a class="r1-primary inverse" href="/methodologie/">Ouvrir la machine ${icon("arrow")}</a>
+      <a class="r1-text-link" href="/machine/avance/nif-ignition-fusion-2022.json">Voir le même état pour un agent IA ${icon("arrow")}</a>
+    </div>
+  </section>
+
   <section class="r1-closing">
-    <div class="shell r1-closing-grid"><p class="r1-kicker">La règle</p><blockquote>Une avancée n’est pas ce qu’un communiqué promet. C’est ce qu’une nouvelle preuve permet réellement d’ajouter à l’état du monde.</blockquote><a class="r1-primary inverse" href="/methodologie/">Voir la méthode complète ${icon("arrow")}</a></div>
+    <div class="shell r1-closing-grid"><p class="r1-kicker">LA RÈGLE</p><blockquote>Le futur du média n’est pas de publier plus vite. C’est de montrer exactement quand et pourquoi notre représentation du monde change.</blockquote><a class="r1-primary inverse" href="/avance/nif-ignition-fusion-2022/">Voir le prototype complet ${icon("arrow")}</a></div>
   </section>`
 ));
 
@@ -609,6 +620,17 @@ await writeFile(new URL("assets/styles.css", out), `
 .r1-closing{background:#d9ff74;color:#071014;padding:86px 0}.r1-closing-grid{display:grid;grid-template-columns:140px 1fr auto;gap:46px;align-items:end}.r1-closing .r1-kicker{color:#43521c}.r1-closing blockquote{font-size:clamp(2.4rem,4.8vw,5.2rem);line-height:.94;letter-spacing:-.055em;margin:0;max-width:930px}
 @media(max-width:1050px){.r1-cover-grid{grid-template-columns:1fr;min-height:auto}.r1-hero-visual{max-width:720px}.r1-reality-grid,.r1-system-grid{grid-template-columns:1fr}.r1-story-grid{grid-template-columns:1fr 1fr}.r1-story-1{grid-column:1/-1}.r1-closing-grid{grid-template-columns:1fr}.r1-section-heading{align-items:flex-start}}
 @media(max-width:700px){.r1-cover{padding-top:38px}.r1-cover-grid{gap:24px}.r1-cover h1{font-size:clamp(4rem,18vw,6.3rem);margin:28px 0 24px}.r1-deck{font-size:1.02rem}.r1-actions{display:grid;gap:14px}.r1-primary{justify-content:space-between}.r1-hero-visual{margin:10px -8px 0}.r1-hero-visual figcaption{display:block}.r1-hero-visual figcaption strong{display:block;text-align:left;margin-top:7px}.r1-metrics{grid-template-columns:1fr 1fr}.r1-metrics>div{display:block;padding:20px 12px 24px 0}.r1-metrics b{display:block;margin-bottom:7px}.r1-editorial{padding:70px 0}.r1-section-label{display:block}.r1-section-label span:last-child{display:block;margin-top:8px}.r1-reality-grid{gap:30px}.r1-reality-art{min-height:0}.r1-reality-copy h2,.r1-system-copy h2,.r1-section-heading h2{font-size:clamp(2.55rem,12vw,4.5rem)}.r1-before-after>div{grid-template-columns:1fr;gap:7px}.r1-section-heading{display:block}.r1-section-heading>p,.r1-section-heading>a{display:block;margin-top:20px}.r1-foundation,.r1-observatories{padding:72px 0}.r1-story-grid{grid-template-columns:1fr}.r1-story-1{grid-column:auto}.r1-story{min-height:350px}.r1-system{padding:75px 0}.r1-pipeline>div{grid-template-columns:32px 1fr}.r1-pipeline small{grid-column:2}.r1-topic-list a{grid-template-columns:38px 1fr 18px;padding:17px 2px}.r1-topic-list em{display:none}.r1-closing{padding:68px 0}.r1-closing blockquote{font-size:clamp(2.5rem,12vw,4.5rem)}}
+
+/* FE-06R Home — edition of changes */
+.home2-clock{border-bottom:1px solid #263943;background:#091116}.home2-clock-grid{min-height:72px;display:grid;grid-template-columns:170px 170px 1fr auto;gap:22px;align-items:center}.home2-clock-grid>div{display:flex;flex-direction:column}.home2-clock-grid span{font:750 .61rem ui-monospace,monospace;letter-spacing:.1em;color:#6f858f}.home2-clock-grid strong{font-size:.8rem;color:#dce7e9;margin-top:3px}.home2-clock-grid p{margin:0;color:#81959f;font-size:.75rem}.home2-clock-grid a{display:flex;align-items:center;gap:7px;color:#bfefff;font-size:.75rem;font-weight:800}
+.home2-lead{background:#edf1ee;color:#071014;padding:76px 0 0}.home2-lead-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr);gap:56px;align-items:end}.home2-overline{display:flex;flex-wrap:wrap;gap:9px 18px;font:800 .65rem ui-monospace,monospace;letter-spacing:.1em;color:#657278}.home2-overline span:first-child{color:#0b7188}.home2-lead h1{font-size:clamp(4rem,8.3vw,8.7rem);line-height:.8;letter-spacing:-.077em;margin:35px 0 28px;max-width:860px}.home2-lead h1 em{font-style:normal;color:#0a7088;font-weight:450}.home2-lead-copy>p{font-size:clamp(1.08rem,1.6vw,1.32rem);line-height:1.66;color:#4d5b61;max-width:760px}.home2-lead-actions{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:34px}.home2-lead .r1-primary{background:#071014;color:#edf5f4}.home2-lead .r1-text-link{color:#0b6a80}.home2-lead-visual{margin:0;background:#071014}.home2-lead-visual svg{display:block;width:100%;height:auto}
+.home2-core{padding:55px 0 95px}.home2-core-label{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #2a3e47;border-bottom:1px solid #2a3e47;margin-bottom:28px}.home2-core-label span{padding:10px 0;font:800 .61rem ui-monospace,monospace;letter-spacing:.13em;color:#627983}.home2-core .state-plate{margin-bottom:70px}.home2-core .delta-block{background:#edf1ee;color:#071014}
+.home2-now{background:#0d171c;padding:88px 0;border-top:1px solid #263943;border-bottom:1px solid #263943}.home2-now-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:80px}.home2-now h2,.home2-graph h2{font-size:clamp(2.8rem,5.5vw,6rem);line-height:.9;letter-spacing:-.06em;margin:0}.home2-now-grid>div:last-child{border-top:1px solid #38505a;padding-top:24px}.home2-now-grid strong{font-size:1.3rem}.home2-now-grid p{color:#8ca0aa;line-height:1.7}.home2-now-grid a{display:inline-flex;align-items:center;gap:7px;color:#bfefff;font-weight:800;font-size:.82rem}
+.home2-reality{background:#d9ff74;color:#071014;padding:82px 0}.home2-reality-grid{display:grid;grid-template-columns:180px 1.2fr .8fr;gap:45px}.home2-reality-label{display:flex;flex-direction:column;gap:8px}.home2-reality-label span,.home2-reality-claim>span,.home2-reality-result span{font:850 .63rem ui-monospace,monospace;letter-spacing:.11em}.home2-reality-claim blockquote{font-size:clamp(2rem,4vw,4.6rem);line-height:.94;letter-spacing:-.05em;margin:18px 0}.home2-reality-result>div{border-top:1px solid #879e45;padding:16px 0}.home2-reality-result strong{display:block;font-size:1.05rem;margin-top:7px}.home2-reality-result a{display:flex;align-items:center;gap:7px;margin-top:26px;font-weight:850}
+.home2-watch{background:#071014;padding:100px 0}.home2-watch .r1-section-heading>p{color:#8ca0aa}.home2-watch-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #2b404a;margin-top:45px}.home2-watch-grid article{padding:28px 28px 10px 0;border-right:1px solid #2b404a}.home2-watch-grid article+article{padding-left:28px}.home2-watch-grid span{font:750 .65rem ui-monospace,monospace;color:#748b95}.home2-watch-grid h3{font-size:1.7rem;line-height:1.05;margin:20px 0}.home2-watch-grid p{color:#8da1aa}.home2-observatories{padding-top:100px}
+.home2-graph{background:#edf1ee;color:#071014;padding:95px 0}.home2-graph-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:end}.home2-graph-grid>div:first-child p:not(.r1-kicker){color:#526168;line-height:1.7;max-width:720px}.home2-graph-metrics{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #aebbb8;border-left:1px solid #aebbb8}.home2-graph-metrics span{padding:22px;border-right:1px solid #aebbb8;border-bottom:1px solid #aebbb8;color:#617078;font-size:.72rem}.home2-graph-metrics b{display:block;font-size:2.4rem;line-height:1;color:#071014;margin-bottom:7px}.home2-graph .r1-primary{justify-self:start}.home2-graph .r1-text-link{color:#0b697e;justify-self:end}
+@media(max-width:1050px){.home2-clock-grid{grid-template-columns:1fr 1fr}.home2-clock-grid p{grid-column:1/-1}.home2-lead-grid{grid-template-columns:1fr}.home2-lead-visual{max-width:760px}.home2-reality-grid{grid-template-columns:1fr 1fr}.home2-reality-label{grid-column:1/-1}.home2-graph-grid{grid-template-columns:1fr}.home2-graph .r1-text-link{justify-self:start}}
+@media(max-width:700px){.home2-clock-grid{grid-template-columns:1fr 1fr;padding-top:15px;padding-bottom:15px}.home2-clock-grid p,.home2-clock-grid a{grid-column:1/-1}.home2-lead{padding-top:48px}.home2-lead h1{font-size:clamp(3.9rem,18vw,6.2rem);margin-top:27px}.home2-lead-actions{display:grid}.home2-core{padding:42px 0 66px}.home2-core-label{grid-template-columns:1fr 1fr}.home2-core-label span{padding:8px 0}.home2-core .state-plate{margin-bottom:48px}.home2-now{padding:65px 0}.home2-now-grid{grid-template-columns:1fr;gap:38px}.home2-reality{padding:62px 0}.home2-reality-grid{grid-template-columns:1fr;gap:28px}.home2-reality-label{grid-column:auto}.home2-watch{padding:70px 0}.home2-watch-grid{grid-template-columns:1fr}.home2-watch-grid article,.home2-watch-grid article+article{padding:22px 0;border-right:0;border-bottom:1px solid #2b404a}.home2-graph{padding:70px 0}.home2-graph-metrics{grid-template-columns:1fr 1fr}}
 
 /* FE-06R media-2.0 primitives */
 .mobile-dock{display:none}.desktop-nav a:last-child{display:flex;align-items:center;gap:7px}.desktop-nav svg{width:15px}
