@@ -1,0 +1,31 @@
+{
+  "protocol": "FE03-HIDDEN-HOLDOUT-v1",
+  "consumed_once": true,
+  "workflow_run_id": 35507281888,
+  "candidate_sha": "d3aa028642bbfd78bdd334c1f8186f6eb5d58591",
+  "holdout_sha256": "62bd2cbc702bc1da4fb24dfb9a519795c8ca7809eae5df71533142320ea85ee0",
+  "hidden_cases": 61,
+  "hidden_claim_annotations": 24,
+  "hidden_families": 16,
+  "metrics": {
+    "primary_source_precision": 1,
+    "primary_source_recall": 1,
+    "publication_status_precision": 1,
+    "evidence_level_precision": 0.9166666666666666,
+    "source_independence_precision": 1,
+    "claim_evidence_precision": 1,
+    "claim_prediction_coverage": 0.5416666666666666,
+    "critical_false_confirmed_rate": 0,
+    "known_retracted_confirmed": 0,
+    "atomic_gold_passage_recall": 0.9583333333333334,
+    "verified_locator_rate": 1,
+    "machine_proposed_rate": 1
+  },
+  "transport_failures": 0,
+  "failed_checks": [
+    "evidence_level_precision"
+  ],
+  "verdict": "FAIL",
+  "rerun_same_holdout_forbidden": true,
+  "next_action": "diagnose evidence-level generalization on a fresh non-holdout dev corpus; freeze a new candidate; evaluate on a new independently generated hidden holdout"
+}
