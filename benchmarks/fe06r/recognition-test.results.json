@@ -1,0 +1,9 @@
+{
+  "schema_version": "fe06r/recognition-test-results/v1",
+  "status": "NOT_RUN",
+  "candidate_sha": "d8313b270ffce6d50fd1cf9aeb4f38c608ec9835",
+  "browser_qa_run_id": 35532295881,
+  "evaluators": [],
+  "aggregate": null,
+  "verdict": "BLOCKED"
+}
