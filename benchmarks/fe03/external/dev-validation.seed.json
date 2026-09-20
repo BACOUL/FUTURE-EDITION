@@ -1435,7 +1435,7 @@
     "case_family": "animal_only",
     "candidate": {
       "signal_kind": "pmid",
-      "raw_value": "42474306",
+      "raw_value": "42230994",
       "origin": "pubmed"
     },
     "labels": {
@@ -1448,18 +1448,18 @@
     "label_evidence": [
       {
         "authority": "pubmed",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/42474306/",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42230994/",
         "checked_on": "2026-09-20",
         "supports": [
           "identifier",
           "animals",
           "mice",
-          "lifespan",
+          "mouse_lifespan",
           "preclinical_scope"
         ]
       }
     ],
-    "notes": "Mouse lifespan study; must not be promoted to human longevity efficacy."
+    "notes": "Mouse-only time-restricted feeding longevity study; must not be promoted to human efficacy."
   },
   {
     "id": "FE03-EXT-0044",
