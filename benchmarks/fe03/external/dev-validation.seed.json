@@ -2571,5 +2571,1237 @@
       }
     ],
     "notes": "Validation notice whose abstract explicitly documents the reason for retraction."
+  },
+  {
+    "id": "FE03-EXT-0076",
+    "split": "dev",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42705049",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42705049/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Recent peer-reviewed home-based exercise randomized controlled trial."
+  },
+  {
+    "id": "FE03-EXT-0077",
+    "split": "dev",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41850653",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41850653/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Peer-reviewed randomized trial of time-restricted eating."
+  },
+  {
+    "id": "FE03-EXT-0078",
+    "split": "dev",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42720252",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42720252/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Recent peer-reviewed randomized stress-reduction trial."
+  },
+  {
+    "id": "FE03-EXT-0079",
+    "split": "dev",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42035882",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42035882/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Peer-reviewed randomized trial of a relational agent for substance-use treatment."
+  },
+  {
+    "id": "FE03-EXT-0080",
+    "split": "dev",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42723344",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42723344/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Recent pilot randomized controlled human trial."
+  },
+  {
+    "id": "FE03-EXT-0081",
+    "split": "dev",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42419504",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42419504/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Peer-reviewed pregnancy mindfulness randomized trial; explicit design text supports fallback if indexing lags."
+  },
+  {
+    "id": "FE03-EXT-0082",
+    "split": "validation",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42720569",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42720569/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Independent recent randomized trial validation control."
+  },
+  {
+    "id": "FE03-EXT-0083",
+    "split": "validation",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42713988",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42713988/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Independent randomized chronic-dizziness treatment trial."
+  },
+  {
+    "id": "FE03-EXT-0084",
+    "split": "validation",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42309334",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42309334/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "peer_reviewed",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Independent single-blinded randomized trial validation control."
+  },
+  {
+    "id": "FE03-EXT-0085",
+    "split": "dev",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42714859",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42714859/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_clinical_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Randomized clinical trial used as controlled-human evidence."
+  },
+  {
+    "id": "FE03-EXT-0086",
+    "split": "dev",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42714910",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42714910/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_clinical_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Randomized perioperative mental-health clinical trial."
+  },
+  {
+    "id": "FE03-EXT-0087",
+    "split": "dev",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42696283",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42696283/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_clinical_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Randomized CBT versus media-literacy clinical trial."
+  },
+  {
+    "id": "FE03-EXT-0088",
+    "split": "dev",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42684694",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42684694/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_clinical_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Randomized serial-ketamine clinical trial."
+  },
+  {
+    "id": "FE03-EXT-0089",
+    "split": "validation",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42070635",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42070635/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Independent randomized suicide-focused intervention validation case."
+  },
+  {
+    "id": "FE03-EXT-0090",
+    "split": "validation",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42720936",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42720936/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Independent randomized pembrolizumab-combination validation case."
+  },
+  {
+    "id": "FE03-EXT-0091",
+    "split": "validation",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42704414",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42704414/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Independent randomized photobiomodulation validation case."
+  },
+  {
+    "id": "FE03-EXT-0092",
+    "split": "dev",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42683771",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42683771/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "systematic_review",
+          "meta_analysis"
+        ]
+      }
+    ],
+    "notes": "Systematic review and meta-analysis control."
+  },
+  {
+    "id": "FE03-EXT-0093",
+    "split": "dev",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42715525",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42715525/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "systematic_review"
+        ]
+      }
+    ],
+    "notes": "Systematic review of large-language-model medical report generation."
+  },
+  {
+    "id": "FE03-EXT-0094",
+    "split": "dev",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42475924",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42475924/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "systematic_review"
+        ]
+      }
+    ],
+    "notes": "Independent systematic-review control."
+  },
+  {
+    "id": "FE03-EXT-0095",
+    "split": "dev",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42693371",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42693371/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "systematic_review",
+          "meta_analysis"
+        ]
+      }
+    ],
+    "notes": "Teach-Back systematic review and meta-analysis."
+  },
+  {
+    "id": "FE03-EXT-0096",
+    "split": "validation",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42731627",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42731627/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "systematic_review",
+          "meta_analysis"
+        ]
+      }
+    ],
+    "notes": "Antimicrobial-stewardship systematic review and meta-analysis validation case."
+  },
+  {
+    "id": "FE03-EXT-0097",
+    "split": "dev",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41824279",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41824279/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "phase_1",
+          "clinical_trial"
+        ]
+      }
+    ],
+    "notes": "First-in-human phase I oncology study; efficacy signals remain preliminary."
+  },
+  {
+    "id": "FE03-EXT-0098",
+    "split": "dev",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40493042",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40493042/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "phase_1",
+          "clinical_trial"
+        ]
+      }
+    ],
+    "notes": "Magnetic flexible endoscope first-in-human phase I trial."
+  },
+  {
+    "id": "FE03-EXT-0099",
+    "split": "dev",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41776715",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41776715/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "phase_1",
+          "clinical_trial"
+        ]
+      }
+    ],
+    "notes": "First-in-human phase I/1b vaccine study."
+  },
+  {
+    "id": "FE03-EXT-0100",
+    "split": "dev",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42259602",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42259602/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "phase_1",
+          "clinical_trial"
+        ]
+      }
+    ],
+    "notes": "First-in-human phase I alomfilimab study."
+  },
+  {
+    "id": "FE03-EXT-0101",
+    "split": "dev",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42324886",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42324886/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "phase_1",
+          "randomized"
+        ]
+      }
+    ],
+    "notes": "First-in-human randomized phase I pharmacology study."
+  },
+  {
+    "id": "FE03-EXT-0102",
+    "split": "validation",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42030931",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42030931/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "phase_1",
+          "clinical_trial"
+        ]
+      }
+    ],
+    "notes": "Independent first-in-human phase I JYP0322 validation case."
+  },
+  {
+    "id": "FE03-EXT-0103",
+    "split": "validation",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42245647",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42245647/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "phase_1",
+          "clinical_trial"
+        ]
+      }
+    ],
+    "notes": "Independent first-in-human NAVIgATE phase I validation case."
+  },
+  {
+    "id": "FE03-EXT-0104",
+    "split": "dev",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42251040",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42251040/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "mice",
+          "lifespan",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Mouse longevity and healthspan study; no human efficacy extrapolation."
+  },
+  {
+    "id": "FE03-EXT-0105",
+    "split": "dev",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41253741",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41253741/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "mice",
+          "lifespan",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Mouse lifespan-extension study."
+  },
+  {
+    "id": "FE03-EXT-0106",
+    "split": "dev",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41826362",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41826362/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "mice",
+          "lifespan",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Mouse mitochondrial-deficiency lifespan intervention study."
+  },
+  {
+    "id": "FE03-EXT-0107",
+    "split": "dev",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42572248",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42572248/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "mice",
+          "lifespan",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Progeroid mouse lifespan intervention study."
+  },
+  {
+    "id": "FE03-EXT-0108",
+    "split": "validation",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42001278",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42001278/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "rats",
+          "randomized_animal_trial",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Randomized dietary intervention in rats; validation animal-only case."
+  },
+  {
+    "id": "FE03-EXT-0109",
+    "split": "validation",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42363413",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42363413/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "mice",
+          "lifespan",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Mouse frailty/lifespan validation case."
+  },
+  {
+    "id": "FE03-EXT-0110",
+    "split": "dev",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT06041516",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT06041516",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "interventional",
+          "phase_1",
+          "first_in_human",
+          "official_registry"
+        ]
+      }
+    ],
+    "notes": "Official first-in-human phase I ADCT-701 registry record."
+  },
+  {
+    "id": "FE03-EXT-0111",
+    "split": "dev",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT07600476",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT07600476",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "interventional",
+          "phase_1",
+          "first_in_human",
+          "official_registry"
+        ]
+      }
+    ],
+    "notes": "Official first-in-human phase I KUP-101A registry record."
+  },
+  {
+    "id": "FE03-EXT-0112",
+    "split": "dev",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT05647122",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT05647122",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "interventional",
+          "phase_1",
+          "first_in_human",
+          "official_registry"
+        ]
+      }
+    ],
+    "notes": "Official first-in-human phase I AZD9592 registry record."
+  },
+  {
+    "id": "FE03-EXT-0113",
+    "split": "dev",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT07085091",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT07085091",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "interventional",
+          "phase_1",
+          "first_in_human",
+          "official_registry"
+        ]
+      }
+    ],
+    "notes": "Official first-in-human phase I ALX2004 registry record."
+  },
+  {
+    "id": "FE03-EXT-0114",
+    "split": "validation",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT06809114",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT06809114",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "interventional",
+          "phase_1",
+          "first_in_human",
+          "official_registry"
+        ]
+      }
+    ],
+    "notes": "Independent first-in-human phase I AT03-65 registry validation case."
+  },
+  {
+    "id": "FE03-EXT-0115",
+    "split": "validation",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT06402201",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT06402201",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "interventional",
+          "phase_1",
+          "first_in_human",
+          "official_registry"
+        ]
+      }
+    ],
+    "notes": "Independent first-in-human phase I CDR404 registry validation case."
   }
 ]
