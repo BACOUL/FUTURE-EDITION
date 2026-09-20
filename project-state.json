@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.10.0",
+  "authority_version": "0.11.0",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -345,7 +345,24 @@
     "fe06r_gate_agent_native_minimum": 95,
     "fe06r_reference_home_proof_scope": "technical_reference_home_pre_gate_v1",
     "fe06r_r1_requires_gate_v1_reevaluation": true,
-    "fe06r_agent_native_contract_frozen": true
+    "fe06r_agent_native_contract_frozen": true,
+    "fe06r_design_system_document": "docs/DESIGN-SYSTEM-VISION.md",
+    "fe06r_information_architecture_document": "docs/INFORMATION-ARCHITECTURE.md",
+    "fe06r_design_system_v1_frozen": true,
+    "fe06r_information_architecture_v1_frozen": true,
+    "fe06r_signature_primitives": [
+      "State Plate",
+      "Delta",
+      "Evidence Spine",
+      "Timeglass",
+      "Depth Lens",
+      "Contradiction Split",
+      "Watch Horizon",
+      "Correction Trail",
+      "Agent Dock"
+    ],
+    "fe06r_r1_rebuild_required_under_design_v1": true,
+    "fe06r_design_recognition_test_required": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -430,6 +447,11 @@
     "verdict": "BLOCKED",
     "required": [
       "reevaluate R1 Home under FE06R-GATE v1",
+      "pass 5-person design recognition test defined in DESIGN-SYSTEM-VISION v1",
+      "demonstrate at least three proprietary Future Edition primitives across R1-R4",
+      "implement Evidence Spine in R2 reference Article",
+      "implement Delta and State Plate before rebuilding R1",
+      "build global desktop/mobile navigation from INFORMATION-ARCHITECTURE v1",
       "build and validate one complete Advancement/Article page",
       "build and validate one complete Observatory page",
       "rebuild Methodology to expose the real evidence/change/temporal pipeline",
