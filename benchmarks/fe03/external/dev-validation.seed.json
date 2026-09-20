@@ -1304,5 +1304,468 @@
       }
     ],
     "notes": "Official operational rollout following a large NHS workforce trial; deployment evidence is kept distinct from clinical-efficacy evidence."
+  },
+  {
+    "id": "FE03-EXT-0039",
+    "split": "dev",
+    "case_family": "active_peer_reviewed",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41878723",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41878723/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "journal_article",
+          "randomized_controlled_trial",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Current peer-reviewed randomized human trial used as an active-publication control."
+  },
+  {
+    "id": "FE03-EXT-0040",
+    "split": "dev",
+    "case_family": "controlled_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42693883",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42693883/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "double_blind",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Recent randomized clinical trial with no significant difference in the primary recovery outcome."
+  },
+  {
+    "id": "FE03-EXT-0041",
+    "split": "dev",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42008777",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42008777/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "clinical_trial_phase_1",
+          "first_in_human",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "First-in-human phase I dose-expansion evidence; antitumor activity remains preliminary."
+  },
+  {
+    "id": "FE03-EXT-0042",
+    "split": "dev",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "38395198",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38395198/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "systematic_review",
+          "meta_analysis",
+          "humans"
+        ]
+      }
+    ],
+    "notes": "Systematic review and meta-analysis in older adults."
+  },
+  {
+    "id": "FE03-EXT-0043",
+    "split": "dev",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42474306",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42474306/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "animals",
+          "mice",
+          "lifespan",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Mouse lifespan study; must not be promoted to human longevity efficacy."
+  },
+  {
+    "id": "FE03-EXT-0044",
+    "split": "dev",
+    "case_family": "negative_result",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41843349",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41843349/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "mice",
+          "negative_lifespan_result",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Mouse intervention study reporting that none of the tested compounds significantly increased lifespan."
+  },
+  {
+    "id": "FE03-EXT-0045",
+    "split": "dev",
+    "case_family": "expression_of_concern",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "37125590",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "expression_of_concern",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37125590/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "original_publication",
+          "ExpressionOfConcernIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41223024/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "expression_of_concern",
+          "ExpressionOfConcernFor",
+          "PMID_37125590"
+        ]
+      }
+    ],
+    "notes": "Original severe-COPD publication is explicitly covered by a PubMed expression-of-concern notice."
+  },
+  {
+    "id": "FE03-EXT-0046",
+    "split": "dev",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42205114",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42205114/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42614903/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "published_erratum",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Randomized trial with a linked 2026 correction; corrected status must not collapse to ordinary active."
+  },
+  {
+    "id": "FE03-EXT-0047",
+    "split": "dev",
+    "case_family": "trial_registry",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT06874335",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT06874335",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "interventional",
+          "phase_1",
+          "first_in_human",
+          "recruiting"
+        ]
+      }
+    ],
+    "notes": "Current first-in-human phase I registry record; registration is not confirmatory efficacy evidence."
+  },
+  {
+    "id": "FE03-EXT-0048",
+    "split": "validation",
+    "case_family": "negative_result",
+    "candidate": {
+      "signal_kind": "nct",
+      "raw_value": "NCT02717442",
+      "origin": "clinicaltrials"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT02717442?tab=results",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized",
+          "results_posted",
+          "terminated",
+          "no_statistically_significant_difference"
+        ]
+      }
+    ],
+    "notes": "Official registry states the program was terminated after a phase III study showed no significant primary or secondary endpoint differences."
+  },
+  {
+    "id": "FE03-EXT-0049",
+    "split": "validation",
+    "case_family": "early_human",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41945490",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "early_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41945490/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "first_in_human",
+          "phase_1",
+          "human_study"
+        ]
+      }
+    ],
+    "notes": "Independent first-in-human phase I validation case."
+  },
+  {
+    "id": "FE03-EXT-0050",
+    "split": "validation",
+    "case_family": "animal_only",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41785851",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41785851/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "mice",
+          "mouse_lifespan",
+          "preclinical_scope"
+        ]
+      }
+    ],
+    "notes": "Mouse-only longevity intervention; human efficacy extrapolation is prohibited."
+  },
+  {
+    "id": "FE03-EXT-0051",
+    "split": "validation",
+    "case_family": "systematic_review",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "25201357",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "replicated_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25201357/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "systematic_review",
+          "humans"
+        ]
+      }
+    ],
+    "notes": "Independent systematic-review validation control."
+  },
+  {
+    "id": "FE03-EXT-0052",
+    "split": "validation",
+    "case_family": "expression_of_concern",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41790886",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "expression_of_concern",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41790886/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "original_publication",
+          "ExpressionOfConcernIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42490459/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "expression_of_concern",
+          "ExpressionOfConcernFor",
+          "PMID_41790886"
+        ]
+      }
+    ],
+    "notes": "Independent non-biomedical expression-of-concern case checks status handling outside clinical subject matter."
   }
 ]
