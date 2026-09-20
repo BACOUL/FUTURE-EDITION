@@ -1,7 +1,7 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.6.0",
-  "current_stage": "FE-05",
+  "authority_version": "0.7.0",
+  "current_stage": "FE-06",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
     "FE-00B": "PROVISIONAL_COMPLETE",
@@ -9,7 +9,7 @@
     "FE-02": "PROVED",
     "FE-03": "PROVED",
     "FE-04": "PROVED",
-    "FE-05": "NOT_STARTED",
+    "FE-05": "PROVED",
     "FE-06": "NOT_STARTED",
     "FE-07": "NOT_STARTED",
     "FE-08": "NOT_STARTED",
@@ -39,7 +39,7 @@
     "launch_questions": 10,
     "milestones": 51,
     "scientific_states_assessed": 0,
-    "validated_events": 0,
+    "validated_events": 50,
     "core_collections_initialized": true,
     "provenance_policy_defined": true,
     "monetization_policy_defined": true,
@@ -47,8 +47,8 @@
     "zero_dependency_build": true,
     "launch_routes_generated": 14,
     "future_graph_schema_version": "0.5.0",
-    "future_graph_nodes": 61,
-    "future_graph_edges": 51,
+    "future_graph_nodes": 354,
+    "future_graph_edges": 451,
     "temporal_assessments": true,
     "canonical_sources": true,
     "review_ledger": true,
@@ -275,7 +275,21 @@
     "fe04_classification_cases": 7,
     "fe04_negative_cases": 8,
     "fe04_graph_content_hash": "cab08f751ba8f255840a3e1bbeb6378ff5f894de0ef65ad4436d984e5202b4b2",
-    "fe04_gate_passed": true
+    "fe04_gate_passed": true,
+    "observatories": 10,
+    "foundational_baseline_protocol": "FE05-FOUNDATIONAL-BASELINE-v1",
+    "foundational_verified_events": 50,
+    "foundational_min_verified_events_per_question": 5,
+    "foundational_claims": 50,
+    "foundational_evidence_records": 50,
+    "foundational_sources": 50,
+    "foundational_technologies": 43,
+    "fe05_graph_content_hash": "97cf4f8342b7f2cbd4aea569699327404a3269428b77deae2ba2f869985716ed",
+    "fe05_proof_run_id": 35518608481,
+    "fe05_proof_job_id": 106098682010,
+    "fe05_orphan_relations": 0,
+    "fe05_fabricated_assessments": 0,
+    "fe05_gate_passed": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -325,15 +339,28 @@
         "FE04 independent proof run 35517779527 passed 7 classification cases and 8 negative cases",
         "FE-02 model/state compatibility, graph validation and determinism all passed on clean Node 22 runner"
       ]
+    },
+    {
+      "stage": "FE-05",
+      "verdict": "PROVED",
+      "evidence": [
+        "10 canonical observatories materialized one-to-one from Q-001 through Q-010",
+        "50 distinct verified historical events committed: exactly 5 per observatory",
+        "each event links to technology, milestone relevance, claim, evidence, canonical source and provenance",
+        "foundational corpus contains 50 claims, 50 evidence records, 50 sources and 43 technologies",
+        "FE05 independent proof run 35518608481 passed with orphan_relations=0 and fabricated_assessments=0",
+        "all 51 milestone states remain explicitly unassessed; human review remains required and no approval was fabricated",
+        "Future Graph rebuilt deterministically at 354 nodes / 451 edges with hash 97cf4f8342b7f2cbd4aea569699327404a3269428b77deae2ba2f869985716ed"
+      ]
     }
   ],
   "next_gate": {
-    "stage": "FE-05",
+    "stage": "FE-06",
     "required": [
-      "materialize the ten launch observatories from the 10 canonical questions",
-      "establish a verified historical baseline for each observatory without fabricating events",
-      "reach at least 5 verified events per question",
-      "ensure every event is linked to claims, sources, evidence and any milestone Change it causes"
+      "build the public media surfaces: Home, Aujourd’hui, Questions, advance cards, proof views, radar, timelines and methodology",
+      "derive every public factual statement from Future Graph evidence with no orphan claim",
+      "complete mobile and desktop QA, accessibility checks and performance validation",
+      "keep milestone states unassessed until explicit reviewed Change Engine decisions exist"
     ]
   },
   "known_non_blocking_environment_constraints": [
@@ -342,7 +369,7 @@
       "description": "This execution environment cannot resolve github.com directly. Repository reads/writes use the connected GitHub integration; FE-01 build no longer requires network access."
     }
   ],
-  "next_stage_after_gate": "FE-06",
+  "next_stage_after_gate": "FE-07",
   "github_actions_dependency": false,
   "github_actions_activation_target": "2026-10-01",
   "failed_gates": [
