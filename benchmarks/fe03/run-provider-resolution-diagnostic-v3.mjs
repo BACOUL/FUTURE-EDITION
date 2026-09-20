@@ -55,22 +55,31 @@ const summary={
   total:rows.length,
   by_server:{medrxiv:{cases:0,resolved:0},biorxiv:{cases:0,resolved:0}},
   resolver_reasons:{},
-  direct_http_status:{},
-  direct_exact_match:0,
-  direct_200_without_exact_match:0,
-  resolver_success_after_direct_miss:0
+  encoded_http_status:{},
+  raw_http_status:{},
+  raw_exact_match:0,
+  encoded_exact_match:0,
+  resolver_success_after_encoded_miss:0
 };
 
 for(const row of rows){
   summary.by_server[row.server].cases++;
-  const directUrl="https://api.biorxiv.org/details/"+row.server+"/"+encodeURIComponent(row.doi)+"/na/json";
-  const direct=await request(directUrl,{json:true});
-  const status=String(direct.status);
-  summary.direct_http_status[status]=(summary.direct_http_status[status]??0)+1;
-  const collection=Array.isArray(direct.data?.collection)?direct.data.collection:[];
-  const exact=collection.some(x=>String(x?.doi??"").toLowerCase()===row.doi);
-  if(exact) summary.direct_exact_match++;
-  if(direct.ok&&!exact) summary.direct_200_without_exact_match++;
+  const encodedUrl="https://api.biorxiv.org/details/"+row.server+"/"+encodeURIComponent(row.doi)+"/na/json";
+  const encoded=await request(encodedUrl,{json:true});
+  const encodedStatus=String(encoded.status);
+  summary.encoded_http_status[encodedStatus]=(summary.encoded_http_status[encodedStatus]??0)+1;
+  const encodedCollection=Array.isArray(encoded.data?.collection)?encoded.data.collection:[];
+  const encodedExact=encodedCollection.some(x=>String(x?.doi??"").toLowerCase()===row.doi);
+  if(encodedExact) summary.encoded_exact_match++;
+
+  const rawDoiPath=row.doi.split("/").map(encodeURIComponent).join("/");
+  const rawUrl="https://api.biorxiv.org/details/"+row.server+"/"+rawDoiPath+"/na/json";
+  const raw=await request(rawUrl,{json:true});
+  const rawStatus=String(raw.status);
+  summary.raw_http_status[rawStatus]=(summary.raw_http_status[rawStatus]??0)+1;
+  const rawCollection=Array.isArray(raw.data?.collection)?raw.data.collection:[];
+  const rawExact=rawCollection.some(x=>String(x?.doi??"").toLowerCase()===row.doi);
+  if(rawExact) summary.raw_exact_match++;
 
   const resolved=await resolveCandidate({
     id:"DIAG-"+row.server+"-"+row.doi,
@@ -84,7 +93,7 @@ for(const row of rows){
   summary.resolver_reasons[reason]=(summary.resolver_reasons[reason]??0)+1;
   if(resolved?.status==="resolved"){
     summary.by_server[row.server].resolved++;
-    if(!exact) summary.resolver_success_after_direct_miss++;
+    if(!encodedExact) summary.resolver_success_after_encoded_miss++;
   }
 }
 
@@ -102,9 +111,9 @@ console.log(
   "FE03_PROVIDER_DIAGNOSTIC|cases="+summary.total+
   "|resolved="+summary.resolved_total+
   "|rate="+summary.resolution_rate+
-  "|direct_exact="+summary.direct_exact_match+
-  "|direct_200_without_exact="+summary.direct_200_without_exact_match+
-  "|fallback_success_after_direct_miss="+summary.resolver_success_after_direct_miss
+  "|encoded_exact="+summary.encoded_exact_match+
+  "|raw_exact="+summary.raw_exact_match+
+  "|resolver_success_after_encoded_miss="+summary.resolver_success_after_encoded_miss
 );
 
 if(!summary.pass) process.exit(1);
