@@ -1,1 +1,702 @@
-[]
+[
+  {
+    "id": "CLAIM-050001",
+    "text": "The FDA Purple Book records September 25, 1998 as the original approval date for trastuzumab (Herceptin).",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050001"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1998-09-25T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050002",
+    "text": "The FDA orphan-drug record lists a May 10, 2001 marketing approval for imatinib (Gleevec) in chronic myeloid leukemia.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050002"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2001-05-10T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050003",
+    "text": "The FDA Purple Book records April 29, 2010 as the original approval date for sipuleucel-T (Provenge).",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050003"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2010-04-29T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050004",
+    "text": "FDA records an August 30, 2017 original approval for tisagenlecleucel (Kymriah), a CD19-directed CAR-T therapy.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050004"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2017-08-30T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050005",
+    "text": "On June 29, 2020, FDA approved pembrolizumab for first-line unresectable or metastatic MSI-H/dMMR colorectal cancer based on the randomized KEYNOTE-177 trial.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050005"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2020-06-29T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050006",
+    "text": "A 2009 multi-site mouse study reported that rapamycin started late in life extended lifespan in genetically heterogeneous mice.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050006"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2009-07-08T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050007",
+    "text": "In a progeroid mouse model, inducible clearance of p16Ink4a-positive senescent cells delayed or attenuated several age-associated disorders.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050007"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2011-11-02T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050008",
+    "text": "A 2016 study reported that clearance of p16Ink4a-positive cells extended median lifespan in male and female wild-type mice from two genetic backgrounds.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050008"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2016-02-03T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050009",
+    "text": "In CALERIE participants, about 15% caloric restriction over two years was associated with sustained metabolic adaptation and reduced oxidative-stress markers.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050009"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2018-03-22T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050010",
+    "text": "A CALERIE secondary analysis reported a roughly 2–3% slowing in DunedinPACE under caloric restriction, while other epigenetic age measures did not show significant change.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050010"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-02-09T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050011",
+    "text": "A 2011 case report found that lumbosacral epidural stimulation enabled weight-bearing standing and some intentional lower-limb movement in a person with motor-complete paraplegia.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050011"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2011-06-04T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050012",
+    "text": "A 2018 study reported that targeted spatiotemporal spinal stimulation enabled voluntary control of walking-related movements in participants with chronic spinal cord injury.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050012"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2018-10-31T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050013",
+    "text": "A 2019 report described a tetraplegic participant controlling a four-limb exoskeleton using an implanted brain-machine interface during a 24-month study.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050013"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2019-10-03T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050014",
+    "text": "A 2022 study reported rapid restoration of several trunk and leg motor functions with targeted spinal-cord neuromodulation in participants with complete sensorimotor paralysis.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050014"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-02-07T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050015",
+    "text": "A 2023 brain–spine interface study reported natural control over standing and walking in a participant with chronic tetraplegia, with stable use over one year.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050015"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-05-24T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050016",
+    "text": "FDA's humanitarian-device database records a February 13, 2013 approval decision for the Argus II retinal prosthesis system.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050016"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2013-02-13T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050017",
+    "text": "An open-label follow-up of 18 treated eyes reported medium-to-long-term safety findings and visual-acuity improvement in 10 eyes after hESC-derived retinal pigment epithelium transplantation.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050017"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2014-10-15T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050018",
+    "text": "A randomized phase 3 trial reported improved functional vision on the multi-luminance mobility test after voretigene neparvovec for biallelic RPE65-mediated retinal dystrophy.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050018"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2017-07-14T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050019",
+    "text": "FDA records December 19, 2017 as the original approval date for Luxturna for an inherited retinal-dystrophy indication involving biallelic RPE65 mutations.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050019"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2017-12-19T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050020",
+    "text": "A 2021 case report described partial functional visual recovery in a blind patient after optogenetic therapy combined with engineered goggles.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050020"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2021-05-24T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050021",
+    "text": "The RT-1 preprint reported a single transformer policy trained on more than 130,000 real-robot episodes spanning more than 700 tasks and 13 robots.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050021"
+    ],
+    "confidence": "needs_confirmation",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-12-13T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050022",
+    "text": "The PaLM-E preprint described one embodied multimodal model trained across multiple embodied tasks and robot embodiments while retaining language capabilities.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050022"
+    ],
+    "confidence": "needs_confirmation",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-03-06T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050023",
+    "text": "The RT-2 preprint reported improved robotic generalization and semantic reasoning by co-training robot actions with web-scale vision-language data.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050023"
+    ],
+    "confidence": "needs_confirmation",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-07-28T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050024",
+    "text": "The Open X-Embodiment preprint reported a cross-institution dataset spanning 22 robot embodiments and policies showing positive cross-robot transfer.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050024"
+    ],
+    "confidence": "needs_confirmation",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-10-12T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050025",
+    "text": "GXO and Agility Robotics announced a multi-year agreement on June 27, 2024 for Digit humanoid robots in a live warehouse tote-handling workflow.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050025"
+    ],
+    "confidence": "needs_confirmation",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2024-06-27T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050026",
+    "text": "An August 8, 2021 NIF experiment produced about 1.35 MJ of fusion energy, around 70% of the laser energy delivered to the target.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050026"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2021-08-08T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050027",
+    "text": "The December 5, 2022 NIF shot delivered 2.05 MJ of laser energy to the target and produced about 3.15 MJ of fusion energy.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050027"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-12-05T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050028",
+    "text": "LLNL reports that a July 30, 2023 NIF experiment produced 3.88 MJ from 2.05 MJ of laser energy delivered to the target, repeating ignition with a higher yield.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050028"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-07-30T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050029",
+    "text": "EUROfusion reported a JET pulse releasing 69.26 MJ of fusion energy over six seconds and said the relevant fusion conditions were reproduced in multiple pulses.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050029"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2024-02-08T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050030",
+    "text": "Max Planck IPP reported a 43-second Wendelstein 7-X plasma pulse with a record triple product for long-pulse stellarator operation.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050030"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2025-06-03T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050031",
+    "text": "On May 24, 2019, FDA approved onasemnogene abeparvovec (Zolgensma), an AAV-based gene-replacement therapy for a defined pediatric spinal muscular atrophy population.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050031"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2019-05-24T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050032",
+    "text": "An early clinical report in six patients found dose-dependent reductions in serum transthyretin after one intravenous dose of an in-vivo CRISPR-Cas9 therapy.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050032"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2021-06-26T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050033",
+    "text": "FDA records an August 17, 2022 approval for Zynteglo for patients with beta-thalassemia who require regular red-blood-cell transfusions.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050033"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-08-17T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050034",
+    "text": "FDA records November 22, 2022 as the original approval date for Hemgenix for a defined adult hemophilia B population.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050034"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-11-22T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050035",
+    "text": "FDA records a December 8, 2023 approval for Casgevy in sickle cell disease, the first FDA-approved treatment to use CRISPR-based genome editing.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050035"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-12-08T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050036",
+    "text": "A 2020 study used a neural network to identify halicin as an antibacterial candidate and experimentally validated broad antibacterial activity, including in mouse infection models.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050036"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2020-02-20T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050037",
+    "text": "AlphaTensor discovered matrix-multiplication algorithms with improved operation counts for several matrix sizes relative to previously known algorithms.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050037"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-10-05T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050038",
+    "text": "AlphaDev discovered sorting algorithms that were faster on the evaluated small fixed-size sorting tasks, and resulting routines were incorporated into the LLVM C++ library.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050038"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-06-07T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050039",
+    "text": "The GNoME study reported 2.2 million predicted stable crystal structures and noted hundreds of predicted structures had independently appeared in experimental databases.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050039"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-11-29T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050040",
+    "text": "FunSearch combined a language model with an evaluator to find new cap-set constructions and improved heuristics for an online bin-packing problem.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050040"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-12-14T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050041",
+    "text": "A 2019 study reported a 53-qubit Sycamore random-circuit-sampling experiment completed in about 200 seconds, with a then-estimated much longer runtime for a classical supercomputer.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050041"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2019-10-23T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050042",
+    "text": "A trapped-ion experiment demonstrated fault-tolerant preparation, gates and measurement on an error-corrected logical qubit and showed reduced failure under tested fault scenarios.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050042"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2021-10-04T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050043",
+    "text": "A 2023 surface-code experiment reported that a distance-5 logical qubit modestly outperformed a distance-3 logical qubit, an early demonstration of error suppression with scale.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050043"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-02-22T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050044",
+    "text": "A 2023 study demonstrated a programmable logical processor using reconfigurable neutral-atom arrays, with logical operations and error-detection or correction protocols.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050044"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-12-06T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050045",
+    "text": "Google's surface-code study reported logical error suppression as code distance increased and a distance-7 logical memory with error per cycle below the relevant physical error scale.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050045"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2024-12-09T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050046",
+    "text": "Apollo 8 launched on December 21, 1968 and became the first crewed mission to orbit the Moon.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050046"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1968-12-21T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050047",
+    "text": "Apollo 11 achieved the first crewed lunar landing in July 1969 and returned its crew safely to Earth.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050047"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1969-07-20T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050048",
+    "text": "Apollo 15 landed in July 1971 and used the first crewed Lunar Roving Vehicle, substantially extending the range and duration of lunar surface operations.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050048"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1971-07-30T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050049",
+    "text": "Apollo 17 landed on the Moon in December 1972 and completed the final Apollo lunar-surface expedition, with an extended surface stay and multiple extravehicular traverses.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050049"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1972-12-11T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "CLAIM-050050",
+    "text": "The arrival of Expedition 1 on November 2, 2000 began continuous human habitation of the International Space Station.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050050"
+    ],
+    "confidence": "confirmed",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2000-11-02T00:00:00Z",
+    "valid_to": null
+  }
+]
