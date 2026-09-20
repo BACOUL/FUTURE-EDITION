@@ -30,6 +30,10 @@ Résolution de source primaire, statut publication, claims, preuves, limites, co
 Home, Aujourd’hui, questions, fiches avancées, preuves, radar, chronologie, méthode.
 **Gate :** QA mobile/desktop, accessibilité, performance, aucune affirmation orpheline.
 
+## FE-06R — Public Media Rebuild
+Reconstruction du produit public à partir du socle FE-06 : Home éditoriale, véritable modèle Avancée/Article, observatoire de référence, méthodologie complète, identité visuelle, distinction actualité/historique et pages de confiance.
+**Gate :** les quatre surfaces de référence (Home, Article, Observatoire, Méthodologie) passent la QA visuelle/éditoriale/scientifique décrite dans `docs/FE06R-PUBLIC-MEDIA-REBUILD.md`, puis généralisation sans casser les preuves FE-01 → FE-06.
+
 ## FE-07 — Editorial Intelligence
 Détection, déduplication, classification, source primaire, brouillon.
 **Gate :** précision mesurée sur benchmark gelé.
