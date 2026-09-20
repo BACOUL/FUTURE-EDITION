@@ -1,0 +1,182 @@
+[
+  {
+    "id": "OBS-001",
+    "question_id": "Q-001",
+    "slug": "guerir-davantage-de-cancers",
+    "title": "Peut-on guérir davantage de cancers ?",
+    "evidence_profile": "medical",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-1998-001001",
+      "EV-2001-001002",
+      "EV-2010-001003",
+      "EV-2017-001004",
+      "EV-2020-001005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-002",
+    "question_id": "Q-002",
+    "slug": "ralentir-le-vieillissement",
+    "title": "Peut-on ralentir le vieillissement biologique ?",
+    "evidence_profile": "medical",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-2009-002001",
+      "EV-2011-002002",
+      "EV-2016-002003",
+      "EV-2018-002004",
+      "EV-2023-002005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-003",
+    "question_id": "Q-003",
+    "slug": "restaurer-mobilite-paralysie",
+    "title": "Peut-on restaurer la mobilité après une paralysie ?",
+    "evidence_profile": "medical",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-2011-003001",
+      "EV-2018-003002",
+      "EV-2019-003003",
+      "EV-2022-003004",
+      "EV-2023-003005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-004",
+    "question_id": "Q-004",
+    "slug": "restaurer-la-vue",
+    "title": "Peut-on restaurer la vue ?",
+    "evidence_profile": "medical",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-2013-004001",
+      "EV-2014-004002",
+      "EV-2017-004003",
+      "EV-2017-004004",
+      "EV-2021-004005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-005",
+    "question_id": "Q-005",
+    "slug": "robot-reellement-polyvalent",
+    "title": "Peut-on créer un robot réellement polyvalent ?",
+    "evidence_profile": "technology",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-2022-005001",
+      "EV-2023-005002",
+      "EV-2023-005003",
+      "EV-2023-005004",
+      "EV-2024-005005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-006",
+    "question_id": "Q-006",
+    "slug": "energie-de-fusion-commerciale",
+    "title": "Peut-on produire commercialement de l’énergie par fusion ?",
+    "evidence_profile": "technology",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-2021-006001",
+      "EV-2022-006002",
+      "EV-2023-006003",
+      "EV-2024-006004",
+      "EV-2025-006005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-007",
+    "question_id": "Q-007",
+    "slug": "corriger-maladies-genetiques",
+    "title": "Peut-on corriger durablement les maladies génétiques ?",
+    "evidence_profile": "medical",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-2019-007001",
+      "EV-2021-007002",
+      "EV-2022-007003",
+      "EV-2022-007004",
+      "EV-2023-007005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-008",
+    "question_id": "Q-008",
+    "slug": "ia-decouvertes-scientifiques",
+    "title": "Une IA peut-elle faire des découvertes scientifiques originales ?",
+    "evidence_profile": "fundamental_science",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-2020-008001",
+      "EV-2022-008002",
+      "EV-2023-008003",
+      "EV-2023-008004",
+      "EV-2023-008005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-009",
+    "question_id": "Q-009",
+    "slug": "ordinateur-quantique-utile",
+    "title": "Peut-on construire un ordinateur quantique réellement utile ?",
+    "evidence_profile": "technology",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-2019-009001",
+      "EV-2021-009002",
+      "EV-2023-009003",
+      "EV-2023-009004",
+      "EV-2024-009005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  },
+  {
+    "id": "OBS-010",
+    "question_id": "Q-010",
+    "slug": "presence-humaine-hors-terre",
+    "title": "Peut-on établir une présence humaine durable hors de la Terre ?",
+    "evidence_profile": "technology",
+    "status": "active",
+    "baseline_cutoff": "2026-09-20",
+    "minimum_verified_events": 5,
+    "foundational_event_ids": [
+      "EV-1968-010001",
+      "EV-1969-010002",
+      "EV-1971-010003",
+      "EV-1972-010004",
+      "EV-2000-010005"
+    ],
+    "observed_at": "2026-09-20T14:45:00Z"
+  }
+]
