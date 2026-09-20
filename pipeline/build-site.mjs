@@ -158,7 +158,7 @@ const layout = (title, description, body, { active = "" } = {}) => `<!doctype ht
 <a class="${active === "ask" ? "active" : ""}" href="/ask/"><span>Ask</span></a>
 <a class="${active === "search" ? "active" : ""}" href="/recherche/"><span>Search</span></a>
 </nav>
-<footer><div class="shell footer-grid"><div><div class="brand footer-brand"><span class="brand-mark">F</span><span>FUTURE<br><b>EDITION</b></span></div><p>Un média pour voir comment l’état des connaissances change.</p></div><div><strong>Explorer</strong><a href="/aujourdhui/">Aujourd’hui</a><a href="/questions/">Observatoires</a><a href="/reality-check/">Reality Check</a><a href="/recherche/">Recherche</a></div><div><strong>Confiance</strong><a href="/methodologie/">Méthodologie</a><a href="/ask/">Ask Future Edition</a><p>50 événements fondateurs sourcés.<br>51 jalons encore non évalués.</p></div></div></footer>
+<footer><div class="shell footer-grid"><div><div class="brand footer-brand"><span class="brand-mark">F</span><span>FUTURE<br><b>EDITION</b></span></div><p>Un média pour voir comment l’état des connaissances change.</p><a href="/a-propos/">À propos</a></div><div><strong>Explorer</strong><a href="/aujourdhui/">Aujourd’hui</a><a href="/questions/">Observatoires</a><a href="/reality-check/">Reality Check</a><a href="/recherche/">Recherche</a><a href="/ask/">Ask Future Edition</a></div><div><strong>Confiance</strong><a href="/methodologie/">Méthodologie</a><a href="/sources/">Sources</a><a href="/corrections/">Corrections</a><a href="/responsabilite-editoriale/">Responsabilité éditoriale</a><a href="/signaler-une-erreur/">Signaler une erreur</a><a href="/acces-machine/">Accès machine</a><a href="/confidentialite/">Confidentialité</a><a href="/mentions-legales/">Mentions légales</a><a href="/contact/">Contact</a></div></div></footer>
 </body></html>`;
 
 const qEvents = (qid) => events.filter((e) => e.question_ids.includes(qid)).sort((a, b) => b.event_date.localeCompare(a.event_date));
@@ -931,6 +931,74 @@ const machineMethodDir = new URL("machine/", out);
 await mkdir(machineMethodDir, { recursive: true });
 await writeFile(new URL("methodologie.json", machineMethodDir), JSON.stringify(methodologyMachine, null, 2) + "\n");
 
+
+const trustPage = (kicker, title, intro, content) => `
+<section class="trust-hero shell"><p class="r1-kicker">${kicker}</p><h1>${title}</h1><p>${intro}</p></section>
+<section class="shell trust-body">${content}</section>`;
+
+await writePage("/a-propos", layout(
+  "À propos — Future Edition",
+  "Pourquoi Future Edition existe et ce qu’il cherche à construire.",
+  trustPage("À PROPOS","Un média construit autour du changement de connaissance.","Future Edition veut rendre visibles l’état, la preuve, le temps, les limites et les corrections — pour les lecteurs comme pour les agents IA.",
+    `<div class="trust-grid"><article><span>MISSION</span><h2>Voir ce qui change réellement.</h2><p>Nous suivons des questions durables plutôt qu’un volume quotidien d’articles. Un événement n’est publié comme avancée que s’il apporte un delta informationnel défendable.</p></article><article><span>PRINCIPE</span><h2>Une seule vérité canonique.</h2><p>Article, observatoire, Reality Check et représentation machine sont des vues du même Future Graph versionné.</p></article><article><span>STATUT</span><h2>Produit encore en pré-lancement.</h2><p>FE-06R est en validation. Les gates de marque et de conformité juridique restent ouverts avant lancement public définitif.</p></article></div>`)
+));
+
+await writePage("/sources", layout(
+  "Sources — Future Edition",
+  "Hiérarchie, provenance et usage des sources chez Future Edition.",
+  trustPage("SOURCES","La source n’est pas un lien de décoration.","Chaque claim important doit pouvoir remonter à une origine, une preuve et un locator vérifiable.",
+    `<div class="trust-stack"><article><span>A</span><h2>Primaire forte</h2><p>Publication originale, registre, autorité réglementaire, base officielle, rapport technique officiel ou données expérimentales publiées.</p></article><article><span>B</span><h2>Secondaire spécialisée</h2><p>Revue scientifique, média spécialisé sérieux ou expertise identifiable.</p></article><article><span>C</span><h2>Communication</h2><p>Communiqué institutionnel, entreprise, université, conférence ou présentation.</p></article><article><span>D</span><h2>Signal</h2><p>Réseau social, vidéo virale, forum, agrégateur ou contenu IA : peut déclencher une enquête, jamais valider seul une affirmation.</p></article></div><div class="trust-callout"><strong>Règle de provenance</strong><p>10 reprises de la même origine = 1 origine, pas 10 confirmations.</p><a href="/methodologie/">Voir la méthodologie complète ${icon("arrow")}</a></div>`)
+));
+
+await writePage("/corrections", layout(
+  "Corrections — Future Edition",
+  "Politique de correction, rétractation et supersession de Future Edition.",
+  trustPage("CORRECTION TRAIL","Corriger sans effacer.","Une correction substantielle doit rester visible, datée et reliée à l’état qu’elle remplace.",
+    `<div class="trust-grid"><article><span>01</span><h2>Conserver l’ancien état</h2><p>Une version corrigée ne supprime pas silencieusement la version antérieure.</p></article><article><span>02</span><h2>Expliquer le changement</h2><p>Date, raison, champs affectés, source nouvelle et relation corrected / superseded / retracted sont conservés.</p></article><article><span>03</span><h2>Propager</h2><p>L’état corrigé doit converger dans l’article, l’observatoire et les représentations machine.</p></article></div><div class="trust-status"><span>REGISTRE PUBLIC</span><strong>Aucune correction publique n’est actuellement enregistrée dans ce prototype de référence.</strong></div>`)
+));
+
+await writePage("/responsabilite-editoriale", layout(
+  "Responsabilité éditoriale — Future Edition",
+  "Gouvernance et séparation des responsabilités éditoriales.",
+  trustPage("RESPONSABILITÉ ÉDITORIALE","La conclusion scientifique ne se vend pas.","La gouvernance sépare le gate éditorial de toute influence commerciale et exige une revue humaine pour les changements d’état sensibles.",
+    `<div class="trust-grid"><article><span>EDITORIAL GATE</span><h2>Revue humaine traçable.</h2><p>Les changements d’état scientifiques sensibles exigent une décision humaine enregistrée. L’IA peut proposer ; elle ne promeut pas seule un jalon.</p></article><article><span>DÉSACCORD</span><h2>Pas de faux consensus.</h2><p>Lorsque deux sources sérieuses divergent, Future Edition conserve les deux positions, localise la divergence et peut utiliser le statut contested.</p></article><article><span>COMMERCIAL</span><h2>Aucun droit sur les conclusions.</h2><p>La couche commerciale ne peut pas modifier une conclusion scientifique pour améliorer une promesse produit.</p></article></div><div class="trust-blocker"><span>PRÉ-LANCEMENT</span><p>L’identité et les mentions du directeur de publication restent à finaliser avant lancement public. Ce point demeure un gate ouvert et n’est pas simulé.</p></div>`)
+));
+
+await writePage("/signaler-une-erreur", layout(
+  "Signaler une erreur — Future Edition",
+  "Comment signaler une erreur ou demander une correction.",
+  trustPage("SIGNALER UNE ERREUR","Une contestation doit devenir un objet traçable.","Toute erreur signalée doit pouvoir être horodatée, reliée à l’objet concerné et examinée avec les sources fournies.",
+    `<div class="trust-grid"><article><span>À FOURNIR</span><h2>L’objet précis.</h2><p>URL ou ID Future Edition, passage concerné, nature de l’erreur et, si possible, source contradictoire ou correctrice.</p></article><article><span>TRAITEMENT</span><h2>Candidate → revue → correction éventuelle.</h2><p>Un signal externe, humain ou agent, n’altère jamais directement le Future Graph canonique.</p></article><article><span>CANAL</span><h2>Canal dédié avant lancement.</h2><p>L’adresse ou le formulaire public de signalement n’est pas encore gelé. Aucun faux formulaire n’est affiché.</p></article></div>`)
+));
+
+await writePage("/contact", layout(
+  "Contact — Future Edition",
+  "État du canal de contact Future Edition avant lancement.",
+  trustPage("CONTACT","Un canal public sera ouvert avant lancement.","Nous ne publions pas une adresse personnelle ou un formulaire inactif pour donner l’apparence d’un service déjà ouvert.",
+    `<div class="trust-status"><span>STATUT</span><strong>Canal public de contact : à configurer avant lancement.</strong><p>Les demandes éditoriales, droits de réponse, signalements d’erreur et demandes professionnelles devront être séparés ou catégorisés.</p></div>`)
+));
+
+await writePage("/mentions-legales", layout(
+  "Mentions légales — Future Edition",
+  "État pré-lancement des mentions légales Future Edition.",
+  trustPage("MENTIONS LÉGALES","Cette page est volontairement incomplète avant le lancement.","L’identité éditoriale et les informations légales finales doivent être validées avant mise en production publique. Future Edition ne fabrique pas de coordonnées juridiques provisoires.",
+    `<div class="trust-blocker"><span>GATE OUVERT</span><h2>Revue juridique finale requise.</h2><p>Éditeur, directeur de publication, hébergeur applicable, coordonnées et autres mentions requises seront ajoutés après validation du cadre de lancement.</p></div><div class="trust-callout"><strong>Pourquoi cette page existe déjà</strong><p>Parce que l’absence de décision juridique doit être visible dans le produit et le repository, plutôt que cachée jusqu’au dernier moment.</p></div>`)
+));
+
+await writePage("/confidentialite", layout(
+  "Confidentialité — Future Edition",
+  "Principes privacy-first de Future Edition.",
+  trustPage("CONFIDENTIALITÉ","Mesurer le média sans surveiller ses lecteurs.","La version initiale vise une collecte minimale et évite de dépendre de publicité comportementale, fingerprinting ou suivi intersite.",
+    `<div class="trust-grid"><article><span>V1</span><h2>Pas de compte obligatoire.</h2><p>La lecture du média public ne doit pas exiger une identité utilisateur.</p></article><article><span>MESURE</span><h2>Analytics limités.</h2><p>Si une mesure d’audience est activée, elle doit rester strictement limitée à la compréhension du fonctionnement et de l’usage du site.</p></article><article><span>ASK</span><h2>Minimisation conversationnelle.</h2><p>Ask Future Edition ne doit pas conserver par défaut plus de données conversationnelles que nécessaire au fonctionnement et à la sécurité.</p></article></div><div class="trust-blocker"><span>PRÉ-LANCEMENT</span><p>La politique finale sera alignée sur les fonctions réellement activées au lancement et fera l’objet d’une revue de conformité dédiée.</p></div>`)
+));
+
+await writePage("/acces-machine", layout(
+  "Accès machine — Future Edition",
+  "Contrat d’accès machine et principes agent-native de Future Edition.",
+  trustPage("MACHINE ACCESS","Les agents ne doivent pas scraper la vérité dans la prose.","Les représentations machine exposent les mêmes objets canoniques que le média humain : IDs, as_of, claims, preuves, sources, locators, limites et corrections.",
+    `<div class="trust-grid"><article><span>IDENTITÉ</span><h2>IDs stables.</h2><p>Un slug ou une traduction peut changer sans créer une nouvelle vérité scientifique.</p></article><article><span>TEMPS</span><h2>as_of explicite.</h2><p>Un agent doit pouvoir savoir à quelle date un état est valable et détecter qu’une ancienne citation a été corrigée.</p></article><article><span>ABSTENTION</span><h2>Pas de réponse sans preuve suffisante.</h2><p>Le benchmark FE-06R exige zéro fausse réponse affirmative et zéro citation inventée sur les cas négatifs gelés.</p></article></div><div class="trust-machine-links"><a href="/machine/avance/nif-ignition-fusion-2022.json">Article structuré ${icon("arrow")}</a><a href="/machine/observatoires/energie-de-fusion-commerciale.json">Observatoire structuré ${icon("arrow")}</a><a href="/machine/methodologie.json">Contrat méthodologique ${icon("arrow")}</a></div><div class="trust-blocker"><span>LICENCE</span><p>Les droits de crawl, stockage, citation, redistribution et usages commerciaux ne sont pas encore ouverts globalement. Une politique de licence explicite doit être gelée avant réutilisation tierce importante.</p></div>`)
+));
+
 await mkdir(new URL("assets/", out), { recursive: true });
 await writeFile(new URL("assets/styles.css", out), `
 :root{--bg:#060b10;--panel:#0c131a;--line:#1d2a34;--text:#f4f7f9;--muted:#9eabb5;--cyan:#72e7ff;--lime:#baf36a;--paper:#edf2f3;--ink:#071017}
@@ -1006,6 +1074,11 @@ await writeFile(new URL("assets/styles.css", out), `
 @media(max-width:1050px){.method2-hero-grid,.method2-heading,.method2-state-grid,.method2-review-grid,.method2-machine-grid,.method2-agent-contract{grid-template-columns:1fr}.method2-source-grid{grid-template-columns:1fr 1fr}.method2-independence{grid-template-columns:1fr}.method2-correction-flow{grid-template-columns:1fr}.method2-correction-flow>i{transform:rotate(90deg);height:45px}.method2-agent-contract a{justify-self:start}}
 @media(max-width:700px){.method2-hero{padding-top:50px}.method2-hero h1{font-size:clamp(3.5rem,16vw,5.8rem)}.method2-machine-status>strong{font-size:5.5rem}.method2-index{top:70px;overflow-x:auto;margin-left:0;margin-right:0;width:100%;padding-left:14px}.method2-index a{white-space:nowrap;padding:12px 10px}.method2-pipeline,.method2-sources,.method2-evidence,.method2-state,.method2-corrections,.method2-machine{padding:68px 0}.method2-flow article{grid-template-columns:42px 1fr}.method2-flow article>div:last-child{grid-column:2}.method2-source-grid,.method2-ladders{grid-template-columns:1fr}.method2-source-grid article{min-height:auto}.method2-independence blockquote{font-size:2.2rem}.method2-review{padding:62px 0}.method2-correction-flow>div{min-height:auto}.method2-machine-stack>div{grid-template-columns:1fr}.method2-abstention{padding:70px 0}.method2-agent-contract{padding:58px 0}}
 
+/* FE-06R trust surfaces */
+.trust-hero{padding:95px 0 70px;border-bottom:1px solid #263943}.trust-hero h1{font-size:clamp(3.7rem,7.4vw,7.6rem);line-height:.84;letter-spacing:-.07em;margin:0;max-width:1050px}.trust-hero>p:last-child{color:#9badb5;font-size:1.15rem;line-height:1.7;max-width:780px;margin-top:28px}.trust-body{padding:75px 0 110px}.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #2b414a;border-left:1px solid #2b414a}.trust-grid article{padding:30px;border-right:1px solid #2b414a;border-bottom:1px solid #2b414a;min-height:280px}.trust-grid article>span,.trust-stack article>span,.trust-status>span,.trust-blocker>span{font:850 .63rem ui-monospace,monospace;letter-spacing:.11em;color:#d9ff74}.trust-grid h2,.trust-stack h2{font-size:2rem;line-height:1.02;letter-spacing:-.04em;margin:24px 0 15px}.trust-grid p,.trust-stack p,.trust-status p,.trust-blocker p{color:#8fa3ac;line-height:1.7}.trust-stack{border-top:1px solid #2b414a}.trust-stack article{display:grid;grid-template-columns:70px 250px 1fr;padding:24px 0;border-bottom:1px solid #2b414a;gap:25px;align-items:start}.trust-stack article>span{font-size:2.4rem;line-height:1}.trust-stack h2{margin:0}.trust-stack p{margin:0}.trust-callout,.trust-status,.trust-blocker{margin-top:50px;border:1px solid #304751;padding:28px;background:#0c181e}.trust-callout strong{font-size:1.5rem}.trust-callout p{color:#8fa3ac}.trust-callout a,.trust-machine-links a{display:inline-flex;align-items:center;gap:7px;color:#bfefff;font-weight:800}.trust-status strong{display:block;font-size:clamp(1.6rem,3vw,3rem);line-height:1.05;margin:20px 0}.trust-blocker{border-color:#67583a;background:#17150f}.trust-machine-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:45px}.trust-machine-links a{border:1px solid #304751;padding:12px 15px}
+@media(max-width:900px){.trust-grid{grid-template-columns:1fr}.trust-stack article{grid-template-columns:50px 1fr}.trust-stack article p{grid-column:2}}
+@media(max-width:700px){.trust-hero{padding:65px 0 48px}.trust-hero h1{font-size:clamp(3.4rem,16vw,5.6rem)}.trust-body{padding:55px 0 80px}.trust-grid article{min-height:auto}.trust-stack article{grid-template-columns:40px 1fr}.trust-machine-links{display:grid}.trust-machine-links a{justify-content:space-between}}
+
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 `);
 
@@ -1013,7 +1086,8 @@ await mkdir(new URL("data/", out), { recursive: true });
 await writeFile(new URL("data/future-graph.json", out), JSON.stringify(graph, null, 2) + "\n");
 
 const urls = [
-  "/", "/aujourdhui/", "/questions/", "/methodologie/", "/machine/methodologie.json", "/reality-check/", "/reality-check/ignition-nest-pas-electricite-commerciale/", "/ask/", "/recherche/",
+  "/", "/aujourdhui/", "/questions/", "/methodologie/", "/machine/methodologie.json", "/reality-check/",
+  "/a-propos/", "/sources/", "/corrections/", "/responsabilite-editoriale/", "/signaler-une-erreur/", "/contact/", "/mentions-legales/", "/confidentialite/", "/acces-machine/", "/reality-check/ignition-nest-pas-electricite-commerciale/", "/ask/", "/recherche/",
   ...questions.map((q) => "/questions/" + q.slug + "/"),
   ...editorialObs.map((o) => "/machine/observatoires/" + o.slug + ".json"),
   ...articles.map((a) => "/avance/" + a.slug + "/"),
