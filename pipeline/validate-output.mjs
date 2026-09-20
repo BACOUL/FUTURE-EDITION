@@ -25,6 +25,15 @@ const required = [
   "dist/reality-check/ignition-nest-pas-electricite-commerciale/index.html",
   "dist/ask/index.html",
   "dist/recherche/index.html",
+  "dist/a-propos/index.html",
+  "dist/sources/index.html",
+  "dist/corrections/index.html",
+  "dist/responsabilite-editoriale/index.html",
+  "dist/signaler-une-erreur/index.html",
+  "dist/contact/index.html",
+  "dist/mentions-legales/index.html",
+  "dist/confidentialite/index.html",
+  "dist/acces-machine/index.html",
   ...articles.map((a) => `dist/avance/${a.slug}/index.html`),
   ...articles.map((a) => `dist/machine/avance/${a.slug}.json`),
   ...editorialObs.map((o) => `dist/machine/observatoires/${o.slug}.json`),
@@ -334,6 +343,31 @@ for (const q of questions) {
   }
 }
 
+
+const trustPages = [
+  ["dist/a-propos/index.html", ["À PROPOS","Une seule vérité canonique.","pré-lancement"]],
+  ["dist/sources/index.html", ["SOURCES","Primaire forte","10 reprises d’une même origine = 1 origine"]],
+  ["dist/corrections/index.html", ["CORRECTION TRAIL","Corriger sans effacer.","Aucune correction publique"]],
+  ["dist/responsabilite-editoriale/index.html", ["RESPONSABILITÉ ÉDITORIALE","Pas de faux consensus.","PRÉ-LANCEMENT"]],
+  ["dist/signaler-une-erreur/index.html", ["SIGNALER UNE ERREUR","Candidate → revue → correction éventuelle.","Canal dédié avant lancement."]],
+  ["dist/contact/index.html", ["CONTACT","Canal public de contact : à configurer avant lancement."]],
+  ["dist/mentions-legales/index.html", ["MENTIONS LÉGALES","GATE OUVERT","Revue juridique finale requise."]],
+  ["dist/confidentialite/index.html", ["CONFIDENTIALITÉ","Pas de compte obligatoire.","Minimisation conversationnelle."]],
+  ["dist/acces-machine/index.html", ["MACHINE ACCESS","IDs stables.","as_of explicite.","Pas de réponse sans preuve suffisante."]]
+];
+for (const [path, phrases] of trustPages) {
+  const page = htmlByPath.get(path) ?? "";
+  for (const phrase of phrases) if (!page.includes(phrase)) errors.push(`${path}: trust content missing ${phrase}`);
+}
+const footerSource = home;
+for (const href of ["/a-propos/","/sources/","/corrections/","/responsabilite-editoriale/","/signaler-une-erreur/","/acces-machine/","/confidentialite/","/mentions-legales/","/contact/"]) {
+  if (!footerSource.includes(`href="${href}"`)) errors.push(`footer trust link missing: ${href}`);
+}
+const machineAccess = htmlByPath.get("dist/acces-machine/index.html") ?? "";
+for (const href of ["/machine/avance/nif-ignition-fusion-2022.json","/machine/observatoires/energie-de-fusion-commerciale.json","/machine/methodologie.json"]) {
+  if (!machineAccess.includes(`href="${href}"`)) errors.push(`machine access link missing: ${href}`);
+}
+
 for (const event of events) {
   const path = `dist/preuves/${event.id.toLowerCase()}/index.html`;
   const page = htmlByPath.get(path) ?? "";
@@ -377,6 +411,15 @@ const internalRouteSet = new Set([
   "/reality-check/ignition-nest-pas-electricite-commerciale/",
   "/ask/",
   "/recherche/",
+  "/a-propos/",
+  "/sources/",
+  "/corrections/",
+  "/responsabilite-editoriale/",
+  "/signaler-une-erreur/",
+  "/contact/",
+  "/mentions-legales/",
+  "/confidentialite/",
+  "/acces-machine/",
   "/machine/methodologie.json",
   ...articles.map((a) => `/avance/${a.slug}/`),
   ...articles.map((a) => `/machine/avance/${a.slug}.json`),
@@ -417,7 +460,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|reference_observatory=${editorialObs.length}|reference_methodology=1|delta=1|state_plate=1|evidence_spine=1|timeglass=1|evidence_landscape=1|contradiction_split=1|correction_trail=1|reality_check=1|agent_packet=1|observatory_packet=1|methodology_packet=1|historical_news_separation=1|home_bytes=${homeBytes}`);
+console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|reference_observatory=${editorialObs.length}|reference_methodology=1|trust_pages=9|delta=1|state_plate=1|evidence_spine=1|timeglass=1|evidence_landscape=1|contradiction_split=1|correction_trail=1|reality_check=1|agent_packet=1|observatory_packet=1|methodology_packet=1|historical_news_separation=1|home_bytes=${homeBytes}`);
 
 console.log(
   `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
