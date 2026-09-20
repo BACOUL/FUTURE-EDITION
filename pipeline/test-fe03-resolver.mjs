@@ -61,7 +61,7 @@ let medTransientDirectCalls=0;
 let medTransientDateCalls=0;
 const medTransientFetch=async url=>{
   const href=String(url);
-  if(href.includes("/10.64898%2F2026.08.19.26360819/na/json")){
+  if(href.includes("/10.64898/2026.08.19.26360819/na/json")){
     medTransientDirectCalls++;
     return {ok:false,status:404,headers:{get:()=>null}};
   }
@@ -89,7 +89,7 @@ let medEmpty200DirectCalls=0;
 let medEmpty200DateCalls=0;
 const medEmpty200Fetch=async url=>{
   const href=String(url);
-  if(href.includes("/10.1101%2F2022.03.04.22271834/na/json")){
+  if(href.includes("/10.1101/2022.03.04.22271834/na/json")){
     medEmpty200DirectCalls++;
     return {
       ok:true,
@@ -120,7 +120,9 @@ const medEmpty200Fetch=async url=>{
 if(!buildProviderRequest(doi,{mailto:"test@example.invalid"}).url.includes("api.crossref.org/works/")) throw new Error("crossref request");
 if(!buildProviderRequest(pubmed).url.includes("efetch.fcgi")) throw new Error("pubmed request");
 if(!buildProviderRequest(nct).url.includes("/api/v2/studies/NCT12345678")) throw new Error("clinicaltrials request");
-if(!buildProviderRequest(med).url.includes("api.biorxiv.org/details/medrxiv/")) throw new Error("medrxiv request");
+const medRequest=buildProviderRequest(med);
+if(!medRequest.url.includes("api.biorxiv.org/details/medrxiv/10.1101/2026.01.01.123456/na/json")) throw new Error("medrxiv DOI path request");
+if(medRequest.url.includes("%2F")) throw new Error("medrxiv DOI slash must remain a path separator");
 if(!buildProviderRequest(arxiv).url.includes("export.arxiv.org/api/query?id_list=")) throw new Error("arxiv request");
 if(buildProviderRequest(nhs).provider!=="nhs_england") throw new Error("NHS official URL route");
 
