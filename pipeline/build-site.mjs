@@ -289,9 +289,10 @@ await writePage("/", layout(
 
 await writePage("/aujourdhui", layout(
   "Aujourd’hui — Future Edition",
-  "Les événements et changements suivis par Future Edition.",
-  `<section class="page-hero shell"><p class="kicker">Aujourd’hui</p><h1>Ce qui mérite<br>d’être retenu.</h1><p>Le socle contient déjà 50 événements historiques vérifiés. Le flux « Aujourd’hui » deviendra dynamique à FE-12 ; pour l’instant, voici les événements les plus récents de chaque observatoire.</p></section>
- <section class="shell section"><div class="status-callout"><span>État scientifique</span><strong>0 changement de jalon approuvé</strong><p>C’est volontaire : nous préférons afficher « non évalué » plutôt que transformer automatiquement un événement en progrès scientifique.</p></div>
+  "Le flux éditorial contrôlé de Future Edition et les archives récentes du socle.",
+  `<section class="page-hero shell"><p class="kicker">Aujourd’hui</p><h1>Pas de faux<br>temps réel.</h1><p>Le flux continu n’est pas encore ouvert. Tant que FE-07/FE-08 n’a pas détecté puis validé une nouvelle avancée, Future Edition préfère afficher honnêtement l’absence d’actualité qualifiée plutôt que recycler un événement ancien.</p></section>
+ <section class="shell section"><div class="status-callout"><span>Flux éditorial</span><strong>Aucune nouvelle avancée publiée automatiquement</strong><p>Les 50 événements déjà présents constituent le socle historique des observatoires. Ils ne sont pas présentés comme des nouvelles du jour.</p></div>
+ <div class="section-head"><div><p class="kicker">Archives de référence</p><h2>Les repères les plus récents du socle.</h2></div><p class="section-copy">Ces entrées restent utiles pour comprendre la trajectoire des dix grandes questions, mais leur date est affichée sans ambiguïté.</p></div>
  <div class="timeline-list">${latestByQuestion.map(({ event }) => eventCard(event)).join("")}</div></section>`,
   { active: "today" }
 ));
