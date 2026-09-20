@@ -127,43 +127,33 @@ Elle doit également exposer :
 
 ## Gate FE-06R
 
-FE-06R ne peut être PROVED que si :
+La définition normative du verdict est désormais `docs/FE06R-GATE.md`.
 
-### Produit
-- Home de référence validée.
-- Au moins 1 véritable article/avancée complet.
-- Au moins 1 observatoire de référence complet.
-- Méthodologie complète et crédible.
-- Distinction explicite entre actualité et historique.
-- Aucune preuve brute utilisée comme substitut à un article.
+Cette spécification décrit le produit à construire ; `FE06R-GATE.md` décrit comment il est accepté ou rejeté.
 
-### Visuel
-- QA réelle à 360, 390, 768, 1440 px.
-- Aucun overflow critique.
-- Les 4 surfaces ne partagent pas une composition répétitive unique.
-- Au moins un langage visuel propre : illustration, photo licenciée ou data-viz.
-- Le mobile possède sa propre hiérarchie de contenu.
-
-### Scientifique
-- Aucun changement d'état de jalon sans Change validé.
-- Toute affirmation importante possède une chaîne de preuve.
-- Les limites pertinentes sont visibles.
-- Les titres ne dépassent pas la preuve.
-- Les sources originales et leur provenance restent accessibles.
-
-### Confiance
-- Méthodologie complète.
-- À propos.
-- Responsabilité éditoriale.
-- Politique de correction.
-- Sources.
-- Signaler une erreur / contact.
-
-### Machine-readable
+### Machine-readable / agent-native
 - IDs stables.
 - Article relié aux objets Question, Technology, Event, Claim, Evidence et Source concernés.
-- Métadonnées structurées préparées pour FE-15/API.
-- Aucune duplication de vérité scientifique par langue.
+- Une seule vérité scientifique canonique, indépendante de la langue et de la présentation.
+- Temporalité explicite : événement, observation/récupération, publication, mise à jour, validité et `as_of`.
+- Claims majeurs adressables individuellement avec preuve, source, locator, confiance et version.
+- Corrections, rétractations et supersessions détectables par une machine.
+- Contrat Agent Answer Packet et delta/change feed défini avant généralisation.
+- L'API commerciale complète reste FE-14, mais son modèle sémantique ne peut pas être inventé après le média.
+
+Voir `AGENT-NATIVE-MEDIA.md`.
+
+## Gate d'autorité
+
+Le gate complet et mesurable est `FE06R-GATE.md`.
+
+Les quatre portes sont non compensables :
+- MEDIA ≥ 85/100 ;
+- INTELLIGENCE ≥ 90/100 ;
+- REFERENCE ≥ 95/100 ;
+- AGENT-NATIVE ≥ 95/100.
+
+Toute condition éliminatoire du gate entraîne `FAIL`, quel que soit le score total.
 
 ## Ordre d'exécution
 
