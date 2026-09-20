@@ -1,0 +1,53 @@
+name: FE06R Browser QA
+
+on:
+  push:
+    branches: [fe06r-browser-qa]
+
+permissions:
+  contents: read
+
+jobs:
+  qa-fe06r-reference-surfaces:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser QA dependency
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Build validated Future Edition
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+          node pipeline/test-state-resolution.mjs
+          node pipeline/test-fe04-change-engine.mjs
+          node pipeline/test-fe05-observatories.mjs
+          node pipeline/build-graph.mjs
+          node pipeline/validate-graph.mjs
+          node pipeline/build-site.mjs
+          node pipeline/validate-output.mjs
+      - name: Start local media server
+        run: |
+          node pipeline/serve.mjs > /tmp/future-edition-server.log 2>&1 &
+          echo $! > /tmp/future-edition-server.pid
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4321/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/future-edition-server.log
+          exit 1
+      - name: Run Chromium QA on R1-R4
+        run: node pipeline/qa-fe06r-browser.mjs
+      - name: Upload browser QA proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fe06r-browser-qa
+          path: benchmarks/fe06r/browser-qa
+          retention-days: 14
