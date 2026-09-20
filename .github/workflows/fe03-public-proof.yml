@@ -32,6 +32,7 @@ jobs:
           node pipeline/test-fe03-crossref-integrity.mjs
           node pipeline/test-fe03-pubmed-integrity.mjs
           node pipeline/test-fe03-claim-linker.mjs
+          node pipeline/test-fe03-claim-extractor.mjs
       - name: Live public source-resolution benchmark
         shell: bash
         run: |
@@ -43,3 +44,9 @@ jobs:
           set -o pipefail
           node benchmarks/fe03/run-claim-linker.mjs --delay-ms=400 --min-score=0.55 | tee fe03-claim.log
           grep -q 'gate_eligible=1' fe03-claim.log
+      - name: Live atomic claim extraction benchmark
+        shell: bash
+        run: |
+          set -o pipefail
+          node benchmarks/fe03/run-atomic-extraction.mjs --delay-ms=400 | tee fe03-atomic.log
+          grep -q 'gate_eligible=1' fe03-atomic.log
