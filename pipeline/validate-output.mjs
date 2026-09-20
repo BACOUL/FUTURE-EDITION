@@ -103,15 +103,27 @@ for (const [path, html] of htmlByPath) baseChecks(path, html);
 
 const home = htmlByPath.get("dist/index.html") ?? "";
 for (const text of [
-  "Ce qui devient",
-  "possible.",
-  "Reality Check",
-  "Des repères, pas un faux fil d’actualité.",
-  "Un média qui conserve l’état du monde",
+  "KNOWLEDGE CLOCK",
+  "REFERENCE EDITION",
+  "HISTORICAL_BASELINE",
+  "Le moment où l’ignition a cessé d’être",
+  "État canonique non évalué",
+  "Avant",
+  "Preuve",
+  "Maintenant",
+  "Aucune nouvelle avancée qualifiée dans le flux public.",
+  "REALITY CHECK · RC-001",
+  "WATCH HORIZON",
   "Dix questions qui valent des années de suivi.",
-  "Future Graph",
-  "354"
-]) if (!home.includes(text)) errors.push(`home missing FE-06R reference content: ${text}`);
+  "FUTURE GRAPH",
+  "354",
+  "Voir le même état pour un agent IA"
+]) if (!home.includes(text)) errors.push(`home missing FE-06R media-2.0 content: ${text}`);
+
+if (!home.includes("/avance/nif-ignition-fusion-2022/")) errors.push("home missing lead article route");
+if (!home.includes("/preuves/ev-2022-006002/")) errors.push("home missing lead proof route");
+if (!home.includes("/reality-check/ignition-nest-pas-electricite-commerciale/")) errors.push("home missing Reality Check route");
+if (!home.includes("/machine/avance/nif-ignition-fusion-2022.json")) errors.push("home missing agent representation route");
 
 if (home.includes("Aucune avancée n’est encore déclarée validée.")) {
   errors.push("home still contains obsolete FE-01 placeholder");
