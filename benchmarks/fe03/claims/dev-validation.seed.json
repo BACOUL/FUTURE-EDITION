@@ -278,5 +278,125 @@
     ],
     "checked_on": "2026-09-20",
     "notes": "Existing external validation case gains a claim-level negative-result annotation."
+  },
+  {
+    "id": "FE03-CLAIM-0015",
+    "external_case_id": "FE03-EXT-0039",
+    "split": "dev",
+    "claim": {
+      "text": "The combined wearable and motivational intervention reduced sedentary time and improved muscle oxidative capacity.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "The CWAT+group significantly reduced time spent in SB, which resulted in improvements in muscle oxidative capacity",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41878723/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Active peer-reviewed RCT claim."
+  },
+  {
+    "id": "FE03-CLAIM-0016",
+    "external_case_id": "FE03-EXT-0042",
+    "split": "dev",
+    "claim": {
+      "text": "The FRAIL scale is feasible for assessing frailty in community-dwelling older adults.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "FRAIL is a feasible tool for assessing frailty of older adults in community settings",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38395198/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Systematic-review claim with replicated-human evidence level."
+  },
+  {
+    "id": "FE03-CLAIM-0017",
+    "external_case_id": "FE03-EXT-0045",
+    "split": "dev",
+    "claim": {
+      "text": "The study group experienced fewer acute COPD attacks after multidisciplinary treatment.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "In the study group, there were fewer acute attacks (P< 0.05).",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37125590/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Claim is textually supported, but expression-of-concern status must prevent confirmation."
+  },
+  {
+    "id": "FE03-CLAIM-0018",
+    "external_case_id": "FE03-EXT-0046",
+    "split": "dev",
+    "claim": {
+      "text": "Both CBT with virtual-reality exposure and CBT with imaginal exposure reduced social-anxiety symptoms.",
+      "claim_kind": "efficacy",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "A significant reduction of both CBT + VRE and CBT + IE treatments on symptoms of SAD",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42205114/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Corrected publication: locator may support the claim, while integrity status still requires investigation."
+  },
+  {
+    "id": "FE03-CLAIM-0019",
+    "external_case_id": "FE03-EXT-0047",
+    "split": "dev",
+    "claim": {
+      "text": "BHV-1530 is being evaluated in a first-in-human phase I dose-escalation and expansion study.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "This is a Phase 1, first in human (FIH), Open-Label, Dose Escalation, Dose Expansion and Dose Optimization Study",
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT06874335"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Official registry claim; registration remains non-confirmatory."
+  },
+  {
+    "id": "FE03-CLAIM-0020",
+    "external_case_id": "FE03-EXT-0005",
+    "split": "dev",
+    "claim": {
+      "text": "Both immersive VR interventions reduced self-reported anxiety and heart rate compared with standard care.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "both VR interventions significantly reduced self-reported anxiety and heart rate.",
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.09.03.26362134v1"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Preprint claim; source status must keep confidence below confirmed."
   }
 ]
