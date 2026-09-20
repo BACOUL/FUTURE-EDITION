@@ -197,11 +197,13 @@ function studyStage(pubtypes,meshTerms=[],title="",abstract=""){
 
   if(scope==="animal"||(scope==="unknown"&&titleAnimal&&!titleHuman)||(scope==="unknown"&&explicitAnimal&&!explicitHuman)) return "preclinical_animal";
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
+  // Explicit PubMed trial phase is more specific than the generic randomized-study tag.
+  // Preserve the FE-03 evidence taxonomy: phase I/II = early_human, phase III = controlled_human.
   if(pubtypes.includes("Clinical Trial, Phase I")) return "phase1";
+  if(pubtypes.includes("Clinical Trial, Phase II")) return "phase2";
+  if(pubtypes.includes("Clinical Trial, Phase III")) return "phase3";
   const textual=textStudyStage(title,abstract);
   if(pubtypes.includes("Randomized Controlled Trial")||textual==="randomized_trial") return "randomized_trial";
-  if(pubtypes.includes("Clinical Trial, Phase III")) return "phase3";
-  if(pubtypes.includes("Clinical Trial, Phase II")) return "phase2";
   if(pubtypes.includes("Observational Study")) return "observational_human";
 
   if(textual!=="unknown") return textual;
