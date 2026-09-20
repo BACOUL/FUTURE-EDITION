@@ -122,3 +122,66 @@ export function buildQuestionAnswerPacket({
     abstention
   };
 }
+
+
+const DELTA_KINDS = new Set(["created", "updated", "correction", "retraction", "supersession"]);
+
+export function buildDeltaFeed({ changes = [], since_cursor = 0, as_of }) {
+  const cursor = Number(since_cursor);
+  const t = iso(as_of);
+  if (!Number.isInteger(cursor) || cursor < 0) throw new Error("non-negative integer cursor required");
+  if (!Number.isFinite(t)) throw new Error("valid as_of required");
+
+  const seenSequence = new Set();
+  const normalized = changes.map((change) => {
+    if (!Number.isInteger(change.sequence) || change.sequence < 1) throw new Error("positive integer change sequence required");
+    if (seenSequence.has(change.sequence)) throw new Error("duplicate change sequence");
+    seenSequence.add(change.sequence);
+    if (!change.id || !change.object_type || !change.object_id) throw new Error("delta change identity required");
+    if (!DELTA_KINDS.has(change.kind)) throw new Error("unsupported delta change kind");
+    if (!Number.isFinite(iso(change.effective_at))) throw new Error("delta effective_at required");
+    if (!change.payload || typeof change.payload !== "object" || Array.isArray(change.payload)) throw new Error("delta payload required");
+    return { ...change };
+  }).sort((a, b) => a.sequence - b.sequence || a.id.localeCompare(b.id));
+
+  const items = normalized.filter((change) => change.sequence > cursor && iso(change.effective_at) <= t);
+  const next_cursor = items.length ? items[items.length - 1].sequence : cursor;
+  const byKind = (kind) => items.filter((item) => item.kind === kind).map((item) => item.id);
+  const affected_objects = [...new Set(items.map((item) => `${item.object_type}:${item.object_id}`))].sort();
+
+  return {
+    schema_version: "fe/delta-feed/v1",
+    since_cursor: cursor,
+    cursor: next_cursor,
+    as_of,
+    changes: items,
+    created: byKind("created"),
+    updated: byKind("updated"),
+    corrections: byKind("correction"),
+    retractions: byKind("retraction"),
+    supersessions: byKind("supersession"),
+    affected_objects
+  };
+}
+
+export function applyDeltaFeed(base = { objects: {} }, delta) {
+  if (!delta || delta.schema_version !== "fe/delta-feed/v1" || !Array.isArray(delta.changes)) {
+    throw new Error("valid delta feed required");
+  }
+  const next = JSON.parse(JSON.stringify(base));
+  next.objects ??= {};
+
+  for (const change of delta.changes) {
+    const key = `${change.object_type}:${change.object_id}`;
+    next.objects[key] = {
+      ...change.payload,
+      _change_id: change.id,
+      _change_kind: change.kind,
+      _effective_at: change.effective_at,
+      _sequence: change.sequence
+    };
+  }
+  next.cursor = delta.cursor;
+  next.as_of = delta.as_of;
+  return next;
+}
