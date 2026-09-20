@@ -1126,7 +1126,7 @@ await writeFile(new URL("assets/styles.css", out), `
 @media(max-width:700px){.trust-hero{padding:65px 0 48px}.trust-hero h1{font-size:clamp(3.4rem,16vw,5.6rem)}.trust-body{padding:55px 0 80px}.trust-grid article{min-height:auto}.trust-stack article{grid-template-columns:40px 1fr}.trust-machine-links{display:grid}.trust-machine-links a{justify-content:space-between}}
 
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-`);
+`.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\n/g, "").replace(/ui-monospace,monospace/g, "ui-monospace"));
 
 await mkdir(new URL("data/", out), { recursive: true });
 await writeFile(new URL("data/future-graph.json", out), JSON.stringify(graph, null, 2) + "\n");
