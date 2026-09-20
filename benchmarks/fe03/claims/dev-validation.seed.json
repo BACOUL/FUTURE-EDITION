@@ -518,5 +518,485 @@
     ],
     "checked_on": "2026-09-20",
     "notes": "Expression-of-concern case outside biomedicine; text support must remain separate from integrity confidence."
+  },
+  {
+    "id": "FE03-CLAIM-0027",
+    "external_case_id": "FE03-EXT-0003",
+    "split": "dev",
+    "claim": {
+      "text": "The systematic review found proof-of-concept evidence but no demonstrated patient benefit or routine clinical deployment.",
+      "claim_kind": "limitation",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "No study demonstrated patient benefit or described routine clinical deployment.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42250455/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Systematic-review limitation claim."
+  },
+  {
+    "id": "FE03-CLAIM-0028",
+    "external_case_id": "FE03-EXT-0010",
+    "split": "dev",
+    "claim": {
+      "text": "Mdivi-1 pretreatment attenuated pathological changes in the mouse postoperative-delirium model.",
+      "claim_kind": "mechanism",
+      "subject_scope": "animal"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "pretreatment with Mdivi-1 effectively attenuated these pathological changes.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42269727/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Animal-only mechanistic claim."
+  },
+  {
+    "id": "FE03-CLAIM-0029",
+    "external_case_id": "FE03-EXT-0011",
+    "split": "dev",
+    "claim": {
+      "text": "HIIT did not improve exercise endurance more than MICT in people with fibrotic interstitial lung disease.",
+      "claim_kind": "negative_result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "HIIT did not result in greater improvements in exercise endurance than MICT in people with fILD.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42720586/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Randomized controlled negative-result claim."
+  },
+  {
+    "id": "FE03-CLAIM-0030",
+    "external_case_id": "FE03-EXT-0013",
+    "split": "dev",
+    "claim": {
+      "text": "Expected-influence targeting reduced the composite EI-change index more than active control.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "EI-based targeting produced larger reductions in the composite EI-change index than active control",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42600454/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Recent RCT whose PubMed indexing relies on explicit abstract design fallback."
+  },
+  {
+    "id": "FE03-CLAIM-0031",
+    "external_case_id": "FE03-EXT-0014",
+    "split": "dev",
+    "claim": {
+      "text": "Repeated low-level red-light therapy produced greater macular flattening than low-dose atropine.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "RLRL showed greater macular flattening than 0.01% atropine across all regions",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42446481/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Corrected RCT: textual support remains distinct from publication-integrity status."
+  },
+  {
+    "id": "FE03-CLAIM-0032",
+    "external_case_id": "FE03-EXT-0015",
+    "split": "dev",
+    "claim": {
+      "text": "Atrial fibrillation was independently associated with a lower likelihood of first-pass effect.",
+      "claim_kind": "association",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "AF was independently associated with lower likelihood of FPE",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40296705/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Expression-of-concern source: a valid passage must not imply confirmability."
+  },
+  {
+    "id": "FE03-CLAIM-0033",
+    "external_case_id": "FE03-EXT-0016",
+    "split": "dev",
+    "claim": {
+      "text": "The phase I registry uses adverse-event type, frequency, seriousness and severity as primary safety measures.",
+      "claim_kind": "safety",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Type, frequency, seriousness, and severity of adverse events (AEs) graded using the National Cancer Institute Common Terminology Criteria for Adverse Events",
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT07578571"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Registry safety endpoint, not confirmatory efficacy evidence."
+  },
+  {
+    "id": "FE03-CLAIM-0034",
+    "external_case_id": "FE03-EXT-0018",
+    "split": "dev",
+    "claim": {
+      "text": "Every AI World Cup submission used the same tournament snapshot, prompt, JSON schema and scoring procedure.",
+      "claim_kind": "performance",
+      "subject_scope": "technology"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Every submission used the same tournament snapshot, prompt, JSON schema, and scoring procedure.",
+        "authority": "arxiv",
+        "url": "https://arxiv.org/abs/2608.03416"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Technology benchmark protocol claim."
+  },
+  {
+    "id": "FE03-CLAIM-0035",
+    "external_case_id": "FE03-EXT-0019",
+    "split": "dev",
+    "claim": {
+      "text": "NHS England reported deployment of Microsoft Copilot access to more than 500,000 NHS staff.",
+      "claim_kind": "deployment",
+      "subject_scope": "technology"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "More than 500,000 NHS staff are also being given access to Microsoft Copilot",
+        "authority": "publisher",
+        "url": "https://www.england.nhs.uk/2026/07/nhs-accelerates-artificial-intelligence-rollout-to-cut-waiting-times-and-improve-care-for-millions/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Official NHS real-world deployment record."
+  },
+  {
+    "id": "FE03-CLAIM-0036",
+    "external_case_id": "FE03-EXT-0020",
+    "split": "dev",
+    "claim": {
+      "text": "Augmented physician communication improved coping expectations and vaccination intentions.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "participants in the augmented group reported better coping expectations and higher intentions to receive the herpes zoster vaccine.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42721339/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Dependent-echo family source claim; independence is evaluated separately."
+  },
+  {
+    "id": "FE03-CLAIM-0037",
+    "external_case_id": "FE03-EXT-0021",
+    "split": "dev",
+    "claim": {
+      "text": "Esophageal mucosal injury was significantly less frequent in the deviation group than in control.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "The primary study endpoint, ablation injury to the esophageal mucosa, was significantly less in the deviation group",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37897465/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Contradiction-family anchor claim."
+  },
+  {
+    "id": "FE03-CLAIM-0038",
+    "external_case_id": "FE03-EXT-0022",
+    "split": "validation",
+    "claim": {
+      "text": "The iSIPsmarter group had a significantly greater percentage weight change than patient education.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "iSIPsmarter participants experienced a significantly greater percentage weight change",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42716303/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Independent active-publication validation claim."
+  },
+  {
+    "id": "FE03-CLAIM-0039",
+    "external_case_id": "FE03-EXT-0023",
+    "split": "validation",
+    "claim": {
+      "text": "The informational-video intervention increased same-day lung-cancer-screening orders.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Intervention patients were more likely to receive an LCS order within 1 day of their appointment",
+        "authority": "medrxiv",
+        "url": "https://www.medrxiv.org/content/10.64898/2026.08.28.26361654v1"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Randomized feasibility preprint; preprint ceiling remains below confirmed."
+  },
+  {
+    "id": "FE03-CLAIM-0040",
+    "external_case_id": "FE03-EXT-0025",
+    "split": "validation",
+    "claim": {
+      "text": "The cotton-disease classifier reported an average accuracy of 97% on public datasets.",
+      "claim_kind": "performance",
+      "subject_scope": "technology"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "We trained and tested our method on publicly available datasets, achieving an average accuracy of 97%.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40424461/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Technology claim from a publication under expression of concern."
+  },
+  {
+    "id": "FE03-CLAIM-0041",
+    "external_case_id": "FE03-EXT-0026",
+    "split": "validation",
+    "claim": {
+      "text": "All mice in the engineered model developed overt disease after about 12 months and acquired secondary RTK-RAS mutations.",
+      "claim_kind": "result",
+      "subject_scope": "animal"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "All recipients developed overt disease after ~12 months with 100% penetrance and all acquired secondary RTK-RAS mutations",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42697929/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Animal-only validation claim."
+  },
+  {
+    "id": "FE03-CLAIM-0042",
+    "external_case_id": "FE03-EXT-0027",
+    "split": "validation",
+    "claim": {
+      "text": "The zilebesiran meta-analysis included four studies with 1,412 adults with mild to moderate hypertension.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Four studies involving 1,412 adults with mild to moderate hypertension were included.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42747486/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Systematic-review validation claim."
+  },
+  {
+    "id": "FE03-CLAIM-0043",
+    "external_case_id": "FE03-EXT-0028",
+    "split": "validation",
+    "claim": {
+      "text": "NCT04808362 is an open-label first-in-human phase 1/2 dose-finding study of OMO-103.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "This study is an open label, two-part, First in Human (FIH) Phase 1/2 dose-finding study",
+        "authority": "clinicaltrials",
+        "url": "https://clinicaltrials.gov/study/NCT04808362"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Registry design claim; phase I/II evidence remains preliminary."
+  },
+  {
+    "id": "FE03-CLAIM-0044",
+    "external_case_id": "FE03-EXT-0032",
+    "split": "validation",
+    "claim": {
+      "text": "RELIEVE UCCD was a multicentre placebo-controlled phase 2b randomized study.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "In this multicentre, placebo-controlled, phase 2b study, we randomly assigned",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42462750/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Controlled-human study-design validation claim."
+  },
+  {
+    "id": "FE03-CLAIM-0045",
+    "external_case_id": "FE03-EXT-0034",
+    "split": "validation",
+    "claim": {
+      "text": "Kylo-11 was evaluated in a randomized double-blind placebo-controlled phase I trial.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "This randomised, double-blind, placebo-controlled, phase 1 trial was performed in a single hospital-based site in China",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42664979/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "First-in-human phase I validation claim."
+  },
+  {
+    "id": "FE03-CLAIM-0046",
+    "external_case_id": "FE03-EXT-0035",
+    "split": "validation",
+    "claim": {
+      "text": "Safety and tolerability were the primary endpoint of the A-319 phase I study.",
+      "claim_kind": "safety",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "The primary endpoint was safety and tolerability.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42722888/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Early-human dependent-echo family claim."
+  },
+  {
+    "id": "FE03-CLAIM-0047",
+    "external_case_id": "FE03-EXT-0036",
+    "split": "validation",
+    "claim": {
+      "text": "The TOGETHER trial reported reduced need for its hospitalisation composite with fluvoxamine.",
+      "claim_kind": "efficacy",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Treatment with fluvoxamine (100 mg twice daily for 10 days) among high-risk outpatients with early diagnosed COVID-19 reduced the need for hospitalisation",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34717820/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Contradiction-family validation anchor; opposing evidence is represented separately."
+  },
+  {
+    "id": "FE03-CLAIM-0048",
+    "external_case_id": "FE03-EXT-0037",
+    "split": "validation",
+    "claim": {
+      "text": "The frontier-AI measurement record is explicitly described as an audit sample rather than a census.",
+      "claim_kind": "limitation",
+      "subject_scope": "technology"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "The record is an audit sample, not a census.",
+        "authority": "arxiv",
+        "url": "https://arxiv.org/abs/2608.14903"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Technology benchmark limitation claim."
+  },
+  {
+    "id": "FE03-CLAIM-0049",
+    "external_case_id": "FE03-EXT-0038",
+    "split": "validation",
+    "claim": {
+      "text": "The NHS Copilot agreement followed a large healthcare AI trial.",
+      "claim_kind": "deployment",
+      "subject_scope": "technology"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "The agreement follows the largest AI trial of its kind globally in healthcare",
+        "authority": "publisher",
+        "url": "https://www.england.nhs.uk/2026/06/500000-nhs-staff-to-get-new-artificial-intelligence-tools-to-help-free-up-more-time-for-patients/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Official NHS real-world deployment validation claim."
+  },
+  {
+    "id": "FE03-CLAIM-0050",
+    "external_case_id": "FE03-EXT-0063",
+    "split": "validation",
+    "claim": {
+      "text": "The 42-micrometre condom was noninferior to both reference condoms and had a similar safety profile.",
+      "claim_kind": "result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "The 42 µm condom was noninferior compared with each of the reference condoms and had a similar safety profile.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40414480/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Corrected-publication validation claim."
   }
 ]
