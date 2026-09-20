@@ -38,6 +38,8 @@ const required = [
   ...articles.map((a) => `dist/machine/avance/${a.slug}.json`),
   ...editorialObs.map((o) => `dist/machine/observatoires/${o.slug}.json`),
   "dist/machine/methodologie.json",
+  "dist/machine/manifest.json",
+  "dist/machine/delta-contract.json",
   "dist/assets/styles.css",
   "dist/data/future-graph.json",
   "dist/robots.txt",
@@ -364,8 +366,24 @@ for (const href of ["/a-propos/","/sources/","/corrections/","/responsabilite-ed
   if (!footerSource.includes(`href="${href}"`)) errors.push(`footer trust link missing: ${href}`);
 }
 const machineAccess = htmlByPath.get("dist/acces-machine/index.html") ?? "";
-for (const href of ["/machine/avance/nif-ignition-fusion-2022.json","/machine/observatoires/energie-de-fusion-commerciale.json","/machine/methodologie.json"]) {
+for (const href of ["/machine/manifest.json","/machine/avance/nif-ignition-fusion-2022.json","/machine/observatoires/energie-de-fusion-commerciale.json","/machine/methodologie.json","/machine/delta-contract.json"]) {
   if (!machineAccess.includes(`href="${href}"`)) errors.push(`machine access link missing: ${href}`);
+}
+
+const machineManifest = await readJson("dist/machine/manifest.json");
+if (machineManifest.schema_version !== "fe/machine-manifest/v1") errors.push("machine manifest schema mismatch");
+if (machineManifest.human_machine_truth_model !== "single_canonical_truth") errors.push("machine manifest must preserve one canonical truth");
+if (machineManifest.discovery?.delta_contract !== "/machine/delta-contract.json") errors.push("machine manifest delta contract missing");
+if (machineManifest.delta_feed?.status !== "contract_only_fe06r") errors.push("machine manifest FE-06R delta status mismatch");
+if (machineManifest.invariants?.claim_level_citations !== true || machineManifest.invariants?.as_of_required_for_state !== true) {
+  errors.push("machine manifest citation/time invariants missing");
+}
+
+const deltaContract = await readJson("dist/machine/delta-contract.json");
+if (deltaContract.schema_version !== "fe/delta-feed-contract/v1") errors.push("delta contract schema mismatch");
+if (deltaContract.minimum_synthetic_changes === 0) errors.push("delta contract invalid synthetic threshold");
+if (!deltaContract.change_kinds?.includes("correction") || !deltaContract.change_kinds?.includes("retraction") || !deltaContract.change_kinds?.includes("supersession")) {
+  errors.push("delta contract lifecycle kinds incomplete");
 }
 
 for (const event of events) {
@@ -421,12 +439,29 @@ const internalRouteSet = new Set([
   "/confidentialite/",
   "/acces-machine/",
   "/machine/methodologie.json",
+  "/machine/manifest.json",
+  "/machine/delta-contract.json",
   ...articles.map((a) => `/avance/${a.slug}/`),
   ...articles.map((a) => `/machine/avance/${a.slug}.json`),
   ...editorialObs.map((o) => `/machine/observatoires/${o.slug}.json`),
   ...questions.map((q) => `/questions/${q.slug}/`),
   ...events.map((e) => `/preuves/${e.id.toLowerCase()}/`)
 ]);
+
+for (const [path, html] of htmlByPath) {
+  for (const marker of [
+    'rel="canonical"',
+    'property="og:title"',
+    'property="og:description"',
+    'property="og:url"',
+    'name="twitter:card"',
+    'type="application/ld+json"',
+    '"https://schema.org"',
+    'href="/machine/manifest.json"'
+  ]) {
+    if (!html.includes(marker)) errors.push(`${path}: structured metadata missing ${marker}`);
+  }
+}
 
 for (const [path, html] of htmlByPath) {
   const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
@@ -460,7 +495,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|reference_observatory=${editorialObs.length}|reference_methodology=1|trust_pages=9|delta=1|state_plate=1|evidence_spine=1|timeglass=1|evidence_landscape=1|contradiction_split=1|correction_trail=1|reality_check=1|agent_packet=1|observatory_packet=1|methodology_packet=1|historical_news_separation=1|home_bytes=${homeBytes}`);
+console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|reference_observatory=${editorialObs.length}|reference_methodology=1|trust_pages=9|delta=1|state_plate=1|evidence_spine=1|timeglass=1|evidence_landscape=1|contradiction_split=1|correction_trail=1|reality_check=1|agent_packet=1|observatory_packet=1|methodology_packet=1|machine_manifest=1|delta_contract=1|jsonld=1|open_graph=1|canonical=1|historical_news_separation=1|home_bytes=${homeBytes}`);
 
 console.log(
   `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
