@@ -33,9 +33,13 @@ jobs:
           node pipeline/test-fe03-pubmed-integrity.mjs
           node pipeline/test-fe03-claim-linker.mjs
       - name: Live public source-resolution benchmark
+        shell: bash
         run: |
+          set -o pipefail
           node benchmarks/fe03/run-external-resolution.mjs --delay-ms=400 --enforce --output=fe03-resolution.json | tee fe03-resolution.log
       - name: Live public claim-to-evidence benchmark
+        shell: bash
         run: |
+          set -o pipefail
           node benchmarks/fe03/run-claim-linker.mjs --delay-ms=400 | tee fe03-claim.log
           grep -q 'gate_eligible=1' fe03-claim.log
