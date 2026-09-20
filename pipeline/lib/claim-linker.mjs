@@ -55,37 +55,88 @@ function sentenceRanges(text){
   return ranges;
 }
 
-function scoreTerms(claimText,evidenceText){
+function bigrams(terms){
+  const out=[];
+  for(let i=0;i<terms.length-1;i++) out.push(terms[i]+" "+terms[i+1]);
+  return out;
+}
+
+function documentFrequency(candidates){
+  const df=new Map();
+  for(const candidate of candidates){
+    const unique=new Set(claimTerms(candidate.range.text));
+    for(const term of unique) df.set(term,(df.get(term)??0)+1);
+  }
+  return df;
+}
+
+function scoreTerms(claimText,evidenceText,{df,totalCandidates,sectionTitle=""}={}){
   const claim=[...new Set(claimTerms(claimText))];
   const evidence=[...new Set(claimTerms(evidenceText))];
   if(claim.length===0||evidence.length===0) return 0;
 
   const evidenceSet=new Set(evidence);
-  const overlap=claim.filter(term=>evidenceSet.has(term)).length;
-  if(overlap===0) return 0;
+  const weight=term=>1+Math.log((Math.max(1,totalCandidates)+1)/((df?.get(term)??0)+1));
+  const totalClaimWeight=claim.reduce((sum,term)=>sum+weight(term),0);
+  const overlapTerms=claim.filter(term=>evidenceSet.has(term));
+  if(overlapTerms.length===0) return 0;
 
-  const precision=overlap/evidence.length;
-  const recall=overlap/claim.length;
-  const f1=(2*precision*recall)/(precision+recall);
+  const overlapWeight=overlapTerms.reduce((sum,term)=>sum+weight(term),0);
+  const weightedRecall=overlapWeight/totalClaimWeight;
+  const precision=overlapTerms.length/evidence.length;
+
+  const claimSeq=claimTerms(claimText);
+  const evidenceBigramSet=new Set(bigrams(claimTerms(evidenceText)));
+  const claimBigrams=bigrams(claimSeq);
+  const bigramRecall=claimBigrams.length
+    ?claimBigrams.filter(term=>evidenceBigramSet.has(term)).length/claimBigrams.length
+    :0;
+
+  let score=0.72*weightedRecall+0.16*precision+0.12*bigramRecall;
 
   const claimNumbers=claim.filter(term=>/^[0-9]+$/.test(term));
   const evidenceNumbers=new Set(evidence.filter(term=>/^[0-9]+$/.test(term)));
-  const numericMismatch=claimNumbers.some(term=>!evidenceNumbers.has(term));
+  if(claimNumbers.some(term=>!evidenceNumbers.has(term))) score*=0.15;
 
-  return numericMismatch?f1*0.5:f1;
+  const claimRaw=String(claimText).toLowerCase();
+  const evidenceRaw=String(evidenceText).toLowerCase();
+  const resultClaim=/\b(?:reduced|increased|improved|greater|lower|higher|associated|noninferior|superior|reported|produced|showed|developed|included|uses?|primary endpoint|primary safety)\b/.test(claimRaw);
+  const genericPurpose=/^(?:background|objective|objectives|aim|aims|purpose)?\s*:?[\s]*(?:the )?(?:aim|purpose|objective)\b/.test(evidenceRaw)||
+    /\b(?:the purpose of (?:this|the) study|we aimed to|this study aimed to)\b/.test(evidenceRaw);
+  if(resultClaim&&genericPurpose) score*=0.45;
+
+  const claimNeg=/\b(?:no|not|did not|noninferior|without)\b/.test(claimRaw);
+  const evidenceNeg=/\b(?:no|not|did not|noninferior|without)\b/.test(evidenceRaw);
+  if(claimNeg!==evidenceNeg) score*=0.65;
+
+  const title=String(sectionTitle).toLowerCase();
+  if(/result|finding|conclusion|outcome/.test(title)) score*=1.06;
+
+  return Math.min(1,score);
 }
 
 export function linkClaimToDocument(claimText,document,{minScore=0.12}={}){
   if(!document?.id||!Array.isArray(document.sections)) return null;
 
-  let best=null;
-
+  const candidates=[];
   for(const section of document.sections){
     for(const range of sentenceRanges(section.text)){
-      const score=scoreTerms(claimText,range.text);
-      if(!best||score>best.score){
-        best={section,range,score};
-      }
+      candidates.push({section,range});
+    }
+  }
+  if(candidates.length===0) return null;
+
+  const df=documentFrequency(candidates);
+  let best=null;
+
+  for(const candidate of candidates){
+    const score=scoreTerms(claimText,candidate.range.text,{
+      df,
+      totalCandidates:candidates.length,
+      sectionTitle:candidate.section.title
+    });
+    if(!best||score>best.score){
+      best={...candidate,score};
     }
   }
 

@@ -1,0 +1,33 @@
+{
+  "protocol": "FE03-PUBLIC-PROOF-v1",
+  "candidate_sha": "d3aa028642bbfd78bdd334c1f8186f6eb5d58591",
+  "workflow_run_id": 35495902581,
+  "workflow_conclusion": "success",
+  "measured_at": "2026-09-20T07:07:33Z",
+  "public_cases": 150,
+  "public_claim_annotations": 50,
+  "metrics": {
+    "primary_source_precision": 1,
+    "primary_source_recall": 1,
+    "publication_status_precision": 1,
+    "evidence_level_precision": 0.9831932773109243,
+    "source_independence_precision": 1,
+    "claim_evidence_precision": 1,
+    "claim_evidence_recall": 0.34,
+    "claim_prediction_coverage": 0.34,
+    "critical_false_confirmed_rate": 0,
+    "known_retracted_confirmed": 0,
+    "atomic_gold_passage_recall": 0.92,
+    "verified_locator_rate": 1,
+    "machine_proposed_rate": 1
+  },
+  "transport_failures": 0,
+  "thresholds": {
+    "external": "external-v1",
+    "atomic": "atomic-v1",
+    "holdout": "holdout-v1"
+  },
+  "verdict": "PUBLIC_GATE_PASS",
+  "final_fe03_verdict": "PENDING_HIDDEN_HOLDOUT",
+  "hidden_holdout_consumed": false
+}

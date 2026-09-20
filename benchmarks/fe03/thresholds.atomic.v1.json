@@ -1,0 +1,10 @@
+{
+  "version":"atomic-v1",
+  "frozen_before_holdout":true,
+  "thresholds":{
+    "gold_passage_recall_min":0.85,
+    "verified_locator_rate_min":1.0,
+    "machine_proposed_rate_min":1.0
+  },
+  "note":"Non-LLM source-first extraction gate frozen before the hidden FE-03 holdout."
+}

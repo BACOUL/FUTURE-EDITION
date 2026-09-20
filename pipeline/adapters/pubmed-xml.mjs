@@ -1,5 +1,7 @@
 function decodeXml(text){
   return String(text??"")
+    .replace(/&#x([0-9a-f]+);/gi,(_,hex)=>String.fromCodePoint(Number.parseInt(hex,16)))
+    .replace(/&#([0-9]+);/g,(_,dec)=>String.fromCodePoint(Number.parseInt(dec,10)))
     .replaceAll("&lt;","<")
     .replaceAll("&gt;",">")
     .replaceAll("&quot;",String.fromCharCode(34))
@@ -145,11 +147,12 @@ function explicitTechnologySignal(meshTerms=[],title="",abstract=""){
 function textStudyStage(title="",abstract=""){
   const text=(String(title)+" "+String(abstract)).toLowerCase();
 
-  if(/\bphase\s*(?:i|1)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase1";
-  if(/\bphase\s*(?:ii|2)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase2";
-  if(/\bphase\s*(?:iii|3)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase3";
-  if(/\b(?:randomized|randomised)\b/.test(text)&&/\b(?:trial|study|experiment)\b/.test(text)) return "randomized_trial";
   if(/\b(?:systematic review|meta-analysis|meta analysis)\b/.test(text)) return "systematic_review";
+  if(/\bphase\s*(?:i|1)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase1";
+  if(/\bphase\s*2a\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase2";
+  if(/\b(?:randomized|randomised|randomly assigned|randomly allocated|random assignment)\b/.test(text)&&/\b(?:trial|study|experiment|families|participants|patients|children)\b/.test(text)) return "randomized_trial";
+  if(/\bphase\s*(?:ii|2)(?:a|b)?\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase2";
+  if(/\bphase\s*(?:iii|3)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase3";
   if(/\b(?:observational|cohort|cross-sectional|retrospective|prospective)\b/.test(text)&&/\b(?:patient|patients|participant|participants|adult|adults|children|people|human|humans)\b/.test(text)){
     return "observational_human";
   }
@@ -159,24 +162,51 @@ function textStudyStage(title="",abstract=""){
 
 function subjectScope(meshTerms=[],title="",abstract=""){
   const scope=meshScope(meshTerms);
+  const titleText=String(title).toLowerCase();
+  const text=(String(title)+" "+String(abstract)).toLowerCase();
+  const animalRe=/\b(?:mice|rats|rabbits|murine|porcine|swine|mouse model)\b/;
+  const humanRe=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/;
+  const titleAnimal=animalRe.test(titleText);
+  const titleHuman=humanRe.test(titleText);
+  const explicitAnimal=titleAnimal||animalRe.test(text);
+  const explicitHuman=titleHuman||humanRe.test(text);
+
+  if(scope==="mixed"){
+    if(titleAnimal&&!titleHuman) return "animal";
+    if(titleHuman&&!titleAnimal&&!explicitAnimal) return "human";
+    if(explicitAnimal&&!explicitHuman) return "animal";
+    if(explicitHuman&&!explicitAnimal) return "human";
+  }
   if(scope!=="unknown") return scope;
+  if(explicitAnimal&&!explicitHuman) return "animal";
+  if(explicitHuman&&!explicitAnimal) return "human";
   if(explicitTechnologySignal(meshTerms,title,abstract)) return "technology";
   return "unknown";
 }
 
 function studyStage(pubtypes,meshTerms=[],title="",abstract=""){
-  if(pubtypes.some(x=>x.includes("Clinical Trial, Phase I"))) return "phase1";
-  if(pubtypes.some(x=>x.includes("Clinical Trial, Phase II"))) return "phase2";
-  if(pubtypes.some(x=>x.includes("Clinical Trial, Phase III"))) return "phase3";
-  if(pubtypes.includes("Randomized Controlled Trial")) return "randomized_trial";
+  const scope=meshScope(meshTerms);
+  const titleText=String(title).toLowerCase();
+  const text=(String(title)+" "+String(abstract)).toLowerCase();
+  const animalRe=/\b(?:mice|rats|rabbits|murine|porcine|swine|mouse model)\b/;
+  const humanRe=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/;
+  const titleAnimal=animalRe.test(titleText);
+  const titleHuman=humanRe.test(titleText);
+  const explicitAnimal=titleAnimal||animalRe.test(text);
+  const explicitHuman=titleHuman||humanRe.test(text);
+
+  if(scope==="animal"||(scope==="unknown"&&titleAnimal&&!titleHuman)||(scope==="unknown"&&explicitAnimal&&!explicitHuman)) return "preclinical_animal";
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
+  if(pubtypes.includes("Clinical Trial, Phase I")) return "phase1";
+  const textual=textStudyStage(title,abstract);
+  if(pubtypes.includes("Randomized Controlled Trial")||textual==="randomized_trial") return "randomized_trial";
+  if(pubtypes.includes("Clinical Trial, Phase III")) return "phase3";
+  if(pubtypes.includes("Clinical Trial, Phase II")) return "phase2";
   if(pubtypes.includes("Observational Study")) return "observational_human";
 
-  const textual=textStudyStage(title,abstract);
   if(textual!=="unknown") return textual;
 
-  const scope=meshScope(meshTerms);
-  if(scope==="animal"||scope==="mixed") return "preclinical_animal";
+  if(scope==="mixed") return "preclinical_animal";
   if(scope==="unknown"&&explicitTechnologySignal(meshTerms,title,abstract)) return "technology_benchmark";
   return "unknown";
 }
