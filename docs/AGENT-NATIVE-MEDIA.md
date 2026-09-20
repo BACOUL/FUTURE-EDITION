@@ -209,7 +209,35 @@ Veto absolus :
 - divergence factuelle entre article et représentation machine ;
 - réponse affirmative lorsque le graphe exige une abstention.
 
-## 13. Relation avec les stages
+## 13. Boucle bidirectionnelle avec les agents
+
+Les agents peuvent devenir des capteurs supplémentaires du média.
+
+Le contrat futur doit permettre à un agent autorisé de proposer :
+- une nouvelle source ;
+- une nouvelle preuve ;
+- une contradiction ;
+- une correction ;
+- une rétractation détectée ;
+- une relation d'entité manquante.
+
+Une contribution machine ne modifie jamais directement le Future Graph canonique.
+
+Flux obligatoire :
+
+`Agent signal → Candidate → Evidence Engine → déduplication/provenance → revue requise → Change éventuel → publication/delta`
+
+Chaque proposition machine conserve :
+- identité/provenance du proposant lorsque disponible ;
+- horodatage ;
+- objet visé ;
+- source proposée ;
+- raison ;
+- statut de traitement.
+
+Les mécanismes d'authentification, réputation, quotas et anti-abus peuvent arriver plus tard. Le principe de séparation entre **proposition externe** et **vérité canonique** est non négociable.
+
+## 14. Relation avec les stages
 
 ### FE-06R
 Gèle les contrats sémantiques agent-native et démontre une représentation machine cohérente avec R1-R4.
@@ -232,6 +260,6 @@ Industrialise API, versionnage, quotas, auth, SLA et flux professionnels.
 ### FE-15
 Prouve la cohérence stricte à l'échelle entre média humain, graphe, Ask et API.
 
-## Règle finale
+## 15. Règle finale
 
 > Future Edition ne doit pas seulement être lisible par une IA. Il doit être plus sûr et plus efficace pour un agent d'utiliser Future Edition que de reconstruire lui-même l'état du monde à partir de pages dispersées.
