@@ -69,7 +69,7 @@
     "external_benchmark_thresholds_frozen": true,
     "external_holdout_minimum": 50,
     "external_holdout_labels_in_repo": false,
-    "external_holdout_consumed": false,
+    "external_holdout_consumed": true,
     "external_benchmark_cases_collected": 150,
     "arxiv_atom_parser": true,
     "crossref_directional_integrity": true,
@@ -194,7 +194,26 @@
     "atomic_extraction_machine_proposed_rate": 1,
     "hidden_holdout_protocol": "holdout-v1",
     "hidden_holdout_protocol_frozen": true,
-    "fe03_ready_for_hidden_holdout": true
+    "fe03_ready_for_hidden_holdout": false,
+    "fe03_hidden_holdout_v1_cases": 61,
+    "fe03_hidden_holdout_v1_claims": 24,
+    "fe03_hidden_holdout_v1_families": 16,
+    "fe03_hidden_holdout_v1_sha256": "62bd2cbc702bc1da4fb24dfb9a519795c8ca7809eae5df71533142320ea85ee0",
+    "fe03_hidden_holdout_v1_verdict": "FAIL",
+    "fe03_hidden_holdout_v1_workflow_run_id": 35507281888,
+    "fe03_hidden_primary_source_precision": 1,
+    "fe03_hidden_primary_source_recall": 1,
+    "fe03_hidden_publication_status_precision": 1,
+    "fe03_hidden_evidence_level_precision": 0.9166666666666666,
+    "fe03_hidden_source_independence_precision": 1,
+    "fe03_hidden_claim_evidence_precision": 1,
+    "fe03_hidden_claim_prediction_coverage": 0.5416666666666666,
+    "fe03_hidden_critical_false_confirmed_rate": 0,
+    "fe03_hidden_known_retracted_confirmed": 0,
+    "fe03_hidden_atomic_gold_passage_recall": 0.9583333333333334,
+    "fe03_hidden_verified_locator_rate": 1,
+    "fe03_hidden_machine_proposed_rate": 1,
+    "fe03_hidden_holdout_v1_rerun_forbidden": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -227,11 +246,13 @@
   "next_gate": {
     "stage": "FE-03",
     "required": [
-      "create >=50 externally curated hidden cases outside the public tuning repository",
-      "seal the hidden holdout and record SHA-256 + byte length",
-      "consume the frozen candidate once with holdout-v1",
-      "critical hidden false-confirmed rate = 0",
-      "all frozen external-v1 and holdout-v1 thresholds pass",
+      "diagnose evidence-level generalization on a fresh non-holdout diagnostic corpus without reusing the consumed hidden holdout",
+      "improve evidence-level classification without weakening frozen external-v1 thresholds or safety gates",
+      "rerun and pass the 150-case public benchmark plus atomic and claim-link gates",
+      "freeze a new FE-03 candidate SHA",
+      "create and seal a new independent hidden holdout with >=50 fresh cases",
+      "consume that new holdout once",
+      "all frozen thresholds pass including evidence_level_precision >= 0.95 and critical false-confirmed rate = 0",
       "human review queue remains mandatory"
     ]
   },
@@ -243,5 +264,27 @@
   ],
   "next_stage_after_gate": "FE-04",
   "github_actions_dependency": false,
-  "github_actions_activation_target": "2026-10-01"
+  "github_actions_activation_target": "2026-10-01",
+  "failed_gates": [
+    {
+      "stage": "FE-03",
+      "verdict": "FAIL",
+      "protocol": "FE03-HIDDEN-HOLDOUT-v1",
+      "candidate_sha": "d3aa028642bbfd78bdd334c1f8186f6eb5d58591",
+      "holdout_sha256": "62bd2cbc702bc1da4fb24dfb9a519795c8ca7809eae5df71533142320ea85ee0",
+      "reason": "evidence_level_precision=0.9166666666666666 below frozen minimum 0.95",
+      "preserved_passes": [
+        "primary_source_precision=1",
+        "primary_source_recall=1",
+        "publication_status_precision=1",
+        "source_independence_precision=1",
+        "claim_evidence_precision=1",
+        "critical_false_confirmed_rate=0",
+        "known_retracted_confirmed=0",
+        "atomic_gold_passage_recall=0.9583333333333334",
+        "verified_locator_rate=1",
+        "machine_proposed_rate=1"
+      ]
+    }
+  ]
 }
