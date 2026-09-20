@@ -479,7 +479,11 @@
     "fe06r_internal_links_checked": 2369,
     "fe06r_final_broken_internal_links": 0,
     "fe06r_final_gate_verdict": "BLOCKED",
-    "fe06r_final_gate_only_blocker": "5-person independent human recognition test"
+    "fe06r_final_gate_only_blocker": "5-person independent human recognition test",
+    "fe06r_recognition_kit_ready": true,
+    "fe06r_recognition_kit_manifest": "benchmarks/fe06r/recognition-test-kit.manifest.json",
+    "fe06r_recognition_kit_filename": "FE06R_recognition_kit.zip",
+    "fe06r_recognition_kit_sha256": "1f5dfbbdaef9fb8f1a3df0ae7122766e3fdb738c1777c8fc74e659b27e703662"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

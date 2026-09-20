@@ -1,0 +1,24 @@
+{
+  "schema_version": "fe06r/recognition-test-kit/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "package_filename": "FE06R_recognition_kit.zip",
+  "package_sha256": "1f5dfbbdaef9fb8f1a3df0ae7122766e3fdb738c1777c8fc74e659b27e703662",
+  "source_browser_qa_run_id": 35533538311,
+  "source_browser_qa_artifact_id": 10611803566,
+  "evaluators_required": 5,
+  "raw_response_schema": "fe06r/recognition-raw-response/v1",
+  "stimuli": [
+    "R1-home-1440.png",
+    "R1-home-390.png",
+    "R2-article-1440.png",
+    "R3-observatory-390.png",
+    "R4-methodology-1440.png"
+  ],
+  "instructions": [
+    "exactly five independent human evaluators",
+    "no prior explanation of Future Edition concepts or proprietary primitive names",
+    "responses collected verbatim and independently",
+    "no AI or synthetic evaluator may count as a human evaluator",
+    "preserve recognition-E1.json through recognition-E5.json unchanged"
+  ]
+}
