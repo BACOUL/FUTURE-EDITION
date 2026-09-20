@@ -1,0 +1,43 @@
+name: FE06 stage static preview
+
+on:
+  push:
+    branches: [fe06-static-export]
+
+permissions:
+  contents: write
+
+jobs:
+  export-static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build validated static media
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+          node pipeline/build-graph.mjs
+          node pipeline/validate-graph.mjs
+          node pipeline/build-site.mjs
+          node pipeline/validate-output.mjs
+      - name: Publish generated files to preview branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          rm -rf /tmp/fe06-static
+          cp -a dist /tmp/fe06-static
+          git config user.name "future-edition-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch origin fe06-static-preview || true
+          git switch --orphan fe06-static-preview-tmp
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -a /tmp/fe06-static/. .
+          git add -A
+          git commit -m "FE-06 static preview"
+          git branch -M fe06-static-preview
+          git push --force origin fe06-static-preview
