@@ -117,7 +117,7 @@ R2 contient 15/15 :
 14. dossier de preuve ;
 15. publication + mise à jour.
 
-## M4 — Hiérarchie éditoriale — 10
+## M4 — Hiérarchie éditoriale et navigation — 10
 Home :
 - 1 sujet principal ;
 - au moins 3 niveaux de hiérarchie ;
@@ -125,13 +125,26 @@ Home :
 - Watch / À surveiller ;
 - accès aux observatoires.
 
-## M5 — Identité visuelle — 15
-R1-R4 doivent avoir des compositions fonctionnellement distinctes.
+Navigation :
+- Aujourd'hui, Observatoires, Reality Check, Ask et Search sont des destinations primaires ;
+- Search est accessible globalement ;
+- sur mobile, aucune destination primaire ne nécessite plus d'une action après ouverture de la navigation principale ;
+- une source originale est atteignable en 2 actions maximum depuis un claim principal d'article ;
+- aucun dossier de preuve n'est un cul-de-sac.
 
-Seuil :
+## M5 — Identité Future Edition — 15
+R1-R4 doivent avoir des compositions fonctionnellement distinctes et démontrer la grammaire définie dans `DESIGN-SYSTEM-VISION.md`.
+
+Répartition :
+- **5 pts** : Delta `BEFORE → EVIDENCE → AFTER` et Evidence Spine réellement implémentés sur le prototype de référence ;
+- **5 pts** : au moins 3 primitives propriétaires distinctes réellement utilisées parmi Delta, State Plate, Evidence Spine, Timeglass, Depth Lens, Contradiction Split, Watch Horizon, Correction Trail, Agent Dock ;
+- **5 pts** : test de reconnaissance sur au moins 5 évaluateurs : ≥4/5 identifient spontanément changement/preuve/état comme le cœur du produit et ≥4/5 identifient au moins une représentation inhabituelle sans explication préalable.
+
+Contraintes :
 - maximum 40 % de structure dominante commune entre deux surfaces, hors chrome/design system ;
 - pas plus de 2 sections successives utilisant exactement le même pattern de carte ;
-- au moins un langage visuel informatif propre : data-viz, timeline, schéma, photo ou illustration pertinente.
+- les quatre surfaces ne peuvent pas utiliser exactement les mêmes primitives dans le même ordre ;
+- l'originalité doit venir de la représentation de la connaissance, pas d'effets décoratifs.
 
 ## M6 — Mobile / responsive — 10
 QA : 360 / 390 / 768 / 1440 px.
@@ -155,6 +168,7 @@ FAIL immédiat si :
 - R2 remplacé par un dossier de preuve ;
 - contenu de remplissage ;
 - majorité des surfaces fondées sur un même motif de cartes ;
+- différenciation reposant principalement sur gradients, glow, animation ou esthétique "IA" générique ;
 - visualisation décorative suggérant une mesure inexistante ;
 - image sans rapport avec le contenu ;
 - surface R1-R4 inutilisable à 360 px.
