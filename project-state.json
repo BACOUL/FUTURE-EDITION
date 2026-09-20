@@ -486,12 +486,14 @@
     "fe06r_recognition_kit_sha256": "1f5dfbbdaef9fb8f1a3df0ae7122766e3fdb738c1777c8fc74e659b27e703662",
     "fe06r_pageshare_preview_url": "https://mellow-cinder-5721.hosted.pageshare.ai",
     "fe06r_pageshare_site_id": "site_450bf5da5b5e41c2b033700268e29b01",
-    "fe06r_pageshare_active_version_id": "ver_8429826833c14279ae0f4908ac6dd1d1",
-    "fe06r_pageshare_active_version_number": 13,
-    "fe06r_pageshare_file_count": 87,
-    "fe06r_pageshare_total_bytes": 850729,
-    "fe06r_pageshare_source_sha": "50240a5c24b49a53d66bc73244ec7d383fef23ae",
-    "fe06r_pageshare_preview_published": true
+    "fe06r_pageshare_active_version_id": "ver_091752c8d10b44879644ab5c00d6c47a",
+    "fe06r_pageshare_active_version_number": 15,
+    "fe06r_pageshare_file_count": 88,
+    "fe06r_pageshare_total_bytes": 911442,
+    "fe06r_pageshare_source_sha": "a0dd8c9361c3d025f00c9b912fda223578e543b4",
+    "fe06r_pageshare_preview_published": true,
+    "fe06r_pageshare_stylesheet": "/assets/styles-fe06r-v14.css",
+    "fe06r_pageshare_cache_bust_fix": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
