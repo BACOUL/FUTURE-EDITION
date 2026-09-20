@@ -857,7 +857,7 @@ await writePage("/methodologie", layout(
             <span>RESOLUTION</span>
             <ol>
               <li>Ignorer les propositions non approuvées pour l’état public.</li>
-              <li>Prendre les Assessment `human_approved` du jalon.</li>
+              <li>Prendre les Assessment <code>human_approved</code> du jalon.</li>
               <li>Éliminer ceux superseded par un Assessment approuvé plus récent.</li>
               <li>Exiger exactement un terminal.</li>
               <li>Aucun terminal approuvé → <b>UNASSESSED</b>.</li>
