@@ -1,0 +1,8 @@
+{
+  "schema_version": "fe06r/correction-propagation-audit/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "run_id": 35533539602,
+  "cases": 3,
+  "passed": true,
+  "verdict": "PASS"
+}

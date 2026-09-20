@@ -1,0 +1,37 @@
+{
+  "schema_version": "fe06r/structured-data-audit/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "surfaces": [
+    {
+      "surface": "R1",
+      "canonical": true,
+      "jsonld": true,
+      "og_title": true,
+      "og_description": true
+    },
+    {
+      "surface": "R2",
+      "canonical": true,
+      "jsonld": true,
+      "og_title": true,
+      "og_description": true
+    },
+    {
+      "surface": "R3",
+      "canonical": true,
+      "jsonld": true,
+      "og_title": true,
+      "og_description": true
+    },
+    {
+      "surface": "R4",
+      "canonical": true,
+      "jsonld": true,
+      "og_title": true,
+      "og_description": true
+    }
+  ],
+  "machine_manifest": true,
+  "delta_contract": true,
+  "verdict": "PASS"
+}

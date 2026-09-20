@@ -1,0 +1,114 @@
+{
+  "schema_version": "fe06r/intelligence-evaluation/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "status": "PASS",
+  "score": 100,
+  "criteria": [
+    {
+      "metric": "I1",
+      "threshold": "100% qualified advances expose BEFORE/EVIDENCE/AFTER",
+      "measured": "1/1",
+      "verdict": "PASS",
+      "evidence": {
+        "before": true,
+        "evidence": true,
+        "after": true
+      }
+    },
+    {
+      "metric": "I2",
+      "threshold": "100% classified Change or NO_CHANGE",
+      "measured": "NO_CHANGE",
+      "verdict": "PASS",
+      "evidence": {
+        "status": "NO_CHANGE",
+        "reason": "No validated Change promotes an observatory milestone.",
+        "narrative": "L’ignition en laboratoire devient un résultat expérimental démontré dans cette configuration. Cela ne suffit pas à conclure qu’un système de fusion peut déjà produire de l’électricité de manière durable, industrielle ou commercialement viable.",
+        "claim_ids": [
+          "CLAIM-050027"
+        ]
+      }
+    },
+    {
+      "metric": "I3",
+      "threshold": "100% expose limitations/non-conclusions",
+      "measured": "1/1",
+      "verdict": "PASS",
+      "evidence": {
+        "limitations": 3,
+        "does_not_prove": 4
+      }
+    },
+    {
+      "metric": "I4",
+      "threshold": "previous state/history/contradictions represented",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "related_event_ids": [
+          "EV-2021-006001",
+          "EV-2022-006002",
+          "EV-2023-006003",
+          "EV-2024-006004",
+          "EV-2025-006005"
+        ],
+        "observatory_limits": [
+          "Les cinq événements soutiennent des affirmations expérimentales distinctes ; ils ne prouvent pas à eux seuls une production électrique commerciale.",
+          "Les résultats appartiennent à plusieurs architectures de fusion qui ne sont pas directement interchangeables.",
+          "L’absence de contradiction enregistrée dans ce corpus ne signifie pas qu’aucune contradiction scientifique n’existe hors du corpus."
+        ]
+      }
+    },
+    {
+      "metric": "I5",
+      "threshold": "0 SIGNAL-only published as QUALIFIED_ADVANCE",
+      "measured": "0",
+      "verdict": "PASS",
+      "evidence": {
+        "reference_event_status": "verified",
+        "change_status": "NO_VALIDATED_CHANGE"
+      }
+    },
+    {
+      "metric": "I6",
+      "threshold": "one complete Reality Check",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": true
+    },
+    {
+      "metric": "I7",
+      "threshold": "100% articles define observable watch_next",
+      "measured": "1/1",
+      "verdict": "PASS",
+      "evidence": [
+        {
+          "milestone_id": "Q-006-M2",
+          "text": "Répéter le résultat de manière contrôlée."
+        },
+        {
+          "milestone_id": "Q-006-M4",
+          "text": "Démontrer qu’un système intégré convertit effectivement la fusion en électricité exploitable."
+        },
+        {
+          "milestone_id": "Q-006-M5",
+          "text": "Faire fonctionner un démonstrateur sous contraintes industrielles."
+        }
+      ]
+    },
+    {
+      "metric": "I8",
+      "threshold": "no milestone overclaim / bounded title / proof-linked major claims",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "milestone_overclaims": 0,
+        "bounded_non_conclusions": 4,
+        "provenance": true
+      }
+    }
+  ],
+  "vetoes": {
+    "triggered": []
+  }
+}

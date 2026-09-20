@@ -1,0 +1,15 @@
+{
+  "schema_version": "fe06r/verdict/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "verdict": "BLOCKED",
+  "reason": "All automated FE-06R gates pass; independent 5-person recognition remains unexecuted or unpassed.",
+  "scores": {
+    "MEDIA": null,
+    "INTELLIGENCE": 100,
+    "REFERENCE": 100,
+    "AGENT-NATIVE": 100
+  },
+  "blockers": [
+    "5-person independent human recognition test has not passed"
+  ]
+}

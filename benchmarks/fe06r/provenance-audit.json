@@ -1,0 +1,44 @@
+{
+  "schema_version": "fe06r/provenance-audit/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "claims": 5,
+  "complete_chains": 5,
+  "chains": [
+    {
+      "claim_id": "CLAIM-050026",
+      "evidence_id": "EVID-050026",
+      "source_id": "SRC-050026",
+      "locator": "Experiment summary",
+      "canonical_url": "https://lasers.llnl.gov/news/nif-experiment-puts-researchers-threshold-fusion-ignition"
+    },
+    {
+      "claim_id": "CLAIM-050027",
+      "evidence_id": "EVID-050027",
+      "source_id": "SRC-050027",
+      "locator": "Shot summary",
+      "canonical_url": "https://lasers.llnl.gov/news/nifs-fusion-ignition-shot-hailed-as-historic-scientific-feat"
+    },
+    {
+      "claim_id": "CLAIM-050028",
+      "evidence_id": "EVID-050028",
+      "source_id": "SRC-050028",
+      "locator": "July 30, 2023 ignition result",
+      "canonical_url": "https://annual.llnl.gov/fy-2023/national-ignition-facility-2023"
+    },
+    {
+      "claim_id": "CLAIM-050029",
+      "evidence_id": "EVID-050029",
+      "source_id": "SRC-050029",
+      "locator": "Deuterium-Tritium campaign — energy record",
+      "canonical_url": "https://euro-fusion.org/eurofusion-news/dte3record/"
+    },
+    {
+      "claim_id": "CLAIM-050030",
+      "evidence_id": "EVID-050030",
+      "source_id": "SRC-050030",
+      "locator": "Record summary",
+      "canonical_url": "https://www.ipp.mpg.de/5532945/w7x"
+    }
+  ],
+  "verdict": "PASS"
+}

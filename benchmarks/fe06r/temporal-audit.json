@@ -1,0 +1,11 @@
+{
+  "schema_version": "fe06r/temporal-audit/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "missing": {
+    "article": [],
+    "observatory": [],
+    "methodology": []
+  },
+  "archive_not_presented_as_current": true,
+  "verdict": "PASS"
+}

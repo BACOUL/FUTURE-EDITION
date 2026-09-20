@@ -1,0 +1,122 @@
+{
+  "schema_version": "fe06r/reference-evaluation/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "status": "PASS",
+  "score": 100,
+  "criteria": [
+    {
+      "metric": "Rf1",
+      "threshold": "100% Article→Claim→Evidence→Source→Locator",
+      "measured": "5/5",
+      "verdict": "PASS",
+      "evidence": [
+        {
+          "claim_id": "CLAIM-050026",
+          "evidence_id": "EVID-050026",
+          "source_id": "SRC-050026",
+          "locator": "Experiment summary",
+          "url": "https://lasers.llnl.gov/news/nif-experiment-puts-researchers-threshold-fusion-ignition"
+        },
+        {
+          "claim_id": "CLAIM-050027",
+          "evidence_id": "EVID-050027",
+          "source_id": "SRC-050027",
+          "locator": "Shot summary",
+          "url": "https://lasers.llnl.gov/news/nifs-fusion-ignition-shot-hailed-as-historic-scientific-feat"
+        },
+        {
+          "claim_id": "CLAIM-050028",
+          "evidence_id": "EVID-050028",
+          "source_id": "SRC-050028",
+          "locator": "July 30, 2023 ignition result",
+          "url": "https://annual.llnl.gov/fy-2023/national-ignition-facility-2023"
+        },
+        {
+          "claim_id": "CLAIM-050029",
+          "evidence_id": "EVID-050029",
+          "source_id": "SRC-050029",
+          "locator": "Deuterium-Tritium campaign — energy record",
+          "url": "https://euro-fusion.org/eurofusion-news/dte3record/"
+        },
+        {
+          "claim_id": "CLAIM-050030",
+          "evidence_id": "EVID-050030",
+          "source_id": "SRC-050030",
+          "locator": "Record summary",
+          "url": "https://www.ipp.mpg.de/5532945/w7x"
+        }
+      ]
+    },
+    {
+      "metric": "Rf2",
+      "threshold": "0 ID collision / orphan relation",
+      "measured": "0 collisions",
+      "verdict": "PASS",
+      "evidence": {
+        "ids": 212,
+        "duplicateIds": 0
+      }
+    },
+    {
+      "metric": "Rf3",
+      "threshold": "required machine fields 100%",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "missing": []
+      }
+    },
+    {
+      "metric": "Rf4",
+      "threshold": "external canonical source for every primary claim",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": [
+        "SRC-050026",
+        "SRC-050027",
+        "SRC-050028",
+        "SRC-050029",
+        "SRC-050030"
+      ]
+    },
+    {
+      "metric": "Rf5",
+      "threshold": "correction/history propagation detectable",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "run_id": 35533539602,
+        "lifecycle_cases": 3
+      }
+    },
+    {
+      "metric": "Rf6",
+      "threshold": "all claims if <10 reproducible",
+      "measured": "5/5",
+      "verdict": "PASS",
+      "evidence": "canonical data"
+    },
+    {
+      "metric": "Rf7",
+      "threshold": "0 broken internal links",
+      "measured": "0",
+      "verdict": "PASS",
+      "evidence": {
+        "internalLinkCount": 2369
+      }
+    },
+    {
+      "metric": "Rf8",
+      "threshold": "negative/limitations/corrections remain visible in relevant cases",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "limiting_notes": 3,
+        "contradicting_event_ids": 0
+      }
+    }
+  ],
+  "vetoes": {
+    "triggered": []
+  }
+}

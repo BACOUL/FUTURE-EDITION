@@ -1,0 +1,9 @@
+{
+  "schema_version": "fe06r/scientific-claims-audit/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "primary_claims": 5,
+  "supported_claims": 5,
+  "title_bounded_by_non_conclusions": true,
+  "milestone_overclaims": 0,
+  "verdict": "PASS"
+}

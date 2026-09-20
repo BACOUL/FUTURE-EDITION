@@ -1,0 +1,184 @@
+{
+  "schema_version": "fe06r/agent-native-evaluation/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "status": "PASS",
+  "score": 100,
+  "criteria": [
+    {
+      "metric": "A1",
+      "threshold": "canonical identity on public machine objects",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "article": [
+          "ART-000001",
+          "article",
+          1
+        ],
+        "observatory": [
+          "OBS-006",
+          "observatory_state",
+          1
+        ],
+        "methodology": [
+          "METHOD-FE06R-V1",
+          "methodology_contract",
+          1
+        ]
+      }
+    },
+    {
+      "metric": "A2",
+      "threshold": "explicit unambiguous time 100%",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "article": [],
+        "observatory": [],
+        "methodology": []
+      }
+    },
+    {
+      "metric": "A3",
+      "threshold": "100% major claims individually citable",
+      "measured": "5/5",
+      "verdict": "PASS",
+      "evidence": [
+        {
+          "claim_id": "CLAIM-050026",
+          "claim_version": 1,
+          "evidence_id": "EVID-050026",
+          "source_id": "SRC-050026",
+          "locator": "Experiment summary",
+          "confidence": "solid_preliminary",
+          "canonical_url": "https://lasers.llnl.gov/news/nif-experiment-puts-researchers-threshold-fusion-ignition",
+          "valid_from": "2021-08-08T00:00:00Z",
+          "superseded_at": null
+        },
+        {
+          "claim_id": "CLAIM-050027",
+          "claim_version": 1,
+          "evidence_id": "EVID-050027",
+          "source_id": "SRC-050027",
+          "locator": "Shot summary",
+          "confidence": "solid_preliminary",
+          "canonical_url": "https://lasers.llnl.gov/news/nifs-fusion-ignition-shot-hailed-as-historic-scientific-feat",
+          "valid_from": "2022-12-05T00:00:00Z",
+          "superseded_at": null
+        },
+        {
+          "claim_id": "CLAIM-050028",
+          "claim_version": 1,
+          "evidence_id": "EVID-050028",
+          "source_id": "SRC-050028",
+          "locator": "July 30, 2023 ignition result",
+          "confidence": "confirmed",
+          "canonical_url": "https://annual.llnl.gov/fy-2023/national-ignition-facility-2023",
+          "valid_from": "2023-07-30T00:00:00Z",
+          "superseded_at": null
+        },
+        {
+          "claim_id": "CLAIM-050029",
+          "claim_version": 1,
+          "evidence_id": "EVID-050029",
+          "source_id": "SRC-050029",
+          "locator": "Deuterium-Tritium campaign — energy record",
+          "confidence": "solid_preliminary",
+          "canonical_url": "https://euro-fusion.org/eurofusion-news/dte3record/",
+          "valid_from": "2024-02-08T00:00:00Z",
+          "superseded_at": null
+        },
+        {
+          "claim_id": "CLAIM-050030",
+          "claim_version": 1,
+          "evidence_id": "EVID-050030",
+          "source_id": "SRC-050030",
+          "locator": "Record summary",
+          "confidence": "solid_preliminary",
+          "canonical_url": "https://www.ipp.mpg.de/5532945/w7x",
+          "valid_from": "2025-06-03T00:00:00Z",
+          "superseded_at": null
+        }
+      ]
+    },
+    {
+      "metric": "A4",
+      "threshold": "3/3 correction/retraction/supersession",
+      "measured": "3/3",
+      "verdict": "PASS",
+      "evidence": {
+        "run_id": 35533539602
+      }
+    },
+    {
+      "metric": "A5",
+      "threshold": "Agent Answer Packet fields complete",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": "dist/machine/avance/nif-ignition-fusion-2022.json"
+    },
+    {
+      "metric": "A6",
+      "threshold": ">=20 negatives; zero false critical answer/citation",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "cases": 20,
+        "false_answers": 0,
+        "fake_citations": 0
+      }
+    },
+    {
+      "metric": "A7",
+      "threshold": "manifest + schemas + JSON-LD/discovery",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "manifest_schema": "fe/machine-manifest/v1",
+        "delta_schema": "fe/delta-feed-contract/v1",
+        "structuredResults": [
+          {
+            "surface": "R1",
+            "canonical": true,
+            "jsonld": true,
+            "og_title": true,
+            "og_description": true
+          },
+          {
+            "surface": "R2",
+            "canonical": true,
+            "jsonld": true,
+            "og_title": true,
+            "og_description": true
+          },
+          {
+            "surface": "R3",
+            "canonical": true,
+            "jsonld": true,
+            "og_title": true,
+            "og_description": true
+          },
+          {
+            "surface": "R4",
+            "canonical": true,
+            "jsonld": true,
+            "og_title": true,
+            "og_description": true
+          }
+        ]
+      }
+    },
+    {
+      "metric": "A8",
+      "threshold": ">=10 deterministic delta changes",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "changes": 10
+      }
+    }
+  ],
+  "vetoes": {
+    "triggered": []
+  }
+}

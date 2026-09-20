@@ -1,0 +1,46 @@
+{
+  "schema_version": "fe06r/gate-v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "execution_sha": "aff9bcafc7f3259172ffbff131549595fa2a1527",
+  "thresholds": {
+    "MEDIA": 85,
+    "INTELLIGENCE": 90,
+    "REFERENCE": 95,
+    "AGENT-NATIVE": 95
+  },
+  "scores": {
+    "MEDIA": null,
+    "INTELLIGENCE": 100,
+    "REFERENCE": 100,
+    "AGENT-NATIVE": 100
+  },
+  "recognition": {
+    "status": "NOT_RUN",
+    "verdict": "BLOCKED",
+    "evaluators": 0
+  },
+  "responsive": {
+    "verdict": "PASS",
+    "failures": 0
+  },
+  "trust_pages": {
+    "present": {
+      "dist/a-propos/index.html": true,
+      "dist/methodologie/index.html": true,
+      "dist/responsabilite-editoriale/index.html": true,
+      "dist/corrections/index.html": true,
+      "dist/signaler-une-erreur/index.html": true,
+      "dist/sources/index.html": true,
+      "dist/contact/index.html": true,
+      "dist/mentions-legales/index.html": true,
+      "dist/confidentialite/index.html": true,
+      "dist/acces-machine/index.html": true
+    },
+    "all_present": true
+  },
+  "verdict": "BLOCKED",
+  "blockers": [
+    "5-person independent human recognition test has not passed"
+  ],
+  "generated_by": "pipeline/audit-fe06r-final.mjs"
+}

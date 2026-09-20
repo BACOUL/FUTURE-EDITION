@@ -1,0 +1,131 @@
+{
+  "schema_version": "fe06r/media-evaluation/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "status": "BLOCKED_HUMAN_RECOGNITION",
+  "score": null,
+  "automated_points_passed": 65,
+  "human_points_pending": 35,
+  "criteria": [
+    {
+      "metric": "M1",
+      "threshold": "5 independent humans; all 3 thresholds >=4/5",
+      "measured": "NOT_RUN",
+      "verdict": "PENDING_HUMAN",
+      "evidence": "recognition-test.results.json"
+    },
+    {
+      "metric": "M2",
+      "threshold": "100% temporal classification; 0 archive as current",
+      "measured": {
+        "temporal_status": "HISTORICAL_BASELINE",
+        "false_current_feed": true
+      },
+      "verdict": "PASS",
+      "evidence": "article data + /aujourdhui"
+    },
+    {
+      "metric": "M3",
+      "threshold": "15/15 article components",
+      "measured": "15/15",
+      "verdict": "PASS",
+      "evidence": {
+        "title": true,
+        "deck": true,
+        "informative_visual": true,
+        "context": true,
+        "previous_state": true,
+        "new_evidence": true,
+        "change": true,
+        "why_it_matters": true,
+        "does_not_prove": true,
+        "limitations": true,
+        "watch_next": true,
+        "evidence_level": true,
+        "references": true,
+        "proof_dossier": true,
+        "publication_and_update": true
+      }
+    },
+    {
+      "metric": "M4",
+      "threshold": "primary navigation + source within 2 actions",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "navPass": true,
+        "articleToProof": true,
+        "proofToSource": true
+      }
+    },
+    {
+      "metric": "M5",
+      "threshold": "technical identity + >=4/5 recognition",
+      "measured": {
+        "primitiveCount": 8,
+        "recognition": "NOT_RUN"
+      },
+      "verdict": "PENDING_HUMAN",
+      "evidence": {
+        "delta": true,
+        "evidence_spine": true,
+        "state_plate": true,
+        "timeglass": true,
+        "contradiction_split": true,
+        "watch_horizon": true,
+        "correction_trail": true,
+        "agent_dock": true
+      }
+    },
+    {
+      "metric": "M6",
+      "threshold": "360/390/768/1440; zero critical failures",
+      "measured": "PASS",
+      "verdict": "PASS",
+      "evidence": {
+        "schema_version": "fe06r/responsive-qa/v1",
+        "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+        "browser_qa_run_id": 35533538311,
+        "browser_qa_job_id": 106138387805,
+        "browser_qa_artifact_id": 10611803566,
+        "artifact_digest": "sha256:fe82fac4ebdf58c8e6e7b9b539169a333af146ee310f03d9a73ebf0f11a37252",
+        "generated_at": "2026-09-20T19:49:58.316Z",
+        "pages": [
+          "R1-home",
+          "R2-article",
+          "R3-observatory",
+          "R4-methodology"
+        ],
+        "widths": [
+          360,
+          390,
+          768,
+          1440
+        ],
+        "checks": 16,
+        "failures": 0,
+        "verdict": "PASS",
+        "invariants": {
+          "http_200": "16/16",
+          "horizontal_overflow": 0,
+          "page_failures": 0,
+          "screenshots": 16
+        },
+        "evidence": {
+          "workflow_run": 35533538311,
+          "artifact": 10611803566,
+          "screenshot_manifest": "benchmarks/fe06r/screenshots/MANIFEST.json"
+        }
+      }
+    },
+    {
+      "metric": "M7",
+      "threshold": ">=80% continue and lead expectation",
+      "measured": "NOT_RUN",
+      "verdict": "PENDING_HUMAN",
+      "evidence": "recognition-test.results.json"
+    }
+  ],
+  "vetoes": {
+    "triggered": []
+  }
+}
