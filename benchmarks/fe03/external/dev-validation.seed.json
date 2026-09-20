@@ -1194,7 +1194,7 @@
     },
     "labels": {
       "primary_source_resolvable": true,
-      "publication_status": "active",
+      "publication_status": "corrected",
       "critical_safety_case": true,
       "expected_subject_scope": "human",
       "expected_evidence_level": "controlled_human"
@@ -1237,9 +1237,18 @@
           "no_improvement_in_sustained_recovery",
           "scope_difference"
         ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34717820/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "current_publication_status",
+          "corrected"
+        ]
       }
     ],
-    "notes": "Materially conflicting trial evidence with explicit differences preserved; not treated as a logically identical replication."
+    "notes": "Materially conflicting trial evidence with explicit differences preserved; not treated as a logically identical replication. Current PubMed record carries erratum links; contradiction semantics remain unchanged."
   },
   {
     "id": "FE03-EXT-0037",
@@ -2135,7 +2144,7 @@
     },
     "labels": {
       "primary_source_resolvable": true,
-      "publication_status": "expression_of_concern",
+      "publication_status": "retracted",
       "critical_safety_case": true,
       "expected_subject_scope": "unknown",
       "expected_evidence_level": "unknown"
@@ -2160,9 +2169,18 @@
           "ExpressionOfConcernFor",
           "PMID_41540926"
         ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41540926/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "current_publication_status",
+          "retracted"
+        ]
       }
     ],
-    "notes": "Influenza vaccine-effectiveness publication covered by a PubMed expression-of-concern notice."
+    "notes": "Influenza vaccine-effectiveness publication covered by a PubMed expression-of-concern notice. This publication progressed from expression of concern to retraction; the current-state label is retracted while the integrity history remains relevant."
   },
   {
     "id": "FE03-EXT-0065",
@@ -3499,7 +3517,7 @@
     },
     "labels": {
       "primary_source_resolvable": true,
-      "publication_status": "active",
+      "publication_status": "corrected",
       "critical_safety_case": true,
       "expected_subject_scope": "animal",
       "expected_evidence_level": "preclinical"
@@ -3515,9 +3533,18 @@
           "lifespan",
           "preclinical_scope"
         ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41826362/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "current_publication_status",
+          "corrected"
+        ]
       }
     ],
-    "notes": "Mouse mitochondrial-deficiency lifespan intervention study."
+    "notes": "Mouse mitochondrial-deficiency lifespan intervention study. PubMed now links an author correction; animal-only scope remains unchanged."
   },
   {
     "id": "FE03-EXT-0107",
