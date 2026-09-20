@@ -32,6 +32,7 @@ jobs:
           node pipeline/test-fe03-crossref-integrity.mjs
           node pipeline/test-fe03-pubmed-integrity.mjs
           node pipeline/test-fe03-evidence-level-precedence.mjs
+          node pipeline/test-fe03-subject-scope-disambiguation.mjs
           node pipeline/test-fe03-claim-linker.mjs
           node pipeline/test-fe03-claim-extractor.mjs
       - name: Live public source-resolution benchmark
