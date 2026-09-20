@@ -149,6 +149,125 @@ async function fetchWithRetry(url,options,{fetchFn,maxAttempts=4,baseDelayMs=500
   return {response:lastResponse,error:lastError};
 }
 
+
+const nhsPostCache=new Map();
+
+function decodeXmlEntityText(value){
+  return String(value??"")
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,"$1")
+    .replace(/&#x([0-9a-f]+);/gi,(_,hex)=>String.fromCodePoint(Number.parseInt(hex,16)))
+    .replace(/&#([0-9]+);/g,(_,dec)=>String.fromCodePoint(Number.parseInt(dec,10)))
+    .replaceAll("&amp;","&")
+    .replaceAll("&lt;","<")
+    .replaceAll("&gt;",">")
+    .replaceAll("&quot;",String.fromCharCode(34))
+    .replaceAll("&apos;","'");
+}
+
+function rssElement(xml,tag){
+  const match=String(xml??"").match(new RegExp("<"+tag+"(?:\\s[^>]*)?>([\\s\\S]*?)<\\/"+tag+">","i"));
+  return match?decodeXmlEntityText(match[1]).trim():null;
+}
+
+function rssItems(xml){
+  const items=[];
+  const re=/<item>([\s\S]*?)<\/item>/gi;
+  let match;
+  while((match=re.exec(String(xml??"")))!==null){
+    const inner=match[1];
+    items.push({
+      link:rssElement(inner,"link"),
+      guid:rssElement(inner,"guid"),
+      title:rssElement(inner,"title"),
+      description:rssElement(inner,"description")
+    });
+  }
+  return items;
+}
+
+function canonicalWebUrl(value){
+  try{
+    const url=new URL(value);
+    url.hash="";
+    if(!url.pathname.endsWith("/")) url.pathname+="/";
+    return url.toString();
+  }catch{
+    return String(value??"");
+  }
+}
+
+function nhsArchiveFeedUrl(value){
+  const url=new URL(value);
+  const match=url.pathname.match(/^(.*?\/\d{4}\/\d{2})\//);
+  if(!match) return null;
+  url.pathname=match[1]+"/feed/";
+  url.search="";
+  url.hash="";
+  return url.toString();
+}
+
+async function nhsWordpressFallback(request,{fetchFn}){
+  if(request.provider!=="nhs_england") return null;
+  const target=canonicalWebUrl(request.url);
+  if(nhsPostCache.has(target)) return nhsPostCache.get(target);
+
+  const archive=nhsArchiveFeedUrl(target);
+  if(!archive) return null;
+
+  let postId=null;
+  let feedDescription=null;
+
+  for(let page=1;page<=12;page++){
+    const feedUrl=archive+(page===1?"":"?paged="+page);
+    const {response,error}=await fetchWithRetry(feedUrl,{
+      headers:{...DEFAULT_HEADERS,accept:"application/rss+xml,application/xml,text/xml"}
+    },{fetchFn,maxAttempts:3,baseDelayMs:500});
+    if(error||!response?.ok) break;
+
+    let xml;
+    try{ xml=await response.text(); }catch{ break; }
+    const items=rssItems(xml);
+    if(items.length===0) break;
+
+    const item=items.find(entry=>canonicalWebUrl(entry.link)===target);
+    if(item){
+      const idMatch=String(item.guid??"").match(/[?&]p=([0-9]+)/);
+      if(idMatch) postId=idMatch[1];
+      feedDescription=item.description??null;
+      break;
+    }
+  }
+
+  if(!postId) return null;
+
+  const apiUrl="https://www.england.nhs.uk/wp-json/wp/v2/posts/"+postId;
+  const {response,error}=await fetchWithRetry(apiUrl,{
+    headers:{...DEFAULT_HEADERS,accept:"application/json"}
+  },{fetchFn,maxAttempts:3,baseDelayMs:500});
+  if(error||!response?.ok) return null;
+
+  try{
+    const post=await response.json();
+    const title=String(post?.title?.rendered??"").trim();
+    const body=String(post?.content?.rendered??"").trim();
+    const excerpt=String(post?.excerpt?.rendered??feedDescription??"").trim();
+    if(!title||!body) return null;
+
+    const synthetic="<html><head><title>"+title+"</title></head><body>"+body+"</body></html>";
+    const parsed=parseOfficialWebHtml(synthetic,{url:target});
+    if(!parsed) return null;
+    if(!parsed.description&&excerpt){
+      const excerptParsed=parseOfficialWebHtml("<html><head><title>x</title></head><body><p>"+excerpt+"</p></body></html>",{url:target});
+      parsed.description=excerptParsed?.body??null;
+    }
+    parsed.url=target;
+    nhsPostCache.set(target,parsed);
+    return parsed;
+  }catch{
+    return null;
+  }
+}
+
 async function rxivHtmlFallback(request,{fetchFn}){
   if(!["biorxiv","medrxiv"].includes(request.provider)) return null;
   const url="https://www."+request.provider+".org/content/"+request.identifier;
@@ -260,6 +379,9 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedA
     }else if(request.format==="html"){
       const html=await response.text();
       payload=parseOfficialWebHtml(html,{url:request.url});
+      if(!payload&&request.provider==="nhs_england"){
+        payload=await nhsWordpressFallback(request,{fetchFn});
+      }
       if(!payload){
         return {
           status:"unresolved",
