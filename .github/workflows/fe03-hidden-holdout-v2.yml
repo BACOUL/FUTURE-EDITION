@@ -1,0 +1,122 @@
+name: FE03 hidden holdout v2
+
+on:
+  push:
+    branches: [fe03-hidden-holdout-v2-eval]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  generate-and-seal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      holdout_key: ${{ steps.encrypt.outputs.key }}
+      holdout_sha: ${{ steps.seal.outputs.sha }}
+      holdout_cases: ${{ steps.seal.outputs.cases }}
+      holdout_claims: ${{ steps.seal.outputs.claims }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fe03-hidden-holdout-v2-eval
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate fresh hidden holdout V2
+        run: |
+          node benchmarks/fe03/generate-hidden-holdout-v2.mjs | tee hidden-v2-generation.log
+          test -s hidden-holdout-v2.json
+      - name: Seal holdout V2
+        id: seal
+        shell: bash
+        run: |
+          SHA=$(sha256sum hidden-holdout-v2.json | awk '{print $1}')
+          CASES=$(node -e "const x=require('./hidden-holdout-v2.json'); process.stdout.write(String(x.external_cases.length))")
+          CLAIMS=$(node -e "const x=require('./hidden-holdout-v2.json'); process.stdout.write(String(x.claim_annotations.length))")
+          test "$CASES" -ge 50
+          test "$CLAIMS" -ge 15
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "cases=$CASES" >> "$GITHUB_OUTPUT"
+          echo "claims=$CLAIMS" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$SHA" > seal-v2.sha256
+          printf 'cases=%s\nclaims=%s\n' "$CASES" "$CLAIMS" > seal-v2.counts
+      - name: Encrypt sealed V2 holdout
+        id: encrypt
+        shell: bash
+        run: |
+          KEY=$(openssl rand -hex 32)
+          echo "key=$KEY" >> "$GITHUB_OUTPUT"
+          HOLDOUT_KEY="$KEY" openssl enc -aes-256-cbc -salt -pbkdf2 -in hidden-holdout-v2.json -out hidden-holdout-v2.enc -pass env:HOLDOUT_KEY
+          shred -u hidden-holdout-v2.json
+          test ! -e hidden-holdout-v2.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fe03-hidden-v2-sealed-${{ github.run_id }}
+          path: |
+            hidden-holdout-v2.enc
+            seal-v2.sha256
+            seal-v2.counts
+          if-no-files-found: error
+          retention-days: 1
+
+  evaluate-once:
+    needs: generate-and-seal
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 61d247da71a03e80a7275ba0c792a079f7221701
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          ref: fe03-hidden-holdout-v2-eval
+          path: harness
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify frozen candidate V2 manifest
+        shell: bash
+        working-directory: candidate
+        run: |
+          test "$(git rev-parse HEAD)" = "61d247da71a03e80a7275ba0c792a079f7221701"
+          node - <<'NODE'
+          const fs=require("fs");
+          const cp=require("child_process");
+          const m=JSON.parse(fs.readFileSync("benchmarks/fe03/candidate-manifest.v2.json","utf8"));
+          if(m.frozen_engine_parent_sha!=="55024c41024549cf39fe241777d159a2b74a4b18") throw new Error("candidate manifest parent mismatch");
+          for(const [path,expected] of Object.entries(m.critical_git_blob_shas)){
+            const actual=cp.execFileSync("git",["hash-object",path],{encoding:"utf8"}).trim();
+            if(actual!==expected) throw new Error("blob mismatch "+path+" "+actual+" != "+expected);
+          }
+          console.log("FE03_CANDIDATE_V2_MANIFEST_PASS|files="+Object.keys(m.critical_git_blob_shas).length);
+          NODE
+      - uses: actions/download-artifact@v4
+        with:
+          name: fe03-hidden-v2-sealed-${{ github.run_id }}
+          path: sealed
+      - name: Verify and decrypt sealed V2 holdout
+        shell: bash
+        env:
+          HOLDOUT_KEY: ${{ needs.generate-and-seal.outputs.holdout_key }}
+          EXPECTED_SHA: ${{ needs.generate-and-seal.outputs.holdout_sha }}
+        run: |
+          openssl enc -d -aes-256-cbc -pbkdf2 -in sealed/hidden-holdout-v2.enc -out /tmp/hidden-holdout-v2.json -pass env:HOLDOUT_KEY
+          ACTUAL_SHA=$(sha256sum /tmp/hidden-holdout-v2.json | awk '{print $1}')
+          test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+          test "$ACTUAL_SHA" = "$(cat sealed/seal-v2.sha256)"
+      - name: Install frozen V2 evaluation harness only
+        run: |
+          cp harness/benchmarks/fe03/run-hidden-holdout-v2.mjs candidate/benchmarks/fe03/run-hidden-holdout-v2.mjs
+          cp harness/benchmarks/fe03/thresholds.holdout.v2.json candidate/benchmarks/fe03/thresholds.holdout.v2.json
+      - name: Consume hidden holdout V2 exactly once
+        shell: bash
+        working-directory: candidate
+        env:
+          HOLDOUT_SHA: ${{ needs.generate-and-seal.outputs.holdout_sha }}
+        run: |
+          set -o pipefail
+          node benchmarks/fe03/run-hidden-holdout-v2.mjs --bundle=/tmp/hidden-holdout-v2.json --sha256="$HOLDOUT_SHA" --delay-ms=400 | tee /tmp/fe03-hidden-v2-verdict.log
+          shred -u /tmp/hidden-holdout-v2.json
