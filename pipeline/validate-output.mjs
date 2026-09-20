@@ -26,6 +26,43 @@ const required = [
 
 const errors = [];
 const editorialFrByEvent = new Map(Object.entries(editorialFr.entries ?? {}));
+const profileLabel = {
+  medical: "médical",
+  technology: "technologie",
+  fundamental_science: "science fondamentale"
+};
+const locatorFr = {
+  "Product details — Original Approval Date": "Détails du produit — date d’autorisation initiale",
+  "Marketing approved — May 10, 2001": "Autorisation de mise sur le marché — 10 mai 2001",
+  "Supporting documents — August 30, 2017 approval": "Documents d’appui — autorisation du 30 août 2017",
+  "Approval summary and KEYNOTE-177 efficacy section": "Résumé de l’autorisation et section d’efficacité de KEYNOTE-177",
+  "Abstract": "Résumé",
+  "Abstract and results": "Résumé et résultats",
+  "HDE approval record — Decision Date": "Registre d’autorisation HDE — date de décision",
+  "Abstract and primary outcome": "Résumé et critère principal",
+  "Supporting documents — December 19, 2017 approval": "Documents d’appui — autorisation du 19 décembre 2017",
+  "Abstract and evaluation summary": "Résumé et synthèse de l’évaluation",
+  "Announcement body": "Corps de l’annonce",
+  "Experiment summary": "Résumé de l’expérience",
+  "Shot summary": "Résumé du tir expérimental",
+  "July 30, 2023 ignition result": "Résultat d’ignition du 30 juillet 2023",
+  "Deuterium-Tritium campaign — energy record": "Campagne deutérium-tritium — record d’énergie",
+  "Record summary": "Résumé du record",
+  "FDA approval announcement": "Annonce d’autorisation de la FDA",
+  "Results section": "Section des résultats",
+  "Supporting documents — August 17, 2022 approval": "Documents d’appui — autorisation du 17 août 2022",
+  "Supporting documents — November 22, 2022 approval": "Documents d’appui — autorisation du 22 novembre 2022",
+  "Supporting documents — December 8, 2023 approval": "Documents d’appui — autorisation du 8 décembre 2023",
+  "Abstract and experimental validation": "Résumé et validation expérimentale",
+  "Mission overview": "Présentation de la mission",
+  "Mission overview and July 20, 1969 landing": "Présentation de la mission et alunissage du 20 juillet 1969",
+  "Mission overview and lunar rover section": "Présentation de la mission et section sur le rover lunaire",
+  "Expedition 1 and continuous habitation section": "Section sur l’Expédition 1 et la présence humaine continue"
+};
+const localizeLocator = (locator) => locatorFr[locator] ?? locator;
+const claimById = new Map(claims.map((x) => [x.id, x]));
+const evidenceById = new Map(evidence.map((x) => [x.id, x]));
+const sourceById = new Map(sources.map((x) => [x.id, x]));
 if (editorialFrByEvent.size !== events.length) errors.push(`French editorial coverage mismatch: ${editorialFrByEvent.size}/${events.length}`);
 for (const path of required) {
   try { await access(new URL(path, root)); }
@@ -84,6 +121,7 @@ for (const q of questions) {
   if (!page.includes("État non évalué")) errors.push(`${q.id}: radar must disclose unassessed state`);
   if (!page.includes("La route vers une réponse.")) errors.push(`${q.id}: milestone section missing`);
   if (!page.includes("Chronologie fondatrice")) errors.push(`${q.id}: timeline missing`);
+  if (!page.includes(profileLabel[q.evidence_profile] ?? q.evidence_profile)) errors.push(`${q.id}: French evidence-profile label missing`);
   const qEvents = events.filter((e) => e.question_ids.includes(q.id));
   if (qEvents.length < 5) errors.push(`${q.id}: less than five source-backed events`);
   for (const event of qEvents) {
@@ -92,15 +130,14 @@ for (const q of questions) {
     else {
       if (!page.includes(fr.title)) errors.push(`${q.id}: French event title missing from public timeline: ${event.id}`);
       if (!page.includes(fr.claim)) errors.push(`${q.id}: French event summary missing from public timeline: ${event.id}`);
+      if (event.title !== fr.title && page.includes(`<h3>${event.title}</h3>`)) errors.push(`${event.id}: English event title leaked into French timeline`);
+      const canonicalClaim = claimById.get(event.claim_ids?.[0]);
+      if (canonicalClaim?.text && canonicalClaim.text !== fr.claim && page.includes(`<p>${canonicalClaim.text}</p>`)) errors.push(`${event.id}: English claim leaked into French timeline`);
     }
     const proofHref = `/preuves/${event.id.toLowerCase()}/`;
     if (!page.includes(proofHref)) errors.push(`${q.id}: internal proof link missing for ${event.id}`);
   }
 }
-
-const claimById = new Map(claims.map((x) => [x.id, x]));
-const evidenceById = new Map(evidence.map((x) => [x.id, x]));
-const sourceById = new Map(sources.map((x) => [x.id, x]));
 
 for (const event of events) {
   const path = `dist/preuves/${event.id.toLowerCase()}/index.html`;
@@ -120,13 +157,16 @@ for (const event of events) {
     fr.title,
     fr.claim,
     source.title,
-    ev.locator,
+    localizeLocator(ev.locator),
     source.canonical_url.replaceAll("&", "&amp;"),
     "Titre original de la source",
     "État :",
     "non évalué"
   ]) if (!page.includes(expected)) errors.push(`${event.id}: proof page missing ${expected}`);
 
+  if (event.title !== fr.title && page.includes(`<h1>${event.title}</h1>`)) errors.push(`${event.id}: English event title leaked into French proof dossier`);
+  if (claim.text !== fr.claim && page.includes(`<p>${claim.text}</p>`)) errors.push(`${event.id}: English claim leaked into French proof dossier`);
+  if (ev.locator !== localizeLocator(ev.locator) && page.includes(`<b>Repère dans la source :</b> ${ev.locator}`)) errors.push(`${event.id}: English source locator leaked into French proof dossier`);
   if (page.includes("machine_proposed")) errors.push(`${event.id}: internal review state leaked into French public page`);
   if (page.includes("03 · Claim") || page.includes("Tier ")) errors.push(`${event.id}: English editorial label leaked into public page`);
   if (claim.review_state !== "machine_proposed") errors.push(`${event.id}: FE-06 cannot present baseline claim as human approved`);
