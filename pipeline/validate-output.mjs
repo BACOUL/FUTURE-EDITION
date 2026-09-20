@@ -211,7 +211,10 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`FE06R_REFERENCE_HOME_PASS|reality_check=1|future_graph_visual=1|historical_news_separation=1|observatory_links=10|home_bytes=${homeBytes}`);\n\nconsole.log(\n  `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
+console.log(`FE06R_REFERENCE_HOME_PASS|reality_check=1|future_graph_visual=1|historical_news_separation=1|observatory_links=10|home_bytes=${homeBytes}`);
+
+console.log(
+  `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
   `|proof_pages=${events.length}|orphan_public_claims=0|broken_internal_links=0` +
   `|client_js=0|milestone_overclaims=0|css_bytes=${cssBytes}|home_bytes=${homeBytes}` +
   "|mobile_breakpoint=1|reduced_motion=1|skip_link=1"
