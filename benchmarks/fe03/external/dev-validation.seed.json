@@ -1767,5 +1767,201 @@
       }
     ],
     "notes": "Independent non-biomedical expression-of-concern case checks status handling outside clinical subject matter."
+  },
+  {
+    "id": "FE03-EXT-0053",
+    "split": "dev",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "10.1/nope",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Deterministic malformed DOI syntax case; no network lookup should be attempted."
+  },
+  {
+    "id": "FE03-EXT-0054",
+    "split": "dev",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "doi-missing-prefix",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Deterministic malformed DOI syntax case; no network lookup should be attempted."
+  },
+  {
+    "id": "FE03-EXT-0055",
+    "split": "dev",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "10.123/too-short-prefix",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Deterministic malformed DOI syntax case; no network lookup should be attempted."
+  },
+  {
+    "id": "FE03-EXT-0056",
+    "split": "dev",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "https://doi.org/not-a-doi",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Deterministic malformed DOI syntax case; no network lookup should be attempted."
+  },
+  {
+    "id": "FE03-EXT-0057",
+    "split": "dev",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "10.1234567890/too-many-prefix-digits",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Deterministic malformed DOI syntax case; no network lookup should be attempted."
+  },
+  {
+    "id": "FE03-EXT-0058",
+    "split": "validation",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "invalid-doi-validation-2",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Deterministic malformed DOI syntax case; no network lookup should be attempted."
+  },
+  {
+    "id": "FE03-EXT-0059",
+    "split": "validation",
+    "case_family": "invalid_identifier",
+    "candidate": {
+      "signal_kind": "doi",
+      "raw_value": "10.abc/letters-prefix",
+      "origin": "manual"
+    },
+    "labels": {
+      "primary_source_resolvable": false,
+      "publication_status": "unresolved",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "benchmark_design",
+        "url": null,
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier_syntax_invalid"
+        ]
+      }
+    ],
+    "notes": "Deterministic malformed DOI syntax case; no network lookup should be attempted."
   }
 ]
