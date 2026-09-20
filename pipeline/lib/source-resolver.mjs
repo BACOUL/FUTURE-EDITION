@@ -163,7 +163,8 @@ async function rxivHtmlFallback(request,{fetchFn}){
     return {
       doi:request.identifier,
       title:parsed.title,
-      abstract:parsed.body||parsed.description||"",
+      abstract:parsed.description||parsed.paragraphs?.find(item=>String(item).length>=180)||parsed.body||"",
+      page_body:parsed.body||"",
       url
     };
   }catch{
