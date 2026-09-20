@@ -1,0 +1,41 @@
+name: FE03 public proof
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  fe03-public-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static FE-03 gates
+        run: |
+          node benchmarks/fe03/validate-collection-matrix.mjs
+          node benchmarks/fe03/validate-acquisition-plan.mjs
+          node benchmarks/fe03/validate-external.mjs
+          node benchmarks/fe03/validate-claim-annotations.mjs
+          node pipeline/test-fe03-core.mjs
+          node pipeline/test-fe03-contracts.mjs
+          node pipeline/test-fe03-resolver.mjs
+          node pipeline/test-fe03-locators.mjs
+          node pipeline/test-fe03-semantic-safety.mjs
+          node pipeline/test-fe03-independence.mjs
+          node pipeline/test-fe03-confirmation-gate.mjs
+          node pipeline/test-fe03-crossref-integrity.mjs
+          node pipeline/test-fe03-pubmed-integrity.mjs
+          node pipeline/test-fe03-claim-linker.mjs
+      - name: Live public source-resolution benchmark
+        run: |
+          node benchmarks/fe03/run-external-resolution.mjs --delay-ms=150 --enforce --output=fe03-resolution.json | tee fe03-resolution.log
+      - name: Live public claim-to-evidence benchmark
+        run: |
+          node benchmarks/fe03/run-claim-linker.mjs --delay-ms=150 | tee fe03-claim.log
+          grep -q 'gate_eligible=1' fe03-claim.log
