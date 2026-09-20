@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.14.0",
+  "authority_version": "0.15.0",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -410,7 +410,22 @@
     "fe06r_correction_trail_implemented": true,
     "fe06r_public_pages_after_r4_build": 71,
     "fe06r_r4_failed_proof_run_id": 35527882661,
-    "fe06r_r4_failed_proof_preserved": true
+    "fe06r_r4_failed_proof_preserved": true,
+    "fe06r_browser_qa_run_id": 35528007600,
+    "fe06r_browser_qa_job_id": 106123463232,
+    "fe06r_browser_qa_candidate_sha": "eba7aa2ed5d089c0b476dc88e57db99b2e2e92de",
+    "fe06r_browser_qa_artifact_id": 10609799718,
+    "fe06r_browser_qa_pages": 4,
+    "fe06r_browser_qa_widths": [
+      360,
+      390,
+      768,
+      1440
+    ],
+    "fe06r_browser_qa_checks": 16,
+    "fe06r_browser_qa_failures": 0,
+    "fe06r_browser_qa_passed": true,
+    "fe06r_browser_qa_screenshots": 16
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -495,7 +510,6 @@
     "verdict": "BLOCKED",
     "required": [
       "run 5-person design recognition test defined in DESIGN-SYSTEM-VISION v1",
-      "run responsive visual QA at 360/390/768/1440 on R1-R4",
       "pass 5-person design recognition test defined in DESIGN-SYSTEM-VISION v1",
       "demonstrate at least three proprietary Future Edition primitives across R1-R4",
       "build global desktop/mobile navigation from INFORMATION-ARCHITECTURE v1",
