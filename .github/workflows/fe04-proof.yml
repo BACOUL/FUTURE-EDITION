@@ -1,0 +1,34 @@
+name: FE04 Change Engine proof
+
+on:
+  push:
+    branches: [fe04-proof]
+
+permissions:
+  contents: read
+
+jobs:
+  prove-fe04:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical data and contracts
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+      - name: Prove FE-02 compatibility
+        run: |
+          node pipeline/test-fe02-model.mjs
+          node pipeline/test-state-resolution.mjs
+      - name: Prove FE-04 Change Engine
+        run: node pipeline/test-fe04-change-engine.mjs
+      - name: Rebuild and verify Future Graph
+        run: |
+          node pipeline/build-graph.mjs
+          node pipeline/validate-graph.mjs
+          node pipeline/verify-determinism.mjs
