@@ -199,6 +199,26 @@ export function normalizeArxiv(entry){
   }};
 }
 
+function rxivStudyStage(record){
+  const text=(String(record?.title??"")+" "+String(record?.abstract??"")).toLowerCase();
+
+  if(/\bphase\s*(?:i|1)\b/.test(text)) return "phase1";
+  if(/\bphase\s*(?:ii|2)\b/.test(text)) return "phase2";
+  if(/\bphase\s*(?:iii|3)\b/.test(text)) return "phase3";
+  if(/\b(?:randomized|randomised)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "randomized_trial";
+  if(/\b(?:systematic review|meta-analysis|meta analysis)\b/.test(text)) return "systematic_review";
+
+  const animal=/\b(?:mice|mouse|rats|rat|rabbits|rabbit|swine|porcine|dogs|canine)\b/.test(text);
+  const human=/\b(?:human|humans|patient|patients|participants|adults|children|people)\b/.test(text);
+  if(animal&&!human) return "preclinical_animal";
+
+  if(human&&/\b(?:cohort|observational|cross-sectional|retrospective|prospective)\b/.test(text)){
+    return "observational_human";
+  }
+
+  return "unknown";
+}
+
 export function normalizeRxiv(record,server){
   if(!record?.doi) return {status:"unresolved",provider:server,reason:"doi_not_found",source:null,publication_status:"unresolved",integrity_relations:[]};
   const doi=String(record.doi).toLowerCase();
@@ -209,7 +229,7 @@ export function normalizeRxiv(record,server){
     title:record.title||doi,
     url:"https://www."+server+".org/content/"+doi,
     peer_reviewed:false,
-    study_stage:record.study_stage||"unknown",
+    study_stage:record.study_stage||rxivStudyStage(record),
     independence_group:"doi:"+doi
   }};
 }
