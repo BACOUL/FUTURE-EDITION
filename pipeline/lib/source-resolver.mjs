@@ -3,6 +3,7 @@ import { buildEvidenceDocument } from "./evidence-document.mjs";
 import { adapterByProvider } from "../adapters/normalize.mjs";
 import { parseArxivAtom } from "../adapters/arxiv-atom.mjs";
 import { parsePubmedXml } from "../adapters/pubmed-xml.mjs";
+import { parseOfficialWebHtml } from "../adapters/official-web.mjs";
 
 export function buildProviderRequest(candidate,{mailto=null}={}){
   const normalized=normalizeIdentifier(candidate.signal_kind,candidate.raw_value);
@@ -69,6 +70,29 @@ export function buildProviderRequest(candidate,{mailto=null}={}){
     };
   }
 
+  if(candidate.signal_kind==="url"){
+    const parsed=new URL(id);
+    const host=parsed.hostname.toLowerCase();
+    const isNhsEngland=(host==="www.england.nhs.uk"||host==="england.nhs.uk")&&candidate.origin==="nhs_england";
+
+    if(parsed.protocol==="https:"&&isNhsEngland){
+      return {
+        status:"ready",
+        provider:"nhs_england",
+        format:"html",
+        identifier:id,
+        url:id
+      };
+    }
+
+    return {
+      status:"unsupported",
+      provider:candidate.origin||"url",
+      reason:"untrusted_url_provider",
+      identifier:id
+    };
+  }
+
   return {
     status:"unsupported",
     provider:candidate.origin||candidate.signal_kind,
@@ -117,7 +141,8 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedA
   let response;
 
   try{
-    response=await fetchFn(request.url,{headers:{accept:"application/json"}});
+    const accept=request.format==="html"?"text/html":request.format==="xml"?"application/xml,text/xml":"application/json";
+    response=await fetchFn(request.url,{headers:{accept}});
   }catch(error){
     return {
       status:"unresolved",
@@ -160,6 +185,20 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedA
           request
         };
       }
+    }else if(request.format==="html"){
+      const html=await response.text();
+      payload=parseOfficialWebHtml(html,{url:request.url});
+      if(!payload){
+        return {
+          status:"unresolved",
+          provider:request.provider,
+          reason:"invalid_or_empty_html",
+          source:null,
+          document:null,
+          publication_status:"unresolved",
+          request
+        };
+      }
     }else{
       payload=await response.json();
     }
@@ -167,7 +206,7 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedA
     return {
       status:"unresolved",
       provider:request.provider,
-      reason:request.format==="xml"?"invalid_xml":"invalid_json",
+      reason:request.format==="xml"?"invalid_xml":request.format==="html"?"invalid_html":"invalid_json",
       source:null,
       document:null,
       publication_status:"unresolved",
