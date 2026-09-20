@@ -1,0 +1,40 @@
+name: FE05 Ten Observatories proof
+
+on:
+  push:
+    branches: [fe05-proof]
+
+permissions:
+  contents: read
+
+jobs:
+  prove-fe05:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical contracts and relations
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+      - name: Prove prior-stage compatibility
+        run: |
+          node pipeline/test-fe02-model.mjs
+          node pipeline/test-state-resolution.mjs
+          node pipeline/test-fe04-change-engine.mjs
+      - name: Prove FE-05 Ten Observatories
+        run: node pipeline/test-fe05-observatories.mjs
+      - name: Rebuild and verify Future Graph
+        run: |
+          node pipeline/build-graph.mjs
+          node pipeline/validate-graph.mjs
+          node pipeline/verify-determinism.mjs
+          node pipeline/validate-current-state.mjs
+      - name: Verify static media still builds
+        run: |
+          node pipeline/build-site.mjs
+          node pipeline/validate-output.mjs
