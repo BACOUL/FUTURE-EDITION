@@ -1,1 +1,432 @@
-[]
+[
+  {
+    "id": "TECH-0501",
+    "canonical_name": "Trastuzumab / HER2-targeted antibody",
+    "status": "active",
+    "aliases": [],
+    "description": "HER2-targeted monoclonal-antibody therapy.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0502",
+    "canonical_name": "Imatinib / BCR-ABL kinase inhibition",
+    "status": "active",
+    "aliases": [],
+    "description": "Small-molecule targeted inhibition of BCR-ABL and related kinases.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0503",
+    "canonical_name": "Sipuleucel-T cellular immunotherapy",
+    "status": "active",
+    "aliases": [],
+    "description": "Autologous cellular immunotherapy used in prostate cancer.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0504",
+    "canonical_name": "CD19 CAR-T cell therapy",
+    "status": "active",
+    "aliases": [],
+    "description": "Autologous T cells engineered with a CD19-directed chimeric antigen receptor.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0505",
+    "canonical_name": "PD-1 checkpoint inhibition",
+    "status": "active",
+    "aliases": [],
+    "description": "Immune-checkpoint blockade targeting PD-1.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0506",
+    "canonical_name": "mTOR inhibition with rapamycin",
+    "status": "active",
+    "aliases": [],
+    "description": "Pharmacologic inhibition of mTOR signaling with rapamycin.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0507",
+    "canonical_name": "Senescent-cell clearance",
+    "status": "active",
+    "aliases": [],
+    "description": "Selective removal of p16Ink4a-positive senescent cells.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0508",
+    "canonical_name": "Caloric restriction",
+    "status": "active",
+    "aliases": [],
+    "description": "Sustained reduction in caloric intake without malnutrition.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0509",
+    "canonical_name": "Epidural spinal cord stimulation",
+    "status": "active",
+    "aliases": [],
+    "description": "Electrical stimulation delivered epidurally to lumbosacral spinal networks.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0510",
+    "canonical_name": "Spatiotemporal epidural stimulation",
+    "status": "active",
+    "aliases": [],
+    "description": "Targeted spatiotemporal spinal-cord stimulation coordinated with intended movement.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0511",
+    "canonical_name": "Brain-controlled four-limb exoskeleton",
+    "status": "active",
+    "aliases": [],
+    "description": "Implanted brain-computer interface for control of a four-limb exoskeleton.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0512",
+    "canonical_name": "Activity-dependent spinal neuromodulation",
+    "status": "active",
+    "aliases": [],
+    "description": "Spinal-cord neuromodulation patterns designed to restore motor function.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0513",
+    "canonical_name": "Brain–spine interface",
+    "status": "active",
+    "aliases": [],
+    "description": "Digital bridge translating cortical activity into spinal-cord stimulation.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0514",
+    "canonical_name": "Retinal prosthesis",
+    "status": "active",
+    "aliases": [],
+    "description": "Implanted retinal prosthesis providing patterned electrical stimulation.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0515",
+    "canonical_name": "hESC-derived retinal pigment epithelium transplantation",
+    "status": "active",
+    "aliases": [],
+    "description": "Transplantation of retinal pigment epithelium differentiated from human embryonic stem cells.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0516",
+    "canonical_name": "RPE65 retinal gene therapy",
+    "status": "active",
+    "aliases": [],
+    "description": "AAV-mediated delivery of a functional RPE65 gene to retinal cells.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0517",
+    "canonical_name": "Optogenetic vision restoration",
+    "status": "active",
+    "aliases": [],
+    "description": "Optogenetic sensitization of retinal cells combined with light-stimulating goggles.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0518",
+    "canonical_name": "RT-1",
+    "status": "active",
+    "aliases": [],
+    "description": "Transformer policy trained across hundreds of real-world robot tasks.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0519",
+    "canonical_name": "PaLM-E",
+    "status": "active",
+    "aliases": [],
+    "description": "Embodied multimodal language model integrating visual, language and robot-state inputs.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0520",
+    "canonical_name": "RT-2",
+    "status": "active",
+    "aliases": [],
+    "description": "Vision-language-action model that maps web-scale visual-language knowledge to robot actions.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0521",
+    "canonical_name": "Open X-Embodiment / RT-X",
+    "status": "active",
+    "aliases": [],
+    "description": "Cross-embodiment robot dataset and policies trained across heterogeneous robots.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0522",
+    "canonical_name": "Digit humanoid logistics robot",
+    "status": "active",
+    "aliases": [],
+    "description": "Bipedal humanoid robot deployed for warehouse tote-handling workflows.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0523",
+    "canonical_name": "NIF inertial-confinement fusion",
+    "status": "active",
+    "aliases": [],
+    "description": "Laser-driven inertial-confinement fusion at the National Ignition Facility.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0524",
+    "canonical_name": "JET deuterium-tritium tokamak",
+    "status": "active",
+    "aliases": [],
+    "description": "Magnetic-confinement tokamak experiments using deuterium-tritium fuel.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0525",
+    "canonical_name": "Wendelstein 7-X stellarator",
+    "status": "active",
+    "aliases": [],
+    "description": "Superconducting stellarator designed for steady-state magnetic plasma confinement.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0526",
+    "canonical_name": "AAV9 gene replacement",
+    "status": "active",
+    "aliases": [],
+    "description": "Systemic AAV9-mediated delivery of a functional SMN1 gene.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0527",
+    "canonical_name": "In-vivo CRISPR-Cas9 for transthyretin amyloidosis",
+    "status": "active",
+    "aliases": [],
+    "description": "Lipid-nanoparticle delivery of CRISPR-Cas9 components to edit TTR in vivo.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0528",
+    "canonical_name": "Lentiviral beta-globin gene addition",
+    "status": "active",
+    "aliases": [],
+    "description": "Autologous hematopoietic stem cells transduced ex vivo with a beta-globin lentiviral vector.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0529",
+    "canonical_name": "AAV5 factor IX gene therapy",
+    "status": "active",
+    "aliases": [],
+    "description": "AAV5-mediated hepatic delivery of a high-activity factor IX transgene.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0530",
+    "canonical_name": "Ex-vivo CRISPR-Cas9 hematopoietic editing",
+    "status": "active",
+    "aliases": [],
+    "description": "Ex-vivo CRISPR-Cas9 editing of autologous hematopoietic stem cells.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0531",
+    "canonical_name": "Deep-learning antibiotic discovery",
+    "status": "active",
+    "aliases": [],
+    "description": "Neural-network screening of chemical libraries for antibacterial activity.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0532",
+    "canonical_name": "AlphaTensor",
+    "status": "active",
+    "aliases": [],
+    "description": "Reinforcement-learning system for discovering matrix-multiplication algorithms.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0533",
+    "canonical_name": "AlphaDev",
+    "status": "active",
+    "aliases": [],
+    "description": "Reinforcement-learning system that searches low-level instruction sequences for algorithms.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0534",
+    "canonical_name": "GNoME",
+    "status": "active",
+    "aliases": [],
+    "description": "Graph-network models for predicting stable inorganic crystal structures.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0535",
+    "canonical_name": "FunSearch",
+    "status": "active",
+    "aliases": [],
+    "description": "Language-model-guided search that evolves executable programs against an automated evaluator.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0536",
+    "canonical_name": "Sycamore superconducting quantum processor",
+    "status": "active",
+    "aliases": [],
+    "description": "Superconducting-qubit processor used for random-circuit sampling experiments.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0537",
+    "canonical_name": "Fault-tolerant trapped-ion logical qubit",
+    "status": "active",
+    "aliases": [],
+    "description": "Error-corrected logical-qubit control on a trapped-ion quantum processor.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0538",
+    "canonical_name": "Surface-code logical qubits",
+    "status": "active",
+    "aliases": [],
+    "description": "Surface-code quantum error correction using superconducting physical qubits.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0539",
+    "canonical_name": "Neutral-atom logical quantum processor",
+    "status": "active",
+    "aliases": [],
+    "description": "Programmable neutral-atom processor operating encoded logical qubits.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0540",
+    "canonical_name": "Willow surface-code logical memory",
+    "status": "active",
+    "aliases": [],
+    "description": "Superconducting surface-code architecture demonstrating below-threshold logical memory scaling.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0541",
+    "canonical_name": "Apollo crewed lunar architecture",
+    "status": "active",
+    "aliases": [],
+    "description": "Saturn V, command/service module and lunar-mission operations for crewed missions beyond low Earth orbit.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0542",
+    "canonical_name": "Lunar Roving Vehicle",
+    "status": "active",
+    "aliases": [],
+    "description": "Battery-powered rover used by Apollo crews for extended lunar-surface traverses.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  },
+  {
+    "id": "TECH-0543",
+    "canonical_name": "International Space Station long-duration habitat",
+    "status": "active",
+    "aliases": [],
+    "description": "Continuously inhabited orbital research habitat with regenerative support and logistics systems.",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": null,
+    "valid_to": null
+  }
+]
