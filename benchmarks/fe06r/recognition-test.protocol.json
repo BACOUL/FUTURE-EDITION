@@ -5,9 +5,9 @@
     "docs/FE06R-GATE.md",
     "docs/DESIGN-SYSTEM-VISION.md"
   ],
-  "candidate_sha": "d8313b270ffce6d50fd1cf9aeb4f38c608ec9835",
-  "browser_qa_run_id": 35532295881,
-  "browser_qa_artifact_id": 10611312454,
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "browser_qa_run_id": 35533538311,
+  "browser_qa_artifact_id": 10611803566,
   "evaluators": {
     "minimum": 5,
     "independence_required": true,
