@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Future Edition Observatory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id","question_id","slug","title","evidence_profile","status","baseline_cutoff","minimum_verified_events","foundational_event_ids","observed_at"],
+  "properties": {
+    "id": {"type":"string","pattern":"^OBS-[0-9]{3}$"},
+    "question_id": {"type":"string","pattern":"^Q-[0-9]{3}$"},
+    "slug": {"type":"string","pattern":"^[a-z0-9-]+$"},
+    "title": {"type":"string","minLength":5},
+    "evidence_profile": {"enum":["medical","technology","fundamental_science"]},
+    "status": {"enum":["active","paused","archived"]},
+    "baseline_cutoff": {"type":"string","format":"date"},
+    "minimum_verified_events": {"type":"integer","minimum":5},
+    "foundational_event_ids": {"type":"array","minItems":5,"uniqueItems":true,"items":{"type":"string","pattern":"^EV-[0-9]{4}-[0-9]{6}$"}},
+    "observed_at": {"type":"string","format":"date-time"}
+  }
+}
