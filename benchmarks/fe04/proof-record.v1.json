@@ -1,0 +1,42 @@
+{
+  "protocol": "FE04-CHANGE-ENGINE-PROOF-v1",
+  "workflow_run_id": 35517779527,
+  "workflow_job_id": 106096516443,
+  "tested_head_sha": "6ee6a2a6b0a9c39a2c8bde66978b909058b4073e",
+  "verdict": "PROVED",
+  "node_version": "22.23.2",
+  "canonical_data": {
+    "questions": 10,
+    "milestones": 51,
+    "definition_state_free": true
+  },
+  "compatibility": {
+    "fe02_model_pass": true,
+    "fe02_state_resolution_pass": true
+  },
+  "change_engine": {
+    "valid_transitions": 1,
+    "classification_cases": 7,
+    "negative_cases": 8,
+    "unique_change_required": true,
+    "trigger_claim_required": true,
+    "trigger_evidence_required": true,
+    "human_review_required": true,
+    "before_after_hash_bound": true,
+    "invalidated_reopen_blocked": true,
+    "deterministic": true
+  },
+  "graph": {
+    "schema_version": "0.5.0",
+    "nodes": 61,
+    "edges": 51,
+    "content_hash": "cab08f751ba8f255840a3e1bbeb6378ff5f894de0ef65ad4436d984e5202b4b2",
+    "deterministic": true
+  },
+  "gate_statement": "An approved superseding milestone assessment cannot validate without exactly one traceable, evidence-backed, human-reviewed, hash-bound Change record.",
+  "notes": [
+    "Milestone definitions remain immutable and carry no mutable status field.",
+    "Change records are canonical Future Graph nodes.",
+    "The production change ledger is initialized empty; FE-05 will populate verified history rather than fabricate events."
+  ]
+}
