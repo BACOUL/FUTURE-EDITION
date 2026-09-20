@@ -1280,7 +1280,9 @@ await writeFile(new URL("assets/styles.css", out), `
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 `.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\n/g, "").replace(/ui-monospace,monospace/g, "ui-monospace"));
 
-await writeFile(new URL("assets/styles-fe06r-v14.css", out), await readFile(new URL("assets/styles.css", out)));\n\nawait mkdir(new URL("data/", out), { recursive: true });
+await writeFile(new URL("assets/styles-fe06r-v14.css", out), await readFile(new URL("assets/styles.css", out)));
+
+await mkdir(new URL("data/", out), { recursive: true });
 await writeFile(new URL("data/future-graph.json", out), JSON.stringify(graph, null, 2) + "\n");
 
 const urls = [
