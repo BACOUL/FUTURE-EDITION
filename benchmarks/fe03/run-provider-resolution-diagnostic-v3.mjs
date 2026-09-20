@@ -52,6 +52,11 @@ for(const cohort of cohorts){
     const req=buildProviderRequest(candidate);
     const direct=await request(req.url);
     const directCollection=Array.isArray(direct.payload?.collection)?direct.payload.collection:[];
+    let doiRoute={ok:false,status:0,url:null};
+    try{
+      const doiResponse=await fetch("https://doi.org/"+item.doi,{headers:{"user-agent":UA,accept:"text/html,application/xhtml+xml"}});
+      doiRoute={ok:doiResponse.ok,status:doiResponse.status,url:doiResponse.url};
+    }catch{}
     const resolved=await resolveCandidate(candidate,{fetchFn:fetch});
     rows.push({
       cohort:cohort.server+":"+cohort.start+":"+cohort.end,
@@ -60,6 +65,9 @@ for(const cohort of cohorts){
       direct_http_ok:direct.ok,
       direct_collection_length:directCollection.length,
       direct_empty_success:direct.ok&&directCollection.length===0,
+      doi_route_ok:doiRoute.ok,
+      doi_route_status:doiRoute.status,
+      doi_route_final_host:doiRoute.url?new URL(doiRoute.url).hostname:null,
       resolver_status:resolved?.status??"unknown",
       resolver_reason:resolved?.reason??null,
       resolver_provider:resolved?.provider??null
@@ -77,6 +85,7 @@ for(const provider of ["medrxiv","biorxiv"]){
     resolved:subset.filter(x=>x.resolver_status==="resolved").length,
     resolution_recall:subset.length?subset.filter(x=>x.resolver_status==="resolved").length/subset.length:null,
     direct_empty_success:subset.filter(x=>x.direct_empty_success).length,
+    doi_route_ok:subset.filter(x=>x.doi_route_ok).length,
     reasons:Object.fromEntries([...new Set(subset.map(x=>x.resolver_reason??"resolved"))].map(reason=>[
       reason,subset.filter(x=>(x.resolver_reason??"resolved")===reason).length
     ]))
@@ -96,6 +105,7 @@ const report={
   resolved:count(x=>x.resolver_status==="resolved"),
   resolution_recall:count(x=>x.resolver_status==="resolved")/rows.length,
   direct_empty_success:count(x=>x.direct_empty_success),
+  doi_route_ok:count(x=>x.doi_route_ok),
   by_provider:byProvider,
   rows
 };
@@ -105,6 +115,7 @@ console.log(
   "|resolved="+report.resolved+
   "|recall="+report.resolution_recall+
   "|direct_empty_success="+report.direct_empty_success+
+  "|doi_route_ok="+report.doi_route_ok+
   "|medrxiv_recall="+String(byProvider.medrxiv.resolution_recall)+
   "|biorxiv_recall="+String(byProvider.biorxiv.resolution_recall)
 );
