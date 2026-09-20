@@ -66,6 +66,12 @@ for(const cohort of cohorts){
     const crossrefDate=Array.isArray(crossrefParts)&&crossrefParts[0]
       ?[String(crossrefParts[0]),String(crossrefParts[1]??1).padStart(2,"0"),String(crossrefParts[2]??1).padStart(2,"0")].join("-")
       :null;
+    let crossrefDateApiFound=false;
+    if(crossrefDate){
+      const byDate=await request("https://api.biorxiv.org/details/"+item.server+"/"+crossrefDate+"/"+crossrefDate+"/0/json");
+      const byDateItems=Array.isArray(byDate.payload?.collection)?byDate.payload.collection:[];
+      crossrefDateApiFound=byDateItems.some(x=>String(x?.doi??"").toLowerCase()===item.doi);
+    }
     const resolved=await resolveCandidate(candidate,{fetchFn:fetch});
     rows.push({
       cohort:cohort.server+":"+cohort.start+":"+cohort.end,
@@ -82,6 +88,7 @@ for(const cohort of cohorts){
       suffix_route_status:suffixRoute.status,
       crossref_ok:crossref.ok&&Boolean(crossrefMessage?.DOI),
       crossref_date:Boolean(crossrefDate),
+      crossref_date_api_found:crossrefDateApiFound,
       resolver_status:resolved?.status??"unknown",
       resolver_reason:resolved?.reason??null,
       resolver_provider:resolved?.provider??null
@@ -104,6 +111,7 @@ for(const provider of ["medrxiv","biorxiv"]){
     suffix_route_ok:subset.filter(x=>x.suffix_route_ok).length,
     crossref_ok:subset.filter(x=>x.crossref_ok).length,
     crossref_date:subset.filter(x=>x.crossref_date).length,
+    crossref_date_api_found:subset.filter(x=>x.crossref_date_api_found).length,
     reasons:Object.fromEntries([...new Set(subset.map(x=>x.resolver_reason??"resolved"))].map(reason=>[
       reason,subset.filter(x=>(x.resolver_reason??"resolved")===reason).length
     ]))
@@ -128,6 +136,7 @@ const report={
   suffix_route_ok:count(x=>x.suffix_route_ok),
   crossref_ok:count(x=>x.crossref_ok),
   crossref_date:count(x=>x.crossref_date),
+  crossref_date_api_found:count(x=>x.crossref_date_api_found),
   by_provider:byProvider,
   rows
 };
@@ -142,6 +151,7 @@ console.log(
   "|suffix_route_ok="+report.suffix_route_ok+
   "|crossref_ok="+report.crossref_ok+
   "|crossref_date="+report.crossref_date+
+  "|crossref_date_api_found="+report.crossref_date_api_found+
   "|medrxiv_recall="+String(byProvider.medrxiv.resolution_recall)+
   "|biorxiv_recall="+String(byProvider.biorxiv.resolution_recall)
 );
