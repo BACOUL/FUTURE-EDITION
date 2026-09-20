@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { assessmentStateHash, classifyMilestoneChange } from "./change-engine.mjs";
 
 export const sortById = (items = []) => [...items].sort((a, b) => String(a.id).localeCompare(String(b.id)));
 
@@ -48,7 +49,7 @@ export function buildRegistry(collections) {
     ["technologies", "Technology"], ["events", "Event"], ["claims", "Claim"],
     ["evidence", "Evidence"], ["sources", "Source"], ["provenance", "Provenance"],
     ["organizations", "Organization"], ["people", "Person"], ["reviews", "Review"],
-    ["assessments", "Assessment"]
+    ["assessments", "Assessment"], ["changes", "Change"]
   ]) {
     for (const obj of collections[key] ?? []) add(obj, type);
   }
@@ -91,7 +92,7 @@ export function validateCollections(collections) {
   for (const group of [
     collections.technologies, collections.events, collections.claims, collections.evidence,
     collections.sources, collections.provenance, collections.organizations,
-    collections.people, collections.reviews, collections.assessments
+    collections.people, collections.reviews, collections.assessments, collections.changes
   ]) for (const obj of group ?? []) checkWindow(errors, obj);
 
   for (const event of collections.events ?? []) {
@@ -170,6 +171,77 @@ export function validateCollections(collections) {
     }
   }
 
+  const fe04Enabled = Object.prototype.hasOwnProperty.call(collections, "changes");
+  const changes = collections.changes ?? [];
+
+  for (const change of changes) {
+    requireType(registry, errors, change.id, change.milestone_id, "Milestone", "milestone");
+    requireType(registry, errors, change.id, change.before_assessment_id, "Assessment", "before_assessment");
+    requireType(registry, errors, change.id, change.after_assessment_id, "Assessment", "after_assessment");
+    requireType(registry, errors, change.id, change.review_id, "Review", "review");
+    for (const id of change.trigger_claim_ids ?? []) requireType(registry, errors, change.id, id, "Claim", "trigger_claim");
+    for (const id of change.trigger_evidence_ids ?? []) requireType(registry, errors, change.id, id, "Evidence", "trigger_evidence");
+    for (const id of change.trigger_event_ids ?? []) requireType(registry, errors, change.id, id, "Event", "trigger_event");
+
+    const before = registry.get(change.before_assessment_id)?.obj;
+    const after = registry.get(change.after_assessment_id)?.obj;
+    const review = registry.get(change.review_id)?.obj;
+
+    if (before && after) {
+      if (before.milestone_id !== after.milestone_id) errors.push(`${change.id}: before/after assessments target different milestones`);
+      if (change.milestone_id !== after.milestone_id) errors.push(`${change.id}: milestone does not match after assessment`);
+      if (after.supersedes_assessment_id !== before.id) errors.push(`${change.id}: after assessment does not directly supersede before assessment`);
+      if (after.review_state !== "human_approved") errors.push(`${change.id}: after assessment is not human_approved`);
+      if (after.review_id !== change.review_id) errors.push(`${change.id}: review does not match after assessment review`);
+
+      try {
+        const expectedType = classifyMilestoneChange(before, after);
+        if (change.change_type !== expectedType) errors.push(`${change.id}: change_type ${change.change_type} != expected ${expectedType}`);
+      } catch (error) {
+        errors.push(`${change.id}: ${String(error?.message ?? error)}`);
+      }
+
+      try {
+        if (change.before_state_hash !== assessmentStateHash(before)) errors.push(`${change.id}: before_state_hash mismatch`);
+        if (change.after_state_hash !== assessmentStateHash(after)) errors.push(`${change.id}: after_state_hash mismatch`);
+      } catch (error) {
+        errors.push(`${change.id}: state hash validation failed: ${String(error?.message ?? error)}`);
+      }
+
+      for (const id of change.trigger_claim_ids ?? []) {
+        if (!(after.basis_claim_ids ?? []).includes(id)) errors.push(`${change.id}: trigger claim ${id} is not in after assessment basis`);
+      }
+      for (const id of change.trigger_event_ids ?? []) {
+        if (!(after.basis_event_ids ?? []).includes(id)) errors.push(`${change.id}: trigger event ${id} is not in after assessment basis`);
+      }
+      for (const id of change.trigger_evidence_ids ?? []) {
+        const item = registry.get(id)?.obj;
+        if (item && !(change.trigger_claim_ids ?? []).includes(item.claim_id)) {
+          errors.push(`${change.id}: trigger evidence ${id} belongs to non-trigger claim ${item.claim_id}`);
+        }
+      }
+    }
+
+    if (review) {
+      if (review.entity_id !== change.after_assessment_id) errors.push(`${change.id}: review ${change.review_id} does not target after assessment`);
+      if (!["approve", "approve_contested"].includes(review.decision)) errors.push(`${change.id}: change review is not an approval`);
+    }
+
+    if (!(change.trigger_claim_ids ?? []).length) errors.push(`${change.id}: at least one trigger claim required`);
+    if (!(change.trigger_evidence_ids ?? []).length) errors.push(`${change.id}: at least one trigger evidence required`);
+    if (!String(change.justification ?? "").trim()) errors.push(`${change.id}: justification required`);
+  }
+
+  if (fe04Enabled) {
+    for (const assessment of collections.assessments ?? []) {
+      if (assessment.review_state !== "human_approved" || !assessment.supersedes_assessment_id) continue;
+      const matches = changes.filter((change) => change.after_assessment_id === assessment.id);
+      if (matches.length !== 1) {
+        errors.push(`${assessment.id}: approved superseding assessment requires exactly one Change record; found ${matches.length}`);
+      }
+    }
+  }
+
   detectSupersedesCycle(collections.claims ?? [], "supersedes_claim_id", errors);
   detectSupersedesCycle(collections.sources ?? [], "supersedes_source_id", errors);
   detectSupersedesCycle(collections.assessments ?? [], "supersedes_assessment_id", errors);
@@ -183,7 +255,8 @@ function canonicalNode(obj, type) {
   for (const key of [
     "aliases", "question_ids", "technology_ids", "claim_ids", "source_ids",
     "milestone_ids", "evidence_ids", "derived_from_source_ids", "organization_ids",
-    "author_ids", "basis_claim_ids", "basis_event_ids"
+    "author_ids", "basis_claim_ids", "basis_event_ids", "trigger_claim_ids",
+    "trigger_evidence_ids", "trigger_event_ids"
   ]) if (Array.isArray(node[key])) node[key] = sortIdArray(node[key]);
   return node;
 }
@@ -208,7 +281,7 @@ export function buildGraph(collections) {
     ["technologies", "Technology"], ["events", "Event"], ["claims", "Claim"],
     ["evidence", "Evidence"], ["sources", "Source"], ["provenance", "Provenance"],
     ["organizations", "Organization"], ["people", "Person"], ["reviews", "Review"],
-    ["assessments", "Assessment"]
+    ["assessments", "Assessment"], ["changes", "Change"]
   ]) for (const obj of sortById(collections[key])) nodes.push(canonicalNode(obj, type));
 
   for (const event of collections.events ?? []) {
@@ -258,6 +331,16 @@ export function buildGraph(collections) {
     if (assessment.supersedes_assessment_id) edges.push({ from: assessment.id, relation: "SUPERSEDES", to: assessment.supersedes_assessment_id });
   }
 
+  for (const change of collections.changes ?? []) {
+    edges.push({ from: change.id, relation: "CHANGES", to: change.milestone_id });
+    edges.push({ from: change.id, relation: "STATE_BEFORE", to: change.before_assessment_id });
+    edges.push({ from: change.id, relation: "STATE_AFTER", to: change.after_assessment_id });
+    edges.push({ from: change.id, relation: "REVIEWED_BY", to: change.review_id });
+    for (const id of change.trigger_claim_ids ?? []) edges.push({ from: change.id, relation: "TRIGGERED_BY_CLAIM", to: id });
+    for (const id of change.trigger_evidence_ids ?? []) edges.push({ from: change.id, relation: "TRIGGERED_BY_EVIDENCE", to: id });
+    for (const id of change.trigger_event_ids ?? []) edges.push({ from: change.id, relation: "TRIGGERED_BY_EVENT", to: id });
+  }
+
   nodes.sort((a, b) => a.id.localeCompare(b.id));
   edges.sort((a, b) => `${a.from}|${a.relation}|${a.to}`.localeCompare(`${b.from}|${b.relation}|${b.to}`));
 
@@ -276,7 +359,8 @@ export function buildGraph(collections) {
       organizations: (collections.organizations ?? []).length,
       people: (collections.people ?? []).length,
       reviews: (collections.reviews ?? []).length,
-      assessments: (collections.assessments ?? []).length
+      assessments: (collections.assessments ?? []).length,
+      changes: (collections.changes ?? []).length
     },
     nodes,
     edges
