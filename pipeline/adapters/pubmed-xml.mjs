@@ -149,8 +149,9 @@ function textStudyStage(title="",abstract=""){
 
   if(/\b(?:systematic review|meta-analysis|meta analysis)\b/.test(text)) return "systematic_review";
   if(/\bphase\s*(?:i|1)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase1";
-  if(/\b(?:randomized|randomised)\b/.test(text)&&/\b(?:trial|study|experiment)\b/.test(text)) return "randomized_trial";
-  if(/\bphase\s*(?:ii|2)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase2";
+  if(/\bphase\s*2a\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase2";
+  if(/\b(?:randomized|randomised|randomly assigned|randomly allocated|random assignment)\b/.test(text)&&/\b(?:trial|study|experiment|families|participants|patients|children)\b/.test(text)) return "randomized_trial";
+  if(/\bphase\s*(?:ii|2)(?:a|b)?\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase2";
   if(/\bphase\s*(?:iii|3)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase3";
   if(/\b(?:observational|cohort|cross-sectional|retrospective|prospective)\b/.test(text)&&/\b(?:patient|patients|participant|participants|adult|adults|children|people|human|humans)\b/.test(text)){
     return "observational_human";
@@ -196,11 +197,11 @@ function studyStage(pubtypes,meshTerms=[],title="",abstract=""){
 
   if(scope==="animal"||(scope==="unknown"&&titleAnimal&&!titleHuman)||(scope==="unknown"&&explicitAnimal&&!explicitHuman)) return "preclinical_animal";
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
-  if(pubtypes.some(x=>x.includes("Clinical Trial, Phase I"))) return "phase1";
+  if(pubtypes.includes("Clinical Trial, Phase I")) return "phase1";
   const textual=textStudyStage(title,abstract);
   if(pubtypes.includes("Randomized Controlled Trial")||textual==="randomized_trial") return "randomized_trial";
-  if(pubtypes.some(x=>x.includes("Clinical Trial, Phase III"))) return "phase3";
-  if(pubtypes.some(x=>x.includes("Clinical Trial, Phase II"))) return "phase2";
+  if(pubtypes.includes("Clinical Trial, Phase III")) return "phase3";
+  if(pubtypes.includes("Clinical Trial, Phase II")) return "phase2";
   if(pubtypes.includes("Observational Study")) return "observational_human";
 
   if(textual!=="unknown") return textual;
