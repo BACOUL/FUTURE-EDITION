@@ -1,0 +1,92 @@
+{
+  "schema_version": "fe/editorial-observatory/v1",
+  "entries": [
+    {
+      "id": "OBS-006",
+      "question_id": "Q-006",
+      "slug": "energie-de-fusion-commerciale",
+      "as_of": "2026-09-20",
+      "state": {
+        "status": "unassessed",
+        "label": "État canonique non évalué",
+        "summary": "Le corpus contient plusieurs résultats expérimentaux importants sur différentes voies de fusion, mais aucun Change validé ne permet encore de déclarer un jalon de l’observatoire atteint dans l’état canonique."
+      },
+      "paths": [
+        {
+          "id": "PATH-ICF",
+          "label": "Confinement inertiel · NIF",
+          "technology_ids": [
+            "TECH-0523"
+          ],
+          "event_ids": [
+            "EV-2021-006001",
+            "EV-2022-006002",
+            "EV-2023-006003"
+          ],
+          "summary": "La trajectoire NIF documente le rapprochement du seuil d’ignition, son franchissement en 2022 puis sa répétition avec un rendement supérieur en 2023."
+        },
+        {
+          "id": "PATH-TOKAMAK",
+          "label": "Confinement magnétique · Tokamak",
+          "technology_ids": [
+            "TECH-0524"
+          ],
+          "event_ids": [
+            "EV-2024-006004"
+          ],
+          "summary": "JET fournit un repère distinct sur l’énergie de fusion produite lors d’impulsions deutérium-tritium."
+        },
+        {
+          "id": "PATH-STELLARATOR",
+          "label": "Confinement magnétique · Stellarator",
+          "technology_ids": [
+            "TECH-0525"
+          ],
+          "event_ids": [
+            "EV-2025-006005"
+          ],
+          "summary": "Wendelstein 7-X fournit un repère sur le fonctionnement prolongé d’un stellarator et le produit triple obtenu sur une impulsion longue."
+        }
+      ],
+      "evidence_landscape": {
+        "supporting_event_ids": [
+          "EV-2021-006001",
+          "EV-2022-006002",
+          "EV-2023-006003",
+          "EV-2024-006004",
+          "EV-2025-006005"
+        ],
+        "contradicting_event_ids": [],
+        "limiting_notes": [
+          "Les cinq événements soutiennent des affirmations expérimentales distinctes ; ils ne prouvent pas à eux seuls une production électrique commerciale.",
+          "Les résultats appartiennent à plusieurs architectures de fusion qui ne sont pas directement interchangeables.",
+          "L’absence de contradiction enregistrée dans ce corpus ne signifie pas qu’aucune contradiction scientifique n’existe hors du corpus."
+        ]
+      },
+      "watch_next": [
+        {
+          "milestone_id": "Q-006-M2",
+          "title": "Reproductibilité",
+          "condition": "Le résultat clé est répété de façon contrôlée."
+        },
+        {
+          "milestone_id": "Q-006-M4",
+          "title": "Production électrique",
+          "condition": "Un démonstrateur convertit effectivement la fusion en électricité exploitable."
+        },
+        {
+          "milestone_id": "Q-006-M5",
+          "title": "Démonstrateur industriel",
+          "condition": "Un système intégré fonctionne avec contraintes industrielles."
+        },
+        {
+          "milestone_id": "Q-006-M6",
+          "title": "Viabilité commerciale",
+          "condition": "Coût, disponibilité et maintenance rendent l’exploitation commercialement crédible."
+        }
+      ],
+      "reference_article_id": "ART-000001",
+      "reference_reality_check_id": "RC-001"
+    }
+  ]
+}
