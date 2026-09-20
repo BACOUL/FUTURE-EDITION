@@ -1,0 +1,15 @@
+{
+  "version": "holdout-v2",
+  "frozen_after_candidate_v2_before_holdout_generation": true,
+  "candidate_sha": "61d247da71a03e80a7275ba0c792a079f7221701",
+  "previous_holdout_sha256": "62bd2cbc702bc1da4fb24dfb9a519795c8ca7809eae5df71533142320ea85ee0",
+  "previous_holdout_reusable": false,
+  "minimum_hidden_cases": 50,
+  "minimum_hidden_claim_annotations": 15,
+  "minimum_claim_prediction_coverage": 0.25,
+  "atomic_gold_passage_recall_min": 0.85,
+  "require_zero_transport_failures": true,
+  "require_verified_locator_rate": 1,
+  "require_machine_proposed_rate": 1,
+  "note": "No threshold is weakened. V2 uses a fresh holdout with source windows disjoint from holdout V1 and the 2017-2022 diagnostic."
+}
