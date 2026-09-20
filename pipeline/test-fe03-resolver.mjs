@@ -26,7 +26,7 @@ const fixtures={
   crossref:{message:{DOI:"10.1000/test",type:"journal-article",title:["Crossref synthetic"],URL:"https://doi.org/10.1000/test",abstract:"<jats:p>Crossref fixture abstract evidence.</jats:p>","updated-by":[],"update-to":[]}},
   pubmedXml:`<PubmedArticleSet><PubmedArticle><MedlineCitation><PMID>12345</PMID><Article><ArticleTitle>PubMed synthetic</ArticleTitle><Abstract><AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">Background fixture text.</AbstractText><AbstractText Label="RESULTS" NlmCategory="RESULTS">Primary result improved by 25 percent.</AbstractText></Abstract><PublicationTypeList><PublicationType>Journal Article</PublicationType></PublicationTypeList></Article></MedlineCitation><PubmedData><ArticleIdList><ArticleId IdType="pubmed">12345</ArticleId></ArticleIdList></PubmedData></PubmedArticle></PubmedArticleSet>`,
   clinicaltrials:{protocolSection:{identificationModule:{nctId:"NCT12345678",briefTitle:"Trial synthetic"},descriptionModule:{briefSummary:"Registry brief summary evidence.",detailedDescription:"Registry detailed description evidence."},designModule:{phases:["PHASE1","PHASE2"],designInfo:{allocation:"RANDOMIZED"}},outcomesModule:{primaryOutcomes:[{measure:"Primary endpoint",description:"Primary endpoint description.",timeFrame:"Week 12"}]}}},
-  medrxiv:{collection:[{doi:"10.1101/2026.01.01.123456",title:"medRxiv synthetic",abstract:"medRxiv fixture abstract evidence."}]}
+  medrxiv:{collection:[{doi:"10.1101/2026.01.01.123456",title:"Randomized medRxiv synthetic trial",abstract:"We conducted a randomized controlled trial. medRxiv fixture abstract evidence."}]}
 };
 
 const fakeJson=payload=>async()=>({ok:true,status:200,json:async()=>payload});
@@ -90,7 +90,7 @@ assert(r2.document.sections.length===2,"pubmed structured abstract sections miss
 assert(r2.document.sections[1].text==="Primary result improved by 25 percent.","pubmed result abstract text lost");
 assert(r3.document.license_scope==="registry_record","clinicaltrials license scope");
 assert(r3.document.sections.some(item=>item.id==="primary-outcome-1"),"clinicaltrials outcome evidence missing");
-assert(r4.document.sections[0].text==="medRxiv fixture abstract evidence.","rxiv abstract evidence missing");
+assert(r4.document.sections[0].text.includes("medRxiv fixture abstract evidence."),"rxiv abstract evidence missing");
 assert(r5.document.sections[0].text.includes("benchmark models"),"arxiv summary evidence missing");
 assert(r6.document.license_scope==="official_record","NHS official-record license scope");
 assert(r6.document.sections.some(item=>item.text.includes("90 organisations")),"NHS official evidence text missing");
@@ -98,6 +98,7 @@ assert(r6.source.study_stage==="real_world_deployment","NHS real-world stage mis
 assert(r6.source.kind==="official_data","NHS official source kind missing");
 
 assert(r3.source.study_stage==="phase1","clinicaltrials conservative phase mapping");
+assert(r4.source.study_stage==="randomized_trial","rxiv randomized study stage missing");
 assert(r5.source.kind==="preprint"&&r5.source.peer_reviewed===false,"arxiv preprint safety metadata");
 assert(r5.source.study_stage==="technology_benchmark","explicit arxiv benchmark stage missing");
 
@@ -122,4 +123,4 @@ const untrusted=await resolveCandidate(
 assert(untrusted.status==="unresolved"&&untrusted.reason==="untrusted_url_provider","untrusted URL not rejected");
 assert(untrustedFetchCalled===false,"untrusted URL reached network");
 
-console.log("FE03_RESOLVER_TEST_PASS|routes=6|offline_fixtures=6|evidence_documents=6|structured_pubmed=1|clinicaltrials_outcome=1|official_web=1|arxiv_technology_stage=1|untrusted_url_rejected=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
+console.log("FE03_RESOLVER_TEST_PASS|routes=6|offline_fixtures=6|evidence_documents=6|structured_pubmed=1|clinicaltrials_outcome=1|official_web=1|arxiv_technology_stage=1|rxiv_randomized_stage=1|untrusted_url_rejected=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
