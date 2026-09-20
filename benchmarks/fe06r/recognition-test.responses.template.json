@@ -1,0 +1,270 @@
+{
+  "schema_version": "fe06r/recognition-test-results/v1",
+  "status": "COLLECTED_FROZEN",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "browser_qa_run_id": 35533538311,
+  "evaluators": [
+    {
+      "id": "E1",
+      "human": true,
+      "independent": true,
+      "unbriefed": true,
+      "profile_note": "",
+      "responses": {
+        "Q1": {
+          "verbatim": "",
+          "criteria": {
+            "value_proposition_identified": false,
+            "change_evidence_state_identified": false
+          }
+        },
+        "Q2": {
+          "verbatim": "",
+          "criteria": {
+            "main_subject_identified": false
+          }
+        },
+        "Q3": {
+          "verbatim": "",
+          "criteria": {
+            "information_evidence_uncertainty_distinguished": false
+          }
+        },
+        "Q4": {
+          "verbatim": "",
+          "criteria": {
+            "proprietary_representation_identified": false
+          }
+        },
+        "Q5": {
+          "verbatim": "",
+          "criteria": {
+            "generic_news_or_saas_primary_description": false
+          }
+        },
+        "Q6": {
+          "verbatim": "",
+          "criteria": {
+            "r2_continue": false
+          }
+        },
+        "Q7": {
+          "verbatim": "",
+          "criteria": {
+            "r1_lead_expectation_understood": false
+          }
+        }
+      }
+    },
+    {
+      "id": "E2",
+      "human": true,
+      "independent": true,
+      "unbriefed": true,
+      "profile_note": "",
+      "responses": {
+        "Q1": {
+          "verbatim": "",
+          "criteria": {
+            "value_proposition_identified": false,
+            "change_evidence_state_identified": false
+          }
+        },
+        "Q2": {
+          "verbatim": "",
+          "criteria": {
+            "main_subject_identified": false
+          }
+        },
+        "Q3": {
+          "verbatim": "",
+          "criteria": {
+            "information_evidence_uncertainty_distinguished": false
+          }
+        },
+        "Q4": {
+          "verbatim": "",
+          "criteria": {
+            "proprietary_representation_identified": false
+          }
+        },
+        "Q5": {
+          "verbatim": "",
+          "criteria": {
+            "generic_news_or_saas_primary_description": false
+          }
+        },
+        "Q6": {
+          "verbatim": "",
+          "criteria": {
+            "r2_continue": false
+          }
+        },
+        "Q7": {
+          "verbatim": "",
+          "criteria": {
+            "r1_lead_expectation_understood": false
+          }
+        }
+      }
+    },
+    {
+      "id": "E3",
+      "human": true,
+      "independent": true,
+      "unbriefed": true,
+      "profile_note": "",
+      "responses": {
+        "Q1": {
+          "verbatim": "",
+          "criteria": {
+            "value_proposition_identified": false,
+            "change_evidence_state_identified": false
+          }
+        },
+        "Q2": {
+          "verbatim": "",
+          "criteria": {
+            "main_subject_identified": false
+          }
+        },
+        "Q3": {
+          "verbatim": "",
+          "criteria": {
+            "information_evidence_uncertainty_distinguished": false
+          }
+        },
+        "Q4": {
+          "verbatim": "",
+          "criteria": {
+            "proprietary_representation_identified": false
+          }
+        },
+        "Q5": {
+          "verbatim": "",
+          "criteria": {
+            "generic_news_or_saas_primary_description": false
+          }
+        },
+        "Q6": {
+          "verbatim": "",
+          "criteria": {
+            "r2_continue": false
+          }
+        },
+        "Q7": {
+          "verbatim": "",
+          "criteria": {
+            "r1_lead_expectation_understood": false
+          }
+        }
+      }
+    },
+    {
+      "id": "E4",
+      "human": true,
+      "independent": true,
+      "unbriefed": true,
+      "profile_note": "",
+      "responses": {
+        "Q1": {
+          "verbatim": "",
+          "criteria": {
+            "value_proposition_identified": false,
+            "change_evidence_state_identified": false
+          }
+        },
+        "Q2": {
+          "verbatim": "",
+          "criteria": {
+            "main_subject_identified": false
+          }
+        },
+        "Q3": {
+          "verbatim": "",
+          "criteria": {
+            "information_evidence_uncertainty_distinguished": false
+          }
+        },
+        "Q4": {
+          "verbatim": "",
+          "criteria": {
+            "proprietary_representation_identified": false
+          }
+        },
+        "Q5": {
+          "verbatim": "",
+          "criteria": {
+            "generic_news_or_saas_primary_description": false
+          }
+        },
+        "Q6": {
+          "verbatim": "",
+          "criteria": {
+            "r2_continue": false
+          }
+        },
+        "Q7": {
+          "verbatim": "",
+          "criteria": {
+            "r1_lead_expectation_understood": false
+          }
+        }
+      }
+    },
+    {
+      "id": "E5",
+      "human": true,
+      "independent": true,
+      "unbriefed": true,
+      "profile_note": "",
+      "responses": {
+        "Q1": {
+          "verbatim": "",
+          "criteria": {
+            "value_proposition_identified": false,
+            "change_evidence_state_identified": false
+          }
+        },
+        "Q2": {
+          "verbatim": "",
+          "criteria": {
+            "main_subject_identified": false
+          }
+        },
+        "Q3": {
+          "verbatim": "",
+          "criteria": {
+            "information_evidence_uncertainty_distinguished": false
+          }
+        },
+        "Q4": {
+          "verbatim": "",
+          "criteria": {
+            "proprietary_representation_identified": false
+          }
+        },
+        "Q5": {
+          "verbatim": "",
+          "criteria": {
+            "generic_news_or_saas_primary_description": false
+          }
+        },
+        "Q6": {
+          "verbatim": "",
+          "criteria": {
+            "r2_continue": false
+          }
+        },
+        "Q7": {
+          "verbatim": "",
+          "criteria": {
+            "r1_lead_expectation_understood": false
+          }
+        }
+      }
+    }
+  ],
+  "aggregate": null,
+  "verdict": "BLOCKED"
+}

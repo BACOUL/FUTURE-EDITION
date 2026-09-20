@@ -17,7 +17,9 @@
       "primed evaluators",
       "answers inferred by the operator",
       "synthetic or model-generated evaluators counted as humans"
-    ]
+    ],
+    "required": 5,
+    "maximum": 5
   },
   "stimulus_order": [
     "R1-home-1440.png",
@@ -67,7 +69,7 @@
       "id": "Q5",
       "prompt": "Does this look primarily like a generic news site, a SaaS dashboard, or something else? Explain briefly.",
       "criteria": [
-        "not_generic_news_or_saas"
+        "generic_news_or_saas_primary_description"
       ]
     },
     {
@@ -95,5 +97,47 @@
     "r2_continue": "at least 4/5",
     "r1_lead_expectation_understood": "at least 4/5"
   },
-  "verdict_rule": "PASS only if every threshold passes; otherwise FAIL. Thresholds may not be changed after responses are observed."
+  "verdict_rule": "PASS only if every threshold passes; otherwise FAIL. Thresholds may not be changed after responses are observed.",
+  "threshold_rules": {
+    "value_proposition_identified": {
+      "operator": ">=",
+      "count": 4,
+      "denominator": 5
+    },
+    "main_subject_identified": {
+      "operator": ">=",
+      "count": 4,
+      "denominator": 5
+    },
+    "information_evidence_uncertainty_distinguished": {
+      "operator": ">=",
+      "count": 4,
+      "denominator": 5
+    },
+    "change_evidence_state_identified": {
+      "operator": ">=",
+      "count": 4,
+      "denominator": 5
+    },
+    "proprietary_representation_identified": {
+      "operator": ">=",
+      "count": 4,
+      "denominator": 5
+    },
+    "generic_news_or_saas_primary_description": {
+      "operator": "<=",
+      "count": 1,
+      "denominator": 5
+    },
+    "r2_continue": {
+      "operator": ">=",
+      "count": 4,
+      "denominator": 5
+    },
+    "r1_lead_expectation_understood": {
+      "operator": ">=",
+      "count": 4,
+      "denominator": 5
+    }
+  }
 }
