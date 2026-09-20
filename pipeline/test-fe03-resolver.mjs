@@ -13,7 +13,7 @@ const arxivXml=`<?xml version="1.0" encoding="utf-8"?>
     <title>
       Synthetic &amp; Reproducible arXiv Fixture
     </title>
-    <summary>Fixture summary only.</summary>
+    <summary>Fixture summary only. We benchmark models under a shared evaluation protocol.</summary>
     <author><name>A. Example</name></author>
     <author><name>B. Example</name></author>
     <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
@@ -91,7 +91,7 @@ assert(r2.document.sections[1].text==="Primary result improved by 25 percent.","
 assert(r3.document.license_scope==="registry_record","clinicaltrials license scope");
 assert(r3.document.sections.some(item=>item.id==="primary-outcome-1"),"clinicaltrials outcome evidence missing");
 assert(r4.document.sections[0].text==="medRxiv fixture abstract evidence.","rxiv abstract evidence missing");
-assert(r5.document.sections[0].text==="Fixture summary only.","arxiv summary evidence missing");
+assert(r5.document.sections[0].text.includes("benchmark models"),"arxiv summary evidence missing");
 assert(r6.document.license_scope==="official_record","NHS official-record license scope");
 assert(r6.document.sections.some(item=>item.text.includes("90 organisations")),"NHS official evidence text missing");
 assert(r6.source.study_stage==="real_world_deployment","NHS real-world stage missing");
@@ -99,6 +99,7 @@ assert(r6.source.kind==="official_data","NHS official source kind missing");
 
 assert(r3.source.study_stage==="phase1","clinicaltrials conservative phase mapping");
 assert(r5.source.kind==="preprint"&&r5.source.peer_reviewed===false,"arxiv preprint safety metadata");
+assert(r5.source.study_stage==="technology_benchmark","explicit arxiv benchmark stage missing");
 
 const bad=await resolveCandidate(
   {id:"CAND-000007",signal_kind:"doi",raw_value:"fake",origin:"crossref"},
@@ -121,4 +122,4 @@ const untrusted=await resolveCandidate(
 assert(untrusted.status==="unresolved"&&untrusted.reason==="untrusted_url_provider","untrusted URL not rejected");
 assert(untrustedFetchCalled===false,"untrusted URL reached network");
 
-console.log("FE03_RESOLVER_TEST_PASS|routes=6|offline_fixtures=6|evidence_documents=6|structured_pubmed=1|clinicaltrials_outcome=1|official_web=1|untrusted_url_rejected=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
+console.log("FE03_RESOLVER_TEST_PASS|routes=6|offline_fixtures=6|evidence_documents=6|structured_pubmed=1|clinicaltrials_outcome=1|official_web=1|arxiv_technology_stage=1|untrusted_url_rejected=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
