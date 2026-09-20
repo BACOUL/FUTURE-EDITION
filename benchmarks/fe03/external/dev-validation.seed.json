@@ -1963,5 +1963,613 @@
       }
     ],
     "notes": "Deterministic malformed DOI syntax case; no network lookup should be attempted."
+  },
+  {
+    "id": "FE03-EXT-0060",
+    "split": "dev",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40175738",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40175738/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41974911/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "author_correction",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Pragmatic cluster-randomized trial with linked author correction."
+  },
+  {
+    "id": "FE03-EXT-0061",
+    "split": "dev",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40258572",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40258572/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41733509/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "corrigendum",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Randomized lung-cancer surveillance trial with linked corrigendum."
+  },
+  {
+    "id": "FE03-EXT-0062",
+    "split": "dev",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40687993",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40687993/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41982678/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "published_erratum",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Randomized human exercise trial with linked erratum."
+  },
+  {
+    "id": "FE03-EXT-0063",
+    "split": "validation",
+    "case_family": "corrected_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40414480",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "corrected",
+      "critical_safety_case": true,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40414480/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_multicentre_trial",
+          "ErratumIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42468116/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "corrigendum",
+          "ErratumFor",
+          "corrected_publication"
+        ]
+      }
+    ],
+    "notes": "Randomized multicentre human trial with a 2026 corrigendum."
+  },
+  {
+    "id": "FE03-EXT-0064",
+    "split": "dev",
+    "case_family": "expression_of_concern",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41540926",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "expression_of_concern",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41540926/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "original_publication",
+          "ExpressionOfConcernIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41546487/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "expression_of_concern",
+          "ExpressionOfConcernFor",
+          "PMID_41540926"
+        ]
+      }
+    ],
+    "notes": "Influenza vaccine-effectiveness publication covered by a PubMed expression-of-concern notice."
+  },
+  {
+    "id": "FE03-EXT-0065",
+    "split": "dev",
+    "case_family": "expression_of_concern",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41642998",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "expression_of_concern",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41642998/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "original_publication",
+          "ExpressionOfConcernIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42241562/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "expression_of_concern",
+          "ExpressionOfConcernFor",
+          "PMID_41642998"
+        ]
+      }
+    ],
+    "notes": "Geophysics publication with explicit Science editorial expression of concern."
+  },
+  {
+    "id": "FE03-EXT-0066",
+    "split": "dev",
+    "case_family": "expression_of_concern",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41794269",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "expression_of_concern",
+      "critical_safety_case": true,
+      "expected_subject_scope": "animal",
+      "expected_evidence_level": "preclinical"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41794269/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "rats",
+          "preclinical_scope",
+          "ExpressionOfConcernIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42389804/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "expression_of_concern",
+          "ExpressionOfConcernFor",
+          "PMID_41794269"
+        ]
+      }
+    ],
+    "notes": "Rat study with explicit linked expression of concern."
+  },
+  {
+    "id": "FE03-EXT-0067",
+    "split": "dev",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "35818586",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35818586/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42318328/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_35818586"
+        ]
+      }
+    ],
+    "notes": "Known retracted meningioma cell study."
+  },
+  {
+    "id": "FE03-EXT-0068",
+    "split": "dev",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "39763417",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39763417/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "clinical_trial",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41913440/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_39763417"
+        ]
+      }
+    ],
+    "notes": "Retracted ketamine clinical-trial secondary analysis."
+  },
+  {
+    "id": "FE03-EXT-0069",
+    "split": "dev",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40240001",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40240001/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42100855/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_40240001"
+        ]
+      }
+    ],
+    "notes": "Retracted RNA circularization technology paper."
+  },
+  {
+    "id": "FE03-EXT-0070",
+    "split": "validation",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "40956129",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40956129/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42267579/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_40956129",
+          "methodological_errors"
+        ]
+      }
+    ],
+    "notes": "Prostate-cancer prognostic publication retracted after methodological errors altered statistical significance and reproducibility."
+  },
+  {
+    "id": "FE03-EXT-0071",
+    "split": "validation",
+    "case_family": "retracted_publication",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "29206292",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "retracted",
+      "critical_safety_case": true,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29206292/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retracted_publication",
+          "RetractionIn"
+        ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41982107/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_29206292",
+          "integrity_concerns"
+        ]
+      }
+    ],
+    "notes": "Colorectal-cancer microRNA publication retracted after image and patient-data integrity concerns."
+  },
+  {
+    "id": "FE03-EXT-0072",
+    "split": "dev",
+    "case_family": "retraction_notice",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42318328",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42318328/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_35818586"
+        ]
+      }
+    ],
+    "notes": "Retraction notice is an active integrity record, distinct from the retracted target."
+  },
+  {
+    "id": "FE03-EXT-0073",
+    "split": "dev",
+    "case_family": "retraction_notice",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "41913440",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41913440/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_39763417"
+        ]
+      }
+    ],
+    "notes": "Retraction notice for the ketamine anxiety publication."
+  },
+  {
+    "id": "FE03-EXT-0074",
+    "split": "dev",
+    "case_family": "retraction_notice",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42100855",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42100855/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_40240001"
+        ]
+      }
+    ],
+    "notes": "Retraction notice for the NicOPURE publication."
+  },
+  {
+    "id": "FE03-EXT-0075",
+    "split": "validation",
+    "case_family": "retraction_notice",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "42267579",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "unknown",
+      "expected_evidence_level": "unknown"
+    },
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42267579/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "retraction_notice",
+          "RetractionOf",
+          "PMID_40956129"
+        ]
+      }
+    ],
+    "notes": "Validation notice whose abstract explicitly documents the reason for retraction."
   }
 ]
