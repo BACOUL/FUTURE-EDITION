@@ -110,7 +110,8 @@ const baseChecks = (path, html) => {
     if (!html.includes(`href="${navHref}"`)) errors.push(`${path}: primary navigation missing ${navHref}`);
   }
   if (html.includes("undefined") || html.includes("[object Object]")) errors.push(`${path}: serialization artifact`);
-  if (/<script[\s>]/i.test(html)) errors.push(`${path}: unexpected client JavaScript`);
+  const executableHtml = html.replace(/<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, "");
+  if (/<script[\s>]/i.test(executableHtml)) errors.push(`${path}: unexpected client JavaScript`);
   if (!/<title>[^<]+<\/title>/.test(html)) errors.push(`${path}: title missing`);
   if (!/<meta name="description" content="[^"]+">/.test(html)) errors.push(`${path}: meta description missing`);
 };
