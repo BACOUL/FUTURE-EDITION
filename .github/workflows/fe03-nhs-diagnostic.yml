@@ -8,13 +8,16 @@ jobs:
   diagnose:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect official NHS monthly feed item
+      - name: Fetch official NHS post API
         run: |
           node --input-type=module - <<'NODE'
-          const url="https://www.england.nhs.uk/2026/07/feed/?paged=2";
-          const r=await fetch(url,{headers:{"user-agent":"FutureEditionEvidence/0.1 (+https://github.com/BACOUL/FUTURE-EDITION)","accept":"application/rss+xml,application/xml,text/xml"}});
-          const body=await r.text();
-          const slug="nhs-accelerates-artificial-intelligence-rollout-to-cut-waiting-times-and-improve-care-for-millions";
-          const pos=body.indexOf(slug);
-          console.log("NHS_ITEM_DIAG",JSON.stringify({status:r.status,length:body.length,pos,slice:pos>=0?body.slice(Math.max(0,pos-700),Math.min(body.length,pos+2200)):body.slice(0,2500)}));
+          const urls=[
+            "https://www.england.nhs.uk/wp-json/wp/v2/posts/289793",
+            "https://www.england.nhs.uk/wp-json/wp/v2/pages/289793"
+          ];
+          for(const url of urls){
+            const r=await fetch(url,{headers:{"user-agent":"FutureEditionEvidence/0.1 (+https://github.com/BACOUL/FUTURE-EDITION)","accept":"application/json"}});
+            const body=await r.text();
+            console.log("NHS_API_DIAG",JSON.stringify({url,status:r.status,type:r.headers.get("content-type"),length:body.length,hasCopilot:body.includes("500,000 NHS staff"),hasTitle:body.includes("NHS accelerates artificial intelligence rollout"),head:body.slice(0,220)}));
+          }
           NODE
