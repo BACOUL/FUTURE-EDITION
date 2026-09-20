@@ -20,7 +20,7 @@ jobs:
         run: |
           node benchmarks/fe03/validate-collection-matrix.mjs
           node benchmarks/fe03/validate-acquisition-plan.mjs
-          node benchmarks/fe03/validate-external.mjs
+          node benchmarks/fe03/validate-external.mjs benchmarks/fe03/external/dev-validation.seed.json
           node benchmarks/fe03/validate-claim-annotations.mjs
           node pipeline/test-fe03-core.mjs
           node pipeline/test-fe03-contracts.mjs
