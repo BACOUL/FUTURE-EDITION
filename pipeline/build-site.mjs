@@ -2,7 +2,7 @@ import { readFile, mkdir, rm, writeFile } from "node:fs/promises";
 
 const root = new URL("../", import.meta.url);
 const read = async (path) => JSON.parse(await readFile(new URL(path, root), "utf8"));
-const [questions, observatories, events, claims, evidence, sources, technologies, graph, editorialFr] = await Promise.all([
+const [questions, observatories, events, claims, evidence, sources, technologies, graph, editorialFr, editorialArticles] = await Promise.all([
   read("data/questions/questions.json"),
   read("data/observatories/observatories.json"),
   read("data/events/events.json"),
@@ -11,7 +11,8 @@ const [questions, observatories, events, claims, evidence, sources, technologies
   read("data/sources/sources.json"),
   read("data/technologies/technologies.json"),
   read("generated/future-graph.json"),
-  read("data/editorial/fr/events.json")
+  read("data/editorial/fr/events.json"),
+  read("data/editorial/fr/articles.json")
 ]);
 
 const out = new URL("../dist/", import.meta.url);
@@ -24,6 +25,10 @@ const sourceById = byId(sources);
 const techById = byId(technologies);
 const obsByQuestion = new Map(observatories.map((o) => [o.question_id, o]));
 const editorialFrByEvent = new Map(Object.entries(editorialFr.entries ?? {}));
+const articles = editorialArticles.entries ?? [];
+const articleByEvent = new Map(articles.map((a) => [a.event_id, a]));
+const evidenceById = byId(evidence);
+const eventById = byId(events);
 const profileLabel = {
   medical: "médical",
   technology: "technologie",
@@ -110,7 +115,10 @@ const sourceLabel = {
 const icon = (name) => ({
   arrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   proof: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4M12 3l7 4v5c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V7l7-4z"/></svg>',
-  graph: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7l3 9M16 7l-3 9M8 6h8"/></svg>'
+  graph: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7l3 9M16 7l-3 9M8 6h8"/></svg>',
+  search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>',
+  ask: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v11H9l-4 3V5z"/><path d="M9 9h6M9 12h4"/></svg>',
+  check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>'
 }[name]);
 
 const writePage = async (path, html) => {
@@ -131,14 +139,23 @@ const layout = (title, description, body, { active = "" } = {}) => `<!doctype ht
 <a class="skip" href="#contenu">Aller au contenu</a>
 <header class="top"><div class="shell nav">
 <a class="brand" href="/" aria-label="Future Edition, accueil"><span class="brand-mark">F</span><span>FUTURE<br><b>EDITION</b></span></a>
-<nav aria-label="Navigation principale">
+<nav class="desktop-nav" aria-label="Navigation principale">
 <a class="${active === "today" ? "active" : ""}" href="/aujourdhui/">Aujourd’hui</a>
 <a class="${active === "questions" ? "active" : ""}" href="/questions/">Observatoires</a>
-<a class="${active === "method" ? "active" : ""}" href="/methodologie/">Méthode</a>
+<a class="${active === "reality" ? "active" : ""}" href="/reality-check/">Reality Check</a>
+<a class="${active === "ask" ? "active" : ""}" href="/ask/">Ask</a>
+<a class="${active === "search" ? "active" : ""}" href="/recherche/" aria-label="Recherche">${icon("search")}<span>Recherche</span></a>
 </nav>
 </div></header>
 <main id="contenu">${body}</main>
-<footer><div class="shell footer-grid"><div><div class="brand footer-brand"><span class="brand-mark">F</span><span>FUTURE<br><b>EDITION</b></span></div><p>Nous suivons ce qui devient possible.</p></div><div><strong>Explorer</strong><a href="/aujourdhui/">Aujourd’hui</a><a href="/questions/">Observatoires</a><a href="/methodologie/">Méthode</a></div><div><strong>État des preuves</strong><p>50 événements fondateurs sourcés.<br>51 jalons encore non évalués.</p></div></div></footer>
+<nav class="mobile-dock" aria-label="Navigation mobile">
+<a class="${active === "today" ? "active" : ""}" href="/aujourdhui/"><span>Maintenant</span></a>
+<a class="${active === "questions" ? "active" : ""}" href="/questions/"><span>Observatoires</span></a>
+<a class="${active === "reality" ? "active" : ""}" href="/reality-check/"><span>Reality</span></a>
+<a class="${active === "ask" ? "active" : ""}" href="/ask/"><span>Ask</span></a>
+<a class="${active === "search" ? "active" : ""}" href="/recherche/"><span>Search</span></a>
+</nav>
+<footer><div class="shell footer-grid"><div><div class="brand footer-brand"><span class="brand-mark">F</span><span>FUTURE<br><b>EDITION</b></span></div><p>Un média pour voir comment l’état des connaissances change.</p></div><div><strong>Explorer</strong><a href="/aujourdhui/">Aujourd’hui</a><a href="/questions/">Observatoires</a><a href="/reality-check/">Reality Check</a><a href="/recherche/">Recherche</a></div><div><strong>Confiance</strong><a href="/methodologie/">Méthodologie</a><a href="/ask/">Ask Future Edition</a><p>50 événements fondateurs sourcés.<br>51 jalons encore non évalués.</p></div></div></footer>
 </body></html>`;
 
 const qEvents = (qid) => events.filter((e) => e.question_ids.includes(qid)).sort((a, b) => b.event_date.localeCompare(a.event_date));
@@ -146,6 +163,31 @@ const latestByQuestion = questions
   .map((q) => ({ q, event: qEvents(q.id)[0] }))
   .filter((x) => x.event)
   .sort((a, b) => b.event.event_date.localeCompare(a.event.event_date));
+
+const articleHrefForEvent = (event) => {
+  const article = articleByEvent.get(event?.id);
+  return article ? `/avance/${article.slug}/` : `/preuves/${event?.id?.toLowerCase()}/`;
+};
+
+const statePlate = ({ question, latestEvent, asOf = "2026-09-20", compact = false }) => `
+<aside class="state-plate ${compact ? "compact" : ""}" aria-label="État de connaissance">
+  <div class="state-plate-head"><span>STATE</span><time datetime="${esc(asOf)}">as of ${fmtDate(asOf)}</time></div>
+  <strong class="state-value">État canonique non évalué</strong>
+  <p>Aucun jalon n’est promu automatiquement par la présence d’une preuve. Un Change validé est requis.</p>
+  <div class="state-meta">
+    <span><b>Question</b>${esc(question?.id ?? "")}</span>
+    <span><b>Dernier repère du socle</b>${latestEvent ? fmtDate(latestEvent.event_date) : "—"}</span>
+    <span><b>Statut</b>UNASSESSED</span>
+  </div>
+</aside>`;
+
+const deltaBlock = (article) => `
+<section class="delta-block" aria-label="Avant, nouvelle preuve, après">
+  <div class="delta-line" aria-hidden="true"><span></span><i></i><span></span></div>
+  <article class="delta-before"><span class="delta-label">01 · ${esc(article.before.label)}</span><h2>Avant</h2><p>${esc(article.before.text)}</p></article>
+  <article class="delta-evidence"><span class="delta-label">02 · ${esc(article.evidence.label)}</span><h2>Preuve</h2><p>${esc(article.evidence.text)}</p><a href="/preuves/${esc(article.event_id.toLowerCase())}/">Ouvrir le dossier de preuve ${icon("arrow")}</a></article>
+  <article class="delta-after"><span class="delta-label">03 · ${esc(article.after.label)}</span><h2>Maintenant</h2><p>${esc(article.after.text)}</p></article>
+</section>`;
 
 const eventCard = (event, { compact = false } = {}) => {
   const claim = claimById.get(event.claim_ids?.[0]);
@@ -159,7 +201,7 @@ const eventCard = (event, { compact = false } = {}) => {
    ${tech ? `<p class="tech">${esc(fr.technology)}</p>` : ""}
    <p>${esc(fr.claim)}</p>
    <div class="event-meta"><span>${esc(q?.title ?? "")}</span><span>${esc(sourceLabel[source?.kind] ?? "Source")} · niveau ${esc(source?.tier ?? "–")}</span></div>
-   <a class="proof-link" href="/preuves/${esc(event.id.toLowerCase())}/">${icon("proof")} Ouvrir la preuve</a></div>
+   <a class="proof-link" href="${articleHrefForEvent(event)}">${articleByEvent.has(event.id) ? icon("arrow") + " Lire l’analyse" : icon("proof") + " Ouvrir la preuve"}</a></div>
  </article>`;
 };
 
@@ -185,7 +227,7 @@ const r1Stories = latestByQuestion.slice(0, 3).map(({ event }, i) => {
     <div class="r1-story-top"><span>${esc(q?.title ?? "")}</span><span>${fmtDate(event.event_date)}</span></div>
     <h3>${esc(fr.title)}</h3>
     <p>${esc(fr.claim)}</p>
-    <div class="r1-story-bottom"><span>${esc(confidenceLabel[claim?.confidence] ?? "Non évalué")}</span><a href="/preuves/${esc(event.id.toLowerCase())}/">Voir la preuve ${icon("arrow")}</a></div>
+    <div class="r1-story-bottom"><span>${esc(confidenceLabel[claim?.confidence] ?? "Non évalué")}</span><a href="${articleHrefForEvent(event)}">${articleByEvent.has(event.id) ? "Lire l’analyse" : "Voir la preuve"} ${icon("arrow")}</a></div>
   </article>`;
 }).join("");
 
@@ -259,7 +301,7 @@ await writePage("/", layout(
             <div><span>Preuve</span><strong>Le tir du 5 décembre 2022 a produit davantage d’énergie de fusion que l’énergie laser délivrée à la cible.</strong></div>
             <div><span>Après</span><strong>Une étape scientifique est démontrée ; la viabilité commerciale reste une question distincte.</strong></div>
           </div>
-          <a class="r1-inline-link" href="/questions/energie-de-fusion-commerciale/">Explorer l’observatoire Fusion ${icon("arrow")}</a>
+          <div class="r1-reality-actions"><a class="r1-primary inverse" href="/avance/nif-ignition-fusion-2022/">Voir l’article Future Edition ${icon("arrow")}</a><a class="r1-inline-link" href="/reality-check/ignition-nest-pas-electricite-commerciale/">Ouvrir le Reality Check ${icon("arrow")}</a></div>
         </article>
       </div>
     </div>
@@ -323,12 +365,189 @@ for (const q of questions) {
     q.title + " — Future Edition",
     q.summary,
     `<section class="obs-hero shell"><a class="back" href="/questions/">← Les observatoires</a><div class="obs-label"><span>${esc(obs?.id)}</span><span>${esc(profileLabel[q.evidence_profile] ?? q.evidence_profile)}</span></div><h1>${esc(q.title)}</h1><p>${esc(q.summary)}</p><div class="obs-hero-stats"><span><b>${qe.length}</b> événements sourcés</span><span><b>${q.milestones.length}</b> jalons prédéfinis</span><span><b>0</b> état approuvé</span></div></section>
-  <section class="shell split-section"><div><p class="kicker">Radar</p><h2>Où en sommes-nous ?</h2><p class="section-copy">Nous avons une base historique, mais aucun jalon n’est automatiquement marqué comme atteint. C’est le Change Engine qui décidera, après revue humaine, si une nouvelle preuve change réellement l’état.</p></div><div class="radar-card"><div class="radar-ring r1"></div><div class="radar-ring r2"></div><div class="radar-ring r3"></div><div class="radar-axis"></div><span class="radar-center">?</span><small>État non évalué</small></div></section>
+  <section class="shell split-section state-section"><div><p class="kicker">État actuel</p><h2>Une réponse explicite, même quand elle est incomplète.</h2><p class="section-copy">Future Edition ne remplace jamais une absence d’évaluation par une jauge. Tant qu’aucun Change validé n’a promu un jalon, l’état reste explicitement non évalué.</p></div>${statePlate({ question: q, latestEvent: qe[0] })}</section>
   <section class="shell section"><div class="section-head"><div><p class="kicker">Jalons</p><h2>La route vers une réponse.</h2></div></div><ol class="milestone-list">${milestoneHtml}</ol></section>
   <section class="shell section"><div class="section-head"><div><p class="kicker">Chronologie fondatrice</p><h2>${qe.length} événements vérifiés.</h2></div><p class="section-copy">Chaque entrée ci-dessous remonte à une source canonique et conserve son niveau de confiance.</p></div><div class="timeline">${timeline}</div></section>`,
     { active: "questions" }
   ));
 }
+
+
+for (const article of articles) {
+  const event = eventById.get(article.event_id);
+  const q = questions.find((x) => x.id === article.question_id);
+  const qe = q ? qEvents(q.id) : [];
+  const primaryClaim = claimById.get(event?.claim_ids?.[0]);
+  const primaryEvidence = evidenceById.get(primaryClaim?.evidence_ids?.[0]);
+  const primarySource = sourceById.get(primaryEvidence?.source_id);
+
+  const evidenceNotes = article.sections.flatMap((section) =>
+    section.paragraphs.flatMap((paragraph) =>
+      paragraph.evidence_ids.map((eid) => {
+        const ev = evidenceById.get(eid);
+        const claim = claimById.get(ev?.claim_id);
+        const source = sourceById.get(ev?.source_id);
+        return { eid, ev, claim, source };
+      })
+    )
+  );
+  const uniqueEvidence = [...new Map(evidenceNotes.map((x) => [x.eid, x])).values()];
+
+  const narrative = article.sections.map((section) => `
+    <section class="article-section" id="${esc(section.id)}">
+      <div class="article-section-title"><span>SECTION</span><h2>${esc(section.title)}</h2></div>
+      <div class="article-section-body">
+        ${section.paragraphs.map((paragraph) => `
+          <div class="evidence-paragraph">
+            <p>${esc(paragraph.text)}</p>
+            <div class="evidence-inline" aria-label="Preuves liées">
+              ${paragraph.evidence_ids.map((eid) => {
+                const ev = evidenceById.get(eid);
+                const source = sourceById.get(ev?.source_id);
+                return `<a href="#${esc(eid.toLowerCase())}"><span>${esc(eid)}</span><b>${esc(source?.tier ?? "–")}</b></a>`;
+              }).join("")}
+            </div>
+          </div>`).join("")}
+      </div>
+    </section>`).join("");
+
+  const spine = uniqueEvidence.map(({ eid, ev, claim, source }, i) => `
+    <article class="evidence-node" id="${esc(eid.toLowerCase())}">
+      <div class="evidence-node-index">${String(i + 1).padStart(2, "0")}</div>
+      <div><span>${esc(eid)} · ${esc(sourceLabel[source?.kind] ?? "Source")} ${esc(source?.tier ?? "")}</span>
+      <strong>${esc(source?.title ?? "")}</strong>
+      <p>${esc(localizeLocator(ev?.locator ?? ""))}</p>
+      <small>${esc(confidenceLabel[claim?.confidence] ?? "Non évalué")}</small>
+      <a href="${esc(source?.canonical_url ?? "#")}" rel="noopener noreferrer">Source originale ${icon("arrow")}</a></div>
+    </article>`).join("");
+
+  const watch = article.watch_next.map((item) => {
+    const milestone = q?.milestones?.find((m) => m.id === item.milestone_id);
+    return `<article><span>${esc(item.milestone_id)}</span><h3>${esc(milestone?.title ?? "À surveiller")}</h3><p>${esc(item.text)}</p></article>`;
+  }).join("");
+
+  const machinePacket = {
+    schema_version: "fe/agent-answer-packet/v1",
+    id: article.id,
+    canonical_url: `https://future-edition.pages.dev/avance/${article.slug}/`,
+    language: "fr",
+    temporal_status: article.temporal_status,
+    event_at: event?.event_date ?? null,
+    published_at: article.published_at,
+    updated_at: article.updated_at,
+    as_of: article.as_of,
+    question_id: article.question_id,
+    state: { status: "unassessed", reason: "No validated Change promotes an observatory milestone." },
+    before: article.before,
+    evidence: article.evidence,
+    after: article.after,
+    claims: article.related_claim_ids,
+    evidence_ids: article.related_evidence_ids,
+    sources: article.related_source_ids,
+    confidence: primaryClaim?.confidence ?? null,
+    limitations: article.limitations,
+    contradictions: [],
+    watch_next: article.watch_next,
+    citations: uniqueEvidence.map(({ eid, ev, source }) => ({
+      evidence_id: eid,
+      source_id: source?.id ?? null,
+      locator: ev?.locator ?? null,
+      canonical_url: source?.canonical_url ?? null
+    })),
+    abstention: null
+  };
+
+  await writePage("/avance/" + article.slug, layout(
+    article.title + " — Future Edition",
+    article.deck,
+    `<article class="future-article">
+      <header class="article-hero">
+        <div class="shell article-hero-grid">
+          <div class="article-title">
+            <a class="back" href="/questions/${esc(q?.slug ?? "")}/">← Observatoire Fusion</a>
+            <div class="article-eyebrow"><span>AVANCÉE DE RÉFÉRENCE</span><span>${esc(article.temporal_status)}</span><time datetime="${esc(article.published_at)}">Publié ${fmtDate(article.published_at)}</time></div>
+            <h1>${esc(article.title)}</h1>
+            <p class="article-deck">${esc(article.deck)}</p>
+            <div class="article-meta"><span><b>Événement</b>${fmtDate(event?.event_date)}</span><span><b>Confiance</b>${esc(confidenceLabel[primaryClaim?.confidence] ?? "Non évalué")}</span><span><b>Source primaire du dossier</b>Niveau ${esc(primarySource?.tier ?? "–")}</span><span><b>État</b>Archive · as of ${fmtDate(article.as_of)}</span></div>
+          </div>
+          <figure class="article-visual" aria-label="Visualisation du changement de seuil au NIF">
+            <svg viewBox="0 0 760 620" role="img" aria-labelledby="art-v-title art-v-desc">
+              <title id="art-v-title">Du seuil approché à l’ignition</title>
+              <desc id="art-v-desc">Comparaison éditoriale des valeurs de 2021 et 2022, sans représenter le bilan énergétique complet d’une centrale.</desc>
+              <rect width="760" height="620" fill="#071014"/>
+              <line x1="120" y1="420" x2="660" y2="420" stroke="#3b515c"/>
+              <line x1="120" y1="120" x2="120" y2="420" stroke="#3b515c"/>
+              <rect x="205" y="270" width="115" height="150" fill="#31464f"/>
+              <rect x="445" y="170" width="115" height="250" fill="#d9ff74"/>
+              <line x1="120" y1="225" x2="660" y2="225" stroke="#73e4ff" stroke-dasharray="8 10"/>
+              <text x="205" y="455" fill="#91a6af" font-size="18">2021</text><text x="445" y="455" fill="#91a6af" font-size="18">2022</text>
+              <text x="205" y="250" fill="#edf6f5" font-size="24" font-weight="700">1,35 MJ</text>
+              <text x="445" y="150" fill="#d9ff74" font-size="28" font-weight="800">3,15 MJ</text>
+              <text x="640" y="214" text-anchor="end" fill="#73e4ff" font-size="15">énergie laser à la cible · 2,05 MJ</text>
+              <text x="120" y="84" fill="#edf6f5" font-size="42" font-weight="800">Le point de bascule</text>
+              <text x="120" y="510" fill="#91a6af" font-size="16">Visualisation éditoriale · pas un bilan énergétique de centrale</text>
+            </svg>
+          </figure>
+        </div>
+      </header>
+      <div class="shell article-state">${statePlate({ question: q, latestEvent: qe[0], asOf: article.as_of, compact: true })}</div>
+      <div class="shell article-delta">${deltaBlock(article)}</div>
+      <section class="article-summary-band"><div class="shell"><div><span>WHY IT MATTERS</span><p>${esc(article.why_it_matters)}</p></div><a href="/reality-check/ignition-nest-pas-electricite-commerciale/">Reality Check associé ${icon("arrow")}</a></div></section>
+      <div class="shell article-reading-grid">
+        <div class="article-narrative">${narrative}
+          <section class="article-boundaries"><span class="boundary-kicker">CE QUE CELA NE PROUVE PAS</span><h2>La frontière entre résultat et promesse.</h2><ul>${article.does_not_prove.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></section>
+          <section class="article-limitations"><span class="boundary-kicker">LIMITES</span>${article.limitations.map((x) => `<p>${esc(x)}</p>`).join("")}</section>
+        </div>
+        <aside class="evidence-spine" aria-label="Evidence Spine"><div class="spine-head"><span>EVIDENCE SPINE</span><b>${uniqueEvidence.length} preuves reliées</b></div>${spine}</aside>
+      </div>
+      <section class="watch-horizon"><div class="shell"><div class="watch-heading"><span>WATCH HORIZON</span><h2>La prochaine preuve qui compterait.</h2><p>Future Edition ne prédit pas une date. Il définit les conditions observables qui feraient réellement évoluer l’état.</p></div><div class="watch-grid">${watch}</div></div></section>
+      <section class="shell article-agent-dock"><div><span>AGENT VIEW</span><h2>Le même état, sans parser l’article.</h2><p>ID stable, temporalité, claims, preuves, sources, limites et prochaines conditions sont exportés depuis les mêmes objets.</p></div><a class="r1-primary" href="/machine/avance/${esc(article.slug)}.json">Ouvrir la représentation structurée ${icon("arrow")}</a></section>
+    </article>`,
+    { active: "questions" }
+  ));
+
+  const machineDir = new URL("machine/avance/", out);
+  await mkdir(machineDir, { recursive: true });
+  await writeFile(new URL(article.slug + ".json", machineDir), JSON.stringify(machinePacket, null, 2) + "\n");
+}
+
+await writePage("/reality-check", layout(
+  "Reality Check — Future Edition",
+  "Les affirmations publiques confrontées à ce que les preuves permettent réellement d’affirmer.",
+  `<section class="page-hero shell"><p class="kicker">Reality Check</p><h1>Une affirmation.<br>La preuve en face.</h1><p>Future Edition ne distribue pas des badges vrai/faux quand la science exige davantage de nuance. Nous séparons ce qui est démontré de ce qui est extrapolé.</p></section>
+   <section class="shell section reality-index"><a href="/reality-check/ignition-nest-pas-electricite-commerciale/"><span>FUSION · RC-001</span><h2>« L’ignition signifie que l’électricité de fusion commerciale est démontrée. »</h2><p>Conclusion : l’ignition est démontrée au NIF ; la production électrique commerciale ne l’est pas.</p><b>Ouvrir le stress test ${icon("arrow")}</b></a></section>`,
+  { active: "reality" }
+));
+
+await writePage("/reality-check/ignition-nest-pas-electricite-commerciale", layout(
+  "Ignition ≠ électricité commerciale — Reality Check — Future Edition",
+  "Ce que l’ignition du NIF démontre et ce qu’elle ne démontre pas.",
+  `<section class="reality-hero"><div class="shell"><a class="back" href="/reality-check/">← Reality Check</a><p class="kicker">CLAIM STRESS TEST · RC-001 · as of 20 sept. 2026</p><h1>« L’ignition signifie que l’électricité de fusion commerciale est démontrée. »</h1><div class="reality-verdict"><span>CONCLUSION PERMISE</span><strong>L’ignition a été démontrée au NIF.</strong><span>CONCLUSION EXCESSIVE</span><strong>Une centrale électrique commerciale est démontrée.</strong></div></div></section>
+   <section class="shell reality-proof-path"><div><span>01 · CONDITION</span><h2>Que faudrait-il démontrer ?</h2><p>Une production électrique exploitable nécessite un système intégré allant bien au-delà du gain mesuré au niveau de la cible.</p></div><div><span>02 · PREUVE</span><h2>2,05 MJ → ~3,15 MJ</h2><p>Le tir NIF du 5 décembre 2022 établit le franchissement du seuil dans cette comparaison expérimentale.</p><a href="/preuves/ev-2022-006002/">Voir la preuve ${icon("arrow")}</a></div><div><span>03 · LIMITE</span><h2>Le système complet n’est pas évalué ici.</h2><p>Le dossier ne démontre ni conversion électrique, ni cadence industrielle, ni viabilité commerciale.</p></div></section>
+   <section class="shell article-delta">${deltaBlock(articles[0])}</section>
+   <section class="shell manifesto"><p class="kicker">Reality Check</p><blockquote>Une étape scientifique majeure peut être réelle sans que la promesse industrielle soit déjà démontrée.</blockquote><a href="/avance/nif-ignition-fusion-2022/">Lire l’analyse complète ${icon("arrow")}</a></section>`,
+  { active: "reality" }
+));
+
+await writePage("/ask", layout(
+  "Ask Future Edition",
+  "Interroger le Future Graph avec citations obligatoires.",
+  `<section class="page-hero shell"><p class="kicker">Ask Future Edition · FE-10</p><h1>Posez une question.<br>Le graphe devra répondre.</h1><p>Cette surface est une préfiguration volontairement non simulée. Le produit fonctionnel sera ouvert quand les citations, l’abstention et la temporalité auront passé leur gate.</p></section>
+   <section class="shell ask-preview"><div><span>EXEMPLE DE CONTRAT</span><h2>« Où en est la fusion commerciale ? »</h2><p>La future réponse devra contenir : état, as_of, claims, preuves, contradictions, limites, Watch Next et citations. Si la preuve est insuffisante, Ask doit s’abstenir.</p></div><div class="ask-status"><span>STATUS</span><strong>NOT YET OPEN</strong><p>Pas de faux chatbot avant FE-10.</p></div></section>`,
+  { active: "ask" }
+));
+
+await writePage("/recherche", layout(
+  "Recherche — Future Edition",
+  "Explorer les questions, avancées et preuves Future Edition.",
+  `<section class="page-hero shell"><p class="kicker">Recherche unifiée</p><h1>Des objets,<br>pas seulement des pages.</h1><p>La recherche interactive complète arrive avec les stages suivants. Ce prototype expose déjà la taxonomie de résultats prévue sans simuler un moteur inexistant.</p></section>
+   <section class="shell search-types">
+     <div><span>QUESTION</span><h2>Observatoires</h2>${questions.slice(0,5).map((q)=>`<a href="/questions/${esc(q.slug)}/">${esc(q.title)} ${icon("arrow")}</a>`).join("")}</div>
+     <div><span>CHANGE / ARTICLE</span><h2>Avancées</h2>${articles.map((a)=>`<a href="/avance/${esc(a.slug)}/">${esc(a.title)} ${icon("arrow")}</a>`).join("")}</div>
+     <div><span>CLAIM / EVIDENCE</span><h2>Preuves</h2><a href="/preuves/ev-2022-006002/">NIF · ignition 2022 ${icon("arrow")}</a><a href="/reality-check/ignition-nest-pas-electricite-commerciale/">Reality Check associé ${icon("arrow")}</a></div>
+   </section>`,
+  { active: "search" }
+));
 
 
 for (const event of events) {
@@ -390,13 +609,37 @@ await writeFile(new URL("assets/styles.css", out), `
 .r1-closing{background:#d9ff74;color:#071014;padding:86px 0}.r1-closing-grid{display:grid;grid-template-columns:140px 1fr auto;gap:46px;align-items:end}.r1-closing .r1-kicker{color:#43521c}.r1-closing blockquote{font-size:clamp(2.4rem,4.8vw,5.2rem);line-height:.94;letter-spacing:-.055em;margin:0;max-width:930px}
 @media(max-width:1050px){.r1-cover-grid{grid-template-columns:1fr;min-height:auto}.r1-hero-visual{max-width:720px}.r1-reality-grid,.r1-system-grid{grid-template-columns:1fr}.r1-story-grid{grid-template-columns:1fr 1fr}.r1-story-1{grid-column:1/-1}.r1-closing-grid{grid-template-columns:1fr}.r1-section-heading{align-items:flex-start}}
 @media(max-width:700px){.r1-cover{padding-top:38px}.r1-cover-grid{gap:24px}.r1-cover h1{font-size:clamp(4rem,18vw,6.3rem);margin:28px 0 24px}.r1-deck{font-size:1.02rem}.r1-actions{display:grid;gap:14px}.r1-primary{justify-content:space-between}.r1-hero-visual{margin:10px -8px 0}.r1-hero-visual figcaption{display:block}.r1-hero-visual figcaption strong{display:block;text-align:left;margin-top:7px}.r1-metrics{grid-template-columns:1fr 1fr}.r1-metrics>div{display:block;padding:20px 12px 24px 0}.r1-metrics b{display:block;margin-bottom:7px}.r1-editorial{padding:70px 0}.r1-section-label{display:block}.r1-section-label span:last-child{display:block;margin-top:8px}.r1-reality-grid{gap:30px}.r1-reality-art{min-height:0}.r1-reality-copy h2,.r1-system-copy h2,.r1-section-heading h2{font-size:clamp(2.55rem,12vw,4.5rem)}.r1-before-after>div{grid-template-columns:1fr;gap:7px}.r1-section-heading{display:block}.r1-section-heading>p,.r1-section-heading>a{display:block;margin-top:20px}.r1-foundation,.r1-observatories{padding:72px 0}.r1-story-grid{grid-template-columns:1fr}.r1-story-1{grid-column:auto}.r1-story{min-height:350px}.r1-system{padding:75px 0}.r1-pipeline>div{grid-template-columns:32px 1fr}.r1-pipeline small{grid-column:2}.r1-topic-list a{grid-template-columns:38px 1fr 18px;padding:17px 2px}.r1-topic-list em{display:none}.r1-closing{padding:68px 0}.r1-closing blockquote{font-size:clamp(2.5rem,12vw,4.5rem)}}
+
+/* FE-06R media-2.0 primitives */
+.mobile-dock{display:none}.desktop-nav a:last-child{display:flex;align-items:center;gap:7px}.desktop-nav svg{width:15px}
+.state-section{align-items:stretch}.state-plate{border:1px solid #2a3f49;background:linear-gradient(145deg,#0d191f,#081116);padding:28px;display:flex;flex-direction:column;min-height:330px}.state-plate.compact{min-height:auto}.state-plate-head{display:flex;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid #29404a;color:#7e949e;font:700 .67rem ui-monospace,monospace;letter-spacing:.1em}.state-value{font-size:clamp(2rem,4vw,4rem);line-height:.95;letter-spacing:-.055em;margin:34px 0 18px;color:#edf5f4}.state-plate>p{color:#8da0aa;max-width:620px}.state-meta{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-top:24px}.state-meta span{border-top:1px solid #243640;padding-top:12px;color:#8da0aa;font-size:.72rem}.state-meta b{display:block;color:#dce8e9;margin-bottom:4px}
+.future-article{background:#edf1ee;color:#071014}.article-hero{background:#071014;color:#eef5f4;padding:70px 0 52px}.article-hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(380px,.88fr);gap:58px;align-items:end}.article-eyebrow{display:flex;gap:10px 20px;flex-wrap:wrap;color:#89a0aa;font:750 .67rem ui-monospace,monospace;letter-spacing:.08em;margin:28px 0}.article-eyebrow span:first-child{color:#d9ff74}.article-title h1{font-size:clamp(3.5rem,7.5vw,7.6rem);line-height:.84;letter-spacing:-.07em;margin:0}.article-deck{font-size:clamp(1.08rem,1.7vw,1.35rem);line-height:1.65;color:#aab9c0;max-width:860px;margin:30px 0}.article-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#253640;border:1px solid #253640}.article-meta span{background:#091218;padding:14px;color:#8ba0aa;font-size:.72rem}.article-meta b{display:block;color:#e6eff0;margin-bottom:4px}.article-visual{margin:0;background:#071014}.article-visual svg{display:block;width:100%;height:auto}.article-state{padding-top:36px}.article-state .state-plate{color:#edf5f4}.article-delta{padding:70px 0}
+.delta-block{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #aebbb8;border-bottom:1px solid #aebbb8;isolation:isolate}.delta-block article{padding:34px 32px;min-height:310px}.delta-block article+article{border-left:1px solid #b9c4c1}.delta-block h2{font-size:clamp(2.2rem,4vw,4.5rem);line-height:.9;letter-spacing:-.055em;margin:42px 0 18px}.delta-block p{line-height:1.7;color:#46555c}.delta-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:850;color:#617078}.delta-evidence{background:#071014;color:#eef5f4;transform:translateY(-18px);box-shadow:0 18px 50px rgba(7,16,20,.16)}.delta-evidence p{color:#a8b8bf}.delta-evidence .delta-label{color:#d9ff74}.delta-evidence a{display:inline-flex;align-items:center;gap:8px;color:#bfefff;font-weight:750;font-size:.82rem;margin-top:16px}.delta-line{position:absolute;left:12%;right:12%;top:74px;height:2px;background:#829198;z-index:-1}.delta-line span,.delta-line i{position:absolute;width:9px;height:9px;border-radius:50%;top:-4px;background:#071014}.delta-line span:first-child{left:0}.delta-line i{left:50%;background:#d9ff74}.delta-line span:last-child{right:0}
+.article-summary-band{background:#d9ff74;padding:36px 0}.article-summary-band>.shell{display:grid;grid-template-columns:1fr auto;gap:50px;align-items:end}.article-summary-band span,.boundary-kicker,.watch-heading>span,.article-agent-dock span{font-size:.66rem;letter-spacing:.14em;font-weight:850}.article-summary-band p{font-size:clamp(1.35rem,2.6vw,2.4rem);line-height:1.1;letter-spacing:-.03em;margin:10px 0 0;max-width:980px}.article-summary-band a{font-weight:800;display:flex;align-items:center;gap:8px}
+.article-reading-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:74px;padding-top:85px;padding-bottom:100px}.article-section{display:grid;grid-template-columns:190px 1fr;gap:35px;padding-bottom:70px}.article-section-title>span{font:700 .65rem ui-monospace,monospace;letter-spacing:.12em;color:#6d7a80}.article-section-title h2{font-size:1.35rem;line-height:1.1;margin:10px 0}.evidence-paragraph{border-top:1px solid #c1cac7;padding:24px 0}.evidence-paragraph>p{font:400 1.16rem/1.78 Georgia,serif;margin:0;color:#1e292e}.evidence-inline{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.evidence-inline a{display:flex;gap:8px;align-items:center;border:1px solid #aebbb8;padding:6px 8px;font:700 .63rem ui-monospace,monospace;color:#506169}.evidence-inline b{background:#071014;color:#d9ff74;padding:2px 5px}
+.evidence-spine{border-left:1px solid #aebbb8;padding-left:24px}.spine-head{position:sticky;top:100px;background:#edf1ee;padding:0 0 18px;z-index:2;display:flex;justify-content:space-between;border-bottom:2px solid #071014;font-size:.65rem;letter-spacing:.1em}.evidence-node{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:22px 0;border-bottom:1px solid #c3cdca}.evidence-node-index{font:700 .66rem ui-monospace,monospace;color:#7a898f}.evidence-node span{font:700 .61rem ui-monospace,monospace;color:#63747b}.evidence-node strong{display:block;font-size:.9rem;line-height:1.25;margin:7px 0}.evidence-node p{font-size:.76rem;color:#68777e;margin:0 0 8px}.evidence-node small{display:inline-block;background:#071014;color:#d9ff74;padding:4px 6px}.evidence-node a{display:flex;align-items:center;gap:5px;margin-top:9px;color:#0d697d;font-size:.75rem;font-weight:800}
+.article-boundaries{background:#071014;color:#edf5f4;padding:42px;margin:10px 0 60px}.article-boundaries h2{font-size:clamp(2rem,4vw,4rem);line-height:.95;letter-spacing:-.05em}.article-boundaries ul{padding:0;margin:30px 0 0;list-style:none}.article-boundaries li{padding:14px 0;border-top:1px solid #2b3d46;color:#b3c1c6}.article-boundaries li:before{content:"≠";color:#d9ff74;font-weight:900;margin-right:12px}.article-limitations{border-top:2px solid #071014;padding-top:25px}.article-limitations p{color:#536268;line-height:1.7}
+.watch-horizon{background:#071014;color:#edf5f4;padding:90px 0}.watch-heading{display:grid;grid-template-columns:160px 1fr 1fr;gap:35px;align-items:start}.watch-heading>span{color:#d9ff74}.watch-heading h2{font-size:clamp(2.8rem,5vw,5.8rem);line-height:.9;letter-spacing:-.06em;margin:0}.watch-heading p{color:#93a6ae;line-height:1.7;margin:0}.watch-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:55px;border-top:1px solid #2a3e47}.watch-grid article{padding:28px 24px 10px 0;border-right:1px solid #2a3e47}.watch-grid article+article{padding-left:24px}.watch-grid span{font:700 .66rem ui-monospace,monospace;color:#718791}.watch-grid h3{font-size:1.5rem;line-height:1.05;margin:18px 0}.watch-grid p{color:#8fa3ac}
+.article-agent-dock{padding:75px 0;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:end}.article-agent-dock h2{font-size:clamp(2.5rem,5vw,5rem);line-height:.92;letter-spacing:-.055em;margin:10px 0}.article-agent-dock p{max-width:700px;color:#536268}
+.reality-index>a{display:block;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:35px 0}.reality-index span,.reality-proof-path span{color:var(--cyan);font-size:.67rem;letter-spacing:.12em}.reality-index h2{font-size:clamp(2rem,4.5vw,4.6rem);line-height:.95;letter-spacing:-.05em;max-width:980px}.reality-index p{color:#93a5ae;max-width:700px}.reality-index b{display:inline-flex;gap:7px;align-items:center;color:#bfefff}
+.reality-hero{padding:82px 0;background:#edf1ee;color:#071014}.reality-hero h1{font-size:clamp(3rem,7vw,7rem);line-height:.87;letter-spacing:-.065em;max-width:1120px;margin:30px 0}.reality-verdict{display:grid;grid-template-columns:180px 1fr;gap:1px;background:#abb8b4;margin-top:48px}.reality-verdict>*{background:#f5f7f4;padding:18px}.reality-verdict span{font-size:.66rem;letter-spacing:.11em;font-weight:850}.reality-verdict strong{font-size:1.15rem}.reality-proof-path{display:grid;grid-template-columns:repeat(3,1fr);padding:75px 0}.reality-proof-path>div{padding:26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.reality-proof-path>div+div{border-left:1px solid var(--line)}.reality-proof-path h2{font-size:2rem;line-height:1.05}.reality-proof-path p{color:#8fa1ac}.reality-proof-path a{color:var(--cyan);display:flex;align-items:center;gap:6px}
+.ask-preview{display:grid;grid-template-columns:1.25fr .75fr;gap:1px;background:var(--line);margin-bottom:100px}.ask-preview>div{background:#0a1218;padding:42px}.ask-preview span,.search-types span{color:var(--cyan);font-size:.66rem;letter-spacing:.12em}.ask-preview h2{font-size:clamp(2rem,4vw,4.5rem);line-height:.95}.ask-preview p{color:#92a4ae}.ask-status strong{display:block;font-size:2rem;color:#d9ff74;margin:25px 0}
+.search-types{width:min(1240px,calc(100% - 48px));margin:0 auto 100px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.search-types>div{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.search-types h2{font-size:2rem}.search-types a{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid #1c2a33;color:#aebec6}.search-types a svg{color:var(--cyan);flex:none}
+.r1-reality-actions{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:28px}.r1-reality-actions .r1-inline-link{margin-top:0}
+@media(max-width:1050px){.article-hero-grid,.article-reading-grid{grid-template-columns:1fr}.evidence-spine{border-left:0;border-top:2px solid #071014;padding:25px 0 0}.spine-head{position:static}.article-summary-band>.shell,.article-agent-dock{grid-template-columns:1fr}.watch-heading{grid-template-columns:1fr}.search-types{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){body{padding-bottom:62px}.desktop-nav{display:none}.mobile-dock{position:fixed;display:grid;grid-template-columns:repeat(5,1fr);left:0;right:0;bottom:0;height:62px;background:rgba(6,11,16,.96);border-top:1px solid #263943;z-index:40;backdrop-filter:blur(16px)}.mobile-dock a{display:grid;place-items:center;text-align:center;color:#81949d;font-size:.62rem;font-weight:750}.mobile-dock a.active{color:#d9ff74}.article-hero{padding-top:48px}.article-title h1{font-size:clamp(3rem,15vw,5.6rem)}.article-visual{margin-top:10px}.article-meta{grid-template-columns:1fr}.state-meta{grid-template-columns:1fr}.article-delta{padding:48px 0}.delta-block{grid-template-columns:1fr;border:0}.delta-block article{min-height:auto;border-top:1px solid #aebbb8;padding:28px 0}.delta-block article+article{border-left:0}.delta-evidence{transform:none;margin:0 -14px;padding:30px 14px!important}.delta-line{display:none}.article-summary-band>.shell{display:block}.article-summary-band a{margin-top:24px}.article-reading-grid{padding-top:55px;gap:50px}.article-section{grid-template-columns:1fr;gap:10px;padding-bottom:50px}.article-section-title h2{font-size:2rem}.evidence-paragraph>p{font-size:1.08rem}.article-boundaries{margin-left:-14px;margin-right:-14px;padding:30px 14px}.watch-horizon{padding:65px 0}.watch-grid{grid-template-columns:1fr}.watch-grid article,.watch-grid article+article{border-right:0;border-bottom:1px solid #2a3e47;padding:22px 0}.article-agent-dock{padding:55px 0}.reality-verdict{grid-template-columns:1fr}.reality-proof-path{grid-template-columns:1fr}.reality-proof-path>div+div{border-left:0}.ask-preview{grid-template-columns:1fr;margin-left:14px;margin-right:14px}.search-types{width:min(100% - 28px,1240px);grid-template-columns:1fr}.nav{justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 `);
 
 await mkdir(new URL("data/", out), { recursive: true });
 await writeFile(new URL("data/future-graph.json", out), JSON.stringify(graph, null, 2) + "\n");
 
-const urls = ["/", "/aujourdhui/", "/questions/", "/methodologie/", ...questions.map((q) => "/questions/" + q.slug + "/"), ...events.map((e) => "/preuves/" + e.id.toLowerCase() + "/")];
+const urls = [
+  "/", "/aujourdhui/", "/questions/", "/methodologie/", "/reality-check/", "/reality-check/ignition-nest-pas-electricite-commerciale/", "/ask/", "/recherche/",
+  ...questions.map((q) => "/questions/" + q.slug + "/"),
+  ...articles.map((a) => "/avance/" + a.slug + "/"),
+  ...events.map((e) => "/preuves/" + e.id.toLowerCase() + "/")
+];
 await writeFile(
   new URL("sitemap.xml", out),
   `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>https://future-edition.pages.dev${u}</loc></url>`).join("")}</urlset>`
