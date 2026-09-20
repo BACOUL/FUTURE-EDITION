@@ -132,6 +132,16 @@
         "independence_group": {
           "type": "string",
           "minLength": 1
+        },
+        "subject_scope": {
+          "enum": [
+            "in_vitro",
+            "animal",
+            "human",
+            "technology",
+            "mixed",
+            "unknown"
+          ]
         }
       },
       "required": [
