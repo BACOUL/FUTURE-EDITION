@@ -1046,7 +1046,7 @@
   {
     "id": "FE03-EXT-0032",
     "split": "validation",
-    "case_family": "controlled_human",
+    "case_family": "early_human",
     "candidate": {
       "signal_kind": "pmid",
       "raw_value": "42462750",
@@ -1057,23 +1057,24 @@
       "publication_status": "active",
       "critical_safety_case": false,
       "expected_subject_scope": "human",
-      "expected_evidence_level": "controlled_human"
+      "expected_evidence_level": "early_human"
     },
     "label_evidence": [
       {
         "authority": "pubmed",
         "url": "https://pubmed.ncbi.nlm.nih.gov/42462750/",
-        "checked_on": "2026-09-19",
+        "checked_on": "2026-09-20",
         "supports": [
           "identifier",
           "phase_2b",
           "randomized",
           "placebo_controlled",
-          "human_trial"
+          "human_trial",
+          "phase2_maps_to_early_human"
         ]
       }
     ],
-    "notes": "Independent controlled-human validation case."
+    "notes": "Phase 2b randomized human trial; explicit phase takes precedence in FE-03 evidence-level taxonomy."
   },
   {
     "id": "FE03-EXT-0033",
@@ -4652,7 +4653,7 @@
       "publication_status": "active",
       "critical_safety_case": true,
       "expected_subject_scope": "human",
-      "expected_evidence_level": "controlled_human"
+      "expected_evidence_level": "early_human"
     },
     "relations": [
       {
@@ -4691,7 +4692,7 @@
         ]
       }
     ],
-    "notes": "Larger anorexia oxytocin non-replication versus earlier promising randomized pilot."
+    "notes": "Phase II randomized anorexia oxytocin non-replication versus earlier promising randomized pilot; FE-03 maps explicit phase II to early_human."
   },
   {
     "id": "FE03-EXT-0137",
@@ -5162,5 +5163,36 @@
       }
     ],
     "notes": "Official South West operational AVT use and rollout validation case."
+  },
+  {
+    "id": "FE03-EXT-0151",
+    "split": "validation",
+    "candidate": {
+      "signal_kind": "pmid",
+      "raw_value": "36058135",
+      "origin": "pubmed"
+    },
+    "labels": {
+      "primary_source_resolvable": true,
+      "publication_status": "active",
+      "critical_safety_case": false,
+      "expected_subject_scope": "human",
+      "expected_evidence_level": "controlled_human"
+    },
+    "notes": "Stable non-phase randomized controlled human trial added to preserve independent controlled-human validation coverage after phase-II taxonomy correction.",
+    "case_family": "controlled_human",
+    "label_evidence": [
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36058135/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "identifier",
+          "randomized_controlled_trial",
+          "humans",
+          "controlled_human"
+        ]
+      }
+    ]
   }
 ]
