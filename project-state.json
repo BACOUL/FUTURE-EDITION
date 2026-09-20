@@ -483,7 +483,15 @@
     "fe06r_recognition_kit_ready": true,
     "fe06r_recognition_kit_manifest": "benchmarks/fe06r/recognition-test-kit.manifest.json",
     "fe06r_recognition_kit_filename": "FE06R_recognition_kit.zip",
-    "fe06r_recognition_kit_sha256": "1f5dfbbdaef9fb8f1a3df0ae7122766e3fdb738c1777c8fc74e659b27e703662"
+    "fe06r_recognition_kit_sha256": "1f5dfbbdaef9fb8f1a3df0ae7122766e3fdb738c1777c8fc74e659b27e703662",
+    "fe06r_pageshare_preview_url": "https://mellow-cinder-5721.hosted.pageshare.ai",
+    "fe06r_pageshare_site_id": "site_450bf5da5b5e41c2b033700268e29b01",
+    "fe06r_pageshare_active_version_id": "ver_8429826833c14279ae0f4908ac6dd1d1",
+    "fe06r_pageshare_active_version_number": 13,
+    "fe06r_pageshare_file_count": 87,
+    "fe06r_pageshare_total_bytes": 850729,
+    "fe06r_pageshare_source_sha": "50240a5c24b49a53d66bc73244ec7d383fef23ae",
+    "fe06r_pageshare_preview_published": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
