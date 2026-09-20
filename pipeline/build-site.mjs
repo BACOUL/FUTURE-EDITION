@@ -460,9 +460,23 @@ for (const q of questions) {
     const obsMachinePacket = {
       schema_version: "fe/observatory-state/v1",
       id: editorialObsEntry.id,
+      type: "observatory_state",
+      version: 1,
       canonical_url: `https://future-edition.pages.dev/questions/${q.slug}/`,
+      canonical_scientific_object: {
+        type: "question",
+        id: q.id,
+        graph_uri: `/data/future-graph.json#${q.id}`
+      },
       language: "fr",
       question_id: q.id,
+      question_ids: [q.id],
+      observed_at: claimById.get(qe[0]?.claim_ids?.[0])?.observed_at ?? null,
+      retrieved_at: sourceById.get(qe[0]?.source_ids?.[0])?.observed_at ?? null,
+      published_at: editorialObsEntry.as_of,
+      updated_at: editorialObsEntry.as_of,
+      valid_from: editorialObsEntry.as_of,
+      superseded_at: null,
       as_of: editorialObsEntry.as_of,
       state: editorialObsEntry.state,
       milestone_states: q.milestones.map((m) => ({ milestone_id: m.id, status: "unassessed", criterion: m.criterion })),
@@ -857,6 +871,13 @@ const methodologyStages = [
 
 const methodologyMachine = {
   schema_version: "fe/methodology-contract/v1",
+  id: "METHOD-FE06R-V1",
+  type: "methodology_contract",
+  version: 1,
+  canonical_url: "https://future-edition.pages.dev/methodologie/",
+  language: "fr",
+  published_at: "2026-09-20",
+  updated_at: "2026-09-20",
   as_of: "2026-09-20",
   canonical_truth: "future_graph",
   source_tiers: {
