@@ -1,0 +1,66 @@
+name: FE06R Final Gate Audit
+
+on:
+  push:
+    branches: [fe06r-final-gate]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Protect frozen product candidate
+        run: |
+          CANDIDATE="e4da95169475a89da3deaff4a176ed5d70301c59"
+          git diff --name-only "$CANDIDATE"...HEAD > /tmp/post-candidate.txt
+          echo "Files changed after product candidate:"
+          cat /tmp/post-candidate.txt
+          if grep -E '^(data/|pipeline/build-site\.mjs|pipeline/validate-output\.mjs|schemas/)' /tmp/post-candidate.txt; then
+            echo "Product/data mutation detected after frozen FE-06R candidate"
+            exit 1
+          fi
+      - name: Build and validate canonical media
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+          node pipeline/test-state-resolution.mjs
+          node pipeline/test-fe04-change-engine.mjs
+          node pipeline/test-fe05-observatories.mjs
+          node pipeline/build-graph.mjs
+          node pipeline/validate-graph.mjs
+          node pipeline/build-site.mjs
+          node pipeline/validate-output.mjs
+      - name: Re-run agent-native safety
+        run: node pipeline/test-fe06r-agent-native.mjs
+      - name: Generate FE-06R final gate dossier
+        run: node pipeline/audit-fe06r-final.mjs
+      - name: Upload gate dossier
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fe06r-final-gate
+          path: |
+            benchmarks/fe06r/gate.v1.json
+            benchmarks/fe06r/media-evaluation.json
+            benchmarks/fe06r/intelligence-evaluation.json
+            benchmarks/fe06r/reference-evaluation.json
+            benchmarks/fe06r/agent-native-evaluation.json
+            benchmarks/fe06r/scientific-claims-audit.json
+            benchmarks/fe06r/responsive-qa.json
+            benchmarks/fe06r/link-audit.json
+            benchmarks/fe06r/structured-data-audit.json
+            benchmarks/fe06r/provenance-audit.json
+            benchmarks/fe06r/temporal-audit.json
+            benchmarks/fe06r/correction-propagation-audit.json
+            benchmarks/fe06r/verdict.json
+          retention-days: 30
