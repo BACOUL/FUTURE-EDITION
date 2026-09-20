@@ -398,5 +398,125 @@
     ],
     "checked_on": "2026-09-20",
     "notes": "Preprint claim; source status must keep confidence below confirmed."
+  },
+  {
+    "id": "FE03-CLAIM-0021",
+    "external_case_id": "FE03-EXT-0060",
+    "split": "dev",
+    "claim": {
+      "text": "Hospital encounters in the CONCERN intervention group had a lower instantaneous risk of death.",
+      "claim_kind": "efficacy",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "intervention group encounters had 35.6% decreased instantaneous risk of death",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40175738/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Textually supported result from a corrected publication; corrected status must prevent direct confirmation."
+  },
+  {
+    "id": "FE03-CLAIM-0022",
+    "external_case_id": "FE03-EXT-0061",
+    "split": "dev",
+    "claim": {
+      "text": "PET/CT surveillance did not improve curatively treated recurrence rates, time to recurrence, or overall survival versus contrast CT.",
+      "claim_kind": "negative_result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Surveillance with [18F]FDG PET/CT did not improve rates of curatively treated recurrences, TTR, or OS compared with ceCT",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40258572/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Corrected randomized trial with a negative primary conclusion."
+  },
+  {
+    "id": "FE03-CLAIM-0023",
+    "external_case_id": "FE03-EXT-0062",
+    "split": "dev",
+    "claim": {
+      "text": "A single HIIT session did not significantly change blood sphingolipid levels compared with rest.",
+      "claim_kind": "negative_result",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "linear mixed models showed no significant differences in sphingolipid levels between the HIIT and control groups at any post-intervention time point.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40687993/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Corrected RCT; evidence locator can be valid while integrity status still requires review."
+  },
+  {
+    "id": "FE03-CLAIM-0024",
+    "external_case_id": "FE03-EXT-0068",
+    "split": "dev",
+    "claim": {
+      "text": "In the flexible-dose cohort, ketamine was associated with a significant reduction in anxiety.",
+      "claim_kind": "efficacy",
+      "subject_scope": "human"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "a significant reduction was seen for cohort 2",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39763417/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "The underlying article is retracted; a valid text match must never permit confirmed status."
+  },
+  {
+    "id": "FE03-CLAIM-0025",
+    "external_case_id": "FE03-EXT-0067",
+    "split": "dev",
+    "claim": {
+      "text": "Increasing miR-127-5p caused cell-cycle arrest and inhibited activity in IOMM-Lee cells.",
+      "claim_kind": "mechanism",
+      "subject_scope": "in_vitro"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "Upregulation of miR-127-5p in IOMM-Lee cells resulted in cell cycle arrest and inhibition of cell activity.",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35818586/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Retracted mechanistic claim used to test fail-closed integrity handling."
+  },
+  {
+    "id": "FE03-CLAIM-0026",
+    "external_case_id": "FE03-EXT-0065",
+    "split": "dev",
+    "claim": {
+      "text": "Continental mantle earthquake occurrence is widespread globally but varies regionally.",
+      "claim_kind": "result",
+      "subject_scope": "unknown"
+    },
+    "gold_evidence": [
+      {
+        "relation": "supports",
+        "exact_text": "CME occurrence is widespread globally yet patterned regionally",
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41642998/"
+      }
+    ],
+    "checked_on": "2026-09-20",
+    "notes": "Expression-of-concern case outside biomedicine; text support must remain separate from integrity confidence."
   }
 ]
