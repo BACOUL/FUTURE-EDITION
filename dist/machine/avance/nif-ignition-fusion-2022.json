@@ -1,0 +1,200 @@
+{
+  "schema_version": "fe/agent-answer-packet/v1",
+  "id": "ART-000001",
+  "type": "article",
+  "version": 1,
+  "canonical_url": "https://future-edition.pages.dev/avance/nif-ignition-fusion-2022/",
+  "canonical_scientific_object": {
+    "type": "event",
+    "id": "EV-2022-006002",
+    "graph_uri": "/data/future-graph.json#EV-2022-006002"
+  },
+  "language": "fr",
+  "temporal_status": "HISTORICAL_BASELINE",
+  "event_at": "2022-12-05",
+  "observed_at": "2026-09-20T14:45:00Z",
+  "retrieved_at": "2026-09-20T14:45:00Z",
+  "published_at": "2026-09-20",
+  "updated_at": "2026-09-20",
+  "valid_from": "2022-12-05T00:00:00Z",
+  "superseded_at": null,
+  "as_of": "2026-09-20",
+  "question_id": "Q-006",
+  "question_ids": [
+    "Q-006"
+  ],
+  "technology_ids": [
+    "TECH-0523"
+  ],
+  "claim_ids": [
+    "CLAIM-050026",
+    "CLAIM-050027",
+    "CLAIM-050028",
+    "CLAIM-050029",
+    "CLAIM-050030"
+  ],
+  "evidence_ids": [
+    "EVID-050026",
+    "EVID-050027",
+    "EVID-050028",
+    "EVID-050029",
+    "EVID-050030"
+  ],
+  "source_ids": [
+    "SRC-050026",
+    "SRC-050027",
+    "SRC-050028",
+    "SRC-050029",
+    "SRC-050030"
+  ],
+  "change_id": null,
+  "change_status": "NO_VALIDATED_CHANGE",
+  "change_reason": "This reference article explains evidence without promoting an observatory milestone; no validated Change exists.",
+  "evidence_level": {
+    "primary_source_tier": "B",
+    "primary_source_kind": "institution_release"
+  },
+  "previous_state": {
+    "status": "unassessed",
+    "narrative": "En août 2021, le NIF avait produit environ 1,35 MJ d’énergie de fusion, soit près de 70 % de l’énergie laser délivrée à la cible : le seuil d’ignition n’était pas encore franchi selon cette comparaison.",
+    "claim_ids": [
+      "CLAIM-050026"
+    ]
+  },
+  "resulting_state": {
+    "status": "NO_CHANGE",
+    "reason": "No validated Change promotes an observatory milestone.",
+    "narrative": "L’ignition en laboratoire devient un résultat expérimental démontré dans cette configuration. Cela ne suffit pas à conclure qu’un système de fusion peut déjà produire de l’électricité de manière durable, industrielle ou commercialement viable.",
+    "claim_ids": [
+      "CLAIM-050027"
+    ]
+  },
+  "state": {
+    "status": "unassessed",
+    "reason": "No validated Change promotes an observatory milestone."
+  },
+  "answer": "L’ignition en laboratoire devient un résultat expérimental démontré dans cette configuration. Cela ne suffit pas à conclure qu’un système de fusion peut déjà produire de l’électricité de manière durable, industrielle ou commercialement viable.",
+  "before": {
+    "label": "Avant",
+    "text": "En août 2021, le NIF avait produit environ 1,35 MJ d’énergie de fusion, soit près de 70 % de l’énergie laser délivrée à la cible : le seuil d’ignition n’était pas encore franchi selon cette comparaison.",
+    "claim_ids": [
+      "CLAIM-050026"
+    ],
+    "evidence_ids": [
+      "EVID-050026"
+    ]
+  },
+  "evidence": {
+    "label": "Nouvelle preuve",
+    "text": "Le tir du 5 décembre 2022 a délivré 2,05 MJ d’énergie laser à la cible et produit environ 3,15 MJ d’énergie de fusion.",
+    "claim_ids": [
+      "CLAIM-050027"
+    ],
+    "evidence_ids": [
+      "EVID-050027"
+    ]
+  },
+  "after": {
+    "label": "Après",
+    "text": "L’ignition en laboratoire devient un résultat expérimental démontré dans cette configuration. Cela ne suffit pas à conclure qu’un système de fusion peut déjà produire de l’électricité de manière durable, industrielle ou commercialement viable.",
+    "claim_ids": [
+      "CLAIM-050027"
+    ],
+    "evidence_ids": [
+      "EVID-050027"
+    ]
+  },
+  "claims": [
+    "CLAIM-050026",
+    "CLAIM-050027",
+    "CLAIM-050028",
+    "CLAIM-050029",
+    "CLAIM-050030"
+  ],
+  "sources": [
+    "SRC-050026",
+    "SRC-050027",
+    "SRC-050028",
+    "SRC-050029",
+    "SRC-050030"
+  ],
+  "confidence": "solid_preliminary",
+  "limitations": [
+    "Le résultat concerne une expérience de confinement inertiel au NIF et une comparaison entre énergie laser délivrée à la cible et énergie de fusion produite.",
+    "La source de référence de cet événement est une communication institutionnelle classée niveau B dans le corpus Future Edition.",
+    "Aucun jalon de l’observatoire n’est automatiquement marqué comme atteint : l’état canonique reste non évalué tant qu’un Change validé n’existe pas."
+  ],
+  "contradictions": [],
+  "watch_next": [
+    {
+      "milestone_id": "Q-006-M2",
+      "text": "Répéter le résultat de manière contrôlée."
+    },
+    {
+      "milestone_id": "Q-006-M4",
+      "text": "Démontrer qu’un système intégré convertit effectivement la fusion en électricité exploitable."
+    },
+    {
+      "milestone_id": "Q-006-M5",
+      "text": "Faire fonctionner un démonstrateur sous contraintes industrielles."
+    }
+  ],
+  "citations": [
+    {
+      "claim_id": "CLAIM-050026",
+      "claim_version": 1,
+      "evidence_id": "EVID-050026",
+      "source_id": "SRC-050026",
+      "locator": "Experiment summary",
+      "confidence": "solid_preliminary",
+      "canonical_url": "https://lasers.llnl.gov/news/nif-experiment-puts-researchers-threshold-fusion-ignition",
+      "valid_from": "2021-08-08T00:00:00Z",
+      "superseded_at": null
+    },
+    {
+      "claim_id": "CLAIM-050027",
+      "claim_version": 1,
+      "evidence_id": "EVID-050027",
+      "source_id": "SRC-050027",
+      "locator": "Shot summary",
+      "confidence": "solid_preliminary",
+      "canonical_url": "https://lasers.llnl.gov/news/nifs-fusion-ignition-shot-hailed-as-historic-scientific-feat",
+      "valid_from": "2022-12-05T00:00:00Z",
+      "superseded_at": null
+    },
+    {
+      "claim_id": "CLAIM-050028",
+      "claim_version": 1,
+      "evidence_id": "EVID-050028",
+      "source_id": "SRC-050028",
+      "locator": "July 30, 2023 ignition result",
+      "confidence": "confirmed",
+      "canonical_url": "https://annual.llnl.gov/fy-2023/national-ignition-facility-2023",
+      "valid_from": "2023-07-30T00:00:00Z",
+      "superseded_at": null
+    },
+    {
+      "claim_id": "CLAIM-050029",
+      "claim_version": 1,
+      "evidence_id": "EVID-050029",
+      "source_id": "SRC-050029",
+      "locator": "Deuterium-Tritium campaign — energy record",
+      "confidence": "solid_preliminary",
+      "canonical_url": "https://euro-fusion.org/eurofusion-news/dte3record/",
+      "valid_from": "2024-02-08T00:00:00Z",
+      "superseded_at": null
+    },
+    {
+      "claim_id": "CLAIM-050030",
+      "claim_version": 1,
+      "evidence_id": "EVID-050030",
+      "source_id": "SRC-050030",
+      "locator": "Record summary",
+      "confidence": "solid_preliminary",
+      "canonical_url": "https://www.ipp.mpg.de/5532945/w7x",
+      "valid_from": "2025-06-03T00:00:00Z",
+      "superseded_at": null
+    }
+  ],
+  "abstention": null
+}

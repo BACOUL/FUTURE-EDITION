@@ -1,0 +1,75 @@
+{
+  "schema_version": "fe/methodology-contract/v1",
+  "id": "METHOD-FE06R-V1",
+  "type": "methodology_contract",
+  "version": 1,
+  "canonical_url": "https://future-edition.pages.dev/methodologie/",
+  "language": "fr",
+  "published_at": "2026-09-20",
+  "updated_at": "2026-09-20",
+  "as_of": "2026-09-20",
+  "canonical_truth": "future_graph",
+  "source_tiers": {
+    "A": "primary_strong",
+    "B": "specialized_secondary",
+    "C": "communication",
+    "D": "signal_only"
+  },
+  "evidence_scales": {
+    "medicine": [
+      "M0",
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5",
+      "M6",
+      "M7"
+    ],
+    "technology": [
+      "T0",
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "fundamental_science": [
+      "S0",
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ]
+  },
+  "confidence_states": [
+    "confirmed",
+    "solid_preliminary",
+    "needs_confirmation",
+    "contested",
+    "misleading",
+    "unverifiable",
+    "retracted_invalidated"
+  ],
+  "state_rule": "Milestone state is resolved from approved Assessments; no approved Assessment means unassessed; multiple terminal approved Assessments is blocking ambiguity.",
+  "change_types": [
+    "none",
+    "minor_progress",
+    "evidence_upgrade",
+    "milestone_reached",
+    "setback",
+    "invalidation"
+  ],
+  "change_invariants": {
+    "human_review_required": true,
+    "trigger_claim_required": true,
+    "trigger_evidence_required": true,
+    "before_after_hash_binding": true,
+    "mutable_milestone_status_forbidden": true
+  },
+  "publication_rule": "Insufficient evidence may produce no conclusion.",
+  "machine_rule": "Human and machine representations must project the same canonical objects."
+}

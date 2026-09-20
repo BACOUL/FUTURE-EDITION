@@ -1,0 +1,41 @@
+{
+  "schema_version": "fe/machine-manifest/v1",
+  "canonical_base_url": "https://future-edition.pages.dev",
+  "canonical_graph": "/data/future-graph.json",
+  "generated_from": "Future Graph",
+  "human_machine_truth_model": "single_canonical_truth",
+  "discovery": {
+    "manifest": "/machine/manifest.json",
+    "methodology": "/machine/methodologie.json",
+    "delta_contract": "/machine/delta-contract.json"
+  },
+  "routes": {
+    "article": "/machine/avance/{slug}.json",
+    "observatory": "/machine/observatoires/{slug}.json",
+    "methodology": "/machine/methodologie.json"
+  },
+  "reference_objects": {
+    "article": "/machine/avance/nif-ignition-fusion-2022.json",
+    "observatory": "/machine/observatoires/energie-de-fusion-commerciale.json",
+    "methodology": "/machine/methodologie.json"
+  },
+  "invariants": {
+    "stable_ids": true,
+    "as_of_required_for_state": true,
+    "claim_level_citations": true,
+    "source_locator_required": true,
+    "correction_history_preserved": true,
+    "abstention_when_insufficient": true,
+    "translation_does_not_create_new_truth": true
+  },
+  "delta_feed": {
+    "status": "contract_only_fe06r",
+    "contract": "/machine/delta-contract.json",
+    "production_endpoint_stage": "FE-14"
+  },
+  "machine_usage_policy": {
+    "status": "prelaunch_restricted",
+    "human_readable_policy": "/acces-machine/",
+    "third_party_source_rights_not_relicensed": true
+  }
+}

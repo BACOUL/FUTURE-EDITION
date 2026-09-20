@@ -1,0 +1,42 @@
+{
+  "schema_version": "fe/delta-feed-contract/v1",
+  "status": "SEMANTIC_CONTRACT_FROZEN",
+  "live_production_feed": false,
+  "production_stage": "FE-14",
+  "cursor": "non-negative monotonic integer",
+  "required_fields": [
+    "schema_version",
+    "since_cursor",
+    "cursor",
+    "as_of",
+    "changes",
+    "affected_objects"
+  ],
+  "change_kinds": [
+    "created",
+    "updated",
+    "correction",
+    "retraction",
+    "supersession"
+  ],
+  "change_required_fields": [
+    "sequence",
+    "id",
+    "kind",
+    "object_type",
+    "object_id",
+    "effective_at",
+    "payload"
+  ],
+  "guarantees": [
+    "deterministic ordering by sequence",
+    "corrections and retractions remain visible",
+    "affected canonical objects are explicit",
+    "as_of bounds the returned state",
+    "incremental reconstruction must equal one-shot reconstruction"
+  ],
+  "proof": {
+    "test": "pipeline/test-fe06r-agent-native.mjs",
+    "minimum_synthetic_changes": 10
+  }
+}

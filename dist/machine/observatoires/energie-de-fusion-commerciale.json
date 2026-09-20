@@ -1,0 +1,209 @@
+{
+  "schema_version": "fe/observatory-state/v1",
+  "id": "OBS-006",
+  "type": "observatory_state",
+  "version": 1,
+  "canonical_url": "https://future-edition.pages.dev/questions/energie-de-fusion-commerciale/",
+  "canonical_scientific_object": {
+    "type": "question",
+    "id": "Q-006",
+    "graph_uri": "/data/future-graph.json#Q-006"
+  },
+  "language": "fr",
+  "question_id": "Q-006",
+  "question_ids": [
+    "Q-006"
+  ],
+  "observed_at": "2026-09-20T14:45:00Z",
+  "retrieved_at": "2026-09-20T14:45:00Z",
+  "published_at": "2026-09-20",
+  "updated_at": "2026-09-20",
+  "valid_from": "2026-09-20",
+  "superseded_at": null,
+  "as_of": "2026-09-20",
+  "state": {
+    "status": "unassessed",
+    "label": "État canonique non évalué",
+    "summary": "Le corpus contient plusieurs résultats expérimentaux importants sur différentes voies de fusion, mais aucun Change validé ne permet encore de déclarer un jalon de l’observatoire atteint dans l’état canonique."
+  },
+  "milestone_states": [
+    {
+      "milestone_id": "Q-006-M1",
+      "status": "unassessed",
+      "criterion": "Un gain scientifique pertinent est démontré dans un dispositif de fusion."
+    },
+    {
+      "milestone_id": "Q-006-M2",
+      "status": "unassessed",
+      "criterion": "Le résultat clé est répété de façon contrôlée."
+    },
+    {
+      "milestone_id": "Q-006-M3",
+      "status": "unassessed",
+      "criterion": "Le système maintient les conditions utiles sur une durée technologiquement significative."
+    },
+    {
+      "milestone_id": "Q-006-M4",
+      "status": "unassessed",
+      "criterion": "Un démonstrateur convertit effectivement la fusion en électricité exploitable."
+    },
+    {
+      "milestone_id": "Q-006-M5",
+      "status": "unassessed",
+      "criterion": "Un système intégré fonctionne avec contraintes industrielles."
+    },
+    {
+      "milestone_id": "Q-006-M6",
+      "status": "unassessed",
+      "criterion": "Coût, disponibilité et maintenance rendent l’exploitation commercialement crédible."
+    }
+  ],
+  "paths": [
+    {
+      "id": "PATH-ICF",
+      "label": "Confinement inertiel · NIF",
+      "technology_ids": [
+        "TECH-0523"
+      ],
+      "event_ids": [
+        "EV-2021-006001",
+        "EV-2022-006002",
+        "EV-2023-006003"
+      ],
+      "summary": "La trajectoire NIF documente le rapprochement du seuil d’ignition, son franchissement en 2022 puis sa répétition avec un rendement supérieur en 2023."
+    },
+    {
+      "id": "PATH-TOKAMAK",
+      "label": "Confinement magnétique · Tokamak",
+      "technology_ids": [
+        "TECH-0524"
+      ],
+      "event_ids": [
+        "EV-2024-006004"
+      ],
+      "summary": "JET fournit un repère distinct sur l’énergie de fusion produite lors d’impulsions deutérium-tritium."
+    },
+    {
+      "id": "PATH-STELLARATOR",
+      "label": "Confinement magnétique · Stellarator",
+      "technology_ids": [
+        "TECH-0525"
+      ],
+      "event_ids": [
+        "EV-2025-006005"
+      ],
+      "summary": "Wendelstein 7-X fournit un repère sur le fonctionnement prolongé d’un stellarator et le produit triple obtenu sur une impulsion longue."
+    }
+  ],
+  "events": [
+    {
+      "event_id": "EV-2025-006005",
+      "event_at": "2025-06-03",
+      "claim_ids": [
+        "CLAIM-050030"
+      ],
+      "source_ids": [
+        "SRC-050030"
+      ],
+      "milestone_ids": [
+        "Q-006-M3"
+      ],
+      "change_type": "unassessed"
+    },
+    {
+      "event_id": "EV-2024-006004",
+      "event_at": "2024-02-08",
+      "claim_ids": [
+        "CLAIM-050029"
+      ],
+      "source_ids": [
+        "SRC-050029"
+      ],
+      "milestone_ids": [
+        "Q-006-M3"
+      ],
+      "change_type": "unassessed"
+    },
+    {
+      "event_id": "EV-2023-006003",
+      "event_at": "2023-07-30",
+      "claim_ids": [
+        "CLAIM-050028"
+      ],
+      "source_ids": [
+        "SRC-050028"
+      ],
+      "milestone_ids": [
+        "Q-006-M2"
+      ],
+      "change_type": "unassessed"
+    },
+    {
+      "event_id": "EV-2022-006002",
+      "event_at": "2022-12-05",
+      "claim_ids": [
+        "CLAIM-050027"
+      ],
+      "source_ids": [
+        "SRC-050027"
+      ],
+      "milestone_ids": [
+        "Q-006-M1"
+      ],
+      "change_type": "unassessed"
+    },
+    {
+      "event_id": "EV-2021-006001",
+      "event_at": "2021-08-08",
+      "claim_ids": [
+        "CLAIM-050026"
+      ],
+      "source_ids": [
+        "SRC-050026"
+      ],
+      "milestone_ids": [
+        "Q-006-M1"
+      ],
+      "change_type": "unassessed"
+    }
+  ],
+  "evidence_landscape": {
+    "supporting_event_ids": [
+      "EV-2021-006001",
+      "EV-2022-006002",
+      "EV-2023-006003",
+      "EV-2024-006004",
+      "EV-2025-006005"
+    ],
+    "contradicting_event_ids": [],
+    "limiting_notes": [
+      "Les cinq événements soutiennent des affirmations expérimentales distinctes ; ils ne prouvent pas à eux seuls une production électrique commerciale.",
+      "Les résultats appartiennent à plusieurs architectures de fusion qui ne sont pas directement interchangeables.",
+      "L’absence de contradiction enregistrée dans ce corpus ne signifie pas qu’aucune contradiction scientifique n’existe hors du corpus."
+    ]
+  },
+  "watch_next": [
+    {
+      "milestone_id": "Q-006-M2",
+      "title": "Reproductibilité",
+      "condition": "Le résultat clé est répété de façon contrôlée."
+    },
+    {
+      "milestone_id": "Q-006-M4",
+      "title": "Production électrique",
+      "condition": "Un démonstrateur convertit effectivement la fusion en électricité exploitable."
+    },
+    {
+      "milestone_id": "Q-006-M5",
+      "title": "Démonstrateur industriel",
+      "condition": "Un système intégré fonctionne avec contraintes industrielles."
+    },
+    {
+      "milestone_id": "Q-006-M6",
+      "title": "Viabilité commerciale",
+      "condition": "Coût, disponibilité et maintenance rendent l’exploitation commercialement crédible."
+    }
+  ],
+  "reference_article_id": "ART-000001",
+  "reference_reality_check_id": "RC-001"
+}
