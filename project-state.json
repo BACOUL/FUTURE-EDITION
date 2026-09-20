@@ -1,14 +1,14 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.5.9",
-  "current_stage": "FE-04",
+  "authority_version": "0.6.0",
+  "current_stage": "FE-05",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
     "FE-00B": "PROVISIONAL_COMPLETE",
     "FE-01": "PROVED",
     "FE-02": "PROVED",
     "FE-03": "PROVED",
-    "FE-04": "NOT_STARTED",
+    "FE-04": "PROVED",
     "FE-05": "NOT_STARTED",
     "FE-06": "NOT_STARTED",
     "FE-07": "NOT_STARTED",
@@ -46,7 +46,7 @@
     "handoff_defined": true,
     "zero_dependency_build": true,
     "launch_routes_generated": 14,
-    "future_graph_schema_version": "0.4.0",
+    "future_graph_schema_version": "0.5.0",
     "future_graph_nodes": 61,
     "future_graph_edges": 51,
     "temporal_assessments": true,
@@ -256,7 +256,26 @@
     "fe03_hidden_verified_locator_rate_v3": 1,
     "fe03_hidden_machine_proposed_rate_v3": 1,
     "fe03_hidden_transport_failures_v3": 0,
-    "fe03_hidden_holdout_v3_rerun_forbidden": true
+    "fe03_hidden_holdout_v3_rerun_forbidden": true,
+    "change_engine_contract": true,
+    "canonical_change_ledger": true,
+    "change_record_hash_binding": true,
+    "change_record_human_review_required": true,
+    "change_record_trigger_evidence_required": true,
+    "change_types": [
+      "none",
+      "minor_progress",
+      "evidence_upgrade",
+      "milestone_reached",
+      "setback",
+      "invalidation"
+    ],
+    "fe04_proof_run_id": 35517779527,
+    "fe04_proof_job_id": 106096516443,
+    "fe04_classification_cases": 7,
+    "fe04_negative_cases": 8,
+    "fe04_graph_content_hash": "cab08f751ba8f255840a3e1bbeb6378ff5f894de0ef65ad4436d984e5202b4b2",
+    "fe04_gate_passed": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -295,13 +314,26 @@
         "hidden holdout V3 sha256 db351081aef1e661b601883fea7b75cab02ca8236b57a8e2c4944b53132a6172; rerun forbidden",
         "historical hidden holdout V1 and V2 FAIL results preserved"
       ]
+    },
+    {
+      "stage": "FE-04",
+      "verdict": "PROVED",
+      "evidence": [
+        "canonical Change object and ledger added to Future Graph schema 0.5.0",
+        "every human-approved superseding assessment requires exactly one Change record",
+        "Change record requires trigger claim, concrete evidence, matching human review, deterministic change_type and before/after state hashes",
+        "FE04 independent proof run 35517779527 passed 7 classification cases and 8 negative cases",
+        "FE-02 model/state compatibility, graph validation and determinism all passed on clean Node 22 runner"
+      ]
     }
   ],
   "next_gate": {
-    "stage": "FE-04",
+    "stage": "FE-05",
     "required": [
-      "implement traceable state-before -> new-evidence -> state-after transitions with an explicit change type",
-      "prove zero milestone modification without traceable justification"
+      "materialize the ten launch observatories from the 10 canonical questions",
+      "establish a verified historical baseline for each observatory without fabricating events",
+      "reach at least 5 verified events per question",
+      "ensure every event is linked to claims, sources, evidence and any milestone Change it causes"
     ]
   },
   "known_non_blocking_environment_constraints": [
@@ -310,7 +342,7 @@
       "description": "This execution environment cannot resolve github.com directly. Repository reads/writes use the connected GitHub integration; FE-01 build no longer requires network access."
     }
   ],
-  "next_stage_after_gate": "FE-05",
+  "next_stage_after_gate": "FE-06",
   "github_actions_dependency": false,
   "github_actions_activation_target": "2026-10-01",
   "failed_gates": [
