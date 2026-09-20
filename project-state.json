@@ -447,7 +447,10 @@
     ],
     "fe06r_mobile_timeglass_layout_fixed": true,
     "fe06r_mobile_observatory_title_overflow_fixed": true,
-    "fe06r_mobile_dock_label_wrapping_fixed": true
+    "fe06r_mobile_dock_label_wrapping_fixed": true,
+    "fe06r_recognition_test_protocol": "benchmarks/fe06r/recognition-test.protocol.json",
+    "fe06r_recognition_test_results": "benchmarks/fe06r/recognition-test.results.json",
+    "fe06r_recognition_test_status": "READY_NOT_RUN"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
