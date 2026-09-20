@@ -188,11 +188,45 @@ export function normalizeRxiv(record,server){
   }};
 }
 
+export function normalizeOfficialWeb(record,{provider="official_web",kind="official_data",study_stage="real_world_deployment"}={}){
+  const url=String(record?.url??"").trim();
+  const title=String(record?.title??"").trim();
+  if(!url||!title){
+    return {
+      status:"unresolved",
+      provider,
+      reason:"official_web_parse_failed",
+      source:null,
+      publication_status:"unresolved",
+      integrity_relations:[]
+    };
+  }
+
+  return {
+    status:"resolved",
+    provider,
+    reason:null,
+    publication_status:"active",
+    integrity_relations:[],
+    source:{
+      external_id:url,
+      kind,
+      tier:"A",
+      title,
+      url,
+      peer_reviewed:false,
+      study_stage,
+      independence_group:"official:"+url
+    }
+  };
+}
+
 export const adapterByProvider={
   crossref:normalizeCrossref,
   pubmed:normalizePubMed,
   clinicaltrials:normalizeClinicalTrial,
   arxiv:normalizeArxiv,
   biorxiv:x=>normalizeRxiv(x,"biorxiv"),
-  medrxiv:x=>normalizeRxiv(x,"medrxiv")
+  medrxiv:x=>normalizeRxiv(x,"medrxiv"),
+  nhs_england:x=>normalizeOfficialWeb(x,{provider:"nhs_england",kind:"official_data",study_stage:"real_world_deployment"})
 };
