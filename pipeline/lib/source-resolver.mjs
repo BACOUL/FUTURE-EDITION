@@ -56,7 +56,9 @@ export function buildProviderRequest(candidate,{mailto=null}={}){
       provider:candidate.signal_kind,
       format:"json",
       identifier:id,
-      url:"https://api.biorxiv.org/details/"+candidate.signal_kind+"/"+encodeURIComponent(id)+"/na/json"
+      // The official rxiv API treats the DOI slash as a path separator.
+      // Encode DOI path segments individually so "/" remains structural.
+      url:"https://api.biorxiv.org/details/"+candidate.signal_kind+"/"+id.split("/").map(encodeURIComponent).join("/")+"/na/json"
     };
   }
 
@@ -103,7 +105,12 @@ export function buildProviderRequest(candidate,{mailto=null}={}){
 
 function shapeProviderPayload(request,payload){
   if(request.provider==="biorxiv"||request.provider==="medrxiv"){
-    return payload?.collection?.[0]??payload??null;
+    if(payload?.doi) return payload;
+    const collection=Array.isArray(payload?.collection)?payload.collection:[];
+    if(collection.length===0) return null;
+    return collection.find(item=>
+      String(item?.doi??"").toLowerCase()===String(request.identifier??"").toLowerCase()
+    )??collection[0]??null;
   }
 
   return payload;
@@ -472,7 +479,20 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedA
     };
   }
 
-  const shaped=shapeProviderPayload(request,payload);
+  let shaped=shapeProviderPayload(request,payload);
+
+  // The rxiv DOI endpoint can return HTTP 200 with an empty collection for
+  // older live records. Treat that as an empty lookup and use the already
+  // frozen date/API + canonical-HTML fallback chain.
+  if(rxivProvider&&!shaped){
+    let fallback=await rxivDateApiFallback(request,{fetchFn});
+    if(!fallback) fallback=await rxivHtmlFallback(request,{fetchFn});
+    if(fallback){
+      payload=fallback;
+      shaped=shapeProviderPayload(request,payload);
+    }
+  }
+
   const adapter=adapterByProvider[request.provider];
 
   if(!adapter){

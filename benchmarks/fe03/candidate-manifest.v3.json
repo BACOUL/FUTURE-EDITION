@@ -1,0 +1,69 @@
+{
+  "version": "FE03-CANDIDATE-MANIFEST-v3",
+  "frozen_engine_parent_sha": "07fe251593962915c419b147ca2c80e0abc29937b",
+  "purpose": "Cryptographically pin FE-03 candidate V3 after fresh provider diagnostics and full public proof, before any hidden holdout V3 is generated.",
+  "previous_hidden_holdouts": [
+    {
+      "protocol": "FE03-HIDDEN-HOLDOUT-v1",
+      "sha256": "62bd2cbc702bc1da4fb24dfb9a519795c8ca7809eae5df71533142320ea85ee0",
+      "consumed": true,
+      "reusable": false,
+      "verdict": "FAIL"
+    },
+    {
+      "protocol": "FE03-HIDDEN-HOLDOUT-v2",
+      "sha256": "840042d9f5a03fe3cf5a306b7c386c6de8d80a79ccdd622be4c3917c1f6c27b6",
+      "consumed": true,
+      "reusable": false,
+      "verdict": "FAIL"
+    }
+  ],
+  "critical_git_blob_shas": {
+    "pipeline/lib/source-resolver.mjs": "44d07f5a002d36375ce179c355f9e020cf2f47b0",
+    "pipeline/adapters/pubmed-xml.mjs": "c2cc97c5faff817a61ff5e6502a3e8298d0f771b",
+    "pipeline/adapters/normalize.mjs": "fc01b836c06c273176a51c601e9ce58333d12e59",
+    "pipeline/lib/evidence-engine.mjs": "c4558df6c25d15c9119d1c6e73f78737b73cdea6",
+    "pipeline/lib/claim-linker.mjs": "56926c9043bfd886eab8da26d679cf797ec6faca",
+    "pipeline/lib/claim-extractor.mjs": "aaebd22acff8f14f30ef59299d80bcd095e098eb",
+    "pipeline/lib/evidence-document.mjs": "ae4bbcabd33f944305f6ecf98adba7c64171ea72",
+    "pipeline/lib/evidence-locator.mjs": "ecd2aeaa92a15dd85ddae3a777c98622f6349cf9",
+    "benchmarks/fe03/external/dev-validation.seed.json": "cf46f1f6be7d37e1829033c24a0a8a06c25e9eec",
+    "benchmarks/fe03/thresholds.external.v1.json": "513cd8ca33ec301cce556a72dc882bcd59085c17",
+    "benchmarks/fe03/thresholds.atomic.v1.json": "b4b489f70c6b290592da994d086389ba3b42e92d",
+    "pipeline/test-fe03-resolver.mjs": "d2dde4f66bf589ecae070511efc3fa7da42f7ace"
+  },
+  "public_proof": {
+    "run_id": 35512927308,
+    "cases": 151,
+    "primary_source_precision": 1,
+    "primary_source_recall": 1,
+    "publication_status_precision": 1,
+    "evidence_level_precision": 1,
+    "source_independence_precision": 1,
+    "claim_evidence_precision": 1,
+    "claim_prediction_coverage": 0.36,
+    "critical_false_confirmed_rate": 0,
+    "known_retracted_confirmed": 0,
+    "atomic_gold_passage_recall": 0.96,
+    "verified_locator_rate": 1,
+    "machine_proposed_rate": 1
+  },
+  "fresh_provider_diagnostic": {
+    "protocol": "FE03-PROVIDER-DIAGNOSTIC-v3",
+    "run_id": 35512926434,
+    "cases": 24,
+    "medrxiv_resolved": "12/12",
+    "biorxiv_resolved": "12/12",
+    "encoded_route_exact_match": "0/24",
+    "official_raw_doi_route_exact_match": "24/24",
+    "resolver_resolution_rate": 1,
+    "hidden_v1_or_v2_identities_read": false
+  },
+  "protocol_rules": [
+    "No engine or public-label tuning after candidate-v3 SHA is frozen.",
+    "Hidden holdouts V1 and V2 are consumed and may not be reused.",
+    "Candidate V3 requires a fresh independently generated and sealed hidden holdout V3.",
+    "Frozen external-v1 and atomic-v1 thresholds remain unchanged.",
+    "A V3 hidden failure is recorded and never rerun on the same holdout."
+  ]
+}

@@ -1,0 +1,23 @@
+name: FE03 provider diagnostic v3
+
+on:
+  push:
+    branches: [fe03-provider-resolution-v3]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fresh rxiv provider diagnostic
+        shell: bash
+        run: |
+          set -o pipefail
+          node benchmarks/fe03/run-provider-resolution-diagnostic-v3.mjs | tee fe03-provider-v3.log

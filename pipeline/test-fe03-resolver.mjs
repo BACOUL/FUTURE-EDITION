@@ -61,7 +61,7 @@ let medTransientDirectCalls=0;
 let medTransientDateCalls=0;
 const medTransientFetch=async url=>{
   const href=String(url);
-  if(href.includes("/10.64898%2F2026.08.19.26360819/na/json")){
+  if(href.includes("/10.64898/2026.08.19.26360819/na/json")){
     medTransientDirectCalls++;
     return {ok:false,status:404,headers:{get:()=>null}};
   }
@@ -84,10 +84,45 @@ const medTransientFetch=async url=>{
   throw new Error("unexpected medRxiv fallback URL: "+href);
 };
 
+const medEmpty200={id:"CAND-000010",signal_kind:"medrxiv",raw_value:"10.1101/2022.03.04.22271834",origin:"medrxiv"};
+let medEmpty200DirectCalls=0;
+let medEmpty200DateCalls=0;
+const medEmpty200Fetch=async url=>{
+  const href=String(url);
+  if(href.includes("/10.1101/2022.03.04.22271834/na/json")){
+    medEmpty200DirectCalls++;
+    return {
+      ok:true,
+      status:200,
+      headers:{get:()=>null},
+      json:async()=>({messages:[{status:"ok",count:0,total:"0"}],collection:[]})
+    };
+  }
+  if(href.includes("/details/medrxiv/2022-03-04/2022-03-04/0/json")){
+    medEmpty200DateCalls++;
+    return {
+      ok:true,
+      status:200,
+      headers:{get:()=>null},
+      json:async()=>({
+        messages:[{status:"ok",count:1,total:"1"}],
+        collection:[{
+          doi:"10.1101/2022.03.04.22271834",
+          title:"Randomized phase 2 historical medRxiv fixture",
+          abstract:"This phase 2 randomized trial enrolled human participants."
+        }]
+      })
+    };
+  }
+  throw new Error("unexpected medRxiv empty-200 fallback URL: "+href);
+};
+
 if(!buildProviderRequest(doi,{mailto:"test@example.invalid"}).url.includes("api.crossref.org/works/")) throw new Error("crossref request");
 if(!buildProviderRequest(pubmed).url.includes("efetch.fcgi")) throw new Error("pubmed request");
 if(!buildProviderRequest(nct).url.includes("/api/v2/studies/NCT12345678")) throw new Error("clinicaltrials request");
-if(!buildProviderRequest(med).url.includes("api.biorxiv.org/details/medrxiv/")) throw new Error("medrxiv request");
+const medRequest=buildProviderRequest(med);
+if(!medRequest.url.includes("api.biorxiv.org/details/medrxiv/10.1101/2026.01.01.123456/na/json")) throw new Error("medrxiv DOI path request");
+if(medRequest.url.includes("%2F")) throw new Error("medrxiv DOI slash must remain a path separator");
 if(!buildProviderRequest(arxiv).url.includes("export.arxiv.org/api/query?id_list=")) throw new Error("arxiv request");
 if(buildProviderRequest(nhs).provider!=="nhs_england") throw new Error("NHS official URL route");
 
@@ -105,6 +140,7 @@ const r4=await resolveCandidate(med,{fetchFn:fakeJson(fixtures.medrxiv),retrieve
 const r5=await resolveCandidate(arxiv,{fetchFn:fakeXml(arxivXml),retrievedAt});
 const r6=await resolveCandidate(nhs,{fetchFn:fakeHtml(nhsHtml),retrievedAt});
 const r7=await resolveCandidate(medTransient,{fetchFn:medTransientFetch,retrievedAt});
+const r8=await resolveCandidate(medEmpty200,{fetchFn:medEmpty200Fetch,retrievedAt});
 
 for(const [name,result] of [["crossref",r1],["pubmed",r2],["clinicaltrials",r3],["medrxiv",r4],["arxiv",r5],["nhs_england",r6]]){
   assert(result.status==="resolved",name+" not resolved");
@@ -132,6 +168,12 @@ assert(r7.source.study_stage==="phase2","medRxiv date fallback lost phase metada
 assert(medTransientDirectCalls===3,"medRxiv transient 404 was not retried exactly three times");
 assert(medTransientDateCalls===1,"medRxiv date API fallback was not used exactly once");
 
+assert(r8.status==="resolved","medRxiv HTTP 200 empty collection did not fall back");
+assert(r8.source.external_id==="10.1101/2022.03.04.22271834","medRxiv empty-200 fallback lost DOI");
+assert(r8.source.study_stage==="phase2","medRxiv empty-200 fallback lost phase metadata");
+assert(medEmpty200DirectCalls===1,"medRxiv empty-200 direct lookup should run once");
+assert(medEmpty200DateCalls===1,"medRxiv empty-200 date fallback was not used exactly once");
+
 assert(r3.source.study_stage==="phase1","clinicaltrials conservative phase mapping");
 assert(r4.source.study_stage==="randomized_trial","rxiv randomized study stage missing");
 assert(r5.source.kind==="preprint"&&r5.source.peer_reviewed===false,"arxiv preprint safety metadata");
@@ -158,4 +200,4 @@ const untrusted=await resolveCandidate(
 assert(untrusted.status==="unresolved"&&untrusted.reason==="untrusted_url_provider","untrusted URL not rejected");
 assert(untrustedFetchCalled===false,"untrusted URL reached network");
 
-console.log("FE03_RESOLVER_TEST_PASS|routes=6|offline_fixtures=6|evidence_documents=6|structured_pubmed=1|clinicaltrials_outcome=1|official_web=1|arxiv_technology_stage=1|rxiv_randomized_stage=1|rxiv_transient_404_retry=1|rxiv_date_api_fallback=1|untrusted_url_rejected=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
+console.log("FE03_RESOLVER_TEST_PASS|routes=6|offline_fixtures=6|evidence_documents=6|structured_pubmed=1|clinicaltrials_outcome=1|official_web=1|arxiv_technology_stage=1|rxiv_randomized_stage=1|rxiv_transient_404_retry=1|rxiv_date_api_fallback=1|rxiv_empty_200_fallback=1|untrusted_url_rejected=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
