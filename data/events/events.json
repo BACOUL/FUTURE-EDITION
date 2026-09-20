@@ -1,1 +1,1302 @@
-[]
+[
+  {
+    "id": "EV-1998-001001",
+    "title": "FDA original approval of trastuzumab (Herceptin)",
+    "event_date": "1998-09-25",
+    "question_ids": [
+      "Q-001"
+    ],
+    "technology_ids": [
+      "TECH-0501"
+    ],
+    "claim_ids": [
+      "CLAIM-050001"
+    ],
+    "source_ids": [
+      "SRC-050001"
+    ],
+    "milestone_ids": [
+      "Q-001-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1998-09-25T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2001-001002",
+    "title": "FDA marketing approval of imatinib (Gleevec) for CML",
+    "event_date": "2001-05-10",
+    "question_ids": [
+      "Q-001"
+    ],
+    "technology_ids": [
+      "TECH-0502"
+    ],
+    "claim_ids": [
+      "CLAIM-050002"
+    ],
+    "source_ids": [
+      "SRC-050002"
+    ],
+    "milestone_ids": [
+      "Q-001-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2001-05-10T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2010-001003",
+    "title": "FDA original approval of sipuleucel-T (Provenge)",
+    "event_date": "2010-04-29",
+    "question_ids": [
+      "Q-001"
+    ],
+    "technology_ids": [
+      "TECH-0503"
+    ],
+    "claim_ids": [
+      "CLAIM-050003"
+    ],
+    "source_ids": [
+      "SRC-050003"
+    ],
+    "milestone_ids": [
+      "Q-001-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2010-04-29T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2017-001004",
+    "title": "FDA approval of tisagenlecleucel (Kymriah)",
+    "event_date": "2017-08-30",
+    "question_ids": [
+      "Q-001"
+    ],
+    "technology_ids": [
+      "TECH-0504"
+    ],
+    "claim_ids": [
+      "CLAIM-050004"
+    ],
+    "source_ids": [
+      "SRC-050004"
+    ],
+    "milestone_ids": [
+      "Q-001-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2017-08-30T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2020-001005",
+    "title": "Pembrolizumab first-line approval for MSI-H/dMMR colorectal cancer",
+    "event_date": "2020-06-29",
+    "question_ids": [
+      "Q-001"
+    ],
+    "technology_ids": [
+      "TECH-0505"
+    ],
+    "claim_ids": [
+      "CLAIM-050005"
+    ],
+    "source_ids": [
+      "SRC-050005"
+    ],
+    "milestone_ids": [
+      "Q-001-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2020-06-29T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2009-002001",
+    "title": "Rapamycin extends lifespan in genetically heterogeneous mice",
+    "event_date": "2009-07-08",
+    "question_ids": [
+      "Q-002"
+    ],
+    "technology_ids": [
+      "TECH-0506"
+    ],
+    "claim_ids": [
+      "CLAIM-050006"
+    ],
+    "source_ids": [
+      "SRC-050006"
+    ],
+    "milestone_ids": [
+      "Q-002-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2009-07-08T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2011-002002",
+    "title": "Senescent-cell clearance delays age-associated disorders in progeroid mice",
+    "event_date": "2011-11-02",
+    "question_ids": [
+      "Q-002"
+    ],
+    "technology_ids": [
+      "TECH-0507"
+    ],
+    "claim_ids": [
+      "CLAIM-050007"
+    ],
+    "source_ids": [
+      "SRC-050007"
+    ],
+    "milestone_ids": [
+      "Q-002-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2011-11-02T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2016-002003",
+    "title": "Senescent-cell clearance extends median lifespan in wild-type mice",
+    "event_date": "2016-02-03",
+    "question_ids": [
+      "Q-002"
+    ],
+    "technology_ids": [
+      "TECH-0507"
+    ],
+    "claim_ids": [
+      "CLAIM-050008"
+    ],
+    "source_ids": [
+      "SRC-050008"
+    ],
+    "milestone_ids": [
+      "Q-002-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2016-02-03T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2018-002004",
+    "title": "Two-year caloric restriction produces metabolic slowing in non-obese adults",
+    "event_date": "2018-03-22",
+    "question_ids": [
+      "Q-002"
+    ],
+    "technology_ids": [
+      "TECH-0508"
+    ],
+    "claim_ids": [
+      "CLAIM-050009"
+    ],
+    "source_ids": [
+      "SRC-050009"
+    ],
+    "milestone_ids": [
+      "Q-002-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2018-03-22T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-002005",
+    "title": "CALERIE analysis reports a small slowing of DunedinPACE",
+    "event_date": "2023-02-09",
+    "question_ids": [
+      "Q-002"
+    ],
+    "technology_ids": [
+      "TECH-0508"
+    ],
+    "claim_ids": [
+      "CLAIM-050010"
+    ],
+    "source_ids": [
+      "SRC-050010"
+    ],
+    "milestone_ids": [
+      "Q-002-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-02-09T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2011-003001",
+    "title": "Epidural stimulation enables standing and voluntary movement after motor-complete paraplegia",
+    "event_date": "2011-06-04",
+    "question_ids": [
+      "Q-003"
+    ],
+    "technology_ids": [
+      "TECH-0509"
+    ],
+    "claim_ids": [
+      "CLAIM-050011"
+    ],
+    "source_ids": [
+      "SRC-050011"
+    ],
+    "milestone_ids": [
+      "Q-003-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2011-06-04T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2018-003002",
+    "title": "Targeted neurostimulation supports walking after chronic spinal cord injury",
+    "event_date": "2018-10-31",
+    "question_ids": [
+      "Q-003"
+    ],
+    "technology_ids": [
+      "TECH-0510"
+    ],
+    "claim_ids": [
+      "CLAIM-050012"
+    ],
+    "source_ids": [
+      "SRC-050012"
+    ],
+    "milestone_ids": [
+      "Q-003-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2018-10-31T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2019-003003",
+    "title": "Tetraplegic participant controls four-limb exoskeleton with implanted brain signals",
+    "event_date": "2019-10-03",
+    "question_ids": [
+      "Q-003"
+    ],
+    "technology_ids": [
+      "TECH-0511"
+    ],
+    "claim_ids": [
+      "CLAIM-050013"
+    ],
+    "source_ids": [
+      "SRC-050013"
+    ],
+    "milestone_ids": [
+      "Q-003-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2019-10-03T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2022-003004",
+    "title": "Spinal neuromodulation restores motor functions in people with complete paralysis",
+    "event_date": "2022-02-07",
+    "question_ids": [
+      "Q-003"
+    ],
+    "technology_ids": [
+      "TECH-0512"
+    ],
+    "claim_ids": [
+      "CLAIM-050014"
+    ],
+    "source_ids": [
+      "SRC-050014"
+    ],
+    "milestone_ids": [
+      "Q-003-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-02-07T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-003005",
+    "title": "Brain–spine interface enables natural control of standing and walking",
+    "event_date": "2023-05-24",
+    "question_ids": [
+      "Q-003"
+    ],
+    "technology_ids": [
+      "TECH-0513"
+    ],
+    "claim_ids": [
+      "CLAIM-050015"
+    ],
+    "source_ids": [
+      "SRC-050015"
+    ],
+    "milestone_ids": [
+      "Q-003-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-05-24T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2013-004001",
+    "title": "FDA humanitarian approval of the Argus II retinal prosthesis",
+    "event_date": "2013-02-13",
+    "question_ids": [
+      "Q-004"
+    ],
+    "technology_ids": [
+      "TECH-0514"
+    ],
+    "claim_ids": [
+      "CLAIM-050016"
+    ],
+    "source_ids": [
+      "SRC-050016"
+    ],
+    "milestone_ids": [
+      "Q-004-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2013-02-13T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2014-004002",
+    "title": "Longer-term follow-up of hESC-derived retinal pigment epithelium transplantation",
+    "event_date": "2014-10-15",
+    "question_ids": [
+      "Q-004"
+    ],
+    "technology_ids": [
+      "TECH-0515"
+    ],
+    "claim_ids": [
+      "CLAIM-050017"
+    ],
+    "source_ids": [
+      "SRC-050017"
+    ],
+    "milestone_ids": [
+      "Q-004-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2014-10-15T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2017-004003",
+    "title": "Randomized phase 3 trial of voretigene neparvovec",
+    "event_date": "2017-07-14",
+    "question_ids": [
+      "Q-004"
+    ],
+    "technology_ids": [
+      "TECH-0516"
+    ],
+    "claim_ids": [
+      "CLAIM-050018"
+    ],
+    "source_ids": [
+      "SRC-050018"
+    ],
+    "milestone_ids": [
+      "Q-004-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2017-07-14T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2017-004004",
+    "title": "FDA original approval of Luxturna",
+    "event_date": "2017-12-19",
+    "question_ids": [
+      "Q-004"
+    ],
+    "technology_ids": [
+      "TECH-0516"
+    ],
+    "claim_ids": [
+      "CLAIM-050019"
+    ],
+    "source_ids": [
+      "SRC-050019"
+    ],
+    "milestone_ids": [
+      "Q-004-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2017-12-19T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2021-004005",
+    "title": "Partial visual recovery reported after optogenetic therapy",
+    "event_date": "2021-05-24",
+    "question_ids": [
+      "Q-004"
+    ],
+    "technology_ids": [
+      "TECH-0517"
+    ],
+    "claim_ids": [
+      "CLAIM-050020"
+    ],
+    "source_ids": [
+      "SRC-050020"
+    ],
+    "milestone_ids": [
+      "Q-004-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2021-05-24T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2022-005001",
+    "title": "RT-1 scales a single robot policy across hundreds of tasks",
+    "event_date": "2022-12-13",
+    "question_ids": [
+      "Q-005"
+    ],
+    "technology_ids": [
+      "TECH-0518"
+    ],
+    "claim_ids": [
+      "CLAIM-050021"
+    ],
+    "source_ids": [
+      "SRC-050021"
+    ],
+    "milestone_ids": [
+      "Q-005-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-12-13T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-005002",
+    "title": "PaLM-E demonstrates multi-embodiment multimodal transfer",
+    "event_date": "2023-03-06",
+    "question_ids": [
+      "Q-005"
+    ],
+    "technology_ids": [
+      "TECH-0519"
+    ],
+    "claim_ids": [
+      "CLAIM-050022"
+    ],
+    "source_ids": [
+      "SRC-050022"
+    ],
+    "milestone_ids": [
+      "Q-005-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-03-06T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-005003",
+    "title": "RT-2 transfers web knowledge into robotic actions",
+    "event_date": "2023-07-28",
+    "question_ids": [
+      "Q-005"
+    ],
+    "technology_ids": [
+      "TECH-0520"
+    ],
+    "claim_ids": [
+      "CLAIM-050023"
+    ],
+    "source_ids": [
+      "SRC-050023"
+    ],
+    "milestone_ids": [
+      "Q-005-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-07-28T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-005004",
+    "title": "Open X-Embodiment aggregates data across many robot platforms",
+    "event_date": "2023-10-12",
+    "question_ids": [
+      "Q-005"
+    ],
+    "technology_ids": [
+      "TECH-0521"
+    ],
+    "claim_ids": [
+      "CLAIM-050024"
+    ],
+    "source_ids": [
+      "SRC-050024"
+    ],
+    "milestone_ids": [
+      "Q-005-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-10-12T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2024-005005",
+    "title": "GXO and Agility announce multi-year commercial deployment of Digit",
+    "event_date": "2024-06-27",
+    "question_ids": [
+      "Q-005"
+    ],
+    "technology_ids": [
+      "TECH-0522"
+    ],
+    "claim_ids": [
+      "CLAIM-050025"
+    ],
+    "source_ids": [
+      "SRC-050025"
+    ],
+    "milestone_ids": [
+      "Q-005-M4"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2024-06-27T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2021-006001",
+    "title": "NIF reaches 1.35 MJ fusion yield and the threshold of ignition",
+    "event_date": "2021-08-08",
+    "question_ids": [
+      "Q-006"
+    ],
+    "technology_ids": [
+      "TECH-0523"
+    ],
+    "claim_ids": [
+      "CLAIM-050026"
+    ],
+    "source_ids": [
+      "SRC-050026"
+    ],
+    "milestone_ids": [
+      "Q-006-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2021-08-08T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2022-006002",
+    "title": "NIF achieves laboratory fusion ignition",
+    "event_date": "2022-12-05",
+    "question_ids": [
+      "Q-006"
+    ],
+    "technology_ids": [
+      "TECH-0523"
+    ],
+    "claim_ids": [
+      "CLAIM-050027"
+    ],
+    "source_ids": [
+      "SRC-050027"
+    ],
+    "milestone_ids": [
+      "Q-006-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-12-05T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-006003",
+    "title": "NIF repeats ignition with higher yield",
+    "event_date": "2023-07-30",
+    "question_ids": [
+      "Q-006"
+    ],
+    "technology_ids": [
+      "TECH-0523"
+    ],
+    "claim_ids": [
+      "CLAIM-050028"
+    ],
+    "source_ids": [
+      "SRC-050028"
+    ],
+    "milestone_ids": [
+      "Q-006-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-07-30T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2024-006004",
+    "title": "JET reports 69.26 MJ fusion-energy record",
+    "event_date": "2024-02-08",
+    "question_ids": [
+      "Q-006"
+    ],
+    "technology_ids": [
+      "TECH-0524"
+    ],
+    "claim_ids": [
+      "CLAIM-050029"
+    ],
+    "source_ids": [
+      "SRC-050029"
+    ],
+    "milestone_ids": [
+      "Q-006-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2024-02-08T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2025-006005",
+    "title": "Wendelstein 7-X reports a 43-second long-pulse triple-product record",
+    "event_date": "2025-06-03",
+    "question_ids": [
+      "Q-006"
+    ],
+    "technology_ids": [
+      "TECH-0525"
+    ],
+    "claim_ids": [
+      "CLAIM-050030"
+    ],
+    "source_ids": [
+      "SRC-050030"
+    ],
+    "milestone_ids": [
+      "Q-006-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2025-06-03T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2019-007001",
+    "title": "FDA approval of Zolgensma for spinal muscular atrophy",
+    "event_date": "2019-05-24",
+    "question_ids": [
+      "Q-007"
+    ],
+    "technology_ids": [
+      "TECH-0526"
+    ],
+    "claim_ids": [
+      "CLAIM-050031"
+    ],
+    "source_ids": [
+      "SRC-050031"
+    ],
+    "milestone_ids": [
+      "Q-007-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2019-05-24T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2021-007002",
+    "title": "First clinical results of systemic in-vivo CRISPR editing for transthyretin amyloidosis",
+    "event_date": "2021-06-26",
+    "question_ids": [
+      "Q-007"
+    ],
+    "technology_ids": [
+      "TECH-0527"
+    ],
+    "claim_ids": [
+      "CLAIM-050032"
+    ],
+    "source_ids": [
+      "SRC-050032"
+    ],
+    "milestone_ids": [
+      "Q-007-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2021-06-26T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2022-007003",
+    "title": "FDA approval of Zynteglo for transfusion-dependent beta-thalassemia",
+    "event_date": "2022-08-17",
+    "question_ids": [
+      "Q-007"
+    ],
+    "technology_ids": [
+      "TECH-0528"
+    ],
+    "claim_ids": [
+      "CLAIM-050033"
+    ],
+    "source_ids": [
+      "SRC-050033"
+    ],
+    "milestone_ids": [
+      "Q-007-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-08-17T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2022-007004",
+    "title": "FDA approval of Hemgenix for hemophilia B",
+    "event_date": "2022-11-22",
+    "question_ids": [
+      "Q-007"
+    ],
+    "technology_ids": [
+      "TECH-0529"
+    ],
+    "claim_ids": [
+      "CLAIM-050034"
+    ],
+    "source_ids": [
+      "SRC-050034"
+    ],
+    "milestone_ids": [
+      "Q-007-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-11-22T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-007005",
+    "title": "FDA approval of Casgevy for sickle cell disease",
+    "event_date": "2023-12-08",
+    "question_ids": [
+      "Q-007"
+    ],
+    "technology_ids": [
+      "TECH-0530"
+    ],
+    "claim_ids": [
+      "CLAIM-050035"
+    ],
+    "source_ids": [
+      "SRC-050035"
+    ],
+    "milestone_ids": [
+      "Q-007-M5"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-12-08T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2020-008001",
+    "title": "Deep learning identifies halicin as an antibiotic candidate",
+    "event_date": "2020-02-20",
+    "question_ids": [
+      "Q-008"
+    ],
+    "technology_ids": [
+      "TECH-0531"
+    ],
+    "claim_ids": [
+      "CLAIM-050036"
+    ],
+    "source_ids": [
+      "SRC-050036"
+    ],
+    "milestone_ids": [
+      "Q-008-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2020-02-20T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2022-008002",
+    "title": "AlphaTensor discovers new matrix-multiplication algorithms",
+    "event_date": "2022-10-05",
+    "question_ids": [
+      "Q-008"
+    ],
+    "technology_ids": [
+      "TECH-0532"
+    ],
+    "claim_ids": [
+      "CLAIM-050037"
+    ],
+    "source_ids": [
+      "SRC-050037"
+    ],
+    "milestone_ids": [
+      "Q-008-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2022-10-05T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-008003",
+    "title": "AlphaDev discovers faster sorting algorithms",
+    "event_date": "2023-06-07",
+    "question_ids": [
+      "Q-008"
+    ],
+    "technology_ids": [
+      "TECH-0533"
+    ],
+    "claim_ids": [
+      "CLAIM-050038"
+    ],
+    "source_ids": [
+      "SRC-050038"
+    ],
+    "milestone_ids": [
+      "Q-008-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-06-07T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-008004",
+    "title": "GNoME expands predicted stable-material search space",
+    "event_date": "2023-11-29",
+    "question_ids": [
+      "Q-008"
+    ],
+    "technology_ids": [
+      "TECH-0534"
+    ],
+    "claim_ids": [
+      "CLAIM-050039"
+    ],
+    "source_ids": [
+      "SRC-050039"
+    ],
+    "milestone_ids": [
+      "Q-008-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-11-29T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-008005",
+    "title": "FunSearch discovers new constructions for mathematical problems",
+    "event_date": "2023-12-14",
+    "question_ids": [
+      "Q-008"
+    ],
+    "technology_ids": [
+      "TECH-0535"
+    ],
+    "claim_ids": [
+      "CLAIM-050040"
+    ],
+    "source_ids": [
+      "SRC-050040"
+    ],
+    "milestone_ids": [
+      "Q-008-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-12-14T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2019-009001",
+    "title": "Sycamore executes a large random-circuit sampling benchmark",
+    "event_date": "2019-10-23",
+    "question_ids": [
+      "Q-009"
+    ],
+    "technology_ids": [
+      "TECH-0536"
+    ],
+    "claim_ids": [
+      "CLAIM-050041"
+    ],
+    "source_ids": [
+      "SRC-050041"
+    ],
+    "milestone_ids": [
+      "Q-009-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2019-10-23T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2021-009002",
+    "title": "Fault-tolerant control demonstrated on an error-corrected logical qubit",
+    "event_date": "2021-10-04",
+    "question_ids": [
+      "Q-009"
+    ],
+    "technology_ids": [
+      "TECH-0537"
+    ],
+    "claim_ids": [
+      "CLAIM-050042"
+    ],
+    "source_ids": [
+      "SRC-050042"
+    ],
+    "milestone_ids": [
+      "Q-009-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2021-10-04T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-009003",
+    "title": "Larger surface code modestly improves logical error performance",
+    "event_date": "2023-02-22",
+    "question_ids": [
+      "Q-009"
+    ],
+    "technology_ids": [
+      "TECH-0538"
+    ],
+    "claim_ids": [
+      "CLAIM-050043"
+    ],
+    "source_ids": [
+      "SRC-050043"
+    ],
+    "milestone_ids": [
+      "Q-009-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-02-22T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2023-009004",
+    "title": "Programmable neutral-atom processor operates logical qubits",
+    "event_date": "2023-12-06",
+    "question_ids": [
+      "Q-009"
+    ],
+    "technology_ids": [
+      "TECH-0539"
+    ],
+    "claim_ids": [
+      "CLAIM-050044"
+    ],
+    "source_ids": [
+      "SRC-050044"
+    ],
+    "milestone_ids": [
+      "Q-009-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2023-12-06T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2024-009005",
+    "title": "Below-threshold surface-code logical memory reported on Willow",
+    "event_date": "2024-12-09",
+    "question_ids": [
+      "Q-009"
+    ],
+    "technology_ids": [
+      "TECH-0540"
+    ],
+    "claim_ids": [
+      "CLAIM-050045"
+    ],
+    "source_ids": [
+      "SRC-050045"
+    ],
+    "milestone_ids": [
+      "Q-009-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2024-12-09T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-1968-010001",
+    "title": "Apollo 8 launches the first crewed mission to orbit the Moon",
+    "event_date": "1968-12-21",
+    "question_ids": [
+      "Q-010"
+    ],
+    "technology_ids": [
+      "TECH-0541"
+    ],
+    "claim_ids": [
+      "CLAIM-050046"
+    ],
+    "source_ids": [
+      "SRC-050046"
+    ],
+    "milestone_ids": [
+      "Q-010-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1968-12-21T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-1969-010002",
+    "title": "Apollo 11 achieves the first crewed lunar landing",
+    "event_date": "1969-07-20",
+    "question_ids": [
+      "Q-010"
+    ],
+    "technology_ids": [
+      "TECH-0541"
+    ],
+    "claim_ids": [
+      "CLAIM-050047"
+    ],
+    "source_ids": [
+      "SRC-050047"
+    ],
+    "milestone_ids": [
+      "Q-010-M1"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1969-07-20T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-1971-010003",
+    "title": "Apollo 15 extends lunar surface operations with the first Lunar Roving Vehicle",
+    "event_date": "1971-07-30",
+    "question_ids": [
+      "Q-010"
+    ],
+    "technology_ids": [
+      "TECH-0542"
+    ],
+    "claim_ids": [
+      "CLAIM-050048"
+    ],
+    "source_ids": [
+      "SRC-050048"
+    ],
+    "milestone_ids": [
+      "Q-010-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1971-07-30T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-1972-010004",
+    "title": "Apollo 17 conducts the final and longest Apollo lunar-surface mission",
+    "event_date": "1972-12-11",
+    "question_ids": [
+      "Q-010"
+    ],
+    "technology_ids": [
+      "TECH-0541"
+    ],
+    "claim_ids": [
+      "CLAIM-050049"
+    ],
+    "source_ids": [
+      "SRC-050049"
+    ],
+    "milestone_ids": [
+      "Q-010-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "1972-12-11T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "EV-2000-010005",
+    "title": "Expedition 1 begins continuous human habitation of the ISS",
+    "event_date": "2000-11-02",
+    "question_ids": [
+      "Q-010"
+    ],
+    "technology_ids": [
+      "TECH-0543"
+    ],
+    "claim_ids": [
+      "CLAIM-050050"
+    ],
+    "source_ids": [
+      "SRC-050050"
+    ],
+    "milestone_ids": [
+      "Q-010-M2"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-20T14:45:00Z",
+    "valid_from": "2000-11-02T00:00:00Z",
+    "valid_to": null
+  }
+]
