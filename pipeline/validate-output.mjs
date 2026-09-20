@@ -2,20 +2,28 @@ import { access, readFile, readdir, stat } from "node:fs/promises";
 
 const root = new URL("../", import.meta.url);
 const readJson = async (path) => JSON.parse(await readFile(new URL(path, root), "utf8"));
-const [questions, events, claims, evidence, sources, editorialFr] = await Promise.all([
+const [questions, events, claims, evidence, sources, editorialFr, editorialArticles] = await Promise.all([
   readJson("data/questions/questions.json"),
   readJson("data/events/events.json"),
   readJson("data/claims/claims.json"),
   readJson("data/evidence/evidence.json"),
   readJson("data/sources/sources.json"),
-  readJson("data/editorial/fr/events.json")
+  readJson("data/editorial/fr/events.json"),
+  readJson("data/editorial/fr/articles.json")
 ]);
+const articles = editorialArticles.entries ?? [];
 
 const required = [
   "dist/index.html",
   "dist/aujourdhui/index.html",
   "dist/questions/index.html",
   "dist/methodologie/index.html",
+  "dist/reality-check/index.html",
+  "dist/reality-check/ignition-nest-pas-electricite-commerciale/index.html",
+  "dist/ask/index.html",
+  "dist/recherche/index.html",
+  ...articles.map((a) => `dist/avance/${a.slug}/index.html`),
+  ...articles.map((a) => `dist/machine/avance/${a.slug}.json`),
   "dist/assets/styles.css",
   "dist/data/future-graph.json",
   "dist/robots.txt",
@@ -82,6 +90,9 @@ const baseChecks = (path, html) => {
   if (!html.includes('<html lang="fr">')) errors.push(`${path}: lang=fr missing`);
   if (!html.includes('class="skip"')) errors.push(`${path}: skip link missing`);
   if (!html.includes('aria-label="Navigation principale"')) errors.push(`${path}: navigation label missing`);
+  for (const navHref of ["/aujourdhui/", "/questions/", "/reality-check/", "/ask/", "/recherche/"]) {
+    if (!html.includes(`href="${navHref}"`)) errors.push(`${path}: primary navigation missing ${navHref}`);
+  }
   if (html.includes("undefined") || html.includes("[object Object]")) errors.push(`${path}: serialization artifact`);
   if (/<script[\s>]/i.test(html)) errors.push(`${path}: unexpected client JavaScript`);
   if (!/<title>[^<]+<\/title>/.test(html)) errors.push(`${path}: title missing`);
@@ -111,6 +122,58 @@ if (!today.includes("Aucune nouvelle avancée publiée automatiquement")) errors
 if (!today.includes("Les 50 événements déjà présents constituent le socle historique")) errors.push("today page must distinguish historical baseline from current news");
 if (!today.includes("Pas de faux")) errors.push("today page must explicitly reject fake real-time presentation");
 
+const referenceArticle = articles[0];
+const articlePath = referenceArticle ? `dist/avance/${referenceArticle.slug}/index.html` : "";
+const article = htmlByPath.get(articlePath) ?? "";
+if (!referenceArticle) errors.push("reference article data missing");
+else {
+  for (const text of [
+    referenceArticle.title,
+    "AVANCÉE DE RÉFÉRENCE",
+    "État canonique non évalué",
+    "Avant",
+    "Nouvelle preuve",
+    "Maintenant",
+    "EVIDENCE SPINE",
+    "CE QUE CELA NE PROUVE PAS",
+    "WATCH HORIZON",
+    "AGENT VIEW"
+  ]) if (!article.includes(text)) errors.push(`reference article missing: ${text}`);
+  for (const eid of referenceArticle.related_evidence_ids) {
+    if (!article.includes(eid)) errors.push(`reference article missing evidence atom ${eid}`);
+  }
+  if (!article.includes("/preuves/ev-2022-006002/")) errors.push("reference article missing proof dossier link");
+  if (!article.includes("/reality-check/ignition-nest-pas-electricite-commerciale/")) errors.push("reference article missing Reality Check link");
+  if (!article.includes(`/machine/avance/${referenceArticle.slug}.json`)) errors.push("reference article missing machine representation link");
+
+  try {
+    const packet = await readJson(`dist/machine/avance/${referenceArticle.slug}.json`);
+    if (packet.id !== referenceArticle.id) errors.push("machine packet article id mismatch");
+    if (packet.as_of !== referenceArticle.as_of) errors.push("machine packet as_of mismatch");
+    if (packet.question_id !== referenceArticle.question_id) errors.push("machine packet question mismatch");
+    if (packet.state?.status !== "unassessed") errors.push("machine packet must preserve unassessed state");
+    if (packet.citations?.length !== referenceArticle.related_evidence_ids.length) errors.push("machine packet citation count mismatch");
+    for (const eid of referenceArticle.related_evidence_ids) {
+      if (!packet.citations?.some((x) => x.evidence_id === eid)) errors.push(`machine packet missing citation ${eid}`);
+    }
+  } catch (error) {
+    errors.push("machine packet invalid JSON: " + error.message);
+  }
+}
+
+const reality = htmlByPath.get("dist/reality-check/ignition-nest-pas-electricite-commerciale/index.html") ?? "";
+for (const text of ["CLAIM STRESS TEST", "CONCLUSION PERMISE", "CONCLUSION EXCESSIVE", "2,05 MJ", "3,15 MJ"]) {
+  if (!reality.includes(text)) errors.push(`Reality Check missing: ${text}`);
+}
+
+const ask = htmlByPath.get("dist/ask/index.html") ?? "";
+if (!ask.includes("NOT YET OPEN") || !ask.includes("Pas de faux chatbot")) errors.push("Ask preview must disclose non-functional status");
+
+const search = htmlByPath.get("dist/recherche/index.html") ?? "";
+for (const text of ["QUESTION", "CHANGE / ARTICLE", "CLAIM / EVIDENCE"]) {
+  if (!search.includes(text)) errors.push(`search prototype missing result type: ${text}`);
+}
+
 const method = htmlByPath.get("dist/methodologie/index.html") ?? "";
 for (const phrase of ["Hypothèse", "Préprint", "Animal", "Affirmation", "Événement sourcé", "≠ jalon atteint"]) {
   if (!method.includes(phrase)) errors.push(`methodology missing epistemic rule: ${phrase}`);
@@ -120,7 +183,8 @@ for (const q of questions) {
   const path = `dist/questions/${q.slug}/index.html`;
   const page = htmlByPath.get(path) ?? "";
   if (!page.includes(q.title)) errors.push(`${q.id}: title missing`);
-  if (!page.includes("État non évalué")) errors.push(`${q.id}: radar must disclose unassessed state`);
+  if (!page.includes("État canonique non évalué")) errors.push(`${q.id}: State Plate must disclose unassessed state`);
+  if (page.includes("radar-card") || page.includes("radar-center")) errors.push(`${q.id}: decorative radar must not remain`);
   if (!page.includes("La route vers une réponse.")) errors.push(`${q.id}: milestone section missing`);
   if (!page.includes("Chronologie fondatrice")) errors.push(`${q.id}: timeline missing`);
   if (!page.includes(profileLabel[q.evidence_profile] ?? q.evidence_profile)) errors.push(`${q.id}: French evidence-profile label missing`);
@@ -180,6 +244,12 @@ const internalRouteSet = new Set([
   "/aujourdhui/",
   "/questions/",
   "/methodologie/",
+  "/reality-check/",
+  "/reality-check/ignition-nest-pas-electricite-commerciale/",
+  "/ask/",
+  "/recherche/",
+  ...articles.map((a) => `/avance/${a.slug}/`),
+  ...articles.map((a) => `/machine/avance/${a.slug}.json`),
   ...questions.map((q) => `/questions/${q.slug}/`),
   ...events.map((e) => `/preuves/${e.id.toLowerCase()}/`)
 ]);
@@ -201,6 +271,10 @@ if (homeBytes > 70000) errors.push(`home HTML budget exceeded: ${homeBytes}`);
 if (!css.includes("@media(max-width:620px)")) errors.push("mobile breakpoint missing");
 if (!css.includes("@media(prefers-reduced-motion:reduce)")) errors.push("reduced-motion support missing");
 if (!css.includes(":focus")) errors.push("focus affordance missing");
+for (const primitive of [".state-plate", ".delta-block", ".evidence-spine", ".watch-horizon", ".mobile-dock"]) {
+  if (!css.includes(primitive)) errors.push(`media-2.0 primitive CSS missing: ${primitive}`);
+}
+if (!css.includes("@media(max-width:700px)")) errors.push("media-2.0 mobile breakpoint missing");
 
 const graph = await readJson("dist/data/future-graph.json");
 if (graph.counts?.events !== 50) errors.push(`public graph event count mismatch: ${graph.counts?.events}`);
@@ -212,7 +286,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`FE06R_REFERENCE_HOME_PASS|reality_check=1|future_graph_visual=1|historical_news_separation=1|observatory_links=10|home_bytes=${homeBytes}`);
+console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|delta=1|state_plate=1|evidence_spine=1|reality_check=1|agent_packet=1|historical_news_separation=1|home_bytes=${homeBytes}`);
 
 console.log(
   `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
