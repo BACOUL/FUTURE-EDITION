@@ -112,7 +112,7 @@ for (const event of events) {
     claim.text,
     source.title,
     ev.locator,
-    source.canonical_url,
+    source.canonical_url.replaceAll("&", "&amp;"),
     "État :",
     "non évalué"
   ]) if (!page.includes(expected)) errors.push(`${event.id}: proof page missing ${expected}`);
