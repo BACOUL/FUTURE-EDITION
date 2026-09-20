@@ -31,8 +31,8 @@ Home, Aujourd’hui, questions, fiches avancées, preuves, radar, chronologie, m
 **Gate :** QA mobile/desktop, accessibilité, performance, aucune affirmation orpheline.
 
 ## FE-06R — Public Media Rebuild
-Reconstruction du produit public à partir du socle FE-06 : Home éditoriale, véritable modèle Avancée/Article, observatoire de référence, méthodologie complète, identité visuelle, distinction actualité/historique et pages de confiance.
-**Gate :** les quatre surfaces de référence (Home, Article, Observatoire, Méthodologie) passent la QA visuelle/éditoriale/scientifique décrite dans `docs/FE06R-PUBLIC-MEDIA-REBUILD.md`, puis généralisation sans casser les preuves FE-01 → FE-06.
+Reconstruction du produit public à partir du socle FE-06 : Home éditoriale, véritable modèle Avancée/Article, observatoire de référence, méthodologie complète, identité visuelle, distinction actualité/historique, pages de confiance et contrat agent-native.
+**Gate :** les quatre surfaces de référence passent `docs/FE06R-GATE.md` avec MEDIA ≥ 85, INTELLIGENCE ≥ 90, REFERENCE ≥ 95 et AGENT-NATIVE ≥ 95, sans veto. Les contrats sémantiques machine sont gelés ici afin que l'API future ne crée jamais une seconde vérité.
 
 ## FE-07 — Editorial Intelligence
 Détection, déduplication, classification, source primaire, brouillon.
@@ -63,12 +63,12 @@ Contradictions, accélérations, stagnations, transitions de maturité, converge
 **Gate :** analyses explicables et benchmarkées.
 
 ## FE-14 — API
-Données et statuts structurés pour tiers.
-**Gate :** versionnage, provenance et limites documentés.
+Industrialisation des contrats agent-native gelés plus tôt : données et statuts structurés, delta feed, versionnage, auth/quotas et accès professionnels.
+**Gate :** versionnage, provenance, temporalité, correction propagation et limites documentés ; aucune nouvelle base de vérité.
 
 ## FE-15 — AI-native Media
-Représentation humaine + machine-readable de chaque fait important.
-**Gate :** cohérence stricte entre article, graphe et API.
+Validation à l'échelle de la représentation humaine + machine-readable de chaque fait important et de l'usage par agents.
+**Gate :** cohérence stricte entre article, graphe, Ask, API et historique des corrections ; benchmarks d'abstention, citations, temporalité et deltas PASS.
 
 ## FE-CONTINUOUS
 Boucle permanente : Observe → Propose → Test → Evaluate → Approve → Deploy → Measure.
