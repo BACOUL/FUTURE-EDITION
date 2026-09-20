@@ -166,7 +166,9 @@ else {
     "EVIDENCE SPINE",
     "CE QUE CELA NE PROUVE PAS",
     "WATCH HORIZON",
-    "AGENT VIEW"
+    "AGENT VIEW",
+    "Mis à jour",
+    referenceArticle.temporal_status
   ]) if (!article.includes(text)) errors.push(`reference article missing: ${text}`);
   for (const eid of referenceArticle.related_evidence_ids) {
     if (!article.includes(eid)) errors.push(`reference article missing evidence atom ${eid}`);
@@ -178,12 +180,31 @@ else {
   try {
     const packet = await readJson(`dist/machine/avance/${referenceArticle.slug}.json`);
     if (packet.id !== referenceArticle.id) errors.push("machine packet article id mismatch");
+    if (packet.type !== "article" || packet.version !== 1) errors.push("machine packet identity/version mismatch");
+    if (packet.canonical_url !== `https://future-edition.pages.dev/avance/${referenceArticle.slug}/`) errors.push("machine packet canonical URL mismatch");
+    if (packet.canonical_scientific_object?.id !== referenceArticle.event_id) errors.push("machine packet canonical scientific object mismatch");
     if (packet.as_of !== referenceArticle.as_of) errors.push("machine packet as_of mismatch");
     if (packet.question_id !== referenceArticle.question_id) errors.push("machine packet question mismatch");
+    if (JSON.stringify(packet.question_ids) !== JSON.stringify([referenceArticle.question_id])) errors.push("machine packet question_ids mismatch");
+    if (!Array.isArray(packet.technology_ids) || packet.technology_ids.length === 0) errors.push("machine packet technology_ids missing");
+    if (JSON.stringify(packet.claim_ids) !== JSON.stringify(referenceArticle.related_claim_ids)) errors.push("machine packet claim_ids mismatch");
+    if (JSON.stringify(packet.evidence_ids) !== JSON.stringify(referenceArticle.related_evidence_ids)) errors.push("machine packet evidence_ids mismatch");
+    if (JSON.stringify(packet.source_ids) !== JSON.stringify(referenceArticle.related_source_ids)) errors.push("machine packet source_ids mismatch");
+    if (packet.change_id !== null || packet.change_status !== "NO_VALIDATED_CHANGE" || !packet.change_reason) errors.push("machine packet change semantics incomplete");
+    if (!packet.previous_state || !packet.resulting_state || packet.resulting_state.status !== "NO_CHANGE") errors.push("machine packet state delta incomplete");
+    if (!packet.evidence_level?.primary_source_tier) errors.push("machine packet evidence level missing");
+    if (!packet.event_at || !packet.observed_at || !packet.retrieved_at || !packet.published_at || !packet.updated_at || !packet.valid_from || !packet.as_of) {
+      errors.push("machine packet temporal fields incomplete");
+    }
     if (packet.state?.status !== "unassessed") errors.push("machine packet must preserve unassessed state");
+    if (packet.answer !== referenceArticle.after.text) errors.push("machine packet bounded answer mismatch");
     if (packet.citations?.length !== referenceArticle.related_evidence_ids.length) errors.push("machine packet citation count mismatch");
     for (const eid of referenceArticle.related_evidence_ids) {
-      if (!packet.citations?.some((x) => x.evidence_id === eid)) errors.push(`machine packet missing citation ${eid}`);
+      const citation = packet.citations?.find((x) => x.evidence_id === eid);
+      if (!citation) errors.push(`machine packet missing citation ${eid}`);
+      else if (!citation.claim_id || !citation.source_id || !citation.locator || !citation.confidence || !citation.canonical_url) {
+        errors.push(`machine packet citation atom incomplete ${eid}`);
+      }
     }
   } catch (error) {
     errors.push("machine packet invalid JSON: " + error.message);
