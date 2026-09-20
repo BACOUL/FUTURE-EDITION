@@ -124,11 +124,28 @@ const icon = (name) => ({
   check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg>'
 }[name]);
 
+const siteBase = "https://future-edition.pages.dev";
+
 const writePage = async (path, html) => {
   const clean = path.replace(/^\/+|\/+$/g, "");
   const dir = clean ? new URL(clean + "/", out) : out;
+  const canonical = siteBase + (clean ? "/" + clean + "/" : "/");
+  const schemaType = clean.startsWith("avance/") ? "Article" : "WebPage";
+  const structured = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": schemaType,
+    url: canonical,
+    inLanguage: "fr",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Future Edition",
+      url: siteBase + "/"
+    }
+  }).replaceAll("<", "\\u003c");
+  const headAdditions = `<link rel="canonical" href="${canonical}"><meta property="og:url" content="${canonical}"><meta property="og:type" content="${schemaType === "Article" ? "article" : "website"}"><link rel="alternate" type="application/json" href="/machine/manifest.json" title="Future Edition machine manifest"><script type="application/ld+json">${structured}</script>`;
+  const enhanced = html.replace("</head>", headAdditions + "</head>");
   await mkdir(dir, { recursive: true });
-  await writeFile(new URL("index.html", dir), html);
+  await writeFile(new URL("index.html", dir), enhanced);
 };
 
 const layout = (title, description, body, { active = "" } = {}) => `<!doctype html>
@@ -136,6 +153,7 @@ const layout = (title, description, body, { active = "" } = {}) => `<!doctype ht
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="${esc(description)}"><meta name="theme-color" content="#060b10">
+<meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta name="twitter:card" content="summary">
 <title>${esc(title)}</title><link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
@@ -977,6 +995,73 @@ const machineMethodDir = new URL("machine/", out);
 await mkdir(machineMethodDir, { recursive: true });
 await writeFile(new URL("methodologie.json", machineMethodDir), JSON.stringify(methodologyMachine, null, 2) + "\n");
 
+const machineManifest = {
+  schema_version: "fe/machine-manifest/v1",
+  canonical_base_url: siteBase,
+  canonical_graph: "/data/future-graph.json",
+  generated_from: "Future Graph",
+  human_machine_truth_model: "single_canonical_truth",
+  discovery: {
+    manifest: "/machine/manifest.json",
+    methodology: "/machine/methodologie.json",
+    delta_contract: "/machine/delta-contract.json"
+  },
+  routes: {
+    article: "/machine/avance/{slug}.json",
+    observatory: "/machine/observatoires/{slug}.json",
+    methodology: "/machine/methodologie.json"
+  },
+  reference_objects: {
+    article: "/machine/avance/nif-ignition-fusion-2022.json",
+    observatory: "/machine/observatoires/energie-de-fusion-commerciale.json",
+    methodology: "/machine/methodologie.json"
+  },
+  invariants: {
+    stable_ids: true,
+    as_of_required_for_state: true,
+    claim_level_citations: true,
+    source_locator_required: true,
+    correction_history_preserved: true,
+    abstention_when_insufficient: true,
+    translation_does_not_create_new_truth: true
+  },
+  delta_feed: {
+    status: "contract_only_fe06r",
+    contract: "/machine/delta-contract.json",
+    production_endpoint_stage: "FE-14"
+  },
+  machine_usage_policy: {
+    status: "prelaunch_restricted",
+    human_readable_policy: "/acces-machine/",
+    third_party_source_rights_not_relicensed: true
+  }
+};
+
+const deltaContract = {
+  schema_version: "fe/delta-feed-contract/v1",
+  status: "SEMANTIC_CONTRACT_FROZEN",
+  live_production_feed: false,
+  production_stage: "FE-14",
+  cursor: "non-negative monotonic integer",
+  required_fields: ["schema_version", "since_cursor", "cursor", "as_of", "changes", "affected_objects"],
+  change_kinds: ["created", "updated", "correction", "retraction", "supersession"],
+  change_required_fields: ["sequence", "id", "kind", "object_type", "object_id", "effective_at", "payload"],
+  guarantees: [
+    "deterministic ordering by sequence",
+    "corrections and retractions remain visible",
+    "affected canonical objects are explicit",
+    "as_of bounds the returned state",
+    "incremental reconstruction must equal one-shot reconstruction"
+  ],
+  proof: {
+    test: "pipeline/test-fe06r-agent-native.mjs",
+    minimum_synthetic_changes: 10
+  }
+};
+
+await writeFile(new URL("manifest.json", machineMethodDir), JSON.stringify(machineManifest, null, 2) + "\n");
+await writeFile(new URL("delta-contract.json", machineMethodDir), JSON.stringify(deltaContract, null, 2) + "\n");
+
 
 const trustPage = (kicker, title, intro, content) => `
 <section class="trust-hero shell"><p class="r1-kicker">${kicker}</p><h1>${title}</h1><p>${intro}</p></section>
@@ -1042,7 +1127,7 @@ await writePage("/acces-machine", layout(
   "Accès machine — Future Edition",
   "Contrat d’accès machine et principes agent-native de Future Edition.",
   trustPage("MACHINE ACCESS","Les agents ne doivent pas scraper la vérité dans la prose.","Les représentations machine exposent les mêmes objets canoniques que le média humain : IDs, as_of, claims, preuves, sources, locators, limites et corrections.",
-    `<div class="trust-grid"><article><span>IDENTITÉ</span><h2>IDs stables.</h2><p>Un slug ou une traduction peut changer sans créer une nouvelle vérité scientifique.</p></article><article><span>TEMPS</span><h2>as_of explicite.</h2><p>Un agent doit pouvoir savoir à quelle date un état est valable et détecter qu’une ancienne citation a été corrigée.</p></article><article><span>ABSTENTION</span><h2>Pas de réponse sans preuve suffisante.</h2><p>Le benchmark FE-06R exige zéro fausse réponse affirmative et zéro citation inventée sur les cas négatifs gelés.</p></article></div><div class="trust-machine-links"><a href="/machine/avance/nif-ignition-fusion-2022.json">Article structuré ${icon("arrow")}</a><a href="/machine/observatoires/energie-de-fusion-commerciale.json">Observatoire structuré ${icon("arrow")}</a><a href="/machine/methodologie.json">Contrat méthodologique ${icon("arrow")}</a></div><div class="trust-blocker"><span>LICENCE</span><p>Les droits de crawl, stockage, citation, redistribution et usages commerciaux ne sont pas encore ouverts globalement. Une politique de licence explicite doit être gelée avant réutilisation tierce importante.</p></div>`)
+    `<div class="trust-grid"><article><span>IDENTITÉ</span><h2>IDs stables.</h2><p>Un slug ou une traduction peut changer sans créer une nouvelle vérité scientifique.</p></article><article><span>TEMPS</span><h2>as_of explicite.</h2><p>Un agent doit pouvoir savoir à quelle date un état est valable et détecter qu’une ancienne citation a été corrigée.</p></article><article><span>ABSTENTION</span><h2>Pas de réponse sans preuve suffisante.</h2><p>Le benchmark FE-06R exige zéro fausse réponse affirmative et zéro citation inventée sur les cas négatifs gelés.</p></article></div><div class="trust-machine-links"><a href="/machine/manifest.json">Manifeste machine ${icon("arrow")}</a><a href="/machine/avance/nif-ignition-fusion-2022.json">Article structuré ${icon("arrow")}</a><a href="/machine/observatoires/energie-de-fusion-commerciale.json">Observatoire structuré ${icon("arrow")}</a><a href="/machine/methodologie.json">Contrat méthodologique ${icon("arrow")}</a><a href="/machine/delta-contract.json">Contrat delta ${icon("arrow")}</a></div><div class="trust-blocker"><span>LICENCE</span><p>Les droits de crawl, stockage, citation, redistribution et usages commerciaux ne sont pas encore ouverts globalement. Une politique de licence explicite doit être gelée avant réutilisation tierce importante.</p></div>`)
 ));
 
 await mkdir(new URL("assets/", out), { recursive: true });
@@ -1132,7 +1217,7 @@ await mkdir(new URL("data/", out), { recursive: true });
 await writeFile(new URL("data/future-graph.json", out), JSON.stringify(graph, null, 2) + "\n");
 
 const urls = [
-  "/", "/aujourdhui/", "/questions/", "/methodologie/", "/machine/methodologie.json", "/reality-check/",
+  "/", "/aujourdhui/", "/questions/", "/methodologie/", "/machine/methodologie.json", "/machine/manifest.json", "/machine/delta-contract.json", "/reality-check/",
   "/a-propos/", "/sources/", "/corrections/", "/responsabilite-editoriale/", "/signaler-une-erreur/", "/contact/", "/mentions-legales/", "/confidentialite/", "/acces-machine/", "/reality-check/ignition-nest-pas-electricite-commerciale/", "/ask/", "/recherche/",
   ...questions.map((q) => "/questions/" + q.slug + "/"),
   ...editorialObs.map((o) => "/machine/observatoires/" + o.slug + ".json"),
