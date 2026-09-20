@@ -56,6 +56,34 @@ const arxiv={id:"CAND-000005",signal_kind:"arxiv",raw_value:"2601.12345v2",origi
 const nhs={id:"CAND-000006",signal_kind:"url",raw_value:"https://www.england.nhs.uk/2026/06/fixture/",origin:"nhs_england"};
 const retrievedAt="2099-01-01T00:00:00Z";
 
+const medTransient={id:"CAND-000009",signal_kind:"medrxiv",raw_value:"10.64898/2026.08.19.26360819",origin:"medrxiv"};
+let medTransientDirectCalls=0;
+let medTransientDateCalls=0;
+const medTransientFetch=async url=>{
+  const href=String(url);
+  if(href.includes("/10.64898%2F2026.08.19.26360819/na/json")){
+    medTransientDirectCalls++;
+    return {ok:false,status:404,headers:{get:()=>null}};
+  }
+  if(href.includes("/details/medrxiv/2026-08-19/2026-08-19/0/json")){
+    medTransientDateCalls++;
+    return {
+      ok:true,
+      status:200,
+      headers:{get:()=>null},
+      json:async()=>({
+        messages:[{status:"ok",count:1,total:"1"}],
+        collection:[{
+          doi:"10.64898/2026.08.19.26360819",
+          title:"Phase 2 medRxiv fallback fixture",
+          abstract:"This phase 2 randomized study enrolled human participants."
+        }]
+      })
+    };
+  }
+  throw new Error("unexpected medRxiv fallback URL: "+href);
+};
+
 if(!buildProviderRequest(doi,{mailto:"test@example.invalid"}).url.includes("api.crossref.org/works/")) throw new Error("crossref request");
 if(!buildProviderRequest(pubmed).url.includes("efetch.fcgi")) throw new Error("pubmed request");
 if(!buildProviderRequest(nct).url.includes("/api/v2/studies/NCT12345678")) throw new Error("clinicaltrials request");
@@ -76,6 +104,7 @@ const r3=await resolveCandidate(nct,{fetchFn:fakeJson(fixtures.clinicaltrials),r
 const r4=await resolveCandidate(med,{fetchFn:fakeJson(fixtures.medrxiv),retrievedAt});
 const r5=await resolveCandidate(arxiv,{fetchFn:fakeXml(arxivXml),retrievedAt});
 const r6=await resolveCandidate(nhs,{fetchFn:fakeHtml(nhsHtml),retrievedAt});
+const r7=await resolveCandidate(medTransient,{fetchFn:medTransientFetch,retrievedAt});
 
 for(const [name,result] of [["crossref",r1],["pubmed",r2],["clinicaltrials",r3],["medrxiv",r4],["arxiv",r5],["nhs_england",r6]]){
   assert(result.status==="resolved",name+" not resolved");
@@ -96,6 +125,12 @@ assert(r6.document.license_scope==="official_record","NHS official-record licens
 assert(r6.document.sections.some(item=>item.text.includes("90 organisations")),"NHS official evidence text missing");
 assert(r6.source.study_stage==="real_world_deployment","NHS real-world stage missing");
 assert(r6.source.kind==="official_data","NHS official source kind missing");
+
+assert(r7.status==="resolved","medRxiv date fallback did not resolve");
+assert(r7.source.external_id==="10.64898/2026.08.19.26360819","medRxiv date fallback lost DOI");
+assert(r7.source.study_stage==="phase2","medRxiv date fallback lost phase metadata");
+assert(medTransientDirectCalls===3,"medRxiv transient 404 was not retried exactly three times");
+assert(medTransientDateCalls===1,"medRxiv date API fallback was not used exactly once");
 
 assert(r3.source.study_stage==="phase1","clinicaltrials conservative phase mapping");
 assert(r4.source.study_stage==="randomized_trial","rxiv randomized study stage missing");
@@ -123,4 +158,4 @@ const untrusted=await resolveCandidate(
 assert(untrusted.status==="unresolved"&&untrusted.reason==="untrusted_url_provider","untrusted URL not rejected");
 assert(untrustedFetchCalled===false,"untrusted URL reached network");
 
-console.log("FE03_RESOLVER_TEST_PASS|routes=6|offline_fixtures=6|evidence_documents=6|structured_pubmed=1|clinicaltrials_outcome=1|official_web=1|arxiv_technology_stage=1|rxiv_randomized_stage=1|untrusted_url_rejected=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");
+console.log("FE03_RESOLVER_TEST_PASS|routes=6|offline_fixtures=6|evidence_documents=6|structured_pubmed=1|clinicaltrials_outcome=1|official_web=1|arxiv_technology_stage=1|rxiv_randomized_stage=1|rxiv_transient_404_retry=1|rxiv_date_api_fallback=1|untrusted_url_rejected=1|invalid_id=1|network_error=1|arxiv_atom=1|arxiv_error_rejected=1");

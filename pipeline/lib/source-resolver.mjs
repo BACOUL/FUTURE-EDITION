@@ -125,7 +125,7 @@ function retryAfterMs(response){
   return Number.isFinite(at)?Math.max(0,Math.min(at-Date.now(),10000)):null;
 }
 
-async function fetchWithRetry(url,options,{fetchFn,maxAttempts=4,baseDelayMs=500}){
+async function fetchWithRetry(url,options,{fetchFn,maxAttempts=4,baseDelayMs=500,retryStatuses=[429,500,502,503,504]}){
   let lastResponse=null;
   let lastError=null;
 
@@ -134,7 +134,7 @@ async function fetchWithRetry(url,options,{fetchFn,maxAttempts=4,baseDelayMs=500
       const response=await fetchFn(url,options);
       lastResponse=response;
       if(response?.ok) return {response,error:null};
-      if(![429,500,502,503,504].includes(response?.status)||attempt===maxAttempts){
+      if(!retryStatuses.includes(response?.status)||attempt===maxAttempts){
         return {response,error:null};
       }
       const delay=retryAfterMs(response)??baseDelayMs*Math.pow(2,attempt-1);
@@ -268,27 +268,82 @@ async function nhsWordpressFallback(request,{fetchFn}){
   }
 }
 
+function rxivDateFromIdentifier(identifier){
+  const match=String(identifier??"").match(/\/(\d{4})\.(\d{2})\.(\d{2})\./);
+  return match?match[1]+"-"+match[2]+"-"+match[3]:null;
+}
+
+async function rxivDateApiFallback(request,{fetchFn}){
+  if(!["biorxiv","medrxiv"].includes(request.provider)) return null;
+  const date=rxivDateFromIdentifier(request.identifier);
+  if(!date) return null;
+
+  let cursor=0;
+  for(let page=0;page<8;page++){
+    const url="https://api.biorxiv.org/details/"+request.provider+"/"+date+"/"+date+"/"+cursor+"/json";
+    const {response,error}=await fetchWithRetry(url,{
+      headers:{...DEFAULT_HEADERS,accept:"application/json"}
+    },{
+      fetchFn,
+      maxAttempts:3,
+      baseDelayMs:500,
+      retryStatuses:[404,429,500,502,503,504]
+    });
+    if(error||!response?.ok) return null;
+
+    let payload;
+    try{ payload=await response.json(); }catch{ return null; }
+    const collection=Array.isArray(payload?.collection)?payload.collection:[];
+    const found=collection.find(item=>String(item?.doi??"").toLowerCase()===String(request.identifier).toLowerCase());
+    if(found) return found;
+    if(collection.length===0) return null;
+
+    const message=Array.isArray(payload?.messages)?payload.messages[0]:null;
+    const total=Number(message?.total);
+    cursor+=collection.length;
+    if(Number.isFinite(total)&&cursor>=total) return null;
+  }
+
+  return null;
+}
+
 async function rxivHtmlFallback(request,{fetchFn}){
   if(!["biorxiv","medrxiv"].includes(request.provider)) return null;
-  const url="https://www."+request.provider+".org/content/"+request.identifier;
-  const {response,error}=await fetchWithRetry(url,{
-    headers:{...DEFAULT_HEADERS,accept:"text/html"}
-  },{fetchFn,maxAttempts:3,baseDelayMs:600});
-  if(error||!response?.ok) return null;
 
-  try{
-    const parsed=parseOfficialWebHtml(await response.text(),{url});
-    if(!parsed) return null;
-    return {
-      doi:request.identifier,
-      title:parsed.title,
-      abstract:parsed.description||parsed.paragraphs?.find(item=>String(item).length>=180)||parsed.body||"",
-      page_body:parsed.body||"",
-      url
-    };
-  }catch{
-    return null;
+  // Newer bioRxiv/medRxiv records can return 404 on the unversioned content
+  // route while the canonical v1 record is live. Try both deterministically.
+  const urls=[
+    "https://www."+request.provider+".org/content/"+request.identifier,
+    "https://www."+request.provider+".org/content/"+request.identifier+"v1"
+  ];
+
+  for(const url of urls){
+    const {response,error}=await fetchWithRetry(url,{
+      headers:{...DEFAULT_HEADERS,accept:"text/html"}
+    },{
+      fetchFn,
+      maxAttempts:3,
+      baseDelayMs:600,
+      retryStatuses:[404,429,500,502,503,504]
+    });
+    if(error||!response?.ok) continue;
+
+    try{
+      const parsed=parseOfficialWebHtml(await response.text(),{url});
+      if(!parsed) continue;
+      return {
+        doi:request.identifier,
+        title:parsed.title,
+        abstract:parsed.description||parsed.paragraphs?.find(item=>String(item).length>=180)||parsed.body||"",
+        page_body:parsed.body||"",
+        url
+      };
+    }catch{
+      continue;
+    }
   }
+
+  return null;
 }
 
 export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedAt=null}={}){
@@ -324,7 +379,15 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedA
   const headers=request.format==="html"
     ?{...DEFAULT_HEADERS,"user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36",accept}
     :{...DEFAULT_HEADERS,accept};
-  const fetched=await fetchWithRetry(request.url,{headers},{fetchFn});
+  const rxivProvider=["biorxiv","medrxiv"].includes(request.provider);
+  const fetched=await fetchWithRetry(request.url,{headers},{
+    fetchFn,
+    ...(rxivProvider?{
+      maxAttempts:3,
+      baseDelayMs:500,
+      retryStatuses:[404,429,500,502,503,504]
+    }:{})
+  });
   let response=fetched.response;
 
   if(fetched.error){
@@ -341,8 +404,9 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedA
   }
 
   let rxivFallback=null;
-  if(!response?.ok&&["biorxiv","medrxiv"].includes(request.provider)){
-    rxivFallback=await rxivHtmlFallback(request,{fetchFn});
+  if(!response?.ok&&rxivProvider){
+    rxivFallback=await rxivDateApiFallback(request,{fetchFn});
+    if(!rxivFallback) rxivFallback=await rxivHtmlFallback(request,{fetchFn});
   }
 
   if(!response?.ok&&!rxivFallback){
