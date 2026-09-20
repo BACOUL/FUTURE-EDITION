@@ -27,15 +27,44 @@ jobs:
           node pipeline/build-graph.mjs
           node pipeline/build-site.mjs
           node pipeline/validate-output.mjs
-      - name: Freeze generated dist on publish branch
+      - name: Build PageShare manifest
+        run: |
+          node --input-type=module <<'NODE'
+          import { readdir, readFile, writeFile, stat } from "node:fs/promises";
+          import path from "node:path";
+          const root="dist";
+          const files=[];
+          async function walk(dir){
+            for(const name of await readdir(dir)){
+              const full=path.join(dir,name);
+              const s=await stat(full);
+              if(s.isDirectory()) await walk(full);
+              else {
+                const rel=path.relative(root,full).replaceAll("\\","/");
+                const ext=path.extname(rel);
+                const contentType=ext===".html"?"text/html; charset=utf-8":
+                  ext===".css"?"text/css; charset=utf-8":
+                  ext===".json"?"application/json; charset=utf-8":
+                  ext===".xml"?"application/xml; charset=utf-8":
+                  ext===".txt"?"text/plain; charset=utf-8":"application/octet-stream";
+                files.push({path:rel,content:await readFile(full,"utf8"),contentType});
+              }
+            }
+          }
+          await walk(root);
+          files.sort((a,b)=>a.path.localeCompare(b.path));
+          await writeFile("pageshare-bundle.json",JSON.stringify({schema_version:"fe06r/pageshare-bundle/v1",entrypoint:"index.html",files},null,2));
+          console.log("PAGESHARE_BUNDLE_FILES="+files.length);
+          NODE
+      - name: Freeze generated dist and PageShare manifest
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f dist
+          git add -f dist pageshare-bundle.json
           if git diff --cached --quiet; then
-            echo "dist unchanged"
+            echo "publish bundle unchanged"
           else
-            git commit -m "build(FE-06R): freeze PageShare publish dist"
+            git commit -m "build(FE-06R): freeze PageShare publish bundle"
             git push origin HEAD:fe06r-publish-bundle
           fi
       - name: Upload static site
