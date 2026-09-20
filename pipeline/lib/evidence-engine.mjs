@@ -65,6 +65,9 @@ export function classifyEvidenceLevel(source){
 }
 
 export function inferSubjectScope(source){
+  const explicit=source?.subject_scope??"unknown";
+  if(["in_vitro","animal","human","technology","mixed"].includes(explicit)) return explicit;
+
   const stage=source?.study_stage??"unknown";
   if(stage==="in_vitro") return "in_vitro";
   if(stage==="preclinical_animal") return "animal";
