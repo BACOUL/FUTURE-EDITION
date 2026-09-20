@@ -745,20 +745,191 @@ for (const event of events) {
   ));
 }
 
+const methodologyPipeline = [
+  ["01","SIGNAL","Un signal peut venir d’un article, d’un preprint, d’un registre, d’une annonce, d’un agent ou d’une veille. Il déclenche une enquête ; il ne devient jamais une preuve par lui-même."],
+  ["02","SOURCE PRIMAIRE","Le système cherche la publication originale, le registre, l’autorité, la base officielle ou le rapport technique qui permet de remonter à l’origine."],
+  ["03","AUTHENTICITÉ + STATUT","URL canonique, date, version, DOI/registre quand disponible, statut actif/corrigé/rétracté et date de récupération sont conservés comme provenance."],
+  ["04","CLAIM","La source est découpée en affirmations précises. Un claim doit être plus étroit que le document qui le contient."],
+  ["05","EVIDENCE + LOCATOR","Chaque claim est relié à une preuve et à un locator : page, section, tableau, paragraphe ou identifiant de donnée."],
+  ["06","INDÉPENDANCE","Dix reprises de la même origine restent une seule origine. Communiqués recyclés, citations circulaires et contenus dérivés ne comptent pas comme confirmations indépendantes."],
+  ["07","LIMITES + CONTRADICTIONS","Le système conserve ce qui limite, contredit ou contextualise l’affirmation. L’absence de contradiction dans le corpus n’est jamais présentée comme preuve d’absence."],
+  ["08","RÉPLICATION","La répétition indépendante ou contrôlée est distinguée de la simple réannonce du même résultat."],
+  ["09","ÉTAT PRÉCÉDENT","L’état public d’un jalon n’est jamais lu directement dans sa définition. Il est résolu depuis les Assessment humains approuvés ; sans Assessment approuvé : UNASSESSED."],
+  ["10","CHANGE PROPOSÉ","Le moteur compare avant/après et calcule un type déterministe : none, minor_progress, evidence_upgrade, milestone_reached, setback ou invalidation."],
+  ["11","REVUE HUMAINE","Un Change qui supersede un état exige un Assessment human_approved, une Review correspondante, des claims déclencheurs, des preuves concrètes et des hashes avant/après."],
+  ["12","PUBLICATION + PROPAGATION","Article humain, observatoire, historique et représentation machine sont des vues du même graphe. Une correction doit se propager sans effacer l’ancienne version."]
+];
+
+const methodologyMachine = {
+  schema_version: "fe/methodology-contract/v1",
+  as_of: "2026-09-20",
+  canonical_truth: "future_graph",
+  source_tiers: {
+    A: "primary_strong",
+    B: "specialized_secondary",
+    C: "communication",
+    D: "signal_only"
+  },
+  evidence_scales: {
+    medicine: ["M0","M1","M2","M3","M4","M5","M6","M7"],
+    technology: ["T0","T1","T2","T3","T4","T5","T6","T7"],
+    fundamental_science: ["S0","S1","S2","S3","S4","S5"]
+  },
+  confidence_states: ["confirmed","solid_preliminary","needs_confirmation","contested","misleading","unverifiable","retracted_invalidated"],
+  state_rule: "Milestone state is resolved from approved Assessments; no approved Assessment means unassessed; multiple terminal approved Assessments is blocking ambiguity.",
+  change_types: ["none","minor_progress","evidence_upgrade","milestone_reached","setback","invalidation"],
+  change_invariants: {
+    human_review_required: true,
+    trigger_claim_required: true,
+    trigger_evidence_required: true,
+    before_after_hash_binding: true,
+    mutable_milestone_status_forbidden: true
+  },
+  publication_rule: "Insufficient evidence may produce no conclusion.",
+  machine_rule: "Human and machine representations must project the same canonical objects."
+};
+
 await writePage("/methodologie", layout(
   "Méthodologie — Future Edition",
-  "Comment Future Edition sépare signal, preuve et changement réel.",
-  `<section class="page-hero shell"><p class="kicker">Méthodologie</p><h1>La preuve<br>avant le bruit.</h1><p>Notre produit n’est pas un flux d’articles. C’est une machine à répondre : « qu’est-ce que cette nouvelle preuve change réellement ? »</p></section>
- <section class="shell method-grid">
-   <article><span>01</span><h2>Question</h2><p>Nous partons d’une grande question durable, pas d’une tendance.</p></article>
-   <article><span>02</span><h2>Source</h2><p>Nous remontons à la publication, au registre, au régulateur ou à la donnée officielle.</p></article>
-   <article><span>03</span><h2>Affirmation</h2><p>Nous isolons précisément ce que la source permet d’affirmer, avec son niveau de confiance.</p></article>
-   <article><span>04</span><h2>Changement</h2><p>Nous comparons l’état avant et après. Aucun jalon ne bouge sans justification traçable.</p></article>
- </section>
- <section class="shell section"><div class="method-table"><div><span>Hypothèse</span><b>≠ fait</b></div><div><span>Préprint</span><b>≠ validation</b></div><div><span>Animal</span><b>≠ efficacité humaine</b></div><div><span>Annonce</span><b>≠ déploiement</b></div><div><span>Événement sourcé</span><b>≠ jalon atteint</b></div></div></section>
- <section class="shell manifesto"><p class="kicker">Règle de publication</p><blockquote>Quand la preuve est insuffisante, le bon résultat est parfois de ne rien conclure.</blockquote></section>`,
+  "La chaîne réelle qui transforme un signal en état de connaissance traçable, corrigible et lisible par les humains comme par les agents IA.",
+  `<article class="method2">
+    <header class="method2-hero">
+      <div class="shell method2-hero-grid">
+        <div>
+          <p class="r1-kicker">R4 · OPEN THE MACHINE</p>
+          <h1>Une information ne devient pas vraie parce qu’elle est publiée.</h1>
+          <p>Future Edition sépare détection, provenance, affirmation, preuve, limites, état, changement et publication. Chaque étape ci-dessous correspond à une règle ou un objet réel du repository.</p>
+        </div>
+        <div class="method2-machine-status">
+          <span>MACHINE STATUS · as of 20 sept. 2026</span>
+          <strong>${graph.nodes.length}</strong><p>objets dans le Future Graph</p>
+          <div><b>${graph.edges.length}</b><span>relations</span></div>
+          <div><b>${questions.reduce((n,q)=>n+q.milestones.length,0)}</b><span>jalons · état canonique non évalué</span></div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="method2-index shell" aria-label="Sommaire méthodologique">
+      <a href="#pipeline">Pipeline</a><a href="#sources">Sources</a><a href="#preuve">Niveaux de preuve</a><a href="#etat">État & Change</a><a href="#corrections">Corrections</a><a href="#machine">Agent-native</a>
+    </nav>
+
+    <section class="method2-pipeline" id="pipeline">
+      <div class="shell">
+        <div class="method2-heading"><div><p class="r1-kicker">DECISION PIPELINE</p><h2>Douze portes avant une conclusion.</h2></div><p>Ce parcours n’est pas une illustration marketing. C’est l’ordre conceptuel que les stages FE-03, FE-04, FE-05 et les contrats agent-native doivent préserver.</p></div>
+        <div class="method2-flow">
+          ${methodologyPipeline.map(([n,label,text])=>`<article><div class="method2-flow-index">${n}</div><div><span>${label}</span><p>${text}</p></div></article>`).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="method2-sources" id="sources">
+      <div class="shell">
+        <div class="method2-heading"><div><p class="r1-kicker">SOURCE HIERARCHY</p><h2>Toutes les sources ne valent pas la même chose.</h2></div><p>Le niveau de source décrit sa proximité avec l’origine. Il ne remplace ni l’analyse du claim, ni le niveau de preuve.</p></div>
+        <div class="method2-source-grid">
+          <article class="tier-a"><span>A</span><h3>Primaire forte</h3><p>Publication originale, registre d’essai, autorité réglementaire, base officielle, rapport technique officiel, données expérimentales publiées.</p><b>Peut soutenir directement un claim si le locator et le contexte sont valides.</b></article>
+          <article class="tier-b"><span>B</span><h3>Secondaire spécialisée</h3><p>Revue scientifique, média spécialisé sérieux, analyse d’expert identifiable.</p><b>Utile pour contexte, synthèse et corroboration.</b></article>
+          <article class="tier-c"><span>C</span><h3>Communication</h3><p>Communiqué d’entreprise, université, conférence ou présentation.</p><b>À traiter avec prudence sur les conclusions fortes.</b></article>
+          <article class="tier-d"><span>D</span><h3>Signal</h3><p>Réseau social, vidéo virale, forum, capture, agrégateur, contenu IA.</p><b>Peut déclencher une enquête. Ne valide jamais seul une affirmation.</b></article>
+        </div>
+        <div class="method2-independence"><span>SOURCE POISONING RULE</span><blockquote>10 reprises d’une même origine = 1 origine, pas 10 confirmations.</blockquote><p>Future Edition doit détecter le même communiqué d’origine, la même publication primaire, les citations circulaires, les reprises syndiquées et les contenus dérivés de la même source.</p></div>
+      </div>
+    </section>
+
+    <section class="method2-evidence" id="preuve">
+      <div class="shell">
+        <div class="method2-heading"><div><p class="r1-kicker">EVIDENCE LADDERS</p><h2>Le niveau décrit ce qui a été démontré.</h2></div><p>Il ne mesure ni le potentiel commercial, ni l’importance médiatique, ni notre enthousiasme.</p></div>
+        <div class="method2-ladders">
+          <article><span>M · MÉDECINE</span><ol><li>M0 · hypothèse</li><li>M1 · in vitro</li><li>M2 · animal</li><li>M3 · premiers humains</li><li>M4 · essai contrôlé</li><li>M5 · essai avancé / réplication</li><li>M6 · autorisation</li><li>M7 · usage clinique réel</li></ol></article>
+          <article><span>T · TECHNOLOGIE</span><ol><li>T0 · concept</li><li>T1 · simulation</li><li>T2 · prototype</li><li>T3 · démonstration contrôlée</li><li>T4 · pilote réel</li><li>T5 · déploiement limité</li><li>T6 · échelle significative</li><li>T7 · usage courant</li></ol></article>
+          <article><span>S · SCIENCE FONDAMENTALE</span><ol><li>S0 · hypothèse</li><li>S1 · modèle / prédiction</li><li>S2 · observation initiale</li><li>S3 · validation expérimentale</li><li>S4 · réplication indépendante</li><li>S5 · consensus robuste / usage scientifique</li></ol></article>
+        </div>
+        <div class="method2-not-equal">
+          <div><span>Hypothèse</span><b>≠ fait</b></div><div><span>Préprint</span><b>≠ validation</b></div><div><span>Animal</span><b>≠ efficacité humaine</b></div><div><span>Annonce</span><b>≠ déploiement</b></div><div><span>Événement sourcé</span><b>≠ jalon atteint</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="method2-state" id="etat">
+      <div class="shell">
+        <div class="method2-heading"><div><p class="r1-kicker">STATE RESOLUTION</p><h2>Un jalon n’a pas de bouton “atteint”.</h2></div><p>Son état est dérivé de l’historique des Assessment approuvés. Le modèle interdit le statut mutable directement sur la définition du jalon.</p></div>
+        <div class="method2-state-grid">
+          <div class="method2-state-rule">
+            <span>RESOLUTION</span>
+            <ol>
+              <li>Ignorer les propositions non approuvées pour l’état public.</li>
+              <li>Prendre les Assessment `human_approved` du jalon.</li>
+              <li>Éliminer ceux superseded par un Assessment approuvé plus récent.</li>
+              <li>Exiger exactement un terminal.</li>
+              <li>Aucun terminal approuvé → <b>UNASSESSED</b>.</li>
+              <li>Plusieurs terminaux → <b>AMBIGUÏTÉ BLOQUANTE</b>.</li>
+            </ol>
+          </div>
+          <div class="method2-change-gate">
+            <span>CHANGE ENGINE · FE-04</span>
+            <h3>Avant → preuve → après</h3>
+            <p>Un changement public qui supersede un état doit être lié à la preuve et à la revue qui l’ont provoqué.</p>
+            <div class="change-types"><b>none</b><b>minor_progress</b><b>evidence_upgrade</b><b>milestone_reached</b><b>setback</b><b>invalidation</b></div>
+            <ul><li>trigger claim obligatoire</li><li>evidence concrète obligatoire</li><li>human review obligatoire</li><li>hash avant / après obligatoire</li><li>type calculé, pas texte libre</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="method2-review">
+      <div class="shell method2-review-grid">
+        <div><p class="r1-kicker">HUMAN GATE</p><h2>L’IA propose. L’état public exige une décision traçable.</h2></div>
+        <div><p>FE-04 impose qu’un nouvel Assessment supersédant soit <code>human_approved</code> et que sa Review approuve exactement cet Assessment. Une machine ne peut donc pas promouvoir seule un jalon en modifiant un champ.</p><a href="/questions/energie-de-fusion-commerciale/">Voir l’effet dans l’observatoire Fusion ${icon("arrow")}</a></div>
+      </div>
+    </section>
+
+    <section class="method2-corrections" id="corrections">
+      <div class="shell">
+        <div class="method2-heading"><div><p class="r1-kicker">CORRECTION TRAIL</p><h2>Corriger sans réécrire l’histoire.</h2></div><p>Une correction importante doit modifier l’état courant tout en laissant l’ancienne version adressable et explicitement obsolète.</p></div>
+        <div class="method2-correction-flow">
+          <div><span>01</span><strong>État publié</strong><p>Claim, preuve, version, as_of.</p></div>
+          <i>${icon("arrow")}</i>
+          <div><span>02</span><strong>Nouvelle preuve / correction / rétractation</strong><p>L’ancienne donnée n’est pas effacée.</p></div>
+          <i>${icon("arrow")}</i>
+          <div><span>03</span><strong>Revue + nouvel état</strong><p>Le lien superseded/corrected/retracted est explicite.</p></div>
+          <i>${icon("arrow")}</i>
+          <div><span>04</span><strong>Propagation</strong><p>Article, observatoire, Ask, API et delta feed convergent vers le nouvel état.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="method2-machine" id="machine">
+      <div class="shell method2-machine-grid">
+        <div>
+          <p class="r1-kicker">ONE TRUTH · MULTIPLE VIEWS</p>
+          <h2>L’article et l’API ne sont pas deux bases de vérité.</h2>
+          <p>Future Graph est la mémoire canonique. L’article humain, le State Room, Reality Check et les paquets agent sont des projections du même objet scientifique.</p>
+          <a class="r1-primary inverse" href="/machine/avance/nif-ignition-fusion-2022.json">Voir un Agent Answer Packet ${icon("arrow")}</a>
+        </div>
+        <div class="method2-machine-stack">
+          <span>FUTURE GRAPH</span>
+          <div><b>Human</b><em>Article · Observatory · Reality Check</em></div>
+          <div><b>Machine</b><em>IDs · as_of · claims · evidence · citations</em></div>
+          <div><b>Delta</b><em>corrections · retractions · supersessions · changes</em></div>
+          <strong>Une traduction ne crée jamais une seconde vérité scientifique.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="method2-abstention">
+      <div class="shell"><span>ABSTENTION IS A FEATURE</span><blockquote>Quand la preuve est insuffisante, le bon résultat est parfois de ne rien conclure.</blockquote><p>État non évalué, preuve insuffisante, contradiction non résolue, source primaire indisponible ou aucune modification significative sont des sorties valides.</p></div>
+    </section>
+
+    <section class="shell method2-agent-contract">
+      <div><span>MACHINE CONTRACT</span><h2>La méthode elle-même est lisible par une machine.</h2><p>Hiérarchie des sources, échelles de preuve, états de confiance, règle de résolution et invariants du Change Engine sont exportés depuis le build de référence.</p></div>
+      <a class="r1-primary" href="/machine/methodologie.json">Ouvrir le contrat structuré ${icon("arrow")}</a>
+    </section>
+  </article>`,
   { active: "method" }
 ));
+
+const machineMethodDir = new URL("machine/", out);
+await mkdir(machineMethodDir, { recursive: true });
+await writeFile(new URL("methodologie.json", machineMethodDir), JSON.stringify(methodologyMachine, null, 2) + "\n");
 
 await mkdir(new URL("assets/", out), { recursive: true });
 await writeFile(new URL("assets/styles.css", out), `
@@ -821,6 +992,20 @@ await writeFile(new URL("assets/styles.css", out), `
 @media(max-width:1050px){.obs2-hero-grid,.obs2-heading,.obs2-agent-dock{grid-template-columns:1fr}.obs2-milestone-grid{grid-template-columns:1fr 1fr}.obs2-paths{grid-template-columns:1fr}.obs2-contradiction{grid-template-columns:1fr}.obs2-agent-actions{align-items:flex-start}.obs2-heading>a{justify-self:start}}
 @media(max-width:700px){.obs2-hero{padding-top:48px}.obs2-hero h1{font-size:clamp(3.4rem,16vw,5.8rem)}.obs2-index{top:70px;overflow-x:auto;margin-left:0;margin-right:0;width:100%;padding-left:14px}.obs2-index a{white-space:nowrap;padding:12px 10px}.obs2-section{padding:68px 0}.timeglass:before{left:31px}.timeglass-event{grid-template-columns:0 64px 1fr}.timeglass-time{display:none}.timeglass-node:before{left:24px}.timeglass-content{padding-left:8px}.obs2-milestone-grid{grid-template-columns:1fr}.obs2-milestone-grid li{min-height:auto}.obs2-evidence-card{grid-template-columns:38px 1fr}.obs2-evidence-top{display:block}.obs2-evidence-top time{display:block;margin-top:6px}.obs2-contradiction{padding:22px}.obs2-agent-dock{padding:58px 0}.obs2-agent-actions{width:100%}.obs2-agent-actions a{width:100%;justify-content:space-between}}
 
+/* FE-06R R4 — Open the Machine */
+.method2{background:#071014;color:#edf5f4}.method2-hero{padding:82px 0 56px;border-bottom:1px solid #263943}.method2-hero-grid{display:grid;grid-template-columns:1.22fr .78fr;gap:70px;align-items:end}.method2-hero h1{font-size:clamp(3.8rem,7.7vw,8rem);line-height:.82;letter-spacing:-.075em;margin:0;max-width:950px}.method2-hero>div>div:first-child>p:last-child{font-size:1.16rem;line-height:1.72;color:#9dafb7;max-width:800px}.method2-machine-status{border:1px solid #2c424c;padding:28px;background:#0b161b}.method2-machine-status>span{font:800 .62rem ui-monospace,monospace;letter-spacing:.11em;color:#d9ff74}.method2-machine-status>strong{display:block;font-size:7rem;line-height:.85;letter-spacing:-.07em;margin-top:38px}.method2-machine-status>p{color:#8fa2ab}.method2-machine-status>div{display:grid;grid-template-columns:80px 1fr;gap:15px;border-top:1px solid #2b4049;padding:15px 0}.method2-machine-status b{font-size:1.4rem}.method2-machine-status div span{color:#8399a2;font-size:.75rem}
+.method2-index{display:flex;gap:4px;position:sticky;top:82px;z-index:12;background:rgba(7,16,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid #263943}.method2-index a{padding:14px 16px;color:#859aa3;font-size:.73rem;font-weight:800}.method2-index a:hover{color:#d9ff74}.method2-pipeline,.method2-sources,.method2-evidence,.method2-state,.method2-corrections,.method2-machine{padding:100px 0;border-bottom:1px solid #23363f}.method2-heading{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:end;margin-bottom:54px}.method2-heading h2{font-size:clamp(2.9rem,5.7vw,6.1rem);line-height:.88;letter-spacing:-.064em;margin:0}.method2-heading>p{color:#8ea2ab;line-height:1.7;margin:0}
+.method2-flow{border-top:1px solid #2a414b}.method2-flow article{display:grid;grid-template-columns:90px 240px 1fr;gap:26px;padding:26px 0;border-bottom:1px solid #2a414b;align-items:start}.method2-flow-index{font:800 .7rem ui-monospace,monospace;color:#5f7a85}.method2-flow article span{font:850 .72rem ui-monospace,monospace;letter-spacing:.09em;color:#d9ff74}.method2-flow article p{margin:0;color:#9aadb5;line-height:1.65;max-width:820px}
+.method2-sources{background:#edf1ee;color:#071014}.method2-sources .r1-kicker{color:#0a7188}.method2-sources .method2-heading>p{color:#56656b}.method2-source-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #aebbb8;border-left:1px solid #aebbb8}.method2-source-grid article{padding:28px;border-right:1px solid #aebbb8;border-bottom:1px solid #aebbb8;min-height:340px;display:flex;flex-direction:column}.method2-source-grid article>span{font-size:4.5rem;font-weight:900;line-height:1}.method2-source-grid h3{font-size:1.55rem;line-height:1.05;margin:20px 0 12px}.method2-source-grid p{color:#59686e;line-height:1.6}.method2-source-grid b{margin-top:auto;font-size:.76rem;line-height:1.5}.tier-a>span{color:#0a7188}.tier-b>span{color:#526d77}.tier-c>span{color:#8a7148}.tier-d>span{color:#85615d}.method2-independence{display:grid;grid-template-columns:180px 1fr 1fr;gap:35px;margin-top:55px;padding-top:32px;border-top:2px solid #071014}.method2-independence>span{font:850 .63rem ui-monospace,monospace;letter-spacing:.1em}.method2-independence blockquote{font-size:clamp(1.8rem,3.5vw,3.7rem);line-height:.98;letter-spacing:-.045em;margin:0}.method2-independence p{color:#56656b;line-height:1.7;margin:0}
+.method2-evidence{background:#0a151a}.method2-ladders{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid #2a414b;border-left:1px solid #2a414b}.method2-ladders article{padding:28px;border-right:1px solid #2a414b;border-bottom:1px solid #2a414b}.method2-ladders article>span{font:850 .65rem ui-monospace,monospace;letter-spacing:.1em;color:#73e4ff}.method2-ladders ol{list-style:none;padding:0;margin:25px 0 0}.method2-ladders li{padding:10px 0;border-top:1px solid #263a43;color:#9bafb7}.method2-not-equal{margin-top:50px;border-top:1px solid #2b414a}.method2-not-equal>div{display:grid;grid-template-columns:1fr 1fr;padding:16px 0;border-bottom:1px solid #2b414a;font-size:1.05rem}.method2-not-equal span{color:#91a4ad}.method2-not-equal b{color:#d9ff74}
+.method2-state{background:#edf1ee;color:#071014}.method2-state .r1-kicker{color:#0a7188}.method2-state .method2-heading>p{color:#56656b}.method2-state-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#aebbb8;border:1px solid #aebbb8}.method2-state-grid>div{background:#f4f6f3;padding:36px}.method2-state-grid>div>span{font:850 .64rem ui-monospace,monospace;letter-spacing:.1em;color:#0a7188}.method2-state-rule ol{padding-left:22px;margin:30px 0 0}.method2-state-rule li{padding:10px 0;border-bottom:1px solid #c5cecb;color:#4d5d63}.method2-change-gate h3{font-size:clamp(2.3rem,4vw,4.4rem);line-height:.9;letter-spacing:-.055em;margin:25px 0}.method2-change-gate>p{color:#536268}.change-types{display:flex;flex-wrap:wrap;gap:6px;margin:26px 0}.change-types b{font:750 .62rem ui-monospace,monospace;background:#071014;color:#d9ff74;padding:7px 9px}.method2-change-gate ul{padding-left:18px;color:#536268;line-height:1.7}
+.method2-review{background:#d9ff74;color:#071014;padding:80px 0}.method2-review-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}.method2-review h2{font-size:clamp(2.7rem,5vw,5.5rem);line-height:.9;letter-spacing:-.06em;margin:0}.method2-review p{font-size:1.08rem;line-height:1.7}.method2-review a{display:inline-flex;align-items:center;gap:7px;font-weight:850}
+.method2-correction-flow{display:grid;grid-template-columns:1fr 50px 1fr 50px 1fr 50px 1fr;align-items:center}.method2-correction-flow>div{border:1px solid #304750;padding:24px;min-height:210px}.method2-correction-flow>div>span{font:800 .62rem ui-monospace,monospace;color:#d9ff74}.method2-correction-flow strong{display:block;font-size:1.25rem;line-height:1.1;margin:22px 0 12px}.method2-correction-flow p{color:#8fa3ac}.method2-correction-flow>i{display:grid;place-items:center;color:#73e4ff;font-size:1.5rem}
+.method2-machine{background:#0b151a}.method2-machine-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}.method2-machine h2{font-size:clamp(2.8rem,5.4vw,5.8rem);line-height:.89;letter-spacing:-.06em;margin:0}.method2-machine p{color:#95a8b0;line-height:1.7;max-width:720px}.method2-machine-stack{border:1px solid #2d434d;padding:28px}.method2-machine-stack>span{font:850 .64rem ui-monospace,monospace;color:#d9ff74;letter-spacing:.1em}.method2-machine-stack>div{display:grid;grid-template-columns:100px 1fr;border-top:1px solid #2b414a;padding:18px 0;margin-top:18px}.method2-machine-stack b{color:#edf5f4}.method2-machine-stack em{font-style:normal;color:#8197a0}.method2-machine-stack>strong{display:block;border-top:1px solid #2b414a;padding-top:22px;color:#bfefff}
+.method2-abstention{background:#071014;padding:95px 0;border-bottom:1px solid #263943}.method2-abstention span{font:850 .63rem ui-monospace,monospace;letter-spacing:.12em;color:#d9ff74}.method2-abstention blockquote{font-size:clamp(3rem,6vw,6.5rem);line-height:.88;letter-spacing:-.068em;margin:25px 0;max-width:1100px}.method2-abstention p{color:#8ea2ab;max-width:760px}.method2-agent-contract{padding:75px 0;display:grid;grid-template-columns:1fr auto;gap:70px;align-items:end}.method2-agent-contract span{font:850 .63rem ui-monospace,monospace;color:#d9ff74;letter-spacing:.11em}.method2-agent-contract h2{font-size:clamp(2.5rem,4.8vw,5rem);line-height:.92;letter-spacing:-.055em;margin:12px 0}.method2-agent-contract p{color:#8fa3ac;max-width:720px}
+@media(max-width:1050px){.method2-hero-grid,.method2-heading,.method2-state-grid,.method2-review-grid,.method2-machine-grid,.method2-agent-contract{grid-template-columns:1fr}.method2-source-grid{grid-template-columns:1fr 1fr}.method2-independence{grid-template-columns:1fr}.method2-correction-flow{grid-template-columns:1fr}.method2-correction-flow>i{transform:rotate(90deg);height:45px}.method2-agent-contract a{justify-self:start}}
+@media(max-width:700px){.method2-hero{padding-top:50px}.method2-hero h1{font-size:clamp(3.5rem,16vw,5.8rem)}.method2-machine-status>strong{font-size:5.5rem}.method2-index{top:70px;overflow-x:auto;margin-left:0;margin-right:0;width:100%;padding-left:14px}.method2-index a{white-space:nowrap;padding:12px 10px}.method2-pipeline,.method2-sources,.method2-evidence,.method2-state,.method2-corrections,.method2-machine{padding:68px 0}.method2-flow article{grid-template-columns:42px 1fr}.method2-flow article>div:last-child{grid-column:2}.method2-source-grid,.method2-ladders{grid-template-columns:1fr}.method2-source-grid article{min-height:auto}.method2-independence blockquote{font-size:2.2rem}.method2-review{padding:62px 0}.method2-correction-flow>div{min-height:auto}.method2-machine-stack>div{grid-template-columns:1fr}.method2-abstention{padding:70px 0}.method2-agent-contract{padding:58px 0}}
+
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 `);
 
@@ -828,7 +1013,7 @@ await mkdir(new URL("data/", out), { recursive: true });
 await writeFile(new URL("data/future-graph.json", out), JSON.stringify(graph, null, 2) + "\n");
 
 const urls = [
-  "/", "/aujourdhui/", "/questions/", "/methodologie/", "/reality-check/", "/reality-check/ignition-nest-pas-electricite-commerciale/", "/ask/", "/recherche/",
+  "/", "/aujourdhui/", "/questions/", "/methodologie/", "/machine/methodologie.json", "/reality-check/", "/reality-check/ignition-nest-pas-electricite-commerciale/", "/ask/", "/recherche/",
   ...questions.map((q) => "/questions/" + q.slug + "/"),
   ...editorialObs.map((o) => "/machine/observatoires/" + o.slug + ".json"),
   ...articles.map((a) => "/avance/" + a.slug + "/"),
