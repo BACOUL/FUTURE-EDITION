@@ -34,6 +34,8 @@ let predictions=0;
 let correct=0;
 let critical=0;
 let unsafeConfirmed=0;
+let retractedCases=0;
+let retractedConfirmed=0;
 let transportFailures=0;
 let documentsAvailable=0;
 const details=[];
@@ -111,6 +113,11 @@ for(let index=0;index<annotations.length;index++){
     if(confirmation?.confirmed===true) unsafeConfirmed++;
   }
 
+  if(external.labels?.publication_status==="retracted"){
+    retractedCases++;
+    if(confirmation?.confirmed===true) retractedConfirmed++;
+  }
+
   details.push({
     id:annotation.id,
     external_case_id:annotation.external_case_id,
@@ -131,42 +138,90 @@ const ratio=(a,b)=>b===0?null:a/b;
 const metrics={
   claim_evidence_precision:ratio(correct,predictions),
   claim_evidence_recall:ratio(correct,annotations.length),
-  critical_false_confirmed_rate:ratio(unsafeConfirmed,critical)
+  critical_false_confirmed_rate:ratio(unsafeConfirmed,critical),
+  known_retracted_confirmed:retractedConfirmed
 };
 
 const minimumPublicClaimAnnotations=50;
+const minimumUniqueExternalCases=50;
+const minimumFamilies=12;
+const minimumProviders=4;
+const minimumAuthorities=4;
+const uniqueExternalCases=new Set(annotations.map(item=>item.external_case_id)).size;
+const families=new Set(
+  annotations.map(item=>externalById.get(item.external_case_id)?.case_family).filter(Boolean)
+).size;
+const providers=new Set(
+  annotations.map(item=>externalById.get(item.external_case_id)?.candidate?.signal_kind).filter(Boolean)
+).size;
+const authorities=new Set(
+  annotations.flatMap(item=>(item.gold_evidence??[]).map(evidence=>evidence.authority))
+).size;
+const devAnnotations=annotations.filter(item=>item.split==="dev").length;
+const validationAnnotations=annotations.filter(item=>item.split==="validation").length;
+
 const checks={
   transport_clean:transportFailures===0,
   documents_complete:documentsAvailable===annotations.length,
   claim_annotation_scale:annotations.length>=minimumPublicClaimAnnotations,
+  claim_annotation_diversity:
+    uniqueExternalCases>=minimumUniqueExternalCases&&
+    families>=minimumFamilies&&
+    providers>=minimumProviders&&
+    authorities>=minimumAuthorities&&
+    devAnnotations>=25&&
+    validationAnnotations>=15,
   claim_evidence_precision:
     metrics.claim_evidence_precision!==null&&
     metrics.claim_evidence_precision>=thresholds.thresholds.claim_evidence_precision_min,
   critical_false_confirmed_rate:
     metrics.critical_false_confirmed_rate!==null&&
-    metrics.critical_false_confirmed_rate<=thresholds.thresholds.critical_false_confirmed_rate_max
+    metrics.critical_false_confirmed_rate<=thresholds.thresholds.critical_false_confirmed_rate_max,
+  known_retracted_confirmed:
+    metrics.known_retracted_confirmed<=thresholds.thresholds.known_retracted_confirmed_max
 };
+
+const blockers=[];
+if(!checks.claim_annotation_scale) blockers.push("public claim annotation sidecar must reach at least 50 reviewed claims");
+if(!checks.claim_annotation_diversity) blockers.push("public claim annotations do not meet frozen diversity safeguards");
+if(!checks.claim_evidence_precision) blockers.push("claim-to-evidence precision threshold not met");
+if(!checks.critical_false_confirmed_rate) blockers.push("critical false-confirmed safety threshold not met");
+if(!checks.known_retracted_confirmed) blockers.push("a known retracted claim was allowed to become confirmed");
+blockers.push(
+  "atomic claim extraction remains unmeasured; this runner evaluates claim-to-evidence linking only",
+  "external dev+validation corpus must reach 150 cases",
+  "sealed holdout remains unconsumed"
+);
 
 const report={
   protocol:"external-v1-claim-sidecar",
   annotations:annotations.length,
   minimum_public_claim_annotations:minimumPublicClaimAnnotations,
+  diversity:{
+    unique_external_cases:uniqueExternalCases,
+    minimum_unique_external_cases:minimumUniqueExternalCases,
+    families,
+    minimum_families:minimumFamilies,
+    providers,
+    minimum_providers:minimumProviders,
+    authorities,
+    minimum_authorities:minimumAuthorities,
+    dev:devAnnotations,
+    validation:validationAnnotations
+  },
   predictions,
   correct,
   critical_cases:critical,
   unsafe_confirmed:unsafeConfirmed,
+  retracted_cases:retractedCases,
+  retracted_confirmed:retractedConfirmed,
   transport_failures:transportFailures,
   documents_available:documentsAvailable,
   metrics,
   checks,
   gate_eligible:Object.values(checks).every(Boolean),
   full_fe03_gate_eligible:false,
-  blockers:[
-    "public claim annotation sidecar must reach at least 50 reviewed claims",
-    "atomic claim extraction remains unmeasured; this runner evaluates claim-to-evidence linking only",
-    "external dev+validation corpus must reach 150 cases",
-    "sealed holdout remains unconsumed"
-  ],
+  blockers,
   details
 };
 
@@ -178,6 +233,9 @@ console.log(
   "|precision="+String(report.metrics.claim_evidence_precision)+
   "|recall="+String(report.metrics.claim_evidence_recall)+
   "|critical_fcr="+String(report.metrics.critical_false_confirmed_rate)+
+  "|retracted_confirmed="+report.retracted_confirmed+
+  "|unique_cases="+report.diversity.unique_external_cases+
+  "|families="+report.diversity.families+
   "|transport_failures="+report.transport_failures+
   "|gate_eligible="+Number(report.gate_eligible)+
   "|full_fe03_gate_eligible=0"
