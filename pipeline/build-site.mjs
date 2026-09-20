@@ -131,11 +131,18 @@ const writePage = async (path, html) => {
   const dir = clean ? new URL(clean + "/", out) : out;
   const canonical = siteBase + (clean ? "/" + clean + "/" : "/");
   const schemaType = clean.startsWith("avance/") ? "Article" : "WebPage";
+  const articleEntry = articles.find((article) => clean === "avance/" + article.slug);
   const structured = JSON.stringify({
     "@context": "https://schema.org",
     "@type": schemaType,
     url: canonical,
     inLanguage: "fr",
+    ...(articleEntry ? {
+      headline: articleEntry.title,
+      datePublished: articleEntry.published_at,
+      dateModified: articleEntry.updated_at,
+      mainEntityOfPage: canonical
+    } : {}),
     isPartOf: {
       "@type": "WebSite",
       name: "Future Edition",
@@ -619,30 +626,68 @@ for (const article of articles) {
   const machinePacket = {
     schema_version: "fe/agent-answer-packet/v1",
     id: article.id,
+    type: "article",
+    version: 1,
     canonical_url: `https://future-edition.pages.dev/avance/${article.slug}/`,
+    canonical_scientific_object: {
+      type: "event",
+      id: event?.id ?? null,
+      graph_uri: event?.id ? `/data/future-graph.json#${event.id}` : null
+    },
     language: "fr",
     temporal_status: article.temporal_status,
     event_at: event?.event_date ?? null,
+    observed_at: primaryClaim?.observed_at ?? null,
+    retrieved_at: primarySource?.observed_at ?? null,
     published_at: article.published_at,
     updated_at: article.updated_at,
+    valid_from: primaryClaim?.valid_from ?? null,
+    superseded_at: primaryClaim?.valid_to ?? null,
     as_of: article.as_of,
     question_id: article.question_id,
+    question_ids: [article.question_id],
+    technology_ids: event?.technology_ids ?? [],
+    claim_ids: article.related_claim_ids,
+    evidence_ids: article.related_evidence_ids,
+    source_ids: article.related_source_ids,
+    change_id: null,
+    change_status: "NO_VALIDATED_CHANGE",
+    change_reason: "This reference article explains evidence without promoting an observatory milestone; no validated Change exists.",
+    evidence_level: {
+      primary_source_tier: primarySource?.tier ?? null,
+      primary_source_kind: primarySource?.kind ?? null
+    },
+    previous_state: {
+      status: "unassessed",
+      narrative: article.before.text,
+      claim_ids: article.before.claim_ids
+    },
+    resulting_state: {
+      status: "NO_CHANGE",
+      reason: "No validated Change promotes an observatory milestone.",
+      narrative: article.after.text,
+      claim_ids: article.after.claim_ids
+    },
     state: { status: "unassessed", reason: "No validated Change promotes an observatory milestone." },
     before: article.before,
     evidence: article.evidence,
     after: article.after,
     claims: article.related_claim_ids,
-    evidence_ids: article.related_evidence_ids,
     sources: article.related_source_ids,
     confidence: primaryClaim?.confidence ?? null,
     limitations: article.limitations,
     contradictions: [],
     watch_next: article.watch_next,
-    citations: uniqueEvidence.map(({ eid, ev, source }) => ({
+    citations: uniqueEvidence.map(({ eid, ev, claim, source }) => ({
+      claim_id: claim?.id ?? null,
+      claim_version: claim?.version ?? 1,
       evidence_id: eid,
       source_id: source?.id ?? null,
       locator: ev?.locator ?? null,
-      canonical_url: source?.canonical_url ?? null
+      confidence: claim?.confidence ?? null,
+      canonical_url: source?.canonical_url ?? null,
+      valid_from: claim?.valid_from ?? null,
+      superseded_at: claim?.valid_to ?? null
     })),
     abstention: null
   };
@@ -658,7 +703,7 @@ for (const article of articles) {
             <div class="article-eyebrow"><span>AVANCÉE DE RÉFÉRENCE</span><span>${esc(article.temporal_status)}</span><time datetime="${esc(article.published_at)}">Publié ${fmtDate(article.published_at)}</time></div>
             <h1>${esc(article.title)}</h1>
             <p class="article-deck">${esc(article.deck)}</p>
-            <div class="article-meta"><span><b>Événement</b>${fmtDate(event?.event_date)}</span><span><b>Confiance</b>${esc(confidenceLabel[primaryClaim?.confidence] ?? "Non évalué")}</span><span><b>Source primaire du dossier</b>Niveau ${esc(primarySource?.tier ?? "–")}</span><span><b>État</b>Archive · as of ${fmtDate(article.as_of)}</span></div>
+            <div class="article-meta"><span><b>Événement</b>${fmtDate(event?.event_date)}</span><span><b>Publié</b>${fmtDate(article.published_at)}</span><span><b>Mis à jour</b>${fmtDate(article.updated_at)}</span><span><b>Confiance</b>${esc(confidenceLabel[primaryClaim?.confidence] ?? "Non évalué")}</span><span><b>Source primaire du dossier</b>Niveau ${esc(primarySource?.tier ?? "–")}</span><span><b>Statut temporel</b>${esc(article.temporal_status)} · as of ${fmtDate(article.as_of)}</span></div>
           </div>
           <figure class="article-visual" aria-label="Visualisation du changement de seuil au NIF">
             <svg viewBox="0 0 760 620" role="img" aria-labelledby="art-v-title art-v-desc">
