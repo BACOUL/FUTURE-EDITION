@@ -1,0 +1,106 @@
+name: FE03 hidden holdout
+
+on:
+  push:
+    branches: [fe03-hidden-holdout-eval]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  generate-and-seal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    outputs:
+      holdout_key: ${{ steps.encrypt.outputs.key }}
+      holdout_sha: ${{ steps.seal.outputs.sha }}
+      holdout_cases: ${{ steps.seal.outputs.cases }}
+      holdout_claims: ${{ steps.seal.outputs.claims }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fe03-hidden-holdout-eval
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate hidden holdout independently
+        run: |
+          node benchmarks/fe03/generate-hidden-holdout.mjs | tee hidden-generation.log
+          test -s hidden-holdout.json
+      - name: Seal holdout
+        id: seal
+        shell: bash
+        run: |
+          SHA=$(sha256sum hidden-holdout.json | awk '{print $1}')
+          CASES=$(node -e "const x=require('./hidden-holdout.json'); process.stdout.write(String(x.external_cases.length))")
+          CLAIMS=$(node -e "const x=require('./hidden-holdout.json'); process.stdout.write(String(x.claim_annotations.length))")
+          test "$CASES" -ge 50
+          test "$CLAIMS" -ge 15
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "cases=$CASES" >> "$GITHUB_OUTPUT"
+          echo "claims=$CLAIMS" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$SHA" > seal.sha256
+          printf 'cases=%s\nclaims=%s\n' "$CASES" "$CLAIMS" > seal.counts
+      - name: Encrypt sealed holdout
+        id: encrypt
+        shell: bash
+        run: |
+          KEY=$(openssl rand -hex 32)
+          echo "key=$KEY" >> "$GITHUB_OUTPUT"
+          HOLDOUT_KEY="$KEY" openssl enc -aes-256-cbc -salt -pbkdf2 -in hidden-holdout.json -out hidden-holdout.enc -pass env:HOLDOUT_KEY
+          shred -u hidden-holdout.json
+          test ! -e hidden-holdout.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fe03-hidden-sealed-${{ github.run_id }}
+          path: |
+            hidden-holdout.enc
+            seal.sha256
+            seal.counts
+          if-no-files-found: error
+          retention-days: 1
+
+  evaluate-once:
+    needs: generate-and-seal
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: d3aa028642bbfd78bdd334c1f8186f6eb5d58591
+          path: candidate
+      - uses: actions/checkout@v4
+        with:
+          ref: fe03-hidden-holdout-eval
+          path: harness
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: fe03-hidden-sealed-${{ github.run_id }}
+          path: sealed
+      - name: Verify and decrypt sealed holdout
+        shell: bash
+        env:
+          HOLDOUT_KEY: ${{ needs.generate-and-seal.outputs.holdout_key }}
+          EXPECTED_SHA: ${{ needs.generate-and-seal.outputs.holdout_sha }}
+        run: |
+          openssl enc -d -aes-256-cbc -pbkdf2 -in sealed/hidden-holdout.enc -out /tmp/hidden-holdout.json -pass env:HOLDOUT_KEY
+          ACTUAL_SHA=$(sha256sum /tmp/hidden-holdout.json | awk '{print $1}')
+          test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+          test "$ACTUAL_SHA" = "$(cat sealed/seal.sha256)"
+      - name: Install frozen evaluation harness only
+        run: |
+          cp harness/benchmarks/fe03/run-hidden-holdout.mjs candidate/benchmarks/fe03/run-hidden-holdout.mjs
+          cp harness/benchmarks/fe03/thresholds.holdout.v1.json candidate/benchmarks/fe03/thresholds.holdout.v1.json
+      - name: Consume hidden holdout exactly once
+        shell: bash
+        working-directory: candidate
+        env:
+          HOLDOUT_SHA: ${{ needs.generate-and-seal.outputs.holdout_sha }}
+        run: |
+          set -o pipefail
+          node benchmarks/fe03/run-hidden-holdout.mjs --bundle=/tmp/hidden-holdout.json --sha256="$HOLDOUT_SHA" --delay-ms=400 | tee /tmp/fe03-hidden-verdict.log
+          shred -u /tmp/hidden-holdout.json
