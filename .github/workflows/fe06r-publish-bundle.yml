@@ -5,14 +5,17 @@ on:
     branches: [fe06r-publish-bundle]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -24,6 +27,17 @@ jobs:
           node pipeline/build-graph.mjs
           node pipeline/build-site.mjs
           node pipeline/validate-output.mjs
+      - name: Freeze generated dist on publish branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f dist
+          if git diff --cached --quiet; then
+            echo "dist unchanged"
+          else
+            git commit -m "build(FE-06R): freeze PageShare publish dist"
+            git push origin HEAD:fe06r-publish-bundle
+          fi
       - name: Upload static site
         uses: actions/upload-artifact@v4
         with:
