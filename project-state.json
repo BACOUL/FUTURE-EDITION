@@ -1,7 +1,7 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.7.0",
-  "current_stage": "FE-06",
+  "authority_version": "0.8.0",
+  "current_stage": "FE-07",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
     "FE-00B": "PROVISIONAL_COMPLETE",
@@ -10,7 +10,7 @@
     "FE-03": "PROVED",
     "FE-04": "PROVED",
     "FE-05": "PROVED",
-    "FE-06": "NOT_STARTED",
+    "FE-06": "PROVED",
     "FE-07": "NOT_STARTED",
     "FE-08": "NOT_STARTED",
     "FE-09": "NOT_STARTED",
@@ -289,7 +289,28 @@
     "fe05_proof_job_id": 106098682010,
     "fe05_orphan_relations": 0,
     "fe05_fabricated_assessments": 0,
-    "fe05_gate_passed": true
+    "fe05_gate_passed": true,
+    "public_media_pages": 64,
+    "public_observatory_pages": 10,
+    "public_proof_pages": 50,
+    "public_orphan_claims": 0,
+    "public_broken_internal_links": 0,
+    "public_client_javascript": 0,
+    "public_milestone_overclaims": 0,
+    "fe06_css_bytes": 14402,
+    "fe06_home_bytes": 16308,
+    "fe06_browser_qa_widths": [
+      360,
+      390,
+      768,
+      1440
+    ],
+    "fe06_browser_qa_checks": 256,
+    "fe06_browser_qa_overflow_issues": 0,
+    "fe06_proof_run_id": 35519467072,
+    "fe06_proof_job_id": 106100928078,
+    "fe06_artifact_id": 10607448826,
+    "fe06_gate_passed": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -352,15 +373,27 @@
         "all 51 milestone states remain explicitly unassessed; human review remains required and no approval was fabricated",
         "Future Graph rebuilt deterministically at 354 nodes / 451 edges with hash 97cf4f8342b7f2cbd4aea569699327404a3269428b77deae2ba2f869985716ed"
       ]
+    },
+    {
+      "stage": "FE-06",
+      "verdict": "PROVED",
+      "evidence": [
+        "64 static public-media pages built: Home, Aujourd’hui, Questions, Methodology, 10 observatories and 50 evidence dossiers",
+        "public validation passed with orphan_public_claims=0, broken_internal_links=0, client_js=0 and milestone_overclaims=0",
+        "browser QA executed across all 64 pages at 360, 390, 768 and 1440 px: 256 checks, 0 final overflow issues",
+        "20 pre-fix responsive findings were detected and corrected before final proof",
+        "accessibility structure includes lang=fr, skip link, labelled navigation and reduced-motion support",
+        "FE06 independent proof run 35519467072 completed SUCCESS"
+      ]
     }
   ],
   "next_gate": {
-    "stage": "FE-06",
+    "stage": "FE-07",
     "required": [
-      "build the public media surfaces: Home, Aujourd’hui, Questions, advance cards, proof views, radar, timelines and methodology",
-      "derive every public factual statement from Future Graph evidence with no orphan claim",
-      "complete mobile and desktop QA, accessibility checks and performance validation",
-      "keep milestone states unassessed until explicit reviewed Change Engine decisions exist"
+      "implement automated detection, deduplication, classification, primary-source resolution and draft generation",
+      "freeze an independent editorial-intelligence benchmark before final evaluation",
+      "measure precision and safety on the frozen benchmark",
+      "preserve human review for publication and milestone-state changes"
     ]
   },
   "known_non_blocking_environment_constraints": [
@@ -369,7 +402,7 @@
       "description": "This execution environment cannot resolve github.com directly. Repository reads/writes use the connected GitHub integration; FE-01 build no longer requires network access."
     }
   ],
-  "next_stage_after_gate": "FE-07",
+  "next_stage_after_gate": "FE-08",
   "github_actions_dependency": false,
   "github_actions_activation_target": "2026-10-01",
   "failed_gates": [
