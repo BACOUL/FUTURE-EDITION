@@ -56,7 +56,9 @@ export function buildProviderRequest(candidate,{mailto=null}={}){
       provider:candidate.signal_kind,
       format:"json",
       identifier:id,
-      url:"https://api.biorxiv.org/details/"+candidate.signal_kind+"/"+encodeURIComponent(id)+"/na/json"
+      // The official rxiv API treats the DOI slash as a path separator.
+      // Encode DOI path segments individually so "/" remains structural.
+      url:"https://api.biorxiv.org/details/"+candidate.signal_kind+"/"+id.split("/").map(encodeURIComponent).join("/")+"/na/json"
     };
   }
 
