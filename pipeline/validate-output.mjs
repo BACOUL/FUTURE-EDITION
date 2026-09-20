@@ -262,7 +262,10 @@ else {
   try {
     const packet = await readJson(`dist/machine/observatoires/${referenceObs.slug}.json`);
     if (packet.id !== referenceObs.id) errors.push("observatory machine packet id mismatch");
+    if (packet.type !== "observatory_state" || packet.version !== 1) errors.push("observatory machine packet identity/version mismatch");
     if (packet.question_id !== referenceObs.question_id) errors.push("observatory machine packet question mismatch");
+    if (packet.canonical_scientific_object?.id !== referenceObs.question_id) errors.push("observatory machine canonical question mismatch");
+    if (!packet.observed_at || !packet.retrieved_at || !packet.published_at || !packet.updated_at || !packet.valid_from || !packet.as_of) errors.push("observatory machine temporal fields incomplete");
     if (packet.as_of !== referenceObs.as_of) errors.push("observatory machine packet as_of mismatch");
     if (packet.state?.status !== "unassessed") errors.push("observatory machine packet must preserve unassessed state");
     if (packet.events?.length !== referenceObs.evidence_landscape.supporting_event_ids.length) errors.push("observatory machine event count mismatch");
@@ -322,6 +325,9 @@ if (!method.includes("/questions/energie-de-fusion-commerciale/")) errors.push("
 try {
   const contract = await readJson("dist/machine/methodologie.json");
   if (contract.schema_version !== "fe/methodology-contract/v1") errors.push("R4 methodology contract schema mismatch");
+  if (contract.id !== "METHOD-FE06R-V1" || contract.type !== "methodology_contract" || contract.version !== 1) errors.push("R4 methodology contract identity/version mismatch");
+  if (contract.canonical_url !== "https://future-edition.pages.dev/methodologie/" || contract.language !== "fr") errors.push("R4 methodology contract canonical representation mismatch");
+  if (!contract.published_at || !contract.updated_at || !contract.as_of) errors.push("R4 methodology temporal fields incomplete");
   if (contract.canonical_truth !== "future_graph") errors.push("R4 methodology contract canonical truth mismatch");
   if (contract.source_tiers?.D !== "signal_only") errors.push("R4 methodology contract D source rule mismatch");
   if (contract.evidence_scales?.medicine?.length !== 8) errors.push("R4 medicine evidence scale mismatch");
