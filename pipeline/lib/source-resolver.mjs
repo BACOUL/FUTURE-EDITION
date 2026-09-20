@@ -103,7 +103,7 @@ export function buildProviderRequest(candidate,{mailto=null}={}){
 
 function shapeProviderPayload(request,payload){
   if(request.provider==="biorxiv"||request.provider==="medrxiv"){
-    return payload?.collection?.[0]??null;
+    return payload?.collection?.[0]??payload??null;
   }
 
   return payload;
@@ -200,10 +200,11 @@ export async function resolveCandidate(candidate,{fetchFn,mailto=null,retrievedA
     };
   }
 
-  const accept=request.format==="html"?"text/html":request.format==="xml"?"application/xml,text/xml":"application/json";
-  const fetched=await fetchWithRetry(request.url,{
-    headers:{...DEFAULT_HEADERS,accept}
-  },{fetchFn});
+  const accept=request.format==="html"?"text/html,application/xhtml+xml":request.format==="xml"?"application/xml,text/xml":"application/json";
+  const headers=request.format==="html"
+    ?{...DEFAULT_HEADERS,"user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36",accept}
+    :{...DEFAULT_HEADERS,accept};
+  const fetched=await fetchWithRetry(request.url,{headers},{fetchFn});
   let response=fetched.response;
 
   if(fetched.error){
