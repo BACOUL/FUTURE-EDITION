@@ -5,10 +5,11 @@ on:
     branches: [fe06r-final-gate]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -45,7 +46,6 @@ jobs:
       - name: Generate FE-06R final gate dossier
         run: node pipeline/audit-fe06r-final.mjs
       - name: Upload gate dossier
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: fe06r-final-gate
@@ -64,3 +64,26 @@ jobs:
             benchmarks/fe06r/correction-propagation-audit.json
             benchmarks/fe06r/verdict.json
           retention-days: 30
+      - name: Version gate dossier on proof branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add benchmarks/fe06r/gate.v1.json \
+                  benchmarks/fe06r/media-evaluation.json \
+                  benchmarks/fe06r/intelligence-evaluation.json \
+                  benchmarks/fe06r/reference-evaluation.json \
+                  benchmarks/fe06r/agent-native-evaluation.json \
+                  benchmarks/fe06r/scientific-claims-audit.json \
+                  benchmarks/fe06r/responsive-qa.json \
+                  benchmarks/fe06r/link-audit.json \
+                  benchmarks/fe06r/structured-data-audit.json \
+                  benchmarks/fe06r/provenance-audit.json \
+                  benchmarks/fe06r/temporal-audit.json \
+                  benchmarks/fe06r/correction-propagation-audit.json \
+                  benchmarks/fe06r/verdict.json
+          if git diff --cached --quiet; then
+            echo "Gate dossier already versioned"
+          else
+            git commit -m "proof(FE-06R): version automated final gate dossier"
+            git push origin HEAD:fe06r-final-gate
+          fi
