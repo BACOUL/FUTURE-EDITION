@@ -411,10 +411,10 @@
     "fe06r_public_pages_after_r4_build": 71,
     "fe06r_r4_failed_proof_run_id": 35527882661,
     "fe06r_r4_failed_proof_preserved": true,
-    "fe06r_browser_qa_run_id": 35528007600,
-    "fe06r_browser_qa_job_id": 106123463232,
-    "fe06r_browser_qa_candidate_sha": "eba7aa2ed5d089c0b476dc88e57db99b2e2e92de",
-    "fe06r_browser_qa_artifact_id": 10609799718,
+    "fe06r_browser_qa_run_id": 35532295881,
+    "fe06r_browser_qa_job_id": 106134924630,
+    "fe06r_browser_qa_candidate_sha": "d8313b270ffce6d50fd1cf9aeb4f38c608ec9835",
+    "fe06r_browser_qa_artifact_id": 10611312454,
     "fe06r_browser_qa_pages": 4,
     "fe06r_browser_qa_widths": [
       360,
@@ -439,7 +439,15 @@
       35528130966,
       35528168280,
       35528193240
-    ]
+    ],
+    "fe06r_css_bytes": 59933,
+    "fe06r_browser_qa_failed_runs_preserved": [
+      35531949733,
+      35532095057
+    ],
+    "fe06r_mobile_timeglass_layout_fixed": true,
+    "fe06r_mobile_observatory_title_overflow_fixed": true,
+    "fe06r_mobile_dock_label_wrapping_fixed": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
