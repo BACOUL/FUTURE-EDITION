@@ -180,7 +180,8 @@ for(const r of reviews.slice(0,4)) addCase("systematic_review",pubCandidate(r),{
 const neg=await pubmedMany('2024:2026[pdat] AND Randomized Controlled Trial[pt] AND ("no significant difference"[Title/Abstract] OR "did not improve"[Title/Abstract] OR "not significantly"[Title/Abstract])',8,r=>r.status==="active"&&r.abstract.length>80);
 for(const r of neg.slice(0,4)) addCase("negative_result",pubCandidate(r),{...labelsFor(r,true),expected_subject_scope:r.scope==="unknown"?"human":r.scope,expected_evidence_level:r.level==="unknown"?"controlled_human":r.level},ev("pubmed",r.url,["identifier","negative_result_language"]),{claim:claimMeta("negative_result",r.abstract,"pubmed",r.url,r.scope==="unknown"?"human":r.scope)});
 
-for(const r of [...controlled,...active].filter(x=>x.doi).slice(0,3)){
+const dependentBase=await pubmedMany("2023:2026[pdat] AND Journal Article[pt]",8,r=>r.status==="active"&&Boolean(r.doi)&&r.abstract.length>80);
+for(const r of dependentBase.slice(0,3)){
   const relation={relation_type:"same_primary_origin",candidate:{signal_kind:"doi",raw_value:r.doi,origin:"crossref"},basis:["PMID and DOI identify the same publication"]};
   addCase("dependent_echo",pubCandidate(r),labelsFor(r,true),ev("pubmed",r.url,["identifier","same_publication_doi"]),{relations:[relation],claim:claimMeta("dependent_echo",r.abstract,"pubmed",r.url,r.scope)});
 }
