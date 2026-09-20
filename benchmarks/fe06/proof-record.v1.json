@@ -1,0 +1,51 @@
+{
+  "protocol": "FE06-PUBLIC-MEDIA-PROOF-v1",
+  "workflow_run_id": 35519467072,
+  "workflow_job_id": 106100928078,
+  "tested_head_sha": "8a74717e08acc17788521769577175d10f43bf90",
+  "verdict": "PROVED",
+  "public_media": {
+    "pages": 64,
+    "observatories": 10,
+    "proof_pages": 50,
+    "orphan_public_claims": 0,
+    "broken_internal_links": 0,
+    "client_javascript": 0,
+    "milestone_overclaims": 0,
+    "css_bytes": 14402,
+    "home_bytes": 16308,
+    "mobile_breakpoint": true,
+    "reduced_motion": true,
+    "skip_link": true
+  },
+  "browser_qa": {
+    "engine": "Chromium via Playwright",
+    "pages": 64,
+    "widths_px": [
+      360,
+      390,
+      768,
+      1440
+    ],
+    "checks": 256,
+    "overflow_issues": 0,
+    "pre_fix_findings": "20 responsive overflow findings were detected during browser QA; long scientific strings and tablet timeline dates were fixed before final proof."
+  },
+  "graph": {
+    "nodes": 354,
+    "edges": 451,
+    "content_hash": "97cf4f8342b7f2cbd4aea569699327404a3269428b77deae2ba2f869985716ed",
+    "milestone_states_assessed": 0,
+    "milestone_states_unassessed": 51
+  },
+  "compatibility": {
+    "fe04_change_engine": true,
+    "fe05_observatories": true
+  },
+  "artifact": {
+    "github_actions_artifact_id": 10607448826,
+    "name": "fe06-public-media",
+    "digest": "sha256:f857ef0d9e938028c28213583977c9a720360db3ce9944e3187d600353954e05"
+  },
+  "gate_statement": "Public media exposes the Future Graph through Home, Aujourd’hui, ten observatories, milestone radars, timelines, methodology and fifty evidence dossiers with no orphan public claim, no silent milestone overclaim and browser-verified responsive layouts."
+}
