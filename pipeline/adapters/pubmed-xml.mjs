@@ -193,7 +193,7 @@ function studyStage(pubtypes,meshTerms=[],title="",abstract=""){
   const textual=textStudyStage(title,abstract);
   if(textual!=="unknown") return textual;
 
-  if(scope==="mixed"&&explicitAnimal&&!explicitHuman) return "preclinical_animal";
+  if(scope==="mixed") return "preclinical_animal";
   if(scope==="unknown"&&explicitTechnologySignal(meshTerms,title,abstract)) return "technology_benchmark";
   return "unknown";
 }
