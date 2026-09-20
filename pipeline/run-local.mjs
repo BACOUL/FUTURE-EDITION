@@ -6,6 +6,7 @@ const steps = [
   ["validate-relations", ["pipeline/validate-relations.mjs"]],
   ["test-fe02-model", ["pipeline/test-fe02-model.mjs"]],
   ["test-state-resolution", ["pipeline/test-state-resolution.mjs"]],
+  ["test-fe04-change-engine", ["pipeline/test-fe04-change-engine.mjs"]],
   ["test-fe03-core", ["pipeline/test-fe03-core.mjs"]],
   ["test-fe03-crossref", ["pipeline/test-fe03-crossref-integrity.mjs"]],
   ["test-fe03-pubmed", ["pipeline/test-fe03-pubmed-integrity.mjs"]],
