@@ -107,8 +107,9 @@ if (home.includes("Aucune avancée n’est encore déclarée validée.")) {
 }
 
 const today = htmlByPath.get("dist/aujourdhui/index.html") ?? "";
-if (!today.includes("0 changement de jalon approuvé")) errors.push("today page must disclose zero approved milestone changes");
-if (!today.includes("50 événements historiques vérifiés")) errors.push("today page missing verified baseline count");
+if (!today.includes("Aucune nouvelle avancée publiée automatiquement")) errors.push("today page must disclose no current validated feed");
+if (!today.includes("Les 50 événements déjà présents constituent le socle historique")) errors.push("today page must distinguish historical baseline from current news");
+if (!today.includes("Pas de faux")) errors.push("today page must explicitly reject fake real-time presentation");
 
 const method = htmlByPath.get("dist/methodologie/index.html") ?? "";
 for (const phrase of ["Hypothèse", "Préprint", "Animal", "Affirmation", "Événement sourcé", "≠ jalon atteint"]) {
