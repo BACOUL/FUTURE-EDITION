@@ -1,0 +1,20 @@
+name: FE06R Agent Native proof
+
+on:
+  push:
+    branches: [fe06r-agent-native]
+
+permissions:
+  contents: read
+
+jobs:
+  prove-agent-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prove correction propagation and abstention
+        run: node pipeline/test-fe06r-agent-native.mjs
