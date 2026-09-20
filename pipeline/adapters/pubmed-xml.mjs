@@ -161,11 +161,18 @@ function textStudyStage(title="",abstract=""){
 
 function subjectScope(meshTerms=[],title="",abstract=""){
   const scope=meshScope(meshTerms);
+  const titleText=String(title).toLowerCase();
   const text=(String(title)+" "+String(abstract)).toLowerCase();
-  const explicitAnimal=/\b(?:mice|rats|rabbits|murine|porcine|swine)\b/.test(text);
-  const explicitHuman=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/.test(text);
+  const animalRe=/\b(?:mice|rats|rabbits|murine|porcine|swine|mouse model)\b/;
+  const humanRe=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/;
+  const titleAnimal=animalRe.test(titleText);
+  const titleHuman=humanRe.test(titleText);
+  const explicitAnimal=titleAnimal||animalRe.test(text);
+  const explicitHuman=titleHuman||humanRe.test(text);
 
   if(scope==="mixed"){
+    if(titleAnimal&&!titleHuman) return "animal";
+    if(titleHuman&&!titleAnimal&&!explicitAnimal) return "human";
     if(explicitAnimal&&!explicitHuman) return "animal";
     if(explicitHuman&&!explicitAnimal) return "human";
   }
@@ -178,11 +185,16 @@ function subjectScope(meshTerms=[],title="",abstract=""){
 
 function studyStage(pubtypes,meshTerms=[],title="",abstract=""){
   const scope=meshScope(meshTerms);
+  const titleText=String(title).toLowerCase();
   const text=(String(title)+" "+String(abstract)).toLowerCase();
-  const explicitAnimal=/\b(?:mice|rats|rabbits|murine|porcine|swine)\b/.test(text);
-  const explicitHuman=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/.test(text);
+  const animalRe=/\b(?:mice|rats|rabbits|murine|porcine|swine|mouse model)\b/;
+  const humanRe=/\b(?:patients?|participants?|individuals?|subjects?|people|adults?|children|humans?)\b/;
+  const titleAnimal=animalRe.test(titleText);
+  const titleHuman=humanRe.test(titleText);
+  const explicitAnimal=titleAnimal||animalRe.test(text);
+  const explicitHuman=titleHuman||humanRe.test(text);
 
-  if(scope==="animal"||(scope==="unknown"&&explicitAnimal&&!explicitHuman)) return "preclinical_animal";
+  if(scope==="animal"||(scope==="unknown"&&titleAnimal&&!titleHuman)||(scope==="unknown"&&explicitAnimal&&!explicitHuman)) return "preclinical_animal";
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase I"))) return "phase1";
   const textual=textStudyStage(title,abstract);
