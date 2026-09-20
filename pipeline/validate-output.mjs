@@ -2,16 +2,19 @@ import { access, readFile, readdir, stat } from "node:fs/promises";
 
 const root = new URL("../", import.meta.url);
 const readJson = async (path) => JSON.parse(await readFile(new URL(path, root), "utf8"));
-const [questions, events, claims, evidence, sources, editorialFr, editorialArticles] = await Promise.all([
+const [questions, events, claims, evidence, sources, editorialFr, editorialArticles, editorialObservatories] = await Promise.all([
   readJson("data/questions/questions.json"),
   readJson("data/events/events.json"),
   readJson("data/claims/claims.json"),
   readJson("data/evidence/evidence.json"),
   readJson("data/sources/sources.json"),
   readJson("data/editorial/fr/events.json"),
-  readJson("data/editorial/fr/articles.json")
+  readJson("data/editorial/fr/articles.json"),
+  readJson("data/editorial/fr/observatories.json")
 ]);
 const articles = editorialArticles.entries ?? [];
+const editorialObs = editorialObservatories.entries ?? [];
+const editorialObsByQuestion = new Map(editorialObs.map((o) => [o.question_id, o]));
 
 const required = [
   "dist/index.html",
@@ -24,6 +27,7 @@ const required = [
   "dist/recherche/index.html",
   ...articles.map((a) => `dist/avance/${a.slug}/index.html`),
   ...articles.map((a) => `dist/machine/avance/${a.slug}.json`),
+  ...editorialObs.map((o) => `dist/machine/observatoires/${o.slug}.json`),
   "dist/assets/styles.css",
   "dist/data/future-graph.json",
   "dist/robots.txt",
@@ -186,6 +190,56 @@ for (const text of ["QUESTION", "CHANGE / ARTICLE", "CLAIM / EVIDENCE"]) {
   if (!search.includes(text)) errors.push(`search prototype missing result type: ${text}`);
 }
 
+const referenceObs = editorialObs[0];
+if (!referenceObs) errors.push("reference observatory editorial model missing");
+else {
+  const obsPath = `dist/questions/${referenceObs.slug}/index.html`;
+  const obsPage = htmlByPath.get(obsPath) ?? "";
+  for (const text of [
+    "STATE ROOM",
+    "TIMEGLASS",
+    "La trajectoire des preuves.",
+    "MILESTONE FIELD",
+    "Six conditions. Aucun raccourci.",
+    "COMPETING PATHS",
+    "Trois architectures, trois trajectoires.",
+    "EVIDENCE LANDSCAPE",
+    "CONTRADICTION SPLIT",
+    "WATCH HORIZON",
+    "AGENT STATE",
+    "État canonique non évalué"
+  ]) if (!obsPage.includes(text)) errors.push(`reference observatory missing: ${text}`);
+
+  for (const eventId of referenceObs.evidence_landscape.supporting_event_ids) {
+    if (!obsPage.includes(eventId)) errors.push(`reference observatory missing evidence event ${eventId}`);
+    if (!obsPage.includes(`/preuves/${eventId.toLowerCase()}/`)) errors.push(`reference observatory missing proof route for ${eventId}`);
+  }
+
+  for (const path of referenceObs.paths) {
+    if (!obsPage.includes(path.label)) errors.push(`reference observatory missing path: ${path.label}`);
+  }
+
+  if (!obsPage.includes(`/machine/observatoires/${referenceObs.slug}.json`)) errors.push("reference observatory missing machine state route");
+  if (!obsPage.includes("/avance/nif-ignition-fusion-2022/")) errors.push("reference observatory missing advancement route");
+  if (!obsPage.includes("/reality-check/ignition-nest-pas-electricite-commerciale/")) errors.push("reference observatory missing Reality Check route");
+  if (obsPage.includes("radar-card") || obsPage.includes("radar-center")) errors.push("reference observatory must not contain decorative radar");
+  if (obsPage.includes("%") && /progress|completion|complete/i.test(obsPage)) errors.push("reference observatory contains suspicious percentage progress UI");
+
+  try {
+    const packet = await readJson(`dist/machine/observatoires/${referenceObs.slug}.json`);
+    if (packet.id !== referenceObs.id) errors.push("observatory machine packet id mismatch");
+    if (packet.question_id !== referenceObs.question_id) errors.push("observatory machine packet question mismatch");
+    if (packet.as_of !== referenceObs.as_of) errors.push("observatory machine packet as_of mismatch");
+    if (packet.state?.status !== "unassessed") errors.push("observatory machine packet must preserve unassessed state");
+    if (packet.events?.length !== referenceObs.evidence_landscape.supporting_event_ids.length) errors.push("observatory machine event count mismatch");
+    if (packet.milestone_states?.some((m) => m.status !== "unassessed")) errors.push("observatory machine packet fabricated milestone state");
+    if (packet.paths?.length !== referenceObs.paths.length) errors.push("observatory machine paths mismatch");
+    if (packet.evidence_landscape?.contradicting_event_ids?.length !== 0) errors.push("reference observatory contradiction set changed unexpectedly");
+  } catch (error) {
+    errors.push("observatory machine packet invalid JSON: " + error.message);
+  }
+}
+
 const method = htmlByPath.get("dist/methodologie/index.html") ?? "";
 for (const phrase of ["Hypothèse", "Préprint", "Animal", "Affirmation", "Événement sourcé", "≠ jalon atteint"]) {
   if (!method.includes(phrase)) errors.push(`methodology missing epistemic rule: ${phrase}`);
@@ -197,8 +251,13 @@ for (const q of questions) {
   if (!page.includes(q.title)) errors.push(`${q.id}: title missing`);
   if (!page.includes("État canonique non évalué")) errors.push(`${q.id}: State Plate must disclose unassessed state`);
   if (page.includes("radar-card") || page.includes("radar-center")) errors.push(`${q.id}: decorative radar must not remain`);
-  if (!page.includes("La route vers une réponse.")) errors.push(`${q.id}: milestone section missing`);
-  if (!page.includes("Chronologie fondatrice")) errors.push(`${q.id}: timeline missing`);
+  if (q.id === "Q-006") {
+    if (!page.includes("MILESTONE FIELD")) errors.push(`${q.id}: R3 milestone field missing`);
+    if (!page.includes("TIMEGLASS")) errors.push(`${q.id}: R3 Timeglass missing`);
+  } else {
+    if (!page.includes("La route vers une réponse.")) errors.push(`${q.id}: milestone section missing`);
+    if (!page.includes("Chronologie fondatrice")) errors.push(`${q.id}: timeline missing`);
+  }
   if (!page.includes(profileLabel[q.evidence_profile] ?? q.evidence_profile)) errors.push(`${q.id}: French evidence-profile label missing`);
   const qEvents = events.filter((e) => e.question_ids.includes(q.id));
   if (qEvents.length < 5) errors.push(`${q.id}: less than five source-backed events`);
@@ -262,6 +321,7 @@ const internalRouteSet = new Set([
   "/recherche/",
   ...articles.map((a) => `/avance/${a.slug}/`),
   ...articles.map((a) => `/machine/avance/${a.slug}.json`),
+  ...editorialObs.map((o) => `/machine/observatoires/${o.slug}.json`),
   ...questions.map((q) => `/questions/${q.slug}/`),
   ...events.map((e) => `/preuves/${e.id.toLowerCase()}/`)
 ]);
@@ -283,7 +343,7 @@ if (homeBytes > 70000) errors.push(`home HTML budget exceeded: ${homeBytes}`);
 if (!css.includes("@media(max-width:620px)")) errors.push("mobile breakpoint missing");
 if (!css.includes("@media(prefers-reduced-motion:reduce)")) errors.push("reduced-motion support missing");
 if (!css.includes(":focus")) errors.push("focus affordance missing");
-for (const primitive of [".state-plate", ".delta-block", ".evidence-spine", ".watch-horizon", ".mobile-dock"]) {
+for (const primitive of [".state-plate", ".delta-block", ".evidence-spine", ".watch-horizon", ".mobile-dock", ".obs2-timeglass", ".obs2-evidence-grid", ".obs2-contradiction"]) {
   if (!css.includes(primitive)) errors.push(`media-2.0 primitive CSS missing: ${primitive}`);
 }
 if (!css.includes("@media(max-width:700px)")) errors.push("media-2.0 mobile breakpoint missing");
@@ -298,7 +358,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|delta=1|state_plate=1|evidence_spine=1|reality_check=1|agent_packet=1|historical_news_separation=1|home_bytes=${homeBytes}`);
+console.log(`FE06R_REFERENCE_SURFACES_PASS|reference_article=${articles.length}|reference_observatory=${editorialObs.length}|delta=1|state_plate=1|evidence_spine=1|timeglass=1|evidence_landscape=1|contradiction_split=1|reality_check=1|agent_packet=1|observatory_packet=1|historical_news_separation=1|home_bytes=${homeBytes}`);
 
 console.log(
   `FE06_PUBLIC_MEDIA_PASS|pages=${htmlPaths.length}|observatories=${questions.length}` +
