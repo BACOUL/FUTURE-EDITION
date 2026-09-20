@@ -161,7 +161,7 @@ const layout = (title, description, body, { active = "" } = {}) => `<!doctype ht
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="${esc(description)}"><meta name="theme-color" content="#060b10">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta name="twitter:card" content="summary">
-<title>${esc(title)}</title><link rel="stylesheet" href="/assets/styles.css">
+<title>${esc(title)}</title><link rel="stylesheet" href="/assets/styles-fe06r-v14.css">
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -1280,7 +1280,7 @@ await writeFile(new URL("assets/styles.css", out), `
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 `.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\n/g, "").replace(/ui-monospace,monospace/g, "ui-monospace"));
 
-await mkdir(new URL("data/", out), { recursive: true });
+await writeFile(new URL("assets/styles-fe06r-v14.css", out), await readFile(new URL("assets/styles.css", out)));\n\nawait mkdir(new URL("data/", out), { recursive: true });
 await writeFile(new URL("data/future-graph.json", out), JSON.stringify(graph, null, 2) + "\n");
 
 const urls = [
