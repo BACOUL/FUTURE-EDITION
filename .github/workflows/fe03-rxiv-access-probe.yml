@@ -1,0 +1,37 @@
+name: FE03 rxiv access probe
+
+on:
+  push:
+    branches: [fe03-rxiv-access-probe]
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe medRxiv routes
+        shell: bash
+        run: |
+          set -u
+          DOI='10.64898/2026.08.19.26360819'
+          UA1='FutureEditionEvidence/0.1 (+https://github.com/BACOUL/FUTURE-EDITION)'
+          UA2='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          probe () {
+            name="$1"; ua="$2"; url="$3"
+            code=$(curl -L --max-time 20 -A "$ua" -sS -o "/tmp/$name.body" -w '%{http_code}' "$url" || true)
+            bytes=$(wc -c < "/tmp/$name.body" 2>/dev/null || echo 0)
+            printf 'RXIV_PROBE|%s|code=%s|bytes=%s|url=%s\n' "$name" "$code" "$bytes" "$url"
+            head -c 180 "/tmp/$name.body" 2>/dev/null | tr '\n' ' ' | sed 's/|/ /g' | sed "s/^/RXIV_BODY|$name|/"
+            printf '\n'
+          }
+          probe api_direct "$UA1" "https://api.biorxiv.org/details/medrxiv/$DOI/na/json"
+          probe date_collection "$UA1" "https://api.biorxiv.org/details/medrxiv/2026-08-19/2026-08-19/0/json"
+          probe html_unversioned "$UA1" "https://www.medrxiv.org/content/$DOI"
+          probe html_v1_default "$UA1" "https://www.medrxiv.org/content/${DOI}v1"
+          probe html_v1_browser "$UA2" "https://www.medrxiv.org/content/${DOI}v1"
+          probe html_full_browser "$UA2" "https://www.medrxiv.org/content/${DOI}v1.full"
+          probe crossref "$UA1" "https://api.crossref.org/works/10.64898%2F2026.08.19.26360819"
