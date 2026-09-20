@@ -1,0 +1,23 @@
+{
+  "version": "holdout-v3",
+  "frozen_after_candidate_v3_before_holdout_generation": true,
+  "candidate_sha": "28451d3207a630ac53fed377c5a4a1e126ced87a",
+  "previous_holdouts": [
+    {
+      "sha256": "62bd2cbc702bc1da4fb24dfb9a519795c8ca7809eae5df71533142320ea85ee0",
+      "reusable": false
+    },
+    {
+      "sha256": "840042d9f5a03fe3cf5a306b7c386c6de8d80a79ccdd622be4c3917c1f6c27b6",
+      "reusable": false
+    }
+  ],
+  "minimum_hidden_cases": 50,
+  "minimum_hidden_claim_annotations": 15,
+  "minimum_claim_prediction_coverage": 0.25,
+  "atomic_gold_passage_recall_min": 0.85,
+  "require_zero_transport_failures": true,
+  "require_verified_locator_rate": 1,
+  "require_machine_proposed_rate": 1,
+  "note": "No threshold is weakened. V3 uses fresh source windows disjoint from V2 hidden and the V2/V3 diagnostics; prior hidden holdouts are never reused."
+}
