@@ -90,6 +90,53 @@ const animalXml=`<?xml version="1.0"?>
   </PubmedArticle>
 </PubmedArticleSet>`;
 
+const laggedRctXml=`<?xml version="1.0"?>
+<PubmedArticleSet><PubmedArticle><MedlineCitation>
+<PMID>90000002</PMID><Article>
+<ArticleTitle>A randomized controlled trial of a synthetic intervention</ArticleTitle>
+<Abstract><AbstractText>We conducted a randomized controlled trial in 120 adults.</AbstractText></Abstract>
+<PublicationTypeList><PublicationType>Journal Article</PublicationType></PublicationTypeList>
+</Article><MeshHeadingList><MeshHeading><DescriptorName>Humans</DescriptorName></MeshHeading></MeshHeadingList>
+</MedlineCitation><PubmedData><ArticleIdList><ArticleId IdType="pubmed">90000002</ArticleId></ArticleIdList></PubmedData>
+</PubmedArticle></PubmedArticleSet>`;
+
+const laggedPhase1Xml=`<?xml version="1.0"?>
+<PubmedArticleSet><PubmedArticle><MedlineCitation>
+<PMID>90000003</PMID><Article>
+<ArticleTitle>A first-in-human phase 1 trial of a synthetic therapy</ArticleTitle>
+<Abstract><AbstractText>This phase 1 study evaluated safety and tolerability in adults.</AbstractText></Abstract>
+<PublicationTypeList><PublicationType>Journal Article</PublicationType></PublicationTypeList>
+</Article><MeshHeadingList><MeshHeading><DescriptorName>Humans</DescriptorName></MeshHeading></MeshHeadingList>
+</MedlineCitation><PubmedData><ArticleIdList><ArticleId IdType="pubmed">90000003</ArticleId></ArticleIdList></PubmedData>
+</PubmedArticle></PubmedArticleSet>`;
+
+const technologyXml=`<?xml version="1.0"?>
+<PubmedArticleSet><PubmedArticle><MedlineCitation>
+<PMID>90000004</PMID><Article>
+<ArticleTitle>Deep learning benchmark for synthetic disease classification</ArticleTitle>
+<Abstract><AbstractText>The classifier achieved 97 percent accuracy in benchmark evaluation.</AbstractText></Abstract>
+<PublicationTypeList><PublicationType>Journal Article</PublicationType></PublicationTypeList>
+</Article><MeshHeadingList>
+<MeshHeading><DescriptorName>Deep Learning</DescriptorName></MeshHeading>
+<MeshHeading><DescriptorName>Convolutional Neural Networks</DescriptorName></MeshHeading>
+</MeshHeadingList>
+</MedlineCitation><PubmedData><ArticleIdList><ArticleId IdType="pubmed">90000004</ArticleId></ArticleIdList></PubmedData>
+</PubmedArticle></PubmedArticleSet>`;
+
+const laggedRctRecord=parsePubmedXml(laggedRctXml);
+const laggedPhase1Record=parsePubmedXml(laggedPhase1Xml);
+const technologyRecord=parsePubmedXml(technologyXml);
+
+if(laggedRctRecord?.study_stage!=="randomized_trial"||laggedRctRecord?.subject_scope!=="human"){
+  throw new Error("PubMed explicit randomized fallback failed");
+}
+if(laggedPhase1Record?.study_stage!=="phase1"||laggedPhase1Record?.subject_scope!=="human"){
+  throw new Error("PubMed explicit phase I fallback failed");
+}
+if(technologyRecord?.study_stage!=="technology_benchmark"||technologyRecord?.subject_scope!=="technology"){
+  throw new Error("PubMed explicit technology benchmark fallback failed");
+}
+
 const animalRecord=parsePubmedXml(animalXml);
 if(animalRecord?.study_stage!=="preclinical_animal"){
   throw new Error("PubMed animal-only MeSH mapping failed");
@@ -164,4 +211,4 @@ if(noticeDossier.safety.decision!=="investigate"){
   throw new Error("PubMed retraction notice bypassed integrity gate");
 }
 
-console.log("FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|doi_independence=1|animal_mesh_stage=1|mixed_scope=1|notice_review_gate=1");
+console.log("FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|doi_independence=1|animal_mesh_stage=1|mixed_scope=1|lagged_rct=1|lagged_phase1=1|technology_benchmark=1|notice_review_gate=1");
