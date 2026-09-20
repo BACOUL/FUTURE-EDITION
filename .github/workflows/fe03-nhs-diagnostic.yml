@@ -12,13 +12,15 @@ jobs:
         run: |
           node --input-type=module - <<'NODE'
           const urls=[
-            "https://www.england.nhs.uk/feed/",
-            "https://www.england.nhs.uk/?s=Copilot&feed=rss2",
-            "https://www.england.nhs.uk/?s=artificial%20intelligence&feed=rss2"
+            "https://www.england.nhs.uk/2026/07/feed/",
+            "https://www.england.nhs.uk/2026/06/feed/",
+            "https://www.england.nhs.uk/2026/01/feed/",
+            "https://www.england.nhs.uk/midlands/2026/07/feed/",
+            "https://www.england.nhs.uk/south/2026/02/feed/"
           ];
           for(const url of urls){
             const r=await fetch(url,{headers:{"user-agent":"FutureEditionEvidence/0.1 (+https://github.com/BACOUL/FUTURE-EDITION)","accept":"application/rss+xml,application/xml,text/xml"}});
             const body=await r.text();
-            console.log("NHS_FEED_DIAG",JSON.stringify({url,status:r.status,type:r.headers.get("content-type"),length:body.length,head:body.slice(0,400)}));
+            console.log("NHS_FEED_DIAG",JSON.stringify({url,status:r.status,type:r.headers.get("content-type"),length:body.length,hasCopilot:body.includes("Microsoft Copilot"),hasAI:body.toLowerCase().includes("artificial intelligence"),head:body.slice(0,180)}));
           }
           NODE
