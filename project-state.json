@@ -213,7 +213,22 @@
     "fe03_hidden_atomic_gold_passage_recall": 0.9583333333333334,
     "fe03_hidden_verified_locator_rate": 1,
     "fe03_hidden_machine_proposed_rate": 1,
-    "fe03_hidden_holdout_v1_rerun_forbidden": true
+    "fe03_hidden_holdout_v1_rerun_forbidden": true,
+    "fe03_hidden_holdout_v2_cases": 60,
+    "fe03_hidden_holdout_v2_claims": 24,
+    "fe03_hidden_holdout_v2_families": 12,
+    "fe03_hidden_holdout_v2_sha256": "840042d9f5a03fe3cf5a306b7c386c6de8d80a79ccdd622be4c3917c1f6c27b6",
+    "fe03_hidden_holdout_v2_verdict": "FAIL",
+    "fe03_hidden_holdout_v2_workflow_run_id": 35512277680,
+    "fe03_hidden_primary_source_recall_v2": 0.9090909090909091,
+    "fe03_hidden_publication_status_precision_v2": 0.9090909090909091,
+    "fe03_hidden_evidence_level_precision_v2": 0.8809523809523809,
+    "fe03_hidden_claim_evidence_precision_v2": 1,
+    "fe03_hidden_claim_prediction_coverage_v2": 0.7916666666666666,
+    "fe03_hidden_critical_false_confirmed_rate_v2": 0,
+    "fe03_hidden_atomic_gold_passage_recall_v2": 0.9583333333333334,
+    "fe03_hidden_holdout_v2_rerun_forbidden": true,
+    "fe03_candidate_v2_sha": "61d247da71a03e80a7275ba0c792a079f7221701"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -246,13 +261,13 @@
   "next_gate": {
     "stage": "FE-03",
     "required": [
-      "diagnose evidence-level generalization on a fresh non-holdout diagnostic corpus without reusing the consumed hidden holdout",
-      "improve evidence-level classification without weakening frozen external-v1 thresholds or safety gates",
-      "rerun and pass the 150-case public benchmark plus atomic and claim-link gates",
-      "freeze a new FE-03 candidate SHA",
-      "create and seal a new independent hidden holdout with >=50 fresh cases",
-      "consume that new holdout once",
-      "all frozen thresholds pass including evidence_level_precision >= 0.95 and critical false-confirmed rate = 0",
+      "diagnose the aggregate V2 provider-resolution failure on a fresh non-holdout provider corpus without reading hidden case identities",
+      "fix provider resolution without weakening any frozen threshold or safety gate",
+      "pass fresh provider diagnostic and the full public FE-03 proof",
+      "freeze candidate-v3 SHA and critical file manifest",
+      "create and seal a fresh independent hidden holdout V3 with >=50 cases and >=15 claim annotations",
+      "consume holdout V3 once",
+      "all frozen external-v1, atomic-v1 and holdout safeguards pass",
       "human review queue remains mandatory"
     ]
   },
@@ -279,6 +294,25 @@
         "publication_status_precision=1",
         "source_independence_precision=1",
         "claim_evidence_precision=1",
+        "critical_false_confirmed_rate=0",
+        "known_retracted_confirmed=0",
+        "atomic_gold_passage_recall=0.9583333333333334",
+        "verified_locator_rate=1",
+        "machine_proposed_rate=1"
+      ]
+    },
+    {
+      "stage": "FE-03",
+      "verdict": "FAIL",
+      "protocol": "FE03-HIDDEN-HOLDOUT-v2",
+      "candidate_sha": "61d247da71a03e80a7275ba0c792a079f7221701",
+      "holdout_sha256": "840042d9f5a03fe3cf5a306b7c386c6de8d80a79ccdd622be4c3917c1f6c27b6",
+      "reason": "primary_source_recall=0.9091, publication_status_precision=0.9091, evidence_level_precision=0.8810 below frozen thresholds; all safety and claim gates preserved",
+      "preserved_passes": [
+        "primary_source_precision=1",
+        "source_independence_precision=1",
+        "claim_evidence_precision=1",
+        "claim_prediction_coverage=0.7916666666666666",
         "critical_false_confirmed_rate=0",
         "known_retracted_confirmed=0",
         "atomic_gold_passage_recall=0.9583333333333334",
