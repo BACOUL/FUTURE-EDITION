@@ -1,0 +1,34 @@
+{
+  "protocol": "FE03-HIDDEN-HOLDOUT-v2",
+  "consumed_once": true,
+  "workflow_run_id": 35512277680,
+  "candidate_sha": "61d247da71a03e80a7275ba0c792a079f7221701",
+  "holdout_sha256": "840042d9f5a03fe3cf5a306b7c386c6de8d80a79ccdd622be4c3917c1f6c27b6",
+  "hidden_cases": 60,
+  "hidden_claim_annotations": 24,
+  "hidden_families": 12,
+  "metrics": {
+    "primary_source_precision": 1,
+    "primary_source_recall": 0.9090909090909091,
+    "publication_status_precision": 0.9090909090909091,
+    "evidence_level_precision": 0.8809523809523809,
+    "source_independence_precision": 1,
+    "claim_evidence_precision": 1,
+    "claim_prediction_coverage": 0.7916666666666666,
+    "critical_false_confirmed_rate": 0,
+    "known_retracted_confirmed": 0,
+    "atomic_gold_passage_recall": 0.9583333333333334,
+    "verified_locator_rate": 1,
+    "machine_proposed_rate": 1
+  },
+  "transport_failures": 0,
+  "failed_checks": [
+    "primary_source_recall",
+    "publication_status_precision",
+    "evidence_level_precision"
+  ],
+  "verdict": "FAIL",
+  "rerun_same_holdout_forbidden": true,
+  "diagnostic_constraint": "Do not inspect or tune on hidden case identities. Diagnose only with a fresh non-holdout corpus.",
+  "aggregate_pattern": "Three failed metrics are consistent with five expected-resolvable evidence-bearing sources not resolving; fresh provider diagnostic required."
+}
