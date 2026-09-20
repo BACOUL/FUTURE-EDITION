@@ -128,7 +128,43 @@ function meshScope(meshTerms=[]){
   return "unknown";
 }
 
-function studyStage(pubtypes,meshTerms=[]){
+function explicitTechnologySignal(meshTerms=[],title="",abstract=""){
+  const mesh=meshTerms.map(value=>String(value).trim().toLowerCase());
+  const technologyMesh=mesh.some(value=>
+    value.includes("artificial intelligence")||
+    value.includes("deep learning")||
+    value.includes("convolutional neural network")||
+    value.includes("neural networks, computer")
+  );
+  if(!technologyMesh) return false;
+
+  const text=(String(title)+" "+String(abstract)).toLowerCase();
+  return /\b(?:benchmark|classification|classifier|accuracy|model performance|evaluation)\b/.test(text);
+}
+
+function textStudyStage(title="",abstract=""){
+  const text=(String(title)+" "+String(abstract)).toLowerCase();
+
+  if(/\bphase\s*(?:i|1)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase1";
+  if(/\bphase\s*(?:ii|2)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase2";
+  if(/\bphase\s*(?:iii|3)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "phase3";
+  if(/\b(?:randomized|randomised)\b/.test(text)&&/\b(?:trial|study|experiment)\b/.test(text)) return "randomized_trial";
+  if(/\b(?:systematic review|meta-analysis|meta analysis)\b/.test(text)) return "systematic_review";
+  if(/\b(?:observational|cohort|cross-sectional|retrospective|prospective)\b/.test(text)&&/\b(?:patient|patients|participant|participants|adult|adults|children|people|human|humans)\b/.test(text)){
+    return "observational_human";
+  }
+
+  return "unknown";
+}
+
+function subjectScope(meshTerms=[],title="",abstract=""){
+  const scope=meshScope(meshTerms);
+  if(scope!=="unknown") return scope;
+  if(explicitTechnologySignal(meshTerms,title,abstract)) return "technology";
+  return "unknown";
+}
+
+function studyStage(pubtypes,meshTerms=[],title="",abstract=""){
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase I"))) return "phase1";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase II"))) return "phase2";
   if(pubtypes.some(x=>x.includes("Clinical Trial, Phase III"))) return "phase3";
@@ -136,8 +172,12 @@ function studyStage(pubtypes,meshTerms=[]){
   if(pubtypes.includes("Systematic Review")||pubtypes.includes("Meta-Analysis")) return "systematic_review";
   if(pubtypes.includes("Observational Study")) return "observational_human";
 
+  const textual=textStudyStage(title,abstract);
+  if(textual!=="unknown") return textual;
+
   const scope=meshScope(meshTerms);
   if(scope==="animal"||scope==="mixed") return "preclinical_animal";
+  if(scope==="unknown"&&explicitTechnologySignal(meshTerms,title,abstract)) return "technology_benchmark";
   return "unknown";
 }
 
@@ -212,8 +252,8 @@ export function parsePubmedXml(xml){
     pubtypes,
     publication_status:publicationStatus(pubtypes,relations),
     kind:publicationKind(pubtypes),
-    study_stage:studyStage(pubtypes,meshTerms),
-    subject_scope:meshScope(meshTerms),
+    study_stage:studyStage(pubtypes,meshTerms,title,abstract),
+    subject_scope:subjectScope(meshTerms,title,abstract),
     peer_reviewed:true,
     integrity_relations:relations,
     url:"https://pubmed.ncbi.nlm.nih.gov/"+pmid+"/",
