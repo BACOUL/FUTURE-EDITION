@@ -1,0 +1,158 @@
+{
+  "schema_version": "fe/article/v1",
+  "entries": [
+    {
+      "id": "ART-000001",
+      "slug": "nif-ignition-fusion-2022",
+      "event_id": "EV-2022-006002",
+      "question_id": "Q-006",
+      "temporal_status": "HISTORICAL_BASELINE",
+      "published_at": "2026-09-20",
+      "updated_at": "2026-09-20",
+      "as_of": "2026-09-20",
+      "title": "Le NIF a franchi l’ignition. Ce que cette preuve change — et ce qu’elle ne change pas.",
+      "deck": "Le tir du 5 décembre 2022 a produit environ 3,15 MJ d’énergie de fusion après 2,05 MJ d’énergie laser délivrée à la cible. C’est une étape expérimentale majeure, mais pas encore une démonstration de production électrique commerciale.",
+      "before": {
+        "label": "Avant",
+        "text": "En août 2021, le NIF avait produit environ 1,35 MJ d’énergie de fusion, soit près de 70 % de l’énergie laser délivrée à la cible : le seuil d’ignition n’était pas encore franchi selon cette comparaison.",
+        "claim_ids": [
+          "CLAIM-050026"
+        ],
+        "evidence_ids": [
+          "EVID-050026"
+        ]
+      },
+      "evidence": {
+        "label": "Nouvelle preuve",
+        "text": "Le tir du 5 décembre 2022 a délivré 2,05 MJ d’énergie laser à la cible et produit environ 3,15 MJ d’énergie de fusion.",
+        "claim_ids": [
+          "CLAIM-050027"
+        ],
+        "evidence_ids": [
+          "EVID-050027"
+        ]
+      },
+      "after": {
+        "label": "Après",
+        "text": "L’ignition en laboratoire devient un résultat expérimental démontré dans cette configuration. Cela ne suffit pas à conclure qu’un système de fusion peut déjà produire de l’électricité de manière durable, industrielle ou commercialement viable.",
+        "claim_ids": [
+          "CLAIM-050027"
+        ],
+        "evidence_ids": [
+          "EVID-050027"
+        ]
+      },
+      "why_it_matters": "La frontière scientifique a changé : la question n’est plus seulement de savoir si l’on peut dépasser, au niveau de la cible, l’énergie laser reçue. Les étapes suivantes portent sur la reproductibilité, la durée, le rendement global du système, la conversion en électricité et l’intégration industrielle.",
+      "does_not_prove": [
+        "que l’installation complète produit plus d’énergie qu’elle n’en consomme",
+        "qu’une centrale peut convertir ce résultat en électricité exploitable",
+        "qu’un fonctionnement continu ou industriel est démontré",
+        "que la fusion est déjà commercialement viable"
+      ],
+      "limitations": [
+        "Le résultat concerne une expérience de confinement inertiel au NIF et une comparaison entre énergie laser délivrée à la cible et énergie de fusion produite.",
+        "La source de référence de cet événement est une communication institutionnelle classée niveau B dans le corpus Future Edition.",
+        "Aucun jalon de l’observatoire n’est automatiquement marqué comme atteint : l’état canonique reste non évalué tant qu’un Change validé n’existe pas."
+      ],
+      "watch_next": [
+        {
+          "milestone_id": "Q-006-M2",
+          "text": "Répéter le résultat de manière contrôlée."
+        },
+        {
+          "milestone_id": "Q-006-M4",
+          "text": "Démontrer qu’un système intégré convertit effectivement la fusion en électricité exploitable."
+        },
+        {
+          "milestone_id": "Q-006-M5",
+          "text": "Faire fonctionner un démonstrateur sous contraintes industrielles."
+        }
+      ],
+      "sections": [
+        {
+          "id": "sec-1",
+          "title": "Le seuil qui a changé",
+          "paragraphs": [
+            {
+              "text": "Un an avant le tir historique, le NIF avait déjà fortement rapproché la fusion inertielle de l’ignition : l’expérience du 8 août 2021 avait produit environ 1,35 MJ d’énergie de fusion, soit près de 70 % de l’énergie laser délivrée à la cible.",
+              "evidence_ids": [
+                "EVID-050026"
+              ]
+            },
+            {
+              "text": "Le 5 décembre 2022, la relation s’inverse à l’échelle de la cible : 2,05 MJ d’énergie laser délivrée, environ 3,15 MJ d’énergie de fusion produite. C’est ce changement précis que Future Edition considère ici comme l’information centrale.",
+              "evidence_ids": [
+                "EVID-050027"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sec-2",
+          "title": "Pourquoi « ignition » ne veut pas dire « centrale »",
+          "paragraphs": [
+            {
+              "text": "Le résultat démontre une étape de physique expérimentale. Il ne mesure pas à lui seul le bilan énergétique complet d’une installation, qui inclut notamment la production du laser, les systèmes auxiliaires, la cadence, les matériaux et la conversion future en électricité.",
+              "evidence_ids": [
+                "EVID-050027"
+              ]
+            },
+            {
+              "text": "Dans l’observatoire Future Edition, les jalons « production électrique », « démonstrateur industriel » et « viabilité commerciale » restent donc des questions distinctes et non évaluées.",
+              "evidence_ids": [
+                "EVID-050027"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sec-3",
+          "title": "Ce qui s’est passé ensuite",
+          "paragraphs": [
+            {
+              "text": "En juillet 2023, le NIF a répété l’ignition avec un rendement supérieur : 3,88 MJ produits à partir de 2,05 MJ délivrés à la cible. Cela renforce la reproductibilité expérimentale du phénomène dans cette installation.",
+              "evidence_ids": [
+                "EVID-050028"
+              ]
+            },
+            {
+              "text": "D’autres voies de fusion ont continué à progresser en parallèle : JET a rapporté 69,26 MJ d’énergie de fusion sur six secondes en 2024, tandis que Wendelstein 7-X a annoncé en 2025 un record de produit triple sur une impulsion longue de 43 secondes pour un stellarator.",
+              "evidence_ids": [
+                "EVID-050029",
+                "EVID-050030"
+              ]
+            }
+          ]
+        }
+      ],
+      "related_claim_ids": [
+        "CLAIM-050026",
+        "CLAIM-050027",
+        "CLAIM-050028",
+        "CLAIM-050029",
+        "CLAIM-050030"
+      ],
+      "related_evidence_ids": [
+        "EVID-050026",
+        "EVID-050027",
+        "EVID-050028",
+        "EVID-050029",
+        "EVID-050030"
+      ],
+      "related_source_ids": [
+        "SRC-050026",
+        "SRC-050027",
+        "SRC-050028",
+        "SRC-050029",
+        "SRC-050030"
+      ],
+      "related_event_ids": [
+        "EV-2021-006001",
+        "EV-2022-006002",
+        "EV-2023-006003",
+        "EV-2024-006004",
+        "EV-2025-006005"
+      ]
+    }
+  ]
+}
