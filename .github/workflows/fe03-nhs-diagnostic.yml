@@ -11,16 +11,16 @@ jobs:
       - name: Fetch official NHS RSS
         run: |
           node --input-type=module - <<'NODE'
+          const base="https://www.england.nhs.uk/2026/07/nhs-accelerates-artificial-intelligence-rollout-to-cut-waiting-times-and-improve-care-for-millions/";
           const urls=[
-            "https://www.england.nhs.uk/2026/07/feed/",
-            "https://www.england.nhs.uk/2026/06/feed/",
-            "https://www.england.nhs.uk/2026/01/feed/",
-            "https://www.england.nhs.uk/midlands/2026/07/feed/",
-            "https://www.england.nhs.uk/south/2026/02/feed/"
+            base+"feed/",
+            "https://www.england.nhs.uk/2026/07/feed/?paged=2",
+            "https://www.england.nhs.uk/2026/07/page/2/feed/",
+            "https://www.england.nhs.uk/2026/07/feed/page/2/"
           ];
           for(const url of urls){
             const r=await fetch(url,{headers:{"user-agent":"FutureEditionEvidence/0.1 (+https://github.com/BACOUL/FUTURE-EDITION)","accept":"application/rss+xml,application/xml,text/xml"}});
             const body=await r.text();
-            console.log("NHS_FEED_DIAG",JSON.stringify({url,status:r.status,type:r.headers.get("content-type"),length:body.length,hasCopilot:body.includes("Microsoft Copilot"),hasAI:body.toLowerCase().includes("artificial intelligence"),head:body.slice(0,180)}));
+            console.log("NHS_FEED_DIAG",JSON.stringify({url,status:r.status,type:r.headers.get("content-type"),length:body.length,hasTitle:body.includes("NHS accelerates artificial intelligence rollout"),hasCopilot:body.includes("500,000 NHS staff"),head:body.slice(0,140)}));
           }
           NODE
