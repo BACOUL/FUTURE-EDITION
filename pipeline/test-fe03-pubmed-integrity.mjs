@@ -14,6 +14,11 @@ const originalXml=`<?xml version="1.0"?>
           <PublicationType>Retracted Publication</PublicationType>
         </PublicationTypeList>
       </Article>
+      <MeshHeadingList>
+        <MeshHeading><DescriptorName>Humans</DescriptorName></MeshHeading>
+        <MeshHeading><DescriptorName>Animals</DescriptorName></MeshHeading>
+        <MeshHeading><DescriptorName>Rats</DescriptorName></MeshHeading>
+      </MeshHeadingList>
       <CommentsCorrectionsList>
         <CommentsCorrections RefType="RetractionIn">
           <RefSource>ACS Appl Mater Interfaces. 2019.</RefSource>
@@ -97,6 +102,12 @@ if(animalRecord?.independence_group!=="doi:10.1000/animal-fixture"){
 if(originalRecord?.publication_status!=="retracted"){
   throw new Error("PubMed retracted publication not detected");
 }
+if(originalRecord?.subject_scope!=="mixed"){
+  throw new Error("PubMed mixed human-animal scope not preserved");
+}
+if(originalRecord?.study_stage!=="preclinical_animal"){
+  throw new Error("PubMed mixed preclinical study stage not preserved");
+}
 if(originalRecord?.kind!=="paper"){
   throw new Error("retracted publication incorrectly classified as notice");
 }
@@ -128,6 +139,7 @@ const notice=adapterByProvider.pubmed(noticeRecord);
 if(original.publication_status!=="retracted") throw new Error("PubMed adapter lost retracted status");
 if(notice.source.kind!=="retraction_notice") throw new Error("PubMed adapter lost notice kind");
 if(original.source.independence_group!=="doi:10.1021/am300292v") throw new Error("PubMed DOI independence canonicalization failed");
+if(original.source.subject_scope!=="mixed") throw new Error("PubMed adapter lost mixed subject scope");
 if(notice.source.independence_group!=="doi:10.1021/acsami.9b11759") throw new Error("PubMed notice DOI independence canonicalization failed");
 
 const noticeDossier=buildDossier({
@@ -152,4 +164,4 @@ if(noticeDossier.safety.decision!=="investigate"){
   throw new Error("PubMed retraction notice bypassed integrity gate");
 }
 
-console.log("FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|doi_independence=1|animal_mesh_stage=1|notice_review_gate=1");
+console.log("FE03_PUBMED_INTEGRITY_PASS|original_retracted=1|notice_active=1|relations_directional=1|doi_independence=1|animal_mesh_stage=1|mixed_scope=1|notice_review_gate=1");
