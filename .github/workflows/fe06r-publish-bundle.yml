@@ -1,0 +1,33 @@
+name: FE06R Publish Bundle
+
+on:
+  push:
+    branches: [fe06r-publish-bundle]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build FE06R
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+          node pipeline/build-graph.mjs
+          node pipeline/build-site.mjs
+          node pipeline/validate-output.mjs
+      - name: Upload static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: fe06r-dist
+          path: dist/
+          include-hidden-files: true
+          retention-days: 7
