@@ -124,20 +124,20 @@
     "external_case_id": "FE03-EXT-0043",
     "split": "dev",
     "claim": {
-      "text": "DMA treatment improved function in aged mice and extended lifespan after prolonged dosing.",
+      "text": "Eight-hour time-restricted feeding extended median lifespan in male mice by 12%.",
       "claim_kind": "result",
       "subject_scope": "animal"
     },
     "gold_evidence": [
       {
         "relation": "supports",
-        "exact_text": "improves the functional performance of aged mice after acute administration and extends lifespan after prolonged dosing.",
+        "exact_text": "Median lifespan was significantly extended in male mice under 8-h TRF by 12%",
         "authority": "pubmed",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/42474306/"
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42230994/"
       }
     ],
     "checked_on": "2026-09-20",
-    "notes": "Animal-only longevity evidence; human extrapolation is prohibited."
+    "notes": "Mouse-only longevity evidence; human extrapolation is prohibited."
   },
   {
     "id": "FE03-CLAIM-0008",
