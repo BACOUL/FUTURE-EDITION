@@ -106,6 +106,22 @@ function addClinicalTrialsSections(sections,payload){
   }
 }
 
+function addOfficialWebSections(sections,payload){
+  addSection(sections,"summary","Summary",payload?.description);
+
+  const paragraphs=Array.isArray(payload?.paragraphs)?payload.paragraphs:[];
+  for(let index=0;index<Math.min(paragraphs.length,200);index++){
+    addSection(
+      sections,
+      "paragraph-"+String(index+1),
+      "Paragraph "+String(index+1),
+      paragraphs[index]
+    );
+  }
+
+  if(paragraphs.length===0) addSection(sections,"page","Page",payload?.body);
+}
+
 export function buildEvidenceDocument(provider,payload,{
   candidate,
   source,
@@ -128,6 +144,9 @@ export function buildEvidenceDocument(provider,payload,{
     addSection(sections,"abstract","Abstract",payload?.summary);
   }else if(provider==="biorxiv"||provider==="medrxiv"){
     addSection(sections,"abstract","Abstract",payload?.abstract);
+  }else if(provider==="nhs_england"){
+    license_scope="official_record";
+    addOfficialWebSections(sections,payload);
   }
 
   if(sections.length===0) return null;
