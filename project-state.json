@@ -319,7 +319,17 @@
     "fe06_english_internal_labels_leaked": 0,
     "fe06r_spec_frozen": true,
     "fe06r_reference_surfaces_required": 4,
-    "fe06r_publication_model_blocking_fe07": true
+    "fe06r_publication_model_blocking_fe07": true,
+    "fe06r_reference_home_proved": true,
+    "fe06r_reference_home_proof_run_id": 35523479258,
+    "fe06r_reference_home_proof_job_id": 106111490884,
+    "fe06r_reference_home_artifact_id": 10608198453,
+    "fe06r_reference_home_bytes": 15495,
+    "fe06r_reference_home_css_bytes": 22417,
+    "fe06r_reference_home_reality_check": true,
+    "fe06r_reference_home_future_graph_visual": true,
+    "fe06r_current_vs_history_separation": true,
+    "fe06r_reference_surfaces_completed": 1
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
