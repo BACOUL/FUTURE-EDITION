@@ -13,7 +13,8 @@ const specs = [
   ["Organization", "data/organizations/organizations.json", "schemas/organization.schema.json"],
   ["Person", "data/people/people.json", "schemas/person.schema.json"],
   ["Review", "data/reviews/reviews.json", "schemas/review.schema.json"],
-  ["Assessment", "data/assessments/assessments.json", "schemas/assessment.schema.json"]
+  ["Assessment", "data/assessments/assessments.json", "schemas/assessment.schema.json"],
+  ["Change", "data/changes/changes.json", "schemas/change.schema.json"]
 ];
 
 const errors = [];
