@@ -1,0 +1,91 @@
+{
+  "schema_version": "fe06r/screenshot-manifest/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "browser_qa_run_id": 35533538311,
+  "browser_qa_artifact_id": 10611803566,
+  "artifact_digest": "sha256:fe82fac4ebdf58c8e6e7b9b539169a333af146ee310f03d9a73ebf0f11a37252",
+  "generated_at": "2026-09-20T19:49:58.316Z",
+  "note": "Image bytes are preserved in the immutable GitHub Actions artifact referenced above; hashes below bind each screenshot to this gate candidate.",
+  "screenshots": [
+    {
+      "file": "R1-home-1440.png",
+      "bytes": 887053,
+      "sha256": "d9ae0813b48c2124120b99a0ea6d857da782f2599f405e793bf6571d94034572"
+    },
+    {
+      "file": "R1-home-360.png",
+      "bytes": 612168,
+      "sha256": "c28f1d6a0831b61d3298e3d3fb3d98614f68887a0f5d5c87bc295fb42d1b35a8"
+    },
+    {
+      "file": "R1-home-390.png",
+      "bytes": 632996,
+      "sha256": "b00565cf5962907f8b3ff64bfde1eca5108561b1fa06873d17cf876925cde120"
+    },
+    {
+      "file": "R1-home-768.png",
+      "bytes": 694211,
+      "sha256": "16d0cb00f7a087f236307882a3ba372350d1d3e029300568142dcbd66c02c7df"
+    },
+    {
+      "file": "R2-article-1440.png",
+      "bytes": 953308,
+      "sha256": "3c4aed277ea7a57c31309c8ee7bc4245eee869d3779897742cb7a1d7dcdb2054"
+    },
+    {
+      "file": "R2-article-360.png",
+      "bytes": 734693,
+      "sha256": "773fad3fd99df845e2ccfb8e57b293f5d80c33adf546a025edf9ba02a89f03be"
+    },
+    {
+      "file": "R2-article-390.png",
+      "bytes": 752459,
+      "sha256": "388bbdb5064b814c7b0e28dc54f03880ddf2a0d041174006e807c4e3dc0e02c0"
+    },
+    {
+      "file": "R2-article-768.png",
+      "bytes": 813123,
+      "sha256": "a13db394ed9e1ff6461d79b2360e06bd40b418a6440e61ef89c8cd452ac2fe96"
+    },
+    {
+      "file": "R3-observatory-1440.png",
+      "bytes": 1292179,
+      "sha256": "1b7a5cb648e2ab6bc0229cbeac3e2f6c184d16be2a1a1ea56029f7a8b1fd6f2b"
+    },
+    {
+      "file": "R3-observatory-360.png",
+      "bytes": 1045770,
+      "sha256": "0e4b4514811aa23f694e5295aa31446f8ab31b0bda57b7aa3a9e9eebf699dd26"
+    },
+    {
+      "file": "R3-observatory-390.png",
+      "bytes": 1045354,
+      "sha256": "fc3b3b9ec56b5dacca66aa3c40c1c526f3be8c7c6b7b1cb3cd8f4d2d2cb1a609"
+    },
+    {
+      "file": "R3-observatory-768.png",
+      "bytes": 1129073,
+      "sha256": "b94230668fd8c9d546a5e3bd863761c5a77a49a39d7764c4229ef37a1b5e7267"
+    },
+    {
+      "file": "R4-methodology-1440.png",
+      "bytes": 1232540,
+      "sha256": "a0652e44faefaf18a78eeb7604f189dd82b824eb43b6a608eee1b27e20cfba6a"
+    },
+    {
+      "file": "R4-methodology-360.png",
+      "bytes": 1012940,
+      "sha256": "5b7ad571362ba1e580341d82041cc52ecf7b5e514eee672fe03d7666e66fc207"
+    },
+    {
+      "file": "R4-methodology-390.png",
+      "bytes": 1001740,
+      "sha256": "0ac69c4a6f077e5aa6338f7632b14e3bcca01fe46a6e456c47d385b88c085b3e"
+    },
+    {
+      "file": "R4-methodology-768.png",
+      "bytes": 1026349,
+      "sha256": "d846385b5dbaf1a4cce05f5275009c1abca361131efae30f287fd11fe9e44802"
+    }
+  ]
+}

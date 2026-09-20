@@ -1,0 +1,35 @@
+{
+  "schema_version": "fe06r/responsive-qa/v1",
+  "candidate_sha": "e4da95169475a89da3deaff4a176ed5d70301c59",
+  "browser_qa_run_id": 35533538311,
+  "browser_qa_job_id": 106138387805,
+  "browser_qa_artifact_id": 10611803566,
+  "artifact_digest": "sha256:fe82fac4ebdf58c8e6e7b9b539169a333af146ee310f03d9a73ebf0f11a37252",
+  "generated_at": "2026-09-20T19:49:58.316Z",
+  "pages": [
+    "R1-home",
+    "R2-article",
+    "R3-observatory",
+    "R4-methodology"
+  ],
+  "widths": [
+    360,
+    390,
+    768,
+    1440
+  ],
+  "checks": 16,
+  "failures": 0,
+  "verdict": "PASS",
+  "invariants": {
+    "http_200": "16/16",
+    "horizontal_overflow": 0,
+    "page_failures": 0,
+    "screenshots": 16
+  },
+  "evidence": {
+    "workflow_run": 35533538311,
+    "artifact": 10611803566,
+    "screenshot_manifest": "benchmarks/fe06r/screenshots/MANIFEST.json"
+  }
+}
