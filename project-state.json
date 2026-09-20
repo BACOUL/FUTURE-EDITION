@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.15.0",
+  "authority_version": "0.16.0",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -425,7 +425,21 @@
     "fe06r_browser_qa_checks": 16,
     "fe06r_browser_qa_failures": 0,
     "fe06r_browser_qa_passed": true,
-    "fe06r_browser_qa_screenshots": 16
+    "fe06r_browser_qa_screenshots": 16,
+    "fe06r_agent_native_proof_run_id": 35528217261,
+    "fe06r_agent_native_proof_job_id": 106124024353,
+    "fe06r_agent_native_candidate_sha": "d726e8cc66df36bda75fe3fbf24506ed86f417b4",
+    "fe06r_agent_native_lifecycle_cases": 3,
+    "fe06r_agent_native_negative_cases": 20,
+    "fe06r_agent_native_negative_false_answers": 0,
+    "fe06r_agent_native_negative_fake_citations": 0,
+    "fe06r_agent_native_positive_cases": 1,
+    "fe06r_agent_native_proof_passed": true,
+    "fe06r_agent_native_failed_runs_preserved": [
+      35528130966,
+      35528168280,
+      35528193240
+    ]
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -517,8 +531,6 @@
       "separate current editorial flow from FE-05 historical baseline",
       "implement reference machine representation for the same scientific objects",
       "prove claim-level citation, as_of semantics and human-machine consistency",
-      "prove correction/retraction/supersession propagation on synthetic scenarios",
-      "prove agent abstention on insufficient-evidence benchmark",
       "add trust pages and complete responsive/editorial/scientific/agent-native QA",
       "pass MEDIA>=85, INTELLIGENCE>=90, REFERENCE>=95, AGENT-NATIVE>=95 with zero veto"
     ]
