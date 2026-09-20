@@ -2,12 +2,13 @@ import { access, readFile, readdir, stat } from "node:fs/promises";
 
 const root = new URL("../", import.meta.url);
 const readJson = async (path) => JSON.parse(await readFile(new URL(path, root), "utf8"));
-const [questions, events, claims, evidence, sources] = await Promise.all([
+const [questions, events, claims, evidence, sources, editorialFr] = await Promise.all([
   readJson("data/questions/questions.json"),
   readJson("data/events/events.json"),
   readJson("data/claims/claims.json"),
   readJson("data/evidence/evidence.json"),
-  readJson("data/sources/sources.json")
+  readJson("data/sources/sources.json"),
+  readJson("data/editorial/fr/events.json")
 ]);
 
 const required = [
@@ -24,6 +25,8 @@ const required = [
 ];
 
 const errors = [];
+const editorialFrByEvent = new Map(Object.entries(editorialFr.entries ?? {}));
+if (editorialFrByEvent.size !== events.length) errors.push(`French editorial coverage mismatch: ${editorialFrByEvent.size}/${events.length}`);
 for (const path of required) {
   try { await access(new URL(path, root)); }
   catch { errors.push(`missing output: ${path}`); }
@@ -70,7 +73,7 @@ if (!today.includes("0 changement de jalon approuvé")) errors.push("today page 
 if (!today.includes("50 événements historiques vérifiés")) errors.push("today page missing verified baseline count");
 
 const method = htmlByPath.get("dist/methodologie/index.html") ?? "";
-for (const phrase of ["Hypothèse", "Préprint", "Animal", "Événement sourcé", "≠ jalon atteint"]) {
+for (const phrase of ["Hypothèse", "Préprint", "Animal", "Affirmation", "Événement sourcé", "≠ jalon atteint"]) {
   if (!method.includes(phrase)) errors.push(`methodology missing epistemic rule: ${phrase}`);
 }
 
@@ -84,7 +87,12 @@ for (const q of questions) {
   const qEvents = events.filter((e) => e.question_ids.includes(q.id));
   if (qEvents.length < 5) errors.push(`${q.id}: less than five source-backed events`);
   for (const event of qEvents) {
-    if (!page.includes(event.title)) errors.push(`${q.id}: event missing from public timeline: ${event.id}`);
+    const fr = editorialFrByEvent.get(event.id);
+    if (!fr) errors.push(`${event.id}: missing French editorial entry`);
+    else {
+      if (!page.includes(fr.title)) errors.push(`${q.id}: French event title missing from public timeline: ${event.id}`);
+      if (!page.includes(fr.claim)) errors.push(`${q.id}: French event summary missing from public timeline: ${event.id}`);
+    }
     const proofHref = `/preuves/${event.id.toLowerCase()}/`;
     if (!page.includes(proofHref)) errors.push(`${q.id}: internal proof link missing for ${event.id}`);
   }
@@ -100,23 +108,27 @@ for (const event of events) {
   const claim = claimById.get(event.claim_ids?.[0]);
   const ev = evidenceById.get(claim?.evidence_ids?.[0]);
   const source = sourceById.get(ev?.source_id);
+  const fr = editorialFrByEvent.get(event.id);
 
-  if (!claim || !ev || !source) {
+  if (!claim || !ev || !source || !fr) {
     errors.push(`${event.id}: canonical proof chain incomplete`);
     continue;
   }
 
   for (const expected of [
     event.id,
-    event.title,
-    claim.text,
+    fr.title,
+    fr.claim,
     source.title,
     ev.locator,
     source.canonical_url.replaceAll("&", "&amp;"),
+    "Titre original de la source",
     "État :",
     "non évalué"
   ]) if (!page.includes(expected)) errors.push(`${event.id}: proof page missing ${expected}`);
 
+  if (page.includes("machine_proposed")) errors.push(`${event.id}: internal review state leaked into French public page`);
+  if (page.includes("03 · Claim") || page.includes("Tier ")) errors.push(`${event.id}: English editorial label leaked into public page`);
   if (claim.review_state !== "machine_proposed") errors.push(`${event.id}: FE-06 cannot present baseline claim as human approved`);
   if (event.change_type !== "unassessed") errors.push(`${event.id}: FE-06 baseline event must remain unassessed`);
 }
