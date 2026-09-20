@@ -131,6 +131,12 @@ La définition normative du verdict est désormais `docs/FE06R-GATE.md`.
 
 Cette spécification décrit le produit à construire ; `FE06R-GATE.md` décrit comment il est accepté ou rejeté.
 
+Les autorités d'expérience sont :
+- `DESIGN-SYSTEM-VISION.md` pour la grammaire visuelle et les primitives propriétaires ;
+- `INFORMATION-ARCHITECTURE.md` pour la navigation, les routes, la profondeur de lecture et les relations entre surfaces.
+
+La Home R1 déjà prouvée techniquement avant ces documents doit être réévaluée et peut nécessiter une reconstruction. Sa preuve historique n'est pas une preuve du gate v1.
+
 ### Machine-readable / agent-native
 - IDs stables.
 - Article relié aux objets Question, Technology, Event, Claim, Evidence et Source concernés.
@@ -157,17 +163,20 @@ Toute condition éliminatoire du gate entraîne `FAIL`, quel que soit le score t
 
 ## Ordre d'exécution
 
-1. Geler cette spécification.
-2. Construire R1 Home.
-3. QA R1.
-4. Construire R2 Article.
-5. Construire R3 Observatoire.
-6. Construire R4 Méthodologie.
-7. QA des 4 surfaces.
-8. Généraliser aux autres routes.
-9. Ajouter les pages de confiance.
-10. QA complète et preuve FE-06R.
-11. Débloquer FE-07.
+1. Geler spécification, design system et information architecture.
+2. Construire le shell global et la navigation desktop/mobile.
+3. Construire les primitives Delta et State Plate.
+4. Construire R2 Article de référence + Evidence Spine sur un vrai sujet.
+5. Reconstruire R1 Home autour de ce même sujet réel.
+6. Construire R3 Observatory + temporalité.
+7. Construire R4 Méthodologie.
+8. Construire un Reality Check complet.
+9. Implémenter la représentation machine du même objet scientifique.
+10. QA des surfaces et test de reconnaissance Future Edition.
+11. Généraliser seulement après PASS.
+12. Ajouter les pages de confiance.
+13. QA complète et preuve FE-06R.
+14. Débloquer FE-07.
 
 ## Interdiction de progression
 
