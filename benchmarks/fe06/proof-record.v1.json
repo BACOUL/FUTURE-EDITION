@@ -1,8 +1,8 @@
 {
   "protocol": "FE06-PUBLIC-MEDIA-PROOF-v1",
-  "workflow_run_id": 35519467072,
-  "workflow_job_id": 106100928078,
-  "tested_head_sha": "8a74717e08acc17788521769577175d10f43bf90",
+  "workflow_run_id": 35520529360,
+  "workflow_job_id": 106103707808,
+  "tested_head_sha": "53e42fc8705aa7d6654e756a2923bac4b990639a",
   "verdict": "PROVED",
   "public_media": {
     "pages": 64,
@@ -16,10 +16,15 @@
     "home_bytes": 16308,
     "mobile_breakpoint": true,
     "reduced_motion": true,
-    "skip_link": true
+    "skip_link": true,
+    "french_editorial_entries": 50,
+    "french_editorial_coverage": 1,
+    "original_source_titles_preserved": true,
+    "original_source_links_preserved": true,
+    "english_internal_labels_leaked": 0
   },
   "browser_qa": {
-    "engine": "Chromium via Playwright",
+    "engine": "Chromium",
     "pages": 64,
     "widths_px": [
       360,
@@ -29,7 +34,7 @@
     ],
     "checks": 256,
     "overflow_issues": 0,
-    "pre_fix_findings": "20 responsive overflow findings were detected during browser QA; long scientific strings and tablet timeline dates were fixed before final proof."
+    "note": "Re-run after full French editorial localization."
   },
   "graph": {
     "nodes": 354,
@@ -43,9 +48,9 @@
     "fe05_observatories": true
   },
   "artifact": {
-    "github_actions_artifact_id": 10607448826,
+    "github_actions_artifact_id": 10607334892,
     "name": "fe06-public-media",
-    "digest": "sha256:f857ef0d9e938028c28213583977c9a720360db3ce9944e3187d600353954e05"
+    "digest": "sha256:603ed26331bed31827308f98b97a5e285a13c5aec3491e3ea9bd6ef1f376bb60"
   },
-  "gate_statement": "Public media exposes the Future Graph through Home, Aujourd’hui, ten observatories, milestone radars, timelines, methodology and fifty evidence dossiers with no orphan public claim, no silent milestone overclaim and browser-verified responsive layouts."
+  "gate_statement": "Public media is fully localized in French for all editorial titles, summaries, events, timelines and proof dossiers; original source titles and canonical source links remain unchanged and explicitly labelled. All 64 pages pass public-media integrity checks and 256 responsive Chromium checks."
 }
