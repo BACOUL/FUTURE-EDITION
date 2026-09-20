@@ -204,9 +204,10 @@ function rxivStudyStage(record){
   const text=(String(record?.title??"")+" "+String(record?.abstract??"")).toLowerCase();
 
   if(/\bphase\s*(?:i|1)\b/.test(text)) return "phase1";
-  if(/\bphase\s*(?:ii|2)\b/.test(text)) return "phase2";
+  if(/\bphase\s*2a\b/.test(text)) return "phase2";
+  if(/\b(?:randomized|randomised|randomly assigned|randomly allocated)\b/.test(text)&&/\b(?:trial|study|participants|patients)\b/.test(text)) return "randomized_trial";
   if(/\bphase\s*(?:iii|3)\b/.test(text)) return "phase3";
-  if(/\b(?:randomized|randomised)\b/.test(text)&&/\b(?:trial|study)\b/.test(text)) return "randomized_trial";
+  if(/\bphase\s*(?:ii|2)(?:a|b)?\b/.test(text)) return "phase2";
   if(/\b(?:systematic review|meta-analysis|meta analysis)\b/.test(text)) return "systematic_review";
 
   const animal=/\b(?:mice|mouse|rats|rat|rabbits|rabbit|swine|porcine|dogs|canine)\b/.test(text);
