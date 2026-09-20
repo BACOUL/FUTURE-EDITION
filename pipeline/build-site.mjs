@@ -669,6 +669,7 @@ for (const article of articles) {
       claim_ids: article.after.claim_ids
     },
     state: { status: "unassessed", reason: "No validated Change promotes an observatory milestone." },
+    answer: article.after.text,
     before: article.before,
     evidence: article.evidence,
     after: article.after,
