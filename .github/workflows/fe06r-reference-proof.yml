@@ -1,4 +1,4 @@
-name: FE06R Reference Home proof
+name: FE06R Reference Surfaces proof
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  prove-fe06r-home:
+  prove-fe06r-reference-surfaces:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -32,13 +32,13 @@ jobs:
           node pipeline/validate-graph.mjs
           node pipeline/verify-determinism.mjs
           node pipeline/validate-current-state.mjs
-      - name: Build and validate FE-06R reference home
+      - name: Build and validate FE-06R reference surfaces
         run: |
           node pipeline/build-site.mjs
           node pipeline/validate-output.mjs
       - name: Upload FE-06R reference artifact
         uses: actions/upload-artifact@v4
         with:
-          name: fe06r-reference-home
+          name: fe06r-reference-surfaces
           path: dist
           retention-days: 7
