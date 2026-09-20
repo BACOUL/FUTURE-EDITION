@@ -32,6 +32,14 @@ jobs:
           node pipeline/test-fe03-crossref-integrity.mjs
           node pipeline/test-fe03-pubmed-integrity.mjs
           node pipeline/test-fe03-claim-linker.mjs
+      - name: Diagnose official NHS HTML
+        run: |
+          node --input-type=module - <<'NODE'
+          const url="https://www.england.nhs.uk/2026/07/nhs-accelerates-artificial-intelligence-rollout-to-cut-waiting-times-and-improve-care-for-millions/";
+          const r=await fetch(url,{headers:{"user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36","accept":"text/html,application/xhtml+xml"}});
+          const body=await r.text();
+          console.log("NHS_DIAG",JSON.stringify({status:r.status,url:r.url,type:r.headers.get("content-type"),length:body.length,head:body.slice(0,500)}));
+          NODE
       - name: Live public source-resolution benchmark
         shell: bash
         run: |
