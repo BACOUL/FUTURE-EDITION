@@ -3424,7 +3424,7 @@
     },
     "labels": {
       "primary_source_resolvable": true,
-      "publication_status": "active",
+      "publication_status": "corrected",
       "critical_safety_case": true,
       "expected_subject_scope": "human",
       "expected_evidence_level": "early_human"
@@ -3440,9 +3440,19 @@
           "phase_1",
           "clinical_trial"
         ]
+      },
+      {
+        "authority": "pubmed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42245647/",
+        "checked_on": "2026-09-20",
+        "supports": [
+          "current_publication_status",
+          "corrected",
+          "ErratumIn"
+        ]
       }
     ],
-    "notes": "Independent first-in-human NAVIgATE phase I validation case."
+    "notes": "Independent first-in-human NAVIgATE phase I validation case. PubMed now links a correction notice; current-state status refreshed from the primary authority."
   },
   {
     "id": "FE03-EXT-0104",
