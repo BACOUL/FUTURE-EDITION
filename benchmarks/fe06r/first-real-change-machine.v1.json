@@ -1,0 +1,57 @@
+{
+  "schema_version": "fe06r/first-real-change-machine/v1",
+  "id": "CHANGE-000001",
+  "type": "canonical_change",
+  "question_id": "Q-008",
+  "milestone_id": "Q-008-M3",
+  "as_of": "2026-05-19T00:00:00Z",
+  "change_type": "evidence_upgrade",
+  "before": {
+    "assessment_id": "ASSESS-000001",
+    "status": "met",
+    "confidence": "solid_preliminary",
+    "valid_from": "2023-11-29T00:00:00Z",
+    "valid_to": "2026-05-19T00:00:00Z",
+    "state_hash": "ac63c074bccd3c87c7eda49dab6c3f909115a668663202e254ce68a13378ecbf",
+    "review_id": "REVIEW-000001"
+  },
+  "after": {
+    "assessment_id": "ASSESS-000002",
+    "status": "met",
+    "confidence": "confirmed",
+    "valid_from": "2026-05-19T00:00:00Z",
+    "valid_to": null,
+    "state_hash": "34fa5b9b6d44790534db98877644e64b9d133a29928a142b246793cc5f0c1ff8",
+    "review_id": "REVIEW-000002"
+  },
+  "trigger": {
+    "event_id": "EV-2026-008006",
+    "claim_id": "CLAIM-050051",
+    "evidence_id": "EVID-050051",
+    "source_id": "SRC-050051",
+    "source_url": "https://doi.org/10.1038/s41586-026-10652-y",
+    "locator": "Abstract; Results around Fig. 4 (ripasudil/KL001 phagocytosis experiments and primary-human-RPE validation); Methods and author-contribution sections distinguishing AI-generated hypotheses/analysis from human wet-lab execution."
+  },
+  "boundaries": [
+    "Wet-lab experiments were performed by human researchers; Robin is not represented as autonomously executing experiments.",
+    "Independent replication of the Robin discovery workflow is not established by this change.",
+    "Clinical efficacy for dry age-related macular degeneration is not established by this change.",
+    "Q-008-M4 and Q-008-M5 are not satisfied by this change."
+  ],
+  "canonical_ledger": {
+    "change": "data/changes/changes.json#CHANGE-000001",
+    "assessments": [
+      "data/assessments/assessments.json#ASSESS-000001",
+      "data/assessments/assessments.json#ASSESS-000002"
+    ],
+    "reviews": [
+      "data/reviews/reviews.json#REVIEW-000001",
+      "data/reviews/reviews.json#REVIEW-000002"
+    ],
+    "claim": "data/claims/claims.json#CLAIM-050051",
+    "evidence": "data/evidence/evidence.json#EVID-050051",
+    "source": "data/sources/sources.json#SRC-050051",
+    "event": "data/events/events.json#EV-2026-008006"
+  },
+  "human_representation": "benchmarks/fe06r/first-real-change-human.v1.md"
+}

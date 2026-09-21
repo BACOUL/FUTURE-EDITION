@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.17.2",
+  "authority_version": "0.17.3",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -508,7 +508,7 @@
     "fe06r_live_canonical_changes": 1,
     "fe06r_live_canonical_assessments": 2,
     "fe06r_live_canonical_reviews": 2,
-    "fe06r_next_work_item": "FE-06R1_CANONICAL_CHANGE_REPRESENTATIONS",
+    "fe06r_next_work_item": "FE-06R1_PROVE_FIRST_REAL_CANONICAL_CHANGE",
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
     "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "human_and_machine_representation_of_CHANGE-000001",
+    "fe06r_next_required_proof": "FE06R_FIRST_REAL_CHANGE_PASS_on_clean_runner",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -530,7 +530,14 @@
     "fe06r_first_real_change_before_state_hash": "ac63c074bccd3c87c7eda49dab6c3f909115a668663202e254ce68a13378ecbf",
     "fe06r_first_real_change_after_state_hash": "34fa5b9b6d44790534db98877644e64b9d133a29928a142b246793cc5f0c1ff8",
     "fe06r_first_real_change_human_review_approved": true,
-    "fe06r_first_real_change_approved_at": "2026-09-21T19:04:00Z"
+    "fe06r_first_real_change_approved_at": "2026-09-21T19:04:00Z",
+    "fe06r_first_real_change_human_representation": "benchmarks/fe06r/first-real-change-human.v1.md",
+    "fe06r_first_real_change_machine_representation": "benchmarks/fe06r/first-real-change-machine.v1.json",
+    "fe06r_first_real_change_representation_test": "pipeline/test-fe06r-first-real-change.mjs",
+    "fe06r_first_real_change_human_representation_complete": true,
+    "fe06r_first_real_change_machine_representation_complete": true,
+    "fe06r_first_real_change_chain_complete": true,
+    "fe06r_r1_status": "IMPLEMENTED_AWAITING_PROOF"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

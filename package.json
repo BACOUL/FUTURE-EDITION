@@ -43,6 +43,7 @@
     "test:fe03:claim-linker": "node pipeline/test-fe03-claim-linker.mjs",
     "bench:fe03:claim-linker": "node benchmarks/fe03/run-claim-linker.mjs",
     "test:fe04:change-engine": "node pipeline/test-fe04-change-engine.mjs",
-    "test:fe05:observatories": "node pipeline/test-fe05-observatories.mjs"
+    "test:fe05:observatories": "node pipeline/test-fe05-observatories.mjs",
+    "test:fe06r:first-real-change": "node pipeline/test-fe06r-first-real-change.mjs"
   }
 }

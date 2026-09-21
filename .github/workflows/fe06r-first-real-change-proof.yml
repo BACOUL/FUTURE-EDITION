@@ -1,0 +1,32 @@
+name: FE06R first real Change proof
+
+on:
+  push:
+    branches: [fe06r-first-real-change-proof]
+
+permissions:
+  contents: read
+
+jobs:
+  prove-first-real-change:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical data and relations
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+      - name: Re-prove FE-04 invariants
+        run: node pipeline/test-fe04-change-engine.mjs
+      - name: Prove first real canonical Change
+        run: node pipeline/test-fe06r-first-real-change.mjs
+      - name: Rebuild and verify Future Graph
+        run: |
+          node pipeline/build-graph.mjs
+          node pipeline/validate-graph.mjs
+          node pipeline/verify-determinism.mjs
