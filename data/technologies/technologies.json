@@ -428,5 +428,17 @@
     "observed_at": "2026-09-20T14:45:00Z",
     "valid_from": null,
     "valid_to": null
+  },
+  {
+    "id": "TECH-0544",
+    "canonical_name": "Robin multi-agent scientific discovery system",
+    "status": "active",
+    "aliases": [
+      "Robin"
+    ],
+    "description": "Multi-agent system integrating literature search, hypothesis generation, experimental-direction proposal and autonomous analysis of laboratory data in an iterative lab-in-the-loop workflow.",
+    "observed_at": "2026-09-21T18:20:00Z",
+    "valid_from": null,
+    "valid_to": null
   }
 ]
