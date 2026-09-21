@@ -17,7 +17,7 @@ for(const row of result.candidates??[]){
     throw new Error(row.candidate?.id+": candidate safety status invalid");
   }
   if(row.resolution?.status!=="resolved"||!row.resolution?.source) throw new Error(row.candidate?.id+": unresolved selected candidate");
-  if(row.relevance_gate?.passed!==true||row.relevance_gate?.method!=="question_specific_title_v1") throw new Error(row.candidate?.id+": selected candidate did not pass relevance gate");
+  if(row.relevance_gate?.passed!==true||row.relevance_gate?.method!=="editorial_materiality_title_v2") throw new Error(row.candidate?.id+": selected candidate did not pass relevance gate");
   if(!row.candidate?.question_ids?.length||!row.candidate.question_ids.every((id)=>allowedQuestions.has(id))) throw new Error(row.candidate?.id+": invalid question mapping");
   const source=row.resolution.source;
   const key=String(source.independence_group??source.url??source.external_id??"").toLowerCase();

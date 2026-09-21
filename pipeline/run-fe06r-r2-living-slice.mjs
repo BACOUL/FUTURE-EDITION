@@ -52,20 +52,21 @@ function titleRelevant(questionId, title) {
   if (questionId === "Q-001") {
     return has(/cancer|carcinom|tumou?r|leukemi|lymphom|myelom/) &&
       has(/trial|phase|therap|treat|survival|response|remission|immun|chemo|radio|targeted|adjuvant/) &&
-      !has(/cost-effect|staging|diagnos|screening|imaging only/);
+      !has(/cost-effect|economic evaluation|decision analysis|staging|diagnos|screening|imaging only/);
   }
   if (questionId === "Q-003") {
     return has(/spinal cord injury|paraplegi|tetraplegi/) &&
-      has(/motor|walk|locomot|movement|paralys|stimulation|neuromod|neuroprost|brain.?spine|recovery/) &&
+      has(/motor|walk|locomot|movement|paralys|neuromod|neuroprost|brain.?spine|motor recovery/) &&
       !has(/cognitive impairment/);
   }
   if (questionId === "Q-007") {
     return has(/crispr|gene edit|genome edit|base edit|prime edit|gene therap/) &&
-      !has(/diagnos|bacteria|pathogen|assay|detection platform/);
+      has(/therap|treat|trial|patient|disease|disorder|mutation|in vivo|in-vivo/) &&
+      !has(/diagnos|biopsy|bacteria|pathogen|assay|detection|screening/);
   }
   if (questionId === "Q-005") {
     return has(/robot|humanoid|manipulation/) &&
-      has(/generaliz|autonom|long.?horizon|multi.?task|manipulation|contact.?rich|adapt/);
+      has(/generaliz|autonom|long.?horizon|multi.?task|adapt|verification|correction/);
   }
   if (questionId === "Q-008") {
     return has(/scientist|scientific|discovery|hypothesis|experiment/) &&
@@ -233,7 +234,7 @@ export async function runLivingSlice({perPlan=3, retrievedAt=new Date().toISOStr
     const passed = titleRelevant(qid, title);
     row.relevance_gate = {
       passed,
-      method: "question_specific_title_v1",
+      method: "editorial_materiality_title_v2",
       question_id: qid,
       title
     };
