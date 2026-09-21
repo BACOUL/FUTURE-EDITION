@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "id": "ASSESS-000001",
+    "milestone_id": "Q-008-M3",
+    "status": "met",
+    "confidence": "solid_preliminary",
+    "basis_claim_ids": [
+      "CLAIM-050036",
+      "CLAIM-050038",
+      "CLAIM-050039"
+    ],
+    "basis_event_ids": [
+      "EV-2020-008001",
+      "EV-2023-008003",
+      "EV-2023-008004"
+    ],
+    "review_state": "machine_proposed",
+    "review_id": null,
+    "supersedes_assessment_id": null,
+    "observed_at": "2026-09-21T18:20:00Z",
+    "effective_at": "2023-11-29T00:00:00Z",
+    "valid_from": "2023-11-29T00:00:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "ASSESS-000002",
+    "milestone_id": "Q-008-M3",
+    "status": "met",
+    "confidence": "confirmed",
+    "basis_claim_ids": [
+      "CLAIM-050036",
+      "CLAIM-050038",
+      "CLAIM-050039",
+      "CLAIM-050051"
+    ],
+    "basis_event_ids": [
+      "EV-2020-008001",
+      "EV-2023-008003",
+      "EV-2023-008004",
+      "EV-2026-008006"
+    ],
+    "review_state": "machine_proposed",
+    "review_id": null,
+    "supersedes_assessment_id": "ASSESS-000001",
+    "observed_at": "2026-09-21T18:20:00Z",
+    "effective_at": "2026-05-19T00:00:00Z",
+    "valid_from": "2026-05-19T00:00:00Z",
+    "valid_to": null
+  }
+]
