@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.17.7",
+  "authority_version": "0.17.8",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -508,7 +508,7 @@
     "fe06r_live_canonical_changes": 1,
     "fe06r_live_canonical_assessments": 2,
     "fe06r_live_canonical_reviews": 2,
-    "fe06r_next_work_item": "FE-06R2_PROVE_LIVING_EDITORIAL_INPUT_SLICE",
+    "fe06r_next_work_item": "FE-06R3_HUMAN_VERTICAL_SLICE_V2",
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
     "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "rerun_with_editorial_materiality_title_v2_and_retain_only_investigation_worthy_candidates",
+    "fe06r_next_required_proof": "Home_V2_Article_V2_Observatory_V2_Evidence_to_Source_and_matching_machine_representation_from_current_canonical_truth",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -547,7 +547,7 @@
     "fe06r_r2_living_slice_runner": "pipeline/run-fe06r-r2-living-slice.mjs",
     "fe06r_r2_living_slice_test": "pipeline/test-fe06r-r2-living-slice.mjs",
     "fe06r_r2_living_slice_workflow": ".github/workflows/fe06r-r2-living-slice.yml",
-    "fe06r_r2_status": "MATERIALITY_HARDENED_AWAITING_LIVE_PROOF",
+    "fe06r_r2_status": "PROVED",
     "fe06r_r2_candidate_only_safety": true,
     "fe06r_r2_cutoff": "2026-06-01",
     "fe06r_r2_relevance_gate": "editorial_materiality_title_v2",
@@ -569,7 +569,22 @@
       "questions_covered": 6,
       "technology_questions_covered": 3
     },
-    "fe06r_r2_second_live_run_rejection_reason": "remaining selected set still contained weak question matches: CRISPR liquid-biopsy diagnostics, oncology economic evaluation, and narrow manipulation method"
+    "fe06r_r2_second_live_run_rejection_reason": "remaining selected set still contained weak question matches: CRISPR liquid-biopsy diagnostics, oncology economic evaluation, and narrow manipulation method",
+    "fe06r_r2_proof_run_id": 35645586398,
+    "fe06r_r2_proof_job_id": 106485135958,
+    "fe06r_r2_proof_candidate_sha": "5fe469dd17df08410c263b22bb9afba8e5003913",
+    "fe06r_r2_artifact_id": 10660426782,
+    "fe06r_r2_artifact_digest": "sha256:4fe61dcf4a8e2bf15a9433fa5dfac01f2c490173fa118e7ffb87c8eb0c2c4817",
+    "fe06r_r2_frozen_proof": "benchmarks/fe06r/r2-living-slice.proof.json",
+    "fe06r_r2_raw_detected": 18,
+    "fe06r_r2_resolved": 18,
+    "fe06r_r2_unresolved": 0,
+    "fe06r_r2_relevance_rejected": 13,
+    "fe06r_r2_selected": 5,
+    "fe06r_r2_questions_covered": 5,
+    "fe06r_r2_technology_questions_covered": 3,
+    "fe06r_r2_q007_no_candidate_retained": true,
+    "fe06r_r2_canonical_promotions": 0
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

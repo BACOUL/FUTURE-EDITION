@@ -1,0 +1,114 @@
+{
+  "schema_version": "fe06r/r2-living-editorial-input-proof/v1",
+  "verdict": "PROVED",
+  "proved_at": "2026-09-21T19:34:03Z",
+  "proof_run": {
+    "run_id": 35645586398,
+    "job_id": 106485135958,
+    "candidate_sha": "5fe469dd17df08410c263b22bb9afba8e5003913",
+    "artifact_id": 10660426782,
+    "artifact_digest": "sha256:4fe61dcf4a8e2bf15a9433fa5dfac01f2c490173fa118e7ffb87c8eb0c2c4817"
+  },
+  "policy": {
+    "cutoff": "2026-06-01",
+    "candidate_only": true,
+    "human_review_required": true,
+    "canonical_state_effect": "none_until_review",
+    "relevance_gate": "editorial_materiality_title_v2"
+  },
+  "metrics": {
+    "raw_detected": 18,
+    "resolved": 18,
+    "unresolved": 0,
+    "deduplicated_resolved": 18,
+    "relevance_passed": 5,
+    "relevance_rejected": 13,
+    "selected": 5,
+    "questions_covered": 5,
+    "technology_questions_covered": 3
+  },
+  "selected_candidates": [
+    {
+      "id": "CAND-060002",
+      "question_id": "Q-001",
+      "provider": "pubmed",
+      "external_id": "42421558",
+      "title": "Randomized phase-II trial of surufatinib plus FOLFOX/FOLFIRI versus FOLFOXIRI as second-line therapy for metastatic colorectal cancer.",
+      "source_kind": "paper",
+      "peer_reviewed": true,
+      "study_stage": "phase2",
+      "subject_scope": "human",
+      "independence_group": "doi:10.1080/07853890.2026.2698360"
+    },
+    {
+      "id": "CAND-060005",
+      "question_id": "Q-003",
+      "provider": "pubmed",
+      "external_id": "42567502",
+      "title": "High-frequency repetitive transcranial magnetic stimulation promotes motor recovery after spinal cord injury associated with spinal-cortical plasticity.",
+      "source_kind": "paper",
+      "peer_reviewed": true,
+      "study_stage": "preclinical_animal",
+      "subject_scope": "animal",
+      "independence_group": "doi:10.1016/j.brainres.2026.150490"
+    },
+    {
+      "id": "CAND-060010",
+      "question_id": "Q-005",
+      "provider": "arxiv",
+      "external_id": "2609.21908v1",
+      "title": "CommitFlow: Semantic Commitment Verification and Local Correction for Long-Horizon Robot Manipulation VLA Execution",
+      "source_kind": "preprint",
+      "peer_reviewed": false,
+      "study_stage": "technology_benchmark",
+      "subject_scope": null,
+      "independence_group": "arxiv:2609.21908v1"
+    },
+    {
+      "id": "CAND-060013",
+      "question_id": "Q-008",
+      "provider": "arxiv",
+      "external_id": "2609.19644v1",
+      "title": "ScientistTwo: Pioneering the Human Knowledge Frontier with Autonomous AI",
+      "source_kind": "preprint",
+      "peer_reviewed": false,
+      "study_stage": "technology_benchmark",
+      "subject_scope": null,
+      "independence_group": "arxiv:2609.19644v1"
+    },
+    {
+      "id": "CAND-060016",
+      "question_id": "Q-009",
+      "provider": "arxiv",
+      "external_id": "2609.21886v1",
+      "title": "Ensemble Dependence of the Critical Exponent at a Quantum Error Correction Threshold",
+      "source_kind": "preprint",
+      "peer_reviewed": false,
+      "study_stage": "unknown",
+      "subject_scope": null,
+      "independence_group": "arxiv:2609.21886v1"
+    }
+  ],
+  "explicit_non_promotions": {
+    "q007": "The sampled Q-007 signals were rejected by the materiality gate; no genetic-disease candidate was retained merely to satisfy coverage.",
+    "rejected_count": 13,
+    "scientific_state_changes": 0,
+    "assessments_created": 0,
+    "reviews_created": 0,
+    "changes_created": 0
+  },
+  "historical_failed_product_runs": [
+    {
+      "run_id": 35645055357,
+      "candidate_sha": "d00c2c706520db9a65b8d25b00b58e37aabe1c02",
+      "technical_conclusion": "success",
+      "product_verdict": "REJECTED_FOR_EDITORIAL_RELEVANCE"
+    },
+    {
+      "run_id": 35645381826,
+      "candidate_sha": "9f5538fd30d22530cbbae54a885febde812899ee",
+      "technical_conclusion": "success",
+      "product_verdict": "REJECTED_FOR_MATERIALITY"
+    }
+  ]
+}
