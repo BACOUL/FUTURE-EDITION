@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.18.0",
+  "authority_version": "0.18.1",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "rerun_R3_V2_after_French_public_projection_and_QA_marker_fix",
+    "fe06r_next_required_proof": "final_R3_V2_rerun_with_zero_raw_English_public_evidence_locator",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -593,12 +593,18 @@
     "fe06r_r3_v2_reference_change": "CHANGE-000001",
     "fe06r_r3_v2_reference_question": "Q-008",
     "fe06r_r3_v2_candidate_signals": 5,
-    "fe06r_r3_v2_status": "ITERATING_AFTER_BROWSER_QA",
+    "fe06r_r3_v2_status": "FINAL_LANGUAGE_FIX_AWAITING_PROOF",
     "fe06r_r3_v2_failed_run_id": 35647023402,
     "fe06r_r3_v2_failed_job_id": 106489861725,
     "fe06r_r3_v2_failed_candidate_sha": "586005cf9ea7b4a379354e8ead112103d5c26f91",
     "fe06r_r3_v2_failed_run_reason": "browser QA text-marker mismatch plus product review found raw English canonical prose in French Observatory/Evidence surfaces",
-    "fe06r_r3_v2_public_language_hardened": true
+    "fe06r_r3_v2_public_language_hardened": true,
+    "fe06r_r3_v2_second_run_id": 35647391285,
+    "fe06r_r3_v2_second_job_id": 106491076775,
+    "fe06r_r3_v2_second_candidate_sha": "8fba7eb9e50a43c49170fa8a4d02554bab360d56",
+    "fe06r_r3_v2_second_run_automation_passed": true,
+    "fe06r_r3_v2_second_run_product_verdict": "ITERATE",
+    "fe06r_r3_v2_second_run_product_reason": "visual review accepted Home Article Observatory but Evidence locator still exposed raw English canonical wording"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

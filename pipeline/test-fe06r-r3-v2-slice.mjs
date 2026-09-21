@@ -87,7 +87,7 @@ if(machine.question?.id!=="Q-008"||machine.milestone?.id!=="Q-008-M3") errors.pu
 if(machine.previous_state?.confidence!=="solid_preliminary"||machine.current_state?.confidence!=="confirmed") errors.push("machine confidence transition mismatch");
 if(machine.trigger?.claim?.id!=="CLAIM-050051"||machine.trigger?.evidence?.id!=="EVID-050051"||machine.trigger?.source?.id!=="SRC-050051") errors.push("machine trigger chain mismatch");
 if(machine.trigger?.evidence?.locator?.includes("Fig. 4")!==true) errors.push("machine source locator missing");
-if(proof.includes("Robin generated therapeutic hypotheses")||proof.includes("Supports experimental validation")) errors.push("raw English canonical prose leaked into French evidence page");
+if(proof.includes("Robin generated therapeutic hypotheses")||proof.includes("Supports experimental validation")||proof.includes("Abstract; Results around Fig. 4")) errors.push("raw English canonical prose/locator leaked into French evidence page");
 if(obs.includes("Deep learning identifies halicin")||obs.includes("AlphaDev discovers faster sorting algorithms")) errors.push("raw English timeline leaked into French observatory");
 if(machine.limitations?.length!==4||machine.watch_next?.length!==3) errors.push("machine limits/watch mismatch");
 if(manifest.human_machine_truth_model!=="single_canonical_truth"||manifest.reference_change!=="CHANGE-000001") errors.push("machine manifest truth model mismatch");
