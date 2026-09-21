@@ -698,5 +698,19 @@
     "observed_at": "2026-09-20T14:45:00Z",
     "valid_from": "2000-11-02T00:00:00Z",
     "valid_to": null
+  },
+  {
+    "id": "CLAIM-050051",
+    "text": "Robin generated therapeutic hypotheses and experimental directions for dry age-related macular degeneration; laboratory assays performed by human researchers then found that Robin-proposed ripasudil and KL001 enhanced retinal pigment epithelium phagocytosis, with ripasudil also reproducing the effect in primary human RPE cells.",
+    "claim_type": "result",
+    "evidence_ids": [
+      "EVID-050051"
+    ],
+    "confidence": "solid_preliminary",
+    "review_state": "machine_proposed",
+    "supersedes_claim_id": null,
+    "observed_at": "2026-09-21T18:20:00Z",
+    "valid_from": "2026-05-19T00:00:00Z",
+    "valid_to": null
   }
 ]
