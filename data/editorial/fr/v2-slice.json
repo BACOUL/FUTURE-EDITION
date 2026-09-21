@@ -5,7 +5,7 @@
     "edition_label": "ÉDITION DU 21 SEPTEMBRE 2026",
     "hero_kicker": "SCIENCE · INTELLIGENCE ARTIFICIELLE",
     "hero_title": "Quand l’IA formule l’hypothèse — et que le laboratoire répond.",
-    "hero_deck": "Robin a proposé des pistes thérapeutiques pour une maladie de la rétine. Des chercheurs les ont ensuite testées en laboratoire. Pour Future Edition, ce résultat ne crée pas un nouveau jalon : il renforce assez la preuve pour faire passer la confiance de « solide mais préliminaire » à « confirmée ».",
+    "hero_deck": "Robin a proposé des pistes thérapeutiques pour une maladie de la rétine. Des chercheurs les ont ensuite testées en laboratoire. Pour Future Edition, le jalon était déjà atteint ; cette nouvelle preuve fait passer la confiance de « solide mais préliminaire » à « confirmée ».",
     "hero_note": "Ce n’est pas un laboratoire autonome. C’est un cas plus solide de boucle IA → hypothèse → expérience humaine.",
     "section_open": "Ce que nous enquêtons maintenant",
     "section_open_deck": "Ces signaux sont récents et résolus vers leur source primaire. Ils ne sont pas encore des avancées Future Edition : aucune conclusion n’est promue avant revue.",
@@ -45,7 +45,7 @@
     "question": "Une IA peut-elle faire des découvertes scientifiques originales ?",
     "answer": "Oui — dans un sens limité mais désormais mieux étayé.",
     "answer_detail": "Des systèmes d’IA ont déjà produit des molécules candidates, des algorithmes et des structures qui ont ensuite été validés expérimentalement ou par une vérification externe. Le jalon de validation expérimentale est actuellement atteint avec une confiance confirmée. En revanche, Future Edition ne considère pas encore démontrées la réplication indépendante systématique ni une contribution récurrente de l’IA à de nouvelles connaissances.",
-    "trajectory_title": "La trajectoire en quatre moments",
+    "trajectory_title": "La trajectoire en six moments",
     "watch_title": "Ce qui ferait bouger l’Observatoire ensuite",
     "watch_items": [
       "Une équipe indépendante reproduit une découverte issue du workflow Robin ou d’un système comparable.",
@@ -60,7 +60,10 @@
     "locator_label": "Où vérifier dans la source",
     "boundaries_label": "Frontières de l’affirmation",
     "review_label": "Décision éditoriale",
-    "review_text": "La revue humaine a approuvé l’état précédent, l’état après Robin et la classification comme renforcement de preuve. La publication ne déclenche pas une promotion automatique d’un jalon."
+    "review_text": "La revue humaine a approuvé l’état précédent, l’état après Robin et la classification comme renforcement de preuve. La publication ne déclenche pas une promotion automatique d’un jalon.",
+    "claim_public": "Robin a généré des hypothèses thérapeutiques et des directions expérimentales pour la DMLA sèche. Des chercheurs ont ensuite testé en laboratoire les candidats proposés : le ripasudil et KL001 ont amélioré la phagocytose de cellules de l’épithélium pigmentaire rétinien, et l’effet du ripasudil a aussi été observé dans des cellules RPE humaines primaires.",
+    "boundaries_public": "Cette preuve soutient la validation expérimentale d’hypothèses générées par IA. Elle n’établit ni une exécution autonome du laboratoire, ni une réplication indépendante, ni une efficacité clinique, ni l’atteinte des étapes de réplication indépendante ou d’usage scientifique récurrent.",
+    "locator_public": "Résumé ; résultats autour de la figure 4 sur les expériences de phagocytose avec ripasudil et KL001 et la validation sur cellules RPE humaines primaires ; méthodes et contributions des auteurs distinguant génération/analyses par IA et exécution humaine du wet lab."
   },
   "candidate_labels": {
     "Q-001": "Cancer",
@@ -75,5 +78,16 @@
     "CAND-060010": "Prépublication technique · enquête ouverte",
     "CAND-060013": "Prépublication technique · enquête ouverte",
     "CAND-060016": "Prépublication théorique · enquête ouverte"
+  },
+  "candidate_titles": {
+    "CAND-060002": "Cancer colorectal métastatique : un essai de phase II compare une nouvelle combinaison thérapeutique",
+    "CAND-060005": "Lésion médullaire : une stimulation magnétique à haute fréquence améliore la récupération motrice dans un modèle animal",
+    "CAND-060010": "Robotique : CommitFlow veut corriger localement les erreurs sur des tâches de manipulation longues",
+    "CAND-060013": "ScientistTwo revendique un pas vers une IA de découverte scientifique plus autonome",
+    "CAND-060016": "Correction d’erreurs quantiques : une prépublication réexamine le comportement du seuil critique"
+  },
+  "robin_event": {
+    "title": "Robin relie des hypothèses thérapeutiques générées par IA à une validation en laboratoire",
+    "claim": "Robin a généré des hypothèses thérapeutiques et des directions expérimentales pour la DMLA sèche ; des chercheurs ont ensuite réalisé les essais de laboratoire et observé des effets mesurables pour le ripasudil et KL001."
   }
 }

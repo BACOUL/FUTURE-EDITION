@@ -4,7 +4,7 @@ const root = new URL("../", import.meta.url);
 const out = new URL("../dist-v2/", import.meta.url);
 const readJson = async (path) => JSON.parse(await readFile(new URL(path, root), "utf8"));
 const [
-  questions, events, claims, evidence, sources, assessments, changes, reviews, editorial, r2
+  questions, events, claims, evidence, sources, assessments, changes, reviews, editorial, editorialEventsFr, r2
 ] = await Promise.all([
   readJson("data/questions/questions.json"),
   readJson("data/events/events.json"),
@@ -15,6 +15,7 @@ const [
   readJson("data/changes/changes.json"),
   readJson("data/reviews/reviews.json"),
   readJson("data/editorial/fr/v2-slice.json"),
+  readJson("data/editorial/fr/events.json"),
   readJson("benchmarks/fe06r/r2-living-slice.proof.json")
 ]);
 
@@ -83,7 +84,8 @@ const layout=(title,description,canonical,body)=>`<!doctype html><html lang="fr"
 const candidateCards=r2.selected_candidates.map((c)=>{
   const note=editorial.candidate_notes[c.id]??"Enquête ouverte";
   const label=editorial.candidate_labels[c.question_id]??c.question_id;
-  return `<article class="signal"><div class="tag"><span>${esc(label)}</span><span>2026</span></div><h3>${esc(c.title)}</h3><p>${esc(note)}</p><em>ENQUÊTE OUVERTE · PAS ENCORE UNE AVANCÉE</em></article>`;
+  const publicTitle=editorial.candidate_titles?.[c.id]??c.title;
+  return `<article class="signal"><div class="tag"><span>${esc(label)}</span><span>2026</span></div><h3>${esc(publicTitle)}</h3><p>${esc(note)}</p><em>ENQUÊTE OUVERTE · PAS ENCORE UNE AVANCÉE</em></article>`;
 }).join("");
 
 const home=layout(
@@ -92,7 +94,7 @@ const home=layout(
   "/",
   `<div class="edition-line"><div class="shell"><span>${esc(editorial.home.edition_label)}</span><span>1 changement confirmé · 5 enquêtes ouvertes</span></div></div>
   <section class="hero"><div class="shell hero-grid"><div><p class="kicker">${esc(editorial.home.hero_kicker)}</p><h1>${esc(editorial.home.hero_title)}</h1><p class="hero-deck">${esc(editorial.home.hero_deck)}</p><p class="hero-note">${esc(editorial.home.hero_note)}</p><div class="hero-actions"><a class="button" href="${articlePath}">Lire l’histoire ${iconArrow}</a><a class="text-link" href="${evidencePath}">Vérifier la preuve</a></div></div><figure class="hero-visual">${heroSvg}<figcaption>Illustration éditoriale : la boucle décrite dans l’étude Robin relie génération d’hypothèses et expérimentation humaine.</figcaption></figure></div></section>
-  <section class="proof-strip"><div class="shell"><strong>Le jalon ne change pas. Le niveau de confiance, oui.</strong><p>Validation expérimentale : atteinte. Confiance : ${esc(before.confidence)} → ${esc(after.confidence)}. La différence est issue d’un Change revu humainement, pas d’un score automatique.</p></div></section>
+  <section class="proof-strip"><div class="shell"><strong>Le jalon ne change pas. Le niveau de confiance, oui.</strong><p>Validation expérimentale : atteinte. Confiance : solide mais préliminaire → confirmée. Cette évolution résulte d’une revue humaine de la nouvelle preuve, pas d’un score automatique.</p></div></section>
   <section class="section" id="enquetes"><div class="shell"><div class="section-heading"><div><p class="kicker">VEILLE EN COURS</p><h2>${esc(editorial.home.section_open)}</h2></div><p>${esc(editorial.home.section_open_deck)}</p></div><div class="signals">${candidateCards}</div></div></section>
   <section class="observatory-band"><div class="shell observatory-grid"><div><p class="kicker" style="color:#d7ef62">OBSERVATOIRE · IA & SCIENCE</p><h2>${esc(editorial.home.observatory_title)}</h2></div><div><p class="observatory-answer">${esc(editorial.home.observatory_answer)}</p><a class="button" href="${obsPath}">Ouvrir la grande question ${iconArrow}</a></div></div></section>
   <section class="watch"><div class="shell watch-grid"><div><p class="kicker">À SURVEILLER</p><h2>${esc(editorial.home.watch_title)}</h2></div><p>${esc(editorial.home.watch_text)}</p></div></section>`
@@ -108,19 +110,20 @@ const article=layout(
   <div class="article-body"><p class="lead">${esc(editorial.article.intro)}</p>${articleParagraphs}</div>
   <section class="pull"><span>${esc(editorial.article.changed_title)}</span><p>${esc(editorial.article.changed_text)}</p></section>
   <section class="limits"><div class="shell limits-grid"><div><p class="kicker" style="color:#d7ef62">LIMITES</p><h2>${esc(editorial.article.limits_title)}</h2></div><ol>${editorial.article.limits.map((x,i)=>`<li><b>0${i+1}</b> · ${esc(x)}</li>`).join("")}</ol></div></section>
-  <section class="verify"><div class="shell verify-grid"><div><p class="kicker">VÉRIFIER</p><h2>${esc(editorial.article.evidence_cta)}</h2><p>Future Edition conserve l’affirmation, son repère dans la source, les frontières de conclusion et la décision de revue. Ces détails restent secondaires pendant la lecture, mais ne sont jamais cachés.</p><a class="button" href="${evidencePath}">Ouvrir le dossier de preuve ${iconArrow}</a></div><div class="source-card"><small>PUBLICATION PRIMAIRE · NATURE · 2026</small><strong>${esc(source.title)}</strong><p>${esc(ev.locator)}</p><a href="${esc(source.canonical_url)}" rel="noopener noreferrer">${esc(editorial.article.source_cta)} ${iconArrow}</a></div></div></section>
+  <section class="verify"><div class="shell verify-grid"><div><p class="kicker">VÉRIFIER</p><h2>${esc(editorial.article.evidence_cta)}</h2><p>Future Edition conserve l’affirmation, son repère dans la source, les frontières de conclusion et la décision de revue. Ces détails restent secondaires pendant la lecture, mais ne sont jamais cachés.</p><a class="button" href="${evidencePath}">Ouvrir le dossier de preuve ${iconArrow}</a></div><div class="source-card"><small>PUBLICATION PRIMAIRE · NATURE · 2026</small><strong>${esc(source.title)}</strong><p>${esc(editorial.evidence.locator_public)}</p><a href="${esc(source.canonical_url)}" rel="noopener noreferrer">${esc(editorial.article.source_cta)} ${iconArrow}</a></div></div></section>
   <section class="article-body"><p class="machine-note">Pour les agents et outils : la représentation structurée de ce même changement est disponible sans parser cet article. <a href="${machinePath}">Ouvrir le JSON canonique →</a></p></section></article>`
 );
 
 const qEvents=events.filter((x)=>x.question_ids?.includes("Q-008")).sort((a,b)=>a.event_date.localeCompare(b.event_date));
 const timeline=qEvents.map((item)=>{
   const c=claims.find((x)=>item.claim_ids?.includes(x.id));
+  const fr=item.id===event.id?editorial.robin_event:editorialEventsFr.entries?.[item.id];
   const status=item.id===event.id?"Renforcement confirmé":"Contexte historique vérifié";
-  return `<article class="time-row"><time datetime="${esc(item.event_date)}">${esc(fmtDate(item.event_date))}</time><div><h3>${esc(item.title)}</h3><p>${esc(c?.text??"")}</p></div><em>${status}</em></article>`;
+  return `<article class="time-row"><time datetime="${esc(item.event_date)}">${esc(fmtDate(item.event_date))}</time><div><h3>${esc(fr?.title??item.title)}</h3><p>${esc(fr?.claim??c?.text??"")}</p></div><em>${status}</em></article>`;
 }).join("");
 const milestones=q.milestones.map((m)=>{
   const isCurrent=m.id==="Q-008-M3";
-  const stateText=isCurrent?"ATTEINT · CONFIANCE CONFIRMÉE":"PAS D’ÉTAT CANONIQUE SÉPARÉ";
+  const stateText=isCurrent?"ATTEINT · CONFIANCE CONFIRMÉE":"PAS ENCORE ÉVALUÉ SÉPARÉMENT";
   return `<article class="milestone ${isCurrent?"current":""}"><span>ÉTAPE ${String(m.order).padStart(2,"0")}</span><h3>${esc(m.title)}</h3><p>${esc(m.criterion)}</p><b>${stateText}</b></article>`;
 }).join("");
 
@@ -130,7 +133,7 @@ const observatory=layout(
   obsPath,
   `<section class="obs-hero"><div class="shell"><p class="kicker" style="color:#d7ef62">${esc(editorial.observatory.kicker)}</p><h1>${esc(editorial.observatory.question)}</h1><div class="obs-answer"><strong>${esc(editorial.observatory.answer)}</strong><div><p>${esc(editorial.observatory.answer_detail)}</p><a class="button" href="${articlePath}">Lire le dernier changement ${iconArrow}</a></div></div></div></section>
   <section class="timeline"><div class="shell"><p class="kicker">TRAJECTOIRE</p><h2>${esc(editorial.observatory.trajectory_title)}</h2><div class="timeline-list">${timeline}</div></div></section>
-  <section class="milestones"><div class="shell"><p class="kicker">CE QUI EST ÉVALUÉ — ET CE QUI NE L’EST PAS</p><h2>Cinq étapes, une seule actuellement promue canoniquement.</h2><div class="milestone-list">${milestones}</div></div></section>
+  <section class="milestones"><div class="shell"><p class="kicker">CE QUI EST ÉVALUÉ — ET CE QUI NE L’EST PAS</p><h2>Cinq étapes. Une seule possède aujourd’hui un état validé.</h2><div class="milestone-list">${milestones}</div></div></section>
   <section class="next-proof"><div class="shell next-grid"><div><p class="kicker">PROCHAINE FRONTIÈRE</p><h2>${esc(editorial.observatory.watch_title)}</h2></div><ul>${editorial.observatory.watch_items.map((x)=>`<li>${esc(x)}</li>`).join("")}</ul></div></section>
   <section class="verify"><div class="shell verify-grid"><div><p class="kicker">DERNIÈRE MISE À JOUR</p><h2>Pourquoi Robin renforce la réponse.</h2><p>Le dernier changement enregistré ne prétend pas que l’IA scientifique autonome est résolue. Il fait une mise à jour plus précise : le niveau de preuve sur la validation expérimentale devient plus fort.</p><a class="button" href="${evidencePath}">Voir la preuve ${iconArrow}</a></div><div class="source-card"><small>ÉTAT AU 19 MAI 2026</small><strong>Validation expérimentale : atteinte</strong><p>Confiance confirmée. Réplication indépendante et usage scientifique récurrent : non établis par ce Change.</p><a href="${machinePath}">Voir la même réponse pour une machine ${iconArrow}</a></div></div></section>`
 );
@@ -140,7 +143,7 @@ const evidencePage=layout(
   "Dossier de preuve du changement Robin : affirmation, source primaire, locator, limites et revue.",
   evidencePath,
   `<section class="evidence-hero"><div class="shell"><p class="kicker">${esc(editorial.evidence.kicker)}</p><h1>${esc(editorial.evidence.title)}</h1><p class="hero-deck">Ce dossier existe pour vérifier la conclusion sans transformer l’article en documentation technique.</p></div></section>
-  <section class="shell evidence-layout"><div><div class="evidence-box"><span>${esc(editorial.evidence.claim_label)}</span><p class="claim-quote">${esc(claim.text)}</p></div><div class="evidence-box"><span>${esc(editorial.evidence.boundaries_label)}</span><p>${esc(ev.notes)}</p></div></div><div><div class="evidence-box"><span>SOURCE PRIMAIRE</span><h2>${esc(source.title)}</h2><p>Publiée le ${esc(fmtDate(source.published_at))}. Source de niveau A dans le corpus Future Edition.</p><a class="button" href="${esc(source.canonical_url)}" rel="noopener noreferrer">Ouvrir la source originale ${iconArrow}</a></div><div class="evidence-box"><span>${esc(editorial.evidence.locator_label)}</span><p>${esc(ev.locator)}</p></div><div class="evidence-box"><span>${esc(editorial.evidence.review_label)}</span><p>${esc(editorial.evidence.review_text)}</p></div><div class="evidence-box"><span>DÉTAIL EXPERT</span><code>${esc(claim.id)} → ${esc(ev.id)} → ${esc(source.id)} · ${esc(change.id)} · ${esc(review.id)}</code></div></div></section>
+  <section class="shell evidence-layout"><div><div class="evidence-box"><span>${esc(editorial.evidence.claim_label)}</span><p class="claim-quote">${esc(editorial.evidence.claim_public)}</p></div><div class="evidence-box"><span>${esc(editorial.evidence.boundaries_label)}</span><p>${esc(editorial.evidence.boundaries_public)}</p></div></div><div><div class="evidence-box"><span>SOURCE PRIMAIRE</span><h2>${esc(source.title)}</h2><p>Publiée le ${esc(fmtDate(source.published_at))}. Publication primaire évaluée par les pairs.</p><a class="button" href="${esc(source.canonical_url)}" rel="noopener noreferrer">Ouvrir la source originale ${iconArrow}</a></div><div class="evidence-box"><span>${esc(editorial.evidence.locator_label)}</span><p>${esc(ev.locator)}</p></div><div class="evidence-box"><span>${esc(editorial.evidence.review_label)}</span><p>${esc(editorial.evidence.review_text)}</p></div><div class="evidence-box"><span>DÉTAIL EXPERT</span><code>${esc(claim.id)} → ${esc(ev.id)} → ${esc(source.id)} · ${esc(change.id)} · ${esc(review.id)}</code></div></div></section>
   <section class="watch"><div class="shell watch-grid"><div><p class="kicker">RETOUR À LA LECTURE</p><h2>Une preuve n’a de valeur que replacée dans la question.</h2></div><p><a class="text-link" href="${articlePath}">Revenir à l’article</a><br><br><a class="text-link" href="${obsPath}">Ouvrir l’Observatoire</a></p></div></section>`
 );
 

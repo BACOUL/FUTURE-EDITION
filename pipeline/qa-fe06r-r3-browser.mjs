@@ -7,9 +7,9 @@ await rm(outDir,{recursive:true,force:true});await mkdir(shotDir,{recursive:true
 const widths=[360,390,768,1440];
 const pages=[
   {id:"home-v2",path:"/",markers:["Quand l’IA formule l’hypothèse","Ce que nous enquêtons maintenant","Une question qui vient de bouger"],selectors:[".hero",".signals",".observatory-band",".watch"]},
-  {id:"article-v2",path:"/avance/robin-ia-hypothese-laboratoire/",markers:["Une IA a proposé des pistes. Des chercheurs les ont testées.","Ce qui change réellement","Ce que ce résultat ne permet pas de dire"],selectors:[".article-hero",".article-figure",".article-body",".limits",".verify"]},
-  {id:"observatory-v2",path:"/observatoires/ia-decouvertes-scientifiques/",markers:["Oui — dans un sens limité mais désormais mieux étayé.","La trajectoire en quatre moments","Cinq étapes, une seule actuellement promue canoniquement."],selectors:[".obs-hero",".timeline",".milestones",".next-proof"]},
-  {id:"evidence-v2",path:"/preuves/ev-2026-008006/",markers:["Pourquoi Robin renforce le niveau de confiance","L’affirmation soutenue","SOURCE PRIMAIRE","Décision éditoriale"],selectors:[".evidence-hero",".evidence-layout",".claim-quote"]}
+  {id:"article-v2",path:"/avance/robin-ia-hypothese-laboratoire/",markers:["Une IA a proposé des pistes. Des chercheurs les ont testées.","CE QUI CHANGE RÉELLEMENT","Ce que ce résultat ne permet pas de dire"],selectors:[".article-hero",".article-figure",".article-body",".limits",".verify"]},
+  {id:"observatory-v2",path:"/observatoires/ia-decouvertes-scientifiques/",markers:["Oui — dans un sens limité mais désormais mieux étayé.","La trajectoire en six moments","Cinq étapes. Une seule possède aujourd’hui un état validé."],selectors:[".obs-hero",".timeline",".milestones",".next-proof"]},
+  {id:"evidence-v2",path:"/preuves/ev-2026-008006/",markers:["Pourquoi Robin renforce le niveau de confiance","L’AFFIRMATION SOUTENUE","SOURCE PRIMAIRE","DÉCISION ÉDITORIALE"],selectors:[".evidence-hero",".evidence-layout",".claim-quote"]}
 ];
 const browser=await chromium.launch({headless:true});const results=[];let failures=0;
 for(const def of pages){for(const width of widths){const page=await browser.newPage({viewport:{width,height:900},deviceScaleFactor:1});const response=await page.goto(base+def.path,{waitUntil:"networkidle"});const result={page:def.id,path:def.path,width,http_status:response?.status()??null,pass:true,failures:[],screenshot:"screenshots/"+def.id+"-"+width+".png",metrics:{}};

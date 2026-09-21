@@ -60,14 +60,14 @@ if(article.indexOf("EVID-050051")>=0 && article.indexOf("EVID-050051")<verifyPos
 for(const phrase of [
   "Une IA peut-elle faire des découvertes scientifiques originales ?",
   "Oui — dans un sens limité mais désormais mieux étayé.",
-  "La trajectoire en quatre moments",
-  "Cinq étapes, une seule actuellement promue canoniquement.",
+  "La trajectoire en six moments",
+  "Cinq étapes. Une seule possède aujourd’hui un état validé.",
   "ATTEINT · CONFIANCE CONFIRMÉE",
-  "PAS D’ÉTAT CANONIQUE SÉPARÉ",
+  "PAS ENCORE ÉVALUÉ SÉPARÉMENT",
   "Ce qui ferait bouger l’Observatoire ensuite"
 ]) if(!obs.includes(phrase)) errors.push("observatory missing "+phrase);
 if((obs.match(/ATTEINT · CONFIANCE CONFIRMÉE/g)||[]).length!==1) errors.push("observatory must promote exactly one milestone");
-if((obs.match(/PAS D’ÉTAT CANONIQUE SÉPARÉ/g)||[]).length!==4) errors.push("unassessed milestones must remain explicit");
+if((obs.match(/PAS ENCORE ÉVALUÉ SÉPARÉMENT/g)||[]).length!==4) errors.push("unassessed milestones must remain explicit");
 
 for(const phrase of [
   "Pourquoi Robin renforce le niveau de confiance",
@@ -87,6 +87,8 @@ if(machine.question?.id!=="Q-008"||machine.milestone?.id!=="Q-008-M3") errors.pu
 if(machine.previous_state?.confidence!=="solid_preliminary"||machine.current_state?.confidence!=="confirmed") errors.push("machine confidence transition mismatch");
 if(machine.trigger?.claim?.id!=="CLAIM-050051"||machine.trigger?.evidence?.id!=="EVID-050051"||machine.trigger?.source?.id!=="SRC-050051") errors.push("machine trigger chain mismatch");
 if(machine.trigger?.evidence?.locator?.includes("Fig. 4")!==true) errors.push("machine source locator missing");
+if(proof.includes("Robin generated therapeutic hypotheses")||proof.includes("Supports experimental validation")) errors.push("raw English canonical prose leaked into French evidence page");
+if(obs.includes("Deep learning identifies halicin")||obs.includes("AlphaDev discovers faster sorting algorithms")) errors.push("raw English timeline leaked into French observatory");
 if(machine.limitations?.length!==4||machine.watch_next?.length!==3) errors.push("machine limits/watch mismatch");
 if(manifest.human_machine_truth_model!=="single_canonical_truth"||manifest.reference_change!=="CHANGE-000001") errors.push("machine manifest truth model mismatch");
 
