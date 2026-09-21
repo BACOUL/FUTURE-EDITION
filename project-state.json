@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.17.0",
+  "authority_version": "0.17.1",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -508,7 +508,20 @@
     "fe06r_live_canonical_changes": 0,
     "fe06r_live_canonical_assessments": 0,
     "fe06r_live_canonical_reviews": 0,
-    "fe06r_next_work_item": "FE-06R1_FIRST_REAL_CANONICAL_CHANGE"
+    "fe06r_next_work_item": "FE-06R1_FIRST_REAL_CANONICAL_CHANGE",
+    "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
+    "fe06r_first_real_change_candidate_status": "AWAITING_HUMAN_REVIEW",
+    "fe06r_first_real_change_question_id": "Q-008",
+    "fe06r_first_real_change_milestone_id": "Q-008-M3",
+    "fe06r_first_real_change_event_id": "EV-2026-008006",
+    "fe06r_first_real_change_source_id": "SRC-050051",
+    "fe06r_first_real_change_claim_id": "CLAIM-050051",
+    "fe06r_first_real_change_before_assessment_id": "ASSESS-000001",
+    "fe06r_first_real_change_after_assessment_id": "ASSESS-000002",
+    "fe06r_first_real_change_proposed_type": "evidence_upgrade",
+    "production_canonical_changes": 0,
+    "production_canonical_reviews": 0,
+    "fe06r_next_required_proof": "explicit_human_review_of_FE06R-CHANGE-CANDIDATE-001"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
