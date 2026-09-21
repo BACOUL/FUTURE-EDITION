@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "REVIEW-000001",
+    "entity_id": "ASSESS-000001",
+    "decision": "approve",
+    "reviewed_at": "2026-09-21T19:04:00Z",
+    "reviewer_role": "editorial_gate",
+    "reason": "Human reviewer approved the baseline assessment Q-008-M3 = met / solid_preliminary as of 2023-11-29 after reviewing FE06R-CHANGE-CANDIDATE-001 and its stated boundaries.",
+    "previous_state_hash": null,
+    "new_state_hash": "ac63c074bccd3c87c7eda49dab6c3f909115a668663202e254ce68a13378ecbf",
+    "observed_at": "2026-09-21T19:04:00Z",
+    "valid_from": "2026-09-21T19:04:00Z",
+    "valid_to": null
+  },
+  {
+    "id": "REVIEW-000002",
+    "entity_id": "ASSESS-000002",
+    "decision": "approve",
+    "reviewed_at": "2026-09-21T19:04:00Z",
+    "reviewer_role": "editorial_gate",
+    "reason": "Human reviewer approved the post-Robin assessment Q-008-M3 = met / confirmed as of 2026-05-19 and the evidence_upgrade classification, with the stated non-conclusions preserved.",
+    "previous_state_hash": "ac63c074bccd3c87c7eda49dab6c3f909115a668663202e254ce68a13378ecbf",
+    "new_state_hash": "34fa5b9b6d44790534db98877644e64b9d133a29928a142b246793cc5f0c1ff8",
+    "observed_at": "2026-09-21T19:04:00Z",
+    "valid_from": "2026-09-21T19:04:00Z",
+    "valid_to": null
+  }
+]

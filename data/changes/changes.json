@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "id": "CHANGE-000001",
+    "milestone_id": "Q-008-M3",
+    "before_assessment_id": "ASSESS-000001",
+    "after_assessment_id": "ASSESS-000002",
+    "change_type": "evidence_upgrade",
+    "trigger_claim_ids": [
+      "CLAIM-050051"
+    ],
+    "trigger_evidence_ids": [
+      "EVID-050051"
+    ],
+    "trigger_event_ids": [
+      "EV-2026-008006"
+    ],
+    "review_id": "REVIEW-000002",
+    "justification": "Q-008-M3 was already supportable as met from the historical baseline. Robin does not create the first experimental validation, but it adds a distinct peer-reviewed iterative AI-to-experiment workflow and therefore upgrades confidence from solid_preliminary to confirmed rather than recording a milestone_reached transition.",
+    "before_state_hash": "ac63c074bccd3c87c7eda49dab6c3f909115a668663202e254ce68a13378ecbf",
+    "after_state_hash": "34fa5b9b6d44790534db98877644e64b9d133a29928a142b246793cc5f0c1ff8",
+    "observed_at": "2026-09-21T19:04:00Z",
+    "valid_from": "2026-09-21T19:04:00Z",
+    "valid_to": null
+  }
+]

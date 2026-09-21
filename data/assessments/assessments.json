@@ -14,13 +14,13 @@
       "EV-2023-008003",
       "EV-2023-008004"
     ],
-    "review_state": "machine_proposed",
-    "review_id": null,
+    "review_state": "human_approved",
+    "review_id": "REVIEW-000001",
     "supersedes_assessment_id": null,
     "observed_at": "2026-09-21T18:20:00Z",
     "effective_at": "2023-11-29T00:00:00Z",
     "valid_from": "2023-11-29T00:00:00Z",
-    "valid_to": null
+    "valid_to": "2026-05-19T00:00:00Z"
   },
   {
     "id": "ASSESS-000002",
@@ -39,8 +39,8 @@
       "EV-2023-008004",
       "EV-2026-008006"
     ],
-    "review_state": "machine_proposed",
-    "review_id": null,
+    "review_state": "human_approved",
+    "review_id": "REVIEW-000002",
     "supersedes_assessment_id": "ASSESS-000001",
     "observed_at": "2026-09-21T18:20:00Z",
     "effective_at": "2026-05-19T00:00:00Z",

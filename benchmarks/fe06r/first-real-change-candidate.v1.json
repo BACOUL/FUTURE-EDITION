@@ -1,7 +1,7 @@
 {
   "schema_version": "fe06r/first-real-change-candidate/v1",
   "id": "FE06R-CHANGE-CANDIDATE-001",
-  "status": "AWAITING_HUMAN_REVIEW",
+  "status": "CANONICALIZED",
   "question_id": "Q-008",
   "question": "Une IA peut-elle faire des découvertes scientifiques originales ?",
   "milestone_id": "Q-008-M3",
@@ -35,7 +35,7 @@
     "The result does not establish clinical efficacy for dry age-related macular degeneration.",
     "The result does not satisfy Q-008-M4 or Q-008-M5 by itself."
   ],
-  "human_review_required": true,
+  "human_review_required": false,
   "review_questions": [
     "Approve the baseline assessment Q-008-M3 = met / solid_preliminary as of 2023-11-29?",
     "Approve the post-Robin assessment Q-008-M3 = met / confirmed as of 2026-05-19?",
@@ -46,5 +46,22 @@
     "REVIEW-000001",
     "REVIEW-000002"
   ],
-  "observed_at": "2026-09-21T18:20:00Z"
+  "observed_at": "2026-09-21T18:20:00Z",
+  "human_review": {
+    "decision": "approve",
+    "approved_at": "2026-09-21T19:04:00Z",
+    "approvals": {
+      "baseline_assessment": true,
+      "post_robin_assessment": true,
+      "evidence_upgrade_classification": true,
+      "stated_non_conclusions_preserved": true
+    }
+  },
+  "final_change_id": "CHANGE-000001",
+  "final_review_ids": [
+    "REVIEW-000001",
+    "REVIEW-000002"
+  ],
+  "before_state_hash": "ac63c074bccd3c87c7eda49dab6c3f909115a668663202e254ce68a13378ecbf",
+  "after_state_hash": "34fa5b9b6d44790534db98877644e64b9d133a29928a142b246793cc5f0c1ff8"
 }

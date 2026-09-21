@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.17.1",
+  "authority_version": "0.17.2",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -44,8 +44,8 @@
   "current_assets": {
     "launch_questions": 10,
     "milestones": 51,
-    "scientific_states_assessed": 0,
-    "validated_events": 50,
+    "scientific_states_assessed": 1,
+    "validated_events": 51,
     "core_collections_initialized": true,
     "provenance_policy_defined": true,
     "monetization_policy_defined": true,
@@ -504,13 +504,13 @@
     "fe06r_design_system_v2_document": "docs/DESIGN-SYSTEM-VISION.md",
     "fe06r_information_architecture_v2_document": "docs/INFORMATION-ARCHITECTURE.md",
     "fe06r_media_automated_points_authoritative": false,
-    "fe06r_first_real_canonical_change_required": true,
-    "fe06r_live_canonical_changes": 0,
-    "fe06r_live_canonical_assessments": 0,
-    "fe06r_live_canonical_reviews": 0,
-    "fe06r_next_work_item": "FE-06R1_FIRST_REAL_CANONICAL_CHANGE",
+    "fe06r_first_real_canonical_change_required": false,
+    "fe06r_live_canonical_changes": 1,
+    "fe06r_live_canonical_assessments": 2,
+    "fe06r_live_canonical_reviews": 2,
+    "fe06r_next_work_item": "FE-06R1_CANONICAL_CHANGE_REPRESENTATIONS",
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
-    "fe06r_first_real_change_candidate_status": "AWAITING_HUMAN_REVIEW",
+    "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
     "fe06r_first_real_change_milestone_id": "Q-008-M3",
     "fe06r_first_real_change_event_id": "EV-2026-008006",
@@ -519,9 +519,18 @@
     "fe06r_first_real_change_before_assessment_id": "ASSESS-000001",
     "fe06r_first_real_change_after_assessment_id": "ASSESS-000002",
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
-    "production_canonical_changes": 0,
-    "production_canonical_reviews": 0,
-    "fe06r_next_required_proof": "explicit_human_review_of_FE06R-CHANGE-CANDIDATE-001"
+    "production_canonical_changes": 1,
+    "production_canonical_reviews": 2,
+    "fe06r_next_required_proof": "human_and_machine_representation_of_CHANGE-000001",
+    "fe06r_first_real_change_id": "CHANGE-000001",
+    "fe06r_first_real_change_review_ids": [
+      "REVIEW-000001",
+      "REVIEW-000002"
+    ],
+    "fe06r_first_real_change_before_state_hash": "ac63c074bccd3c87c7eda49dab6c3f909115a668663202e254ce68a13378ecbf",
+    "fe06r_first_real_change_after_state_hash": "34fa5b9b6d44790534db98877644e64b9d133a29928a142b246793cc5f0c1ff8",
+    "fe06r_first_real_change_human_review_approved": true,
+    "fe06r_first_real_change_approved_at": "2026-09-21T19:04:00Z"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

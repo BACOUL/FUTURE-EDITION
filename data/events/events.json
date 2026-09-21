@@ -1319,8 +1319,8 @@
       "Q-008-M3"
     ],
     "status": "verified",
-    "change_type": "unassessed",
-    "human_review": "required",
+    "change_type": "evidence_upgrade",
+    "human_review": "approved",
     "observed_at": "2026-09-21T18:20:00Z",
     "valid_from": "2026-05-19T00:00:00Z",
     "valid_to": null
