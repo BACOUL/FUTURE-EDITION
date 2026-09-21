@@ -1,0 +1,50 @@
+{
+  "schema_version": "fe06r/first-real-change-candidate/v1",
+  "id": "FE06R-CHANGE-CANDIDATE-001",
+  "status": "AWAITING_HUMAN_REVIEW",
+  "question_id": "Q-008",
+  "question": "Une IA peut-elle faire des découvertes scientifiques originales ?",
+  "milestone_id": "Q-008-M3",
+  "milestone": "Validation expérimentale",
+  "source_id": "SRC-050051",
+  "source_url": "https://doi.org/10.1038/s41586-026-10652-y",
+  "source_kind": "peer-reviewed primary paper",
+  "source_published_at": "2026-05-19",
+  "event_id": "EV-2026-008006",
+  "trigger_claim_id": "CLAIM-050051",
+  "trigger_evidence_id": "EVID-050051",
+  "before": {
+    "assessment_id": "ASSESS-000001",
+    "status": "met",
+    "confidence": "solid_preliminary",
+    "as_of": "2023-11-29",
+    "rationale": "Existing baseline already contained experimentally or externally validated AI-discovery examples, including halicin, AlphaDev and GNoME, but no canonical assessment had yet been approved."
+  },
+  "after": {
+    "assessment_id": "ASSESS-000002",
+    "status": "met",
+    "confidence": "confirmed",
+    "as_of": "2026-05-19",
+    "rationale": "The Robin paper adds a peer-reviewed, independent lab-in-the-loop example in which the AI system generated therapeutic hypotheses and experimental directions and human researchers experimentally tested resulting candidates, strengthening the evidence that Q-008-M3 is satisfied."
+  },
+  "proposed_change_type": "evidence_upgrade",
+  "proposed_justification": "Q-008-M3 was already supportable as met from the historical baseline. Robin does not create the first experimental validation, but it adds a distinct peer-reviewed iterative AI-to-experiment workflow and therefore proposes an upgrade from solid_preliminary to confirmed rather than a milestone_reached transition.",
+  "boundaries": [
+    "The wet-lab experiments were performed by human researchers; the claim does not state that Robin autonomously executed experiments.",
+    "The result does not prove independent replication of the Robin discovery workflow.",
+    "The result does not establish clinical efficacy for dry age-related macular degeneration.",
+    "The result does not satisfy Q-008-M4 or Q-008-M5 by itself."
+  ],
+  "human_review_required": true,
+  "review_questions": [
+    "Approve the baseline assessment Q-008-M3 = met / solid_preliminary as of 2023-11-29?",
+    "Approve the post-Robin assessment Q-008-M3 = met / confirmed as of 2026-05-19?",
+    "Approve classification as evidence_upgrade, with the stated non-conclusions?"
+  ],
+  "final_change_id_reserved": "CHANGE-000001",
+  "final_review_ids_reserved": [
+    "REVIEW-000001",
+    "REVIEW-000002"
+  ],
+  "observed_at": "2026-09-21T18:20:00Z"
+}
