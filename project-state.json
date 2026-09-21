@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.17.8",
+  "authority_version": "0.17.9",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -508,7 +508,7 @@
     "fe06r_live_canonical_changes": 1,
     "fe06r_live_canonical_assessments": 2,
     "fe06r_live_canonical_reviews": 2,
-    "fe06r_next_work_item": "FE-06R3_HUMAN_VERTICAL_SLICE_V2",
+    "fe06r_next_work_item": "FE-06R3_PROVE_HUMAN_VERTICAL_SLICE_V2",
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
     "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "Home_V2_Article_V2_Observatory_V2_Evidence_to_Source_and_matching_machine_representation_from_current_canonical_truth",
+    "fe06r_next_required_proof": "clean_runner_build_plus_human_machine_consistency_plus_browser_QA_360_390_768_1440",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -584,7 +584,16 @@
     "fe06r_r2_questions_covered": 5,
     "fe06r_r2_technology_questions_covered": 3,
     "fe06r_r2_q007_no_candidate_retained": true,
-    "fe06r_r2_canonical_promotions": 0
+    "fe06r_r2_canonical_promotions": 0,
+    "fe06r_r3_v2_editorial_data": "data/editorial/fr/v2-slice.json",
+    "fe06r_r3_v2_builder": "pipeline/build-fe06r-v2-slice.mjs",
+    "fe06r_r3_v2_validator": "pipeline/test-fe06r-r3-v2-slice.mjs",
+    "fe06r_r3_v2_browser_qa": "pipeline/qa-fe06r-r3-browser.mjs",
+    "fe06r_r3_v2_output": "dist-v2/",
+    "fe06r_r3_v2_reference_change": "CHANGE-000001",
+    "fe06r_r3_v2_reference_question": "Q-008",
+    "fe06r_r3_v2_candidate_signals": 5,
+    "fe06r_r3_v2_status": "IMPLEMENTED_AWAITING_PROOF"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

@@ -1,0 +1,53 @@
+name: FE06R R3 Human Vertical Slice V2
+
+on:
+  push:
+    branches: [fe06r-r3-v2-proof]
+
+permissions:
+  contents: read
+
+jobs:
+  prove-r3-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical truth
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+          node pipeline/test-fe04-change-engine.mjs
+          node pipeline/test-fe06r-first-real-change.mjs
+      - name: Build isolated V2 vertical slice
+        run: node pipeline/build-fe06r-v2-slice.mjs
+      - name: Prove human-machine consistency
+        run: node pipeline/test-fe06r-r3-v2-slice.mjs
+      - name: Install Chromium QA
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start V2 preview server
+        run: |
+          node pipeline/serve-fe06r-v2.mjs > /tmp/fe-v2.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4322/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/fe-v2.log
+          exit 1
+      - name: Browser QA at 360 390 768 1440
+        run: node pipeline/qa-fe06r-r3-browser.mjs
+      - name: Upload V2 candidate and QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fe06r-r3-v2-candidate
+          path: |
+            dist-v2
+            benchmarks/fe06r/r3-browser-qa
+          retention-days: 30

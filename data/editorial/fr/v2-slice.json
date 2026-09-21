@@ -1,0 +1,79 @@
+{
+  "schema_version": "fe06r/v2-editorial-slice/v1",
+  "as_of": "2026-09-21",
+  "home": {
+    "edition_label": "ÉDITION DU 21 SEPTEMBRE 2026",
+    "hero_kicker": "SCIENCE · INTELLIGENCE ARTIFICIELLE",
+    "hero_title": "Quand l’IA formule l’hypothèse — et que le laboratoire répond.",
+    "hero_deck": "Robin a proposé des pistes thérapeutiques pour une maladie de la rétine. Des chercheurs les ont ensuite testées en laboratoire. Pour Future Edition, ce résultat ne crée pas un nouveau jalon : il renforce assez la preuve pour faire passer la confiance de « solide mais préliminaire » à « confirmée ».",
+    "hero_note": "Ce n’est pas un laboratoire autonome. C’est un cas plus solide de boucle IA → hypothèse → expérience humaine.",
+    "section_open": "Ce que nous enquêtons maintenant",
+    "section_open_deck": "Ces signaux sont récents et résolus vers leur source primaire. Ils ne sont pas encore des avancées Future Edition : aucune conclusion n’est promue avant revue.",
+    "observatory_title": "Une question qui vient de bouger",
+    "observatory_answer": "Oui, des systèmes d’IA ont déjà produit des sorties originales qui ont ensuite résisté à une forme de validation expérimentale ou externe. Robin renforce cette réponse, mais la réplication indépendante et l’usage scientifique récurrent restent ouverts.",
+    "watch_title": "La prochaine preuve qui changerait vraiment la réponse",
+    "watch_text": "Une équipe indépendante reproduisant une découverte issue du même type de workflow ferait franchir un seuil plus important que l’annonce d’un nouveau modèle."
+  },
+  "article": {
+    "slug": "robin-ia-hypothese-laboratoire",
+    "kicker": "DÉCOUVERTE SCIENTIFIQUE PAR IA",
+    "title": "Une IA a proposé des pistes. Des chercheurs les ont testées.",
+    "deck": "Avec Robin, la frontière intéressante n’est pas « l’IA remplace le scientifique ». Elle est plus précise : un système multi-agent a généré des hypothèses thérapeutiques et des directions expérimentales qui ont ensuite été confrontées au laboratoire.",
+    "intro": "Depuis plusieurs années, des systèmes d’IA découvrent des molécules, des algorithmes ou des structures que leurs concepteurs n’avaient pas écrits explicitement. La question difficile est ailleurs : ces sorties peuvent-elles entrer dans la chaîne de la méthode scientifique et survivre à une validation qui ne dépend pas uniquement du modèle ?",
+    "paragraphs": [
+      "Robin apporte un cas utile parce que le passage entre calcul et expérience est visible. Le système a travaillé sur la dégénérescence maculaire liée à l’âge sèche, une maladie pour laquelle les mécanismes et pistes thérapeutiques restent difficiles à démêler.",
+      "Le système a généré des hypothèses et proposé des directions expérimentales. Les expériences humides, elles, ont été réalisées par des chercheurs. Dans les essais rapportés, le ripasudil et KL001 ont amélioré la phagocytose de cellules de l’épithélium pigmentaire rétinien ; le ripasudil a aussi reproduit cet effet dans des cellules RPE humaines primaires.",
+      "Ce résultat ne prouve pas qu’un agent IA puisse mener seul une campagne scientifique complète. Il ne prouve pas non plus que ces candidats soient efficaces chez des patients. Il montre quelque chose de plus étroit mais de mieux défini : une hypothèse produite dans un workflow d’IA peut guider une expérience réelle qui retourne un résultat mesurable.",
+      "Future Edition suivait déjà des exemples comme halicin, AlphaDev et GNoME. C’est pour cela que Robin n’est pas enregistré comme le moment où la validation expérimentale devient possible pour la première fois. Il renforce plutôt l’état existant : le jalon reste atteint, mais la confiance associée monte d’un niveau.",
+      "La prochaine frontière est moins spectaculaire à annoncer, mais plus difficile à obtenir : une réplication indépendante du workflow et, au-delà, un usage scientifique récurrent où des découvertes issues de l’IA sont validées de manière robuste par plusieurs équipes."
+    ],
+    "changed_title": "Ce qui change réellement",
+    "changed_text": "Le statut du jalon « validation expérimentale » ne change pas : il était déjà soutenable comme atteint. En revanche, la confiance passe de solide mais préliminaire à confirmée grâce à un exemple supplémentaire, évalué par les pairs, reliant génération d’hypothèses et expérimentation.",
+    "limits_title": "Ce que ce résultat ne permet pas de dire",
+    "limits": [
+      "Robin n’a pas exécuté de manière autonome les expériences de laboratoire.",
+      "La réplication indépendante du workflow Robin n’est pas démontrée par cette publication.",
+      "Aucune efficacité clinique contre la DMLA sèche n’est établie ici.",
+      "Les étapes de réplication indépendante et d’usage scientifique récurrent restent ouvertes."
+    ],
+    "evidence_cta": "Voir exactement quelle preuve soutient cette mise à jour",
+    "source_cta": "Lire la publication originale"
+  },
+  "observatory": {
+    "slug": "ia-decouvertes-scientifiques",
+    "kicker": "OBSERVATOIRE",
+    "question": "Une IA peut-elle faire des découvertes scientifiques originales ?",
+    "answer": "Oui — dans un sens limité mais désormais mieux étayé.",
+    "answer_detail": "Des systèmes d’IA ont déjà produit des molécules candidates, des algorithmes et des structures qui ont ensuite été validés expérimentalement ou par une vérification externe. Le jalon de validation expérimentale est actuellement atteint avec une confiance confirmée. En revanche, Future Edition ne considère pas encore démontrées la réplication indépendante systématique ni une contribution récurrente de l’IA à de nouvelles connaissances.",
+    "trajectory_title": "La trajectoire en quatre moments",
+    "watch_title": "Ce qui ferait bouger l’Observatoire ensuite",
+    "watch_items": [
+      "Une équipe indépendante reproduit une découverte issue du workflow Robin ou d’un système comparable.",
+      "Plusieurs découvertes nouvelles, dans des domaines distincts, passent la validation expérimentale sans reposer sur la même équipe ou la même infrastructure.",
+      "Un laboratoire utilise de façon récurrente un système d’IA comme partie intégrante de son cycle de découverte, avec résultats reproductibles."
+    ]
+  },
+  "evidence": {
+    "kicker": "DOSSIER DE PREUVE",
+    "title": "Pourquoi Robin renforce le niveau de confiance",
+    "claim_label": "L’affirmation soutenue",
+    "locator_label": "Où vérifier dans la source",
+    "boundaries_label": "Frontières de l’affirmation",
+    "review_label": "Décision éditoriale",
+    "review_text": "La revue humaine a approuvé l’état précédent, l’état après Robin et la classification comme renforcement de preuve. La publication ne déclenche pas une promotion automatique d’un jalon."
+  },
+  "candidate_labels": {
+    "Q-001": "Cancer",
+    "Q-003": "Paralysie",
+    "Q-005": "Robotique",
+    "Q-008": "IA & science",
+    "Q-009": "Quantique"
+  },
+  "candidate_notes": {
+    "CAND-060002": "Essai de phase II chez l’humain · enquête ouverte",
+    "CAND-060005": "Étude préclinique animale · enquête ouverte",
+    "CAND-060010": "Prépublication technique · enquête ouverte",
+    "CAND-060013": "Prépublication technique · enquête ouverte",
+    "CAND-060016": "Prépublication théorique · enquête ouverte"
+  }
+}

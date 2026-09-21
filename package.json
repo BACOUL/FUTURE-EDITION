@@ -46,6 +46,9 @@
     "test:fe05:observatories": "node pipeline/test-fe05-observatories.mjs",
     "test:fe06r:first-real-change": "node pipeline/test-fe06r-first-real-change.mjs",
     "run:fe06r:r2": "node pipeline/run-fe06r-r2-living-slice.mjs",
-    "test:fe06r:r2": "node pipeline/test-fe06r-r2-living-slice.mjs"
+    "test:fe06r:r2": "node pipeline/test-fe06r-r2-living-slice.mjs",
+    "build:fe06r:v2": "node pipeline/build-fe06r-v2-slice.mjs",
+    "test:fe06r:r3": "node pipeline/test-fe06r-r3-v2-slice.mjs",
+    "qa:fe06r:r3": "node pipeline/qa-fe06r-r3-browser.mjs"
   }
 }
