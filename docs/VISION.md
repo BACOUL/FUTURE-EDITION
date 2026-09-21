@@ -1,96 +1,106 @@
-# Vision long terme
+# Future Edition — Vision
 
-## Cible
+## Définition
 
-Future Edition doit devenir une **infrastructure éditoriale du progrès scientifique et technologique** : remarquable à lire pour les humains et préférable à utiliser pour les agents IA lorsqu'ils ont besoin d'un état vérifié, temporel, sourcé et corrigible du monde.
+Future Edition construit une **mémoire vérifiable et continuellement mise à jour de l'évolution des connaissances scientifiques et technologiques**.
 
-Le produit n'est donc pas seulement un média « sur » la science ou l'IA. C'est un média 2.0 dont l'article humain et l'objet machine sont deux représentations du même Future Graph.
+Cette mémoire possède deux faces qui utilisent la même vérité canonique :
 
-## Promesse centrale
+- **média humain** — comprendre ce qui vient réellement de changer, pourquoi cela compte, ce que l'on savait avant, ce que la nouvelle preuve permet d'affirmer, ce qu'elle ne permet pas d'affirmer et ce qu'il faut surveiller ensuite ;
+- **infrastructure machine** — permettre aux systèmes et agents IA d'obtenir le même état sous forme structurée, temporelle, sourcée, versionnée et corrigible sans devoir reconstruire la vérité depuis des pages dispersées.
 
-Future Edition doit pouvoir répondre, pour un humain comme pour un agent :
+Le média humain est l'interface.  
+Le Future Graph est la mémoire.  
+L'Evidence Engine vérifie les preuves.  
+Le Change Engine enregistre les changements.  
+La couche agent-native expose cette mémoire aux machines.
 
-1. Où en sommes-nous ?
+## North Star
+
+> Future Edition doit devenir un endroit où un humain vient comprendre **ce qui a réellement changé**, tandis qu'un agent IA vient obtenir **le même changement** sous une forme directement vérifiable.
+
+Il doit être plus sûr et plus efficace pour un agent d'utiliser Future Edition que de reconstruire seul l'état d'une question depuis le web.
+
+## Questions fondamentales
+
+Pour tout sujet couvert, Future Edition doit pouvoir répondre :
+
+1. Où en sommes-nous maintenant ?
 2. Qu'est-ce qui vient réellement de changer ?
-3. Quelle preuve permet de l'affirmer ?
-4. Qu'est-ce que cette preuve ne permet pas d'affirmer ?
-5. Cette conclusion est-elle encore valide à la date `as_of` demandée ?
-6. Qu'est-ce qui a changé depuis le dernier état connu ?
-7. Quelle prochaine preuve pourrait modifier la conclusion ?
+3. Quelle preuve a provoqué ce changement ?
+4. Quelle était la situation avant ?
+5. Qu'est-ce que cette preuve ne permet pas de conclure ?
+6. À quelle date cet état est-il valide ?
+7. Quelles contradictions, corrections ou incertitudes existent ?
+8. Quelle prochaine preuve pourrait modifier la conclusion ?
 
-## Produit final
+## Boucle produit canonique
 
-1. **Média** — les changements qui comptent, avec une expérience éditoriale de niveau international.
-2. **Observatoire** — état temporel des grandes questions, jalons et trajectoires.
-3. **Evidence Engine** — provenance, indépendance et qualité des preuves.
-4. **Future Graph** — mémoire structurée, temporelle et versionnée.
-5. **Change Engine** — avant → preuve → après, avec journal des deltas.
-6. **Reality Check** — affirmation publique → conclusion réellement permise par les preuves.
-7. **Ask Future Edition** — interrogation sourcée du graphe avec abstention.
-8. **Agent Layer** — claims adressables, Agent Answer Packets, correction propagation et synchronisation par deltas.
-9. **Personalisation** — suivre uniquement les changements réellement significatifs.
-10. **Distribution Engine** — web, RSS, newsletter, social, audio/vidéo et formats machine.
-11. **API / Data** — accès professionnel et agent-native sans seconde base de vérité.
-12. **Continuous Intelligence** — contradictions, accélérations, stagnations, transitions de maturité et nouveaux domaines.
+```
+Source du monde
+   ↓
+Evidence Engine
+   ↓
+Claim / Evidence / Source / Locator
+   ↓
+État précédent
+   ↓
+Revue
+   ↓
+Change canonique
+   ↓
+Nouvel état du Future Graph
+   ↓
+┌─────────────────────┬─────────────────────┐
+│ Média humain        │ Représentation IA   │
+│ récit / explication │ objet / delta / API │
+└─────────────────────┴─────────────────────┘
+```
 
-## Principe de différenciation
+Une publication ne crée jamais la vérité scientifique. Elle représente un état du graphe.
 
-Une IA généraliste reconstruit souvent une réponse à partir de documents dispersés.
+## Moat recherché
 
-Future Edition doit conserver **l'état vérifié et versionné** d'une question, savoir pourquoi cet état est valide, savoir ce qui l'a modifié, et savoir signaler lorsqu'une ancienne réponse n'est plus actuelle.
+Le moat n'est pas une esthétique, un volume d'articles ou un modèle IA propriétaire. Il repose sur :
 
-Le moat recherché n'est donc pas seulement le contenu. Il est composé de :
 - mémoire temporelle ;
 - provenance atomique ;
-- historique des décisions ;
+- claims adressables ;
+- historique des états ;
+- corrections et supersessions ;
+- indépendance des sources ;
+- décisions de revue ;
 - Change Engine ;
-- propagation des corrections ;
-- graphe d'entités et de claims ;
-- contrats agent-native ;
-- confiance accumulée.
-
-## Principe humain + machine
-
-Une seule vérité scientifique canonique.
-
-L'article, la visualisation, le flux RSS, Ask Future Edition et l'API ne sont que des projections.
-
-Une traduction ne crée pas un nouvel objet scientifique.
-Une correction doit se propager à toutes les représentations.
-Une information devenue obsolète doit rester historiquement accessible mais ne jamais être ambiguë avec l'état courant.
-
-## Agent-native
-
-Il doit être plus sûr et plus efficace pour un agent d'interroger Future Edition que de reconstruire seul l'état du monde depuis le web.
-
-Cela impose dès l'architecture :
-- IDs et URIs stables ;
-- claims citables individuellement ;
-- `as_of` et temporalité explicites ;
-- source + locator ;
-- versions ;
-- corrections/rétractations/supersessions ;
-- abstention ;
+- graphe d'entités et de relations ;
 - delta feed ;
-- schémas publics versionnés ;
-- cohérence stricte humain/machine.
+- confiance accumulée par la qualité et la traçabilité.
 
-Voir `AGENT-NATIVE-MEDIA.md`.
+## Une vérité, plusieurs représentations
 
-## Horizon
+Il n'existe qu'une seule vérité scientifique canonique.
 
-Le design, les modèles, les interfaces et les fournisseurs peuvent changer.
+L'article, l'observatoire, Ask Future Edition, RSS, JSON, API et les futurs protocoles agents sont des projections du même Future Graph.
 
-Les éléments à préserver sont :
-- IDs stables ;
-- provenance ;
-- historique ;
-- temps et `as_of` ;
-- méthodologie ;
-- décisions de jalon ;
-- corrections ;
-- relations claim/evidence/source ;
-- contrats machine versionnés ;
-- capacité de reconstruction déterministe.
+Une traduction ne crée pas une nouvelle vérité.  
+Une correction doit se propager partout.  
+Une ancienne réponse corrigée reste historiquement accessible mais ne peut pas être confondue avec l'état actuel.
 
-La réussite ultime n'est pas seulement d'être lu. Elle est que lecteurs, professionnels et agents utilisent Future Edition comme une couche de confiance pour savoir **ce qui est vrai, à quel niveau de preuve, à quelle date et ce qui vient de changer**.
+## Règle de façade
+
+**Façade simple, infrastructure profonde.**
+
+Le lecteur humain ne doit pas avoir à comprendre le vocabulaire interne du système.
+
+Les IDs, noms de schémas, niveaux techniques et contrats machine restent disponibles à la demande dans les couches preuve, méthodologie et machine, mais ne structurent jamais la lecture ordinaire.
+
+## Réussite
+
+Future Edition réussit lorsque :
+
+- les humains reviennent pour comprendre des changements réels plutôt que suivre du bruit ;
+- les professionnels peuvent remonter de toute conclusion importante à sa preuve ;
+- les grandes questions possèdent un état actuel, un historique et des prochaines conditions observables ;
+- les corrections sont visibles et propagées ;
+- des agents IA utilisent Future Edition comme couche de recherche et de confiance parce que cela leur fait économiser du crawling, de la résolution, de la vérification et de la reconstruction temporelle.
+
+Voir aussi : `CONSTITUTION.md`, `MEDIA-PRODUCT.md`, `AGENT-NATIVE-MEDIA.md` et `PRODUCT-RESET.md`.
