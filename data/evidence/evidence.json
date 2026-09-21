@@ -648,5 +648,18 @@
     "observed_at": "2026-09-20T14:45:00Z",
     "valid_from": "2000-11-02T00:00:00Z",
     "valid_to": null
+  },
+  {
+    "id": "EVID-050051",
+    "claim_id": "CLAIM-050051",
+    "source_id": "SRC-050051",
+    "provenance_id": "PROV-050051",
+    "support": "supports",
+    "locator": "Abstract; Results around Fig. 4 (ripasudil/KL001 phagocytosis experiments and primary-human-RPE validation); Methods and author-contribution sections distinguishing AI-generated hypotheses/analysis from human wet-lab execution.",
+    "excerpt_hash": null,
+    "notes": "Supports experimental validation of AI-generated scientific hypotheses. Does not establish autonomous wet-lab execution, independent replication, clinical efficacy, or milestone Q-008-M4/M5.",
+    "observed_at": "2026-09-21T18:20:00Z",
+    "valid_from": "2026-05-19T00:00:00Z",
+    "valid_to": null
   }
 ]
