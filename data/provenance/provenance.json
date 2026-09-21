@@ -748,5 +748,20 @@
     "observed_at": "2026-09-20T14:45:00Z",
     "valid_from": "2026-09-20T14:45:00Z",
     "valid_to": null
+  },
+  {
+    "id": "PROV-050051",
+    "source_id": "SRC-050051",
+    "retrieved_at": "2026-09-21T18:20:00Z",
+    "canonical_url": "https://doi.org/10.1038/s41586-026-10652-y",
+    "external_version": "version-of-record 2026-07-01",
+    "content_hash": null,
+    "license": null,
+    "independence_group": "doi:10.1038/s41586-026-10652-y",
+    "derived_from_source_ids": [],
+    "notes": "Primary peer-reviewed Nature article inspected for publication metadata, abstract, experimental results, methods and author-contribution boundaries.",
+    "observed_at": "2026-09-21T18:20:00Z",
+    "valid_from": "2026-09-21T18:20:00Z",
+    "valid_to": null
   }
 ]
