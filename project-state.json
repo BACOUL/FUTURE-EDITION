@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.17.4",
+  "authority_version": "0.17.5",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -508,7 +508,7 @@
     "fe06r_live_canonical_changes": 1,
     "fe06r_live_canonical_assessments": 2,
     "fe06r_live_canonical_reviews": 2,
-    "fe06r_next_work_item": "FE-06R2_LIVING_EDITORIAL_INPUT_SLICE",
+    "fe06r_next_work_item": "FE-06R2_PROVE_LIVING_EDITORIAL_INPUT_SLICE",
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
     "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "several_recent_real_candidates_detected_deduplicated_and_resolved_without_opening_full_FE-07",
+    "fe06r_next_required_proof": "live_collection_min_5_resolved_candidates_across_min_3_questions_with_dedup_and_primary_source_resolution",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -543,7 +543,13 @@
     "fe06r_r1_proof_candidate_sha": "01190a7645c3d659d7e5067fe2d4aa1966f5849c",
     "fe06r_r1_proof_completed_at": "2026-09-21T19:25:22Z",
     "fe06r_r1_validation_passed": true,
-    "fe06r_first_real_change_proved": true
+    "fe06r_first_real_change_proved": true,
+    "fe06r_r2_living_slice_runner": "pipeline/run-fe06r-r2-living-slice.mjs",
+    "fe06r_r2_living_slice_test": "pipeline/test-fe06r-r2-living-slice.mjs",
+    "fe06r_r2_living_slice_workflow": ".github/workflows/fe06r-r2-living-slice.yml",
+    "fe06r_r2_status": "IMPLEMENTED_AWAITING_LIVE_PROOF",
+    "fe06r_r2_candidate_only_safety": true,
+    "fe06r_r2_cutoff": "2026-06-01"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

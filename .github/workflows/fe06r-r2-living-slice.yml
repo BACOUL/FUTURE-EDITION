@@ -1,0 +1,33 @@
+name: FE06R R2 living editorial slice proof
+
+on:
+  push:
+    branches: [fe06r-r2-living-slice-proof]
+
+permissions:
+  contents: read
+
+jobs:
+  prove-r2-living-slice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical repo before live collection
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+      - name: Detect, deduplicate and resolve recent candidates
+        run: node pipeline/run-fe06r-r2-living-slice.mjs --per-plan=3 > r2-living-slice.json
+      - name: Prove R2 slice
+        run: node pipeline/test-fe06r-r2-living-slice.mjs r2-living-slice.json
+      - name: Upload frozen live result
+        uses: actions/upload-artifact@v4
+        with:
+          name: fe06r-r2-living-slice
+          path: r2-living-slice.json
+          if-no-files-found: error
