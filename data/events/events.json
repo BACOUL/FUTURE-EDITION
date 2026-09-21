@@ -1298,5 +1298,31 @@
     "observed_at": "2026-09-20T14:45:00Z",
     "valid_from": "2000-11-02T00:00:00Z",
     "valid_to": null
+  },
+  {
+    "id": "EV-2026-008006",
+    "title": "Robin links AI-generated therapeutic hypotheses to laboratory validation in an iterative discovery workflow",
+    "event_date": "2026-05-19",
+    "question_ids": [
+      "Q-008"
+    ],
+    "technology_ids": [
+      "TECH-0544"
+    ],
+    "claim_ids": [
+      "CLAIM-050051"
+    ],
+    "source_ids": [
+      "SRC-050051"
+    ],
+    "milestone_ids": [
+      "Q-008-M3"
+    ],
+    "status": "verified",
+    "change_type": "unassessed",
+    "human_review": "required",
+    "observed_at": "2026-09-21T18:20:00Z",
+    "valid_from": "2026-05-19T00:00:00Z",
+    "valid_to": null
   }
 ]
