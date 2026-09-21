@@ -102,33 +102,64 @@
     }
   },
   "scientific_reference_invariants": {
-    "status": "AWAITING_CLEAN_RUN",
-    "required": [
-      "canonical collections valid",
-      "real Change state hashes valid",
-      "human-approved assessments and reviews",
-      "Claim → Evidence → Source → Locator intact",
-      "primary source remains SRC-050051",
-      "no fabricated milestone state",
-      "Future Graph deterministic"
-    ]
+    "status": "PASS",
+    "proof_run_id": 35648832916,
+    "proof_job_id": 106495855512,
+    "checks": {
+      "canonical_collections_valid": true,
+      "real_change_hash_bound": true,
+      "human_approved_assessments_and_reviews": true,
+      "claim_evidence_source_locator_intact": true,
+      "primary_source_SRC_050051": true,
+      "fabricated_milestone_states": 0,
+      "future_graph_deterministic": true
+    },
+    "future_graph": {
+      "nodes": 365,
+      "edges": 485,
+      "hash": "affd1b24bb0ca0f56b718d803f53f6b444078c31d9bdf580504cb6172f0af66b",
+      "deterministic_bytes": 175453
+    }
   },
   "agent_native_invariants": {
-    "status": "AWAITING_CLEAN_RUN",
-    "required": [
-      "stable canonical identity",
-      "claim-level citation atom",
-      "source locator",
-      "temporal as_of semantics",
-      "correction propagation",
-      "retraction propagation",
-      "supersession propagation",
-      "abstention on insufficient evidence",
-      "no fake citation on negative cases",
-      "deterministic delta reconstruction",
-      "human-machine truth consistency for CHANGE-000001"
+    "status": "PASS",
+    "proof_run_id": 35648832916,
+    "proof_job_id": 106495855512,
+    "checks": {
+      "lifecycle_cases": 3,
+      "negative_cases": 20,
+      "negative_false_answers": 0,
+      "negative_fake_citations": 0,
+      "positive_cases": 1,
+      "citation_atoms": 1,
+      "delta_changes": 10,
+      "delta_reconstruction": true,
+      "delta_deterministic": true,
+      "correction_propagation": true,
+      "retraction_propagation": true,
+      "supersession_propagation": true,
+      "abstention_on_insufficient_evidence": true,
+      "human_machine_truth_consistent": true
+    }
+  },
+  "overall_verdict": "PROVED",
+  "prohibited_legacy_scoring_used": false,
+  "automated_veto_proof": {
+    "verdict": "PASS",
+    "run_id": 35648832916,
+    "job_id": 106495855512,
+    "execution_sha": "81325a71931dac3aa1f9f182710538830de76edf",
+    "outputs": [
+      "FE04_CHANGE_ENGINE_PASS",
+      "FE06R_FIRST_REAL_CHANGE_PASS",
+      "FE06R_R3_V2_BUILD_PASS",
+      "FE06R_R3_V2_SLICE_PASS",
+      "FE06R_AGENT_NATIVE_PASS",
+      "FUTURE_GRAPH_VALID",
+      "FUTURE_GRAPH_DETERMINISTIC",
+      "FE06R_R4_CAPABILITY_GATE_PASS"
     ]
   },
-  "overall_verdict": "AWAITING_AUTOMATED_VETO_PROOF",
-  "prohibited_legacy_scoring_used": false
+  "proved_at": "2026-09-21T20:05:05Z",
+  "next_stage": "FE-07"
 }

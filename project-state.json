@@ -1,7 +1,7 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.18.3",
-  "current_stage": "FE-06R",
+  "authority_version": "0.19.0",
+  "current_stage": "FE-07",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
     "FE-00B": "PROVISIONAL_COMPLETE",
@@ -11,7 +11,7 @@
     "FE-04": "PROVED",
     "FE-05": "PROVED",
     "FE-06": "PROVED",
-    "FE-07": "NOT_STARTED",
+    "FE-07": "IN_PROGRESS",
     "FE-08": "NOT_STARTED",
     "FE-09": "NOT_STARTED",
     "FE-10": "NOT_STARTED",
@@ -21,7 +21,7 @@
     "FE-14": "NOT_STARTED",
     "FE-15": "NOT_STARTED",
     "FE-CONTINUOUS": "NOT_STARTED",
-    "FE-06R": "IN_PROGRESS"
+    "FE-06R": "PROVED"
   },
   "invariants": [
     "repo_is_authority",
@@ -508,7 +508,7 @@
     "fe06r_live_canonical_changes": 1,
     "fe06r_live_canonical_assessments": 2,
     "fe06r_live_canonical_reviews": 2,
-    "fe06r_next_work_item": "FE-06R4_PROVE_SCIENTIFIC_REFERENCE_AGENT_VETOES",
+    "fe06r_next_work_item": null,
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
     "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "clean_runner_exact_surface_hashes_plus_scientific_reference_agent_native_and_determinism",
+    "fe06r_next_required_proof": null,
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -629,7 +629,37 @@
     ],
     "fe06r_r4_v2_ten_second_test_passed": true,
     "fe06r_r4_v2_legacy_scoring_used": false,
-    "fe06r_r4_v2_status": "PRODUCT_GATES_PASS_AWAITING_AUTOMATED_VETO_PROOF"
+    "fe06r_r4_v2_status": "PROVED",
+    "fe06r_r4_v2_overall_verdict": "PROVED",
+    "fe06r_r4_v2_proof_run_id": 35648832916,
+    "fe06r_r4_v2_proof_job_id": 106495855512,
+    "fe06r_r4_v2_execution_sha": "81325a71931dac3aa1f9f182710538830de76edf",
+    "fe06r_r4_v2_gates_passed": 8,
+    "fe06r_r4_v2_scientific_reference_invariants_passed": true,
+    "fe06r_r4_v2_agent_native_invariants_passed": true,
+    "fe06r_r4_v2_frozen_surface_hashes_passed": 7,
+    "fe06r_r4_v2_negative_agent_cases": 20,
+    "fe06r_r4_v2_negative_false_answers": 0,
+    "fe06r_r4_v2_negative_fake_citations": 0,
+    "fe06r_r4_v2_delta_deterministic": true,
+    "fe06r_r4_v2_future_graph_nodes": 365,
+    "fe06r_r4_v2_future_graph_edges": 485,
+    "fe06r_r4_v2_future_graph_hash": "affd1b24bb0ca0f56b718d803f53f6b444078c31d9bdf580504cb6172f0af66b",
+    "fe06r_final_v2_candidate_sha": "3f6738992187a1a2234a4042d00f461a70586111",
+    "fe06r_v2_capability_gate_proved": true,
+    "fe06r_v2_completed_at": "2026-09-21T20:05:05Z",
+    "fe07_status": "IN_PROGRESS",
+    "fe07_scope": [
+      "detection",
+      "deduplication",
+      "classification",
+      "primary_source_resolution",
+      "candidate_creation",
+      "prioritization"
+    ],
+    "fe07_seed_from_r2_runner": "pipeline/run-fe06r-r2-living-slice.mjs",
+    "fe07_next_work_item": "FE-07_01_PRODUCTION_EDITORIAL_DETECTION_PIPELINE",
+    "fe07_next_required_proof": "benchmark_precision_and_live_media_feed_with_low_noise"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -706,18 +736,32 @@
         "French editorial layer covers all 50 public events: titles, summaries, technologies, timelines and proof dossiers are rendered in French while original source titles and canonical links are preserved.",
         "Post-localization Chromium QA: 64 pages × 4 widths (360/390/768/1440) = 256 checks, 0 overflow issues."
       ]
+    },
+    {
+      "stage": "FE-06R",
+      "verdict": "PROVED",
+      "evidence": [
+        "R1 real canonical Change CHANGE-000001 with human-approved before/after assessments and matching human/machine representations",
+        "R2 live editorial slice: 18 signals resolved, 13 rejected, 5 candidate-only investigations retained across 5 questions",
+        "R3 isolated Human Vertical Slice V2 proved on Home → Article → Observatory → Evidence → Original Source plus machine representation",
+        "R3 browser QA: 4 surfaces × 4 widths = 16 checks, 0 failures",
+        "R4 qualitative Capability Gate v2: G1-G8 PASS without legacy MEDIA scoring",
+        "R4 clean proof run 35648832916: scientific/reference invariants, agent-native lifecycle/abstention/delta, exact frozen surface hashes and Future Graph determinism PASS"
+      ]
     }
   ],
   "next_gate": {
-    "stage": "FE-06R",
-    "authority": "docs/FE06R-GATE.md",
-    "verdict": "BLOCKED",
+    "stage": "FE-07",
+    "authority": "docs/PROGRAM.md",
+    "verdict": "IN_PROGRESS",
     "required": [
-      "evaluate G1-G8 on frozen R3 V2 candidate",
-      "verify scientific/reference invariants on exact candidate",
-      "verify agent-native human-machine consistency on exact candidate",
-      "record R4 verdict without using automated MEDIA scoring",
-      "only if R4 is PROVED may FE-06R be marked PROVED and full FE-07 open"
+      "industrialize detection beyond the R2 slice",
+      "deduplicate candidates across providers and canonical origins",
+      "classify candidate relevance and likely change type without auto-promotion",
+      "resolve primary sources with fail-closed behavior",
+      "create reviewable candidate objects",
+      "prioritize candidates for the living media",
+      "prove benchmark precision and low-noise live feed"
     ]
   },
   "known_non_blocking_environment_constraints": [
@@ -726,7 +770,7 @@
       "description": "This execution environment cannot resolve github.com directly. Repository reads/writes use the connected GitHub integration; FE-01 build no longer requires network access."
     }
   ],
-  "next_stage_after_gate": "FE-07",
+  "next_stage_after_gate": "FE-08",
   "github_actions_dependency": false,
   "github_actions_activation_target": "2026-10-01",
   "failed_gates": [

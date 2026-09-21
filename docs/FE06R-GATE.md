@@ -1,6 +1,6 @@
 # FE-06R — Capability Gate v2
 
-**Status:** BLOCKED tant que le premier vrai Change canonique et la tranche verticale V2 n'existent pas.
+**Status:** PROVED sur le candidat V2 gelé `3f6738992187a1a2234a4042d00f461a70586111` — preuve finale : run `35648832916`.
 
 Ce gate remplace le modèle de score MEDIA v1 pour l'acceptation produit.
 
@@ -163,3 +163,22 @@ Si le produit lui-même ne répond pas à ces questions : itération ou FAIL.
 **PROVED** — G1–G8 passent sur la tranche V2 gelée, les invariants scientifiques et machine passent, et un vrai Change canonique est démontré de bout en bout.
 
 FE-07 à pleine échelle reste fermé tant que ce verdict n'est pas PROVED.
+
+
+## Preuve finale FE-06R v2
+
+Verdict : **PROVED**.
+
+- candidat V2 gelé : `3f6738992187a1a2234a4042d00f461a70586111` ;
+- preuve R3 : `benchmarks/fe06r/r3-v2.proof.json` ;
+- audit R4 : `benchmarks/fe06r/r4-capability-gate.v2.json` ;
+- run propre final : `35648832916` ;
+- G1 → G8 : PASS qualitatif, sans score MEDIA automatique ;
+- invariants scientifiques / référence : PASS ;
+- invariants agent-native : PASS ;
+- 20 cas négatifs agent : 0 fausse réponse, 0 fausse citation ;
+- reconstruction delta déterministe : PASS ;
+- Future Graph : 365 nœuds / 485 arêtes, déterministe ;
+- hashes des surfaces V2 gelées : PASS.
+
+Ce verdict ouvre **FE-07 — Editorial Intelligence** à pleine échelle.
