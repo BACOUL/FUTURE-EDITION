@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.17.3",
+  "authority_version": "0.17.4",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -508,7 +508,7 @@
     "fe06r_live_canonical_changes": 1,
     "fe06r_live_canonical_assessments": 2,
     "fe06r_live_canonical_reviews": 2,
-    "fe06r_next_work_item": "FE-06R1_PROVE_FIRST_REAL_CANONICAL_CHANGE",
+    "fe06r_next_work_item": "FE-06R2_LIVING_EDITORIAL_INPUT_SLICE",
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
     "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "FE06R_FIRST_REAL_CHANGE_PASS_on_clean_runner",
+    "fe06r_next_required_proof": "several_recent_real_candidates_detected_deduplicated_and_resolved_without_opening_full_FE-07",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -537,7 +537,13 @@
     "fe06r_first_real_change_human_representation_complete": true,
     "fe06r_first_real_change_machine_representation_complete": true,
     "fe06r_first_real_change_chain_complete": true,
-    "fe06r_r1_status": "IMPLEMENTED_AWAITING_PROOF"
+    "fe06r_r1_status": "PROVED",
+    "fe06r_r1_proof_run_id": 35644688508,
+    "fe06r_r1_proof_job_id": 106482148620,
+    "fe06r_r1_proof_candidate_sha": "01190a7645c3d659d7e5067fe2d4aa1966f5849c",
+    "fe06r_r1_proof_completed_at": "2026-09-21T19:25:22Z",
+    "fe06r_r1_validation_passed": true,
+    "fe06r_first_real_change_proved": true
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
