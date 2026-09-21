@@ -1,200 +1,157 @@
-# Produit média complet — Media 2.0
+# Future Edition — Media Product v2
 
-Future Edition est un **média de l'ère IA**, pas seulement un média sur l'IA.
+## Produit
 
-Il ne doit pas être pensé comme un site d'articles avec quelques fonctions IA. Le produit est une couche de connaissance vivante dont le web humain, les flux, Ask Future Edition et les interfaces agents sont des représentations.
+Future Edition n'est ni un site d'actualité classique avec un widget de preuve, ni un dashboard scientifique.
 
-## Les cinq couches du produit
+C'est l'interface humaine d'un système de connaissance vivant.
 
-### 1. Couche éditoriale humaine
-Une expérience de niveau international pour comprendre rapidement :
-- ce qui vient de changer ;
+Le produit public doit permettre de comprendre naturellement :
+
+- ce qui compte maintenant ;
+- ce qui a réellement changé ;
 - pourquoi cela compte ;
-- ce qui était vrai avant ;
-- la nouvelle preuve ;
-- ce qui est raisonnablement vrai après ;
-- les limites ;
-- ce qu'il faut surveiller.
+- ce que les preuves permettent d'affirmer ;
+- ce qui reste incertain ;
+- où en est la grande question concernée ;
+- ce qui pourrait changer ensuite.
 
-### 2. Couche de preuve
-Chaque conclusion importante descend vers :
-`Claim → Evidence → Source → Locator`.
+## Deux produits, une seule vérité
 
-La preuve n'est pas cachée derrière le produit : elle fait partie du produit.
+### Human Edition
 
-### 3. Couche temporelle
-Future Edition conserve l'état et les changements dans le temps.
+L'édition humaine doit être désirable même si le lecteur n'ouvre jamais la méthodologie.
 
-Le lecteur ou l'agent doit pouvoir demander :
+Elle comprend :
+
+- une Home éditoriale vivante ;
+- des Articles / Avancées ;
+- des Observatoires persistants ;
+- des Reality Checks ;
+- la recherche ;
+- l'historique des corrections ;
+- les preuves et sources accessibles à la demande.
+
+### Machine Edition
+
+L'édition machine expose la même connaissance canonique via :
+
+- IDs et URIs stables ;
+- citations au niveau claim ;
+- source + locator ;
+- temps et `as_of` explicites ;
+- versions ;
+- correction / rétractation / supersession ;
+- Agent Answer Packets ;
+- delta feeds ;
+- future API et adaptateurs agents.
+
+La couche machine ne doit jamais être reconstruite en parsant la prose humaine.
+
+## Home
+
+La Home est une une de média, pas une démonstration du produit.
+
+Elle doit contenir, lorsque les données réelles le permettent :
+
+1. une histoire/changement principal ;
+2. plusieurs changements secondaires dans des domaines différents ;
+3. une vue compacte de ce qui a réellement changé récemment ;
+4. des Observatoires / grandes questions qui évoluent ;
+5. un Reality Check ou une correction lorsque pertinent ;
+6. des routes claires vers la lecture, les preuves et l'exploration.
+
+Le contenu historique peut servir de contexte ou d'archive. Il ne doit jamais être maquillé en actualité.
+
+## Article
+
+Ordre de lecture par défaut :
+
+1. titre ;
+2. visuel ;
+3. chapô ;
+4. narration et contexte ;
+5. ce qui change ;
+6. pourquoi cela compte ;
+7. limites / ce que cela ne prouve pas ;
+8. preuves et sources ;
+9. ce qu'il faut surveiller ;
+10. historique / corrections ;
+11. détails expert et machine.
+
+L'article doit être excellent avant même que les panneaux de preuve soient ouverts.
+
+## Observatoire
+
+Un Observatoire est un objet éditorial persistant autour d'une grande question.
+
+Il répond d'abord en langage humain, puis montre :
+
 - état actuel ;
-- état à une date donnée ;
-- changements depuis une date/version ;
-- corrections depuis sa dernière consultation.
+- date `as_of` ;
+- trajectoire ;
+- jalons ;
+- approches concurrentes ;
+- changements matériels ;
+- contradictions / incertitudes ;
+- prochaines preuves attendues ;
+- historique.
 
-### 4. Couche agent-native
-Chaque fait important existe sous forme adressable, versionnée et machine-readable.
+Il ne doit pas donner d'abord l'impression d'un dashboard.
 
-Voir `AGENT-NATIVE-MEDIA.md`.
+## Progressive disclosure
 
-### 5. Couche interaction / personnalisation
-L'unité de suivi principale n'est pas « le média » mais la question, le claim, la technologie ou le changement.
+Un même objet canonique peut avoir plusieurs profondeurs :
 
-Un utilisateur pourra suivre :
-- une grande question ;
-- une technologie ;
-- un milestone ;
-- un type de preuve ;
-- uniquement les changements significatifs.
+**30 secondes** — comprendre le changement et pourquoi il compte.  
+**3 minutes** — comprendre le contexte, les preuves, les limites et la suite.  
+**Expert** — claims, locators, contradictions, chronologie et revue.  
+**Agent** — objet structuré, versions, citations et deltas.
 
-## Navigation cœur
+Ce sont des vues de la même vérité, pas des contenus indépendants.
 
-- Aujourd'hui
-- Grandes questions / Observatoires
-- Reality Check
-- Chronologie
-- Recherche
-- Ask Future Edition
-- Méthodologie
-- Corrections / Changes
+## Règle de langage
 
-## Lecture adaptative
+Le vocabulaire interne n'est pas le langage éditorial par défaut.
 
-Un même objet doit pouvoir offrir plusieurs profondeurs sans créer plusieurs vérités :
+Les IDs, noms de schémas et concepts comme STATE ROOM, EVIDENCE SPINE, Agent Dock ou équivalents peuvent exister dans les vues expert/machine si utiles, mais ne doivent jamais être nécessaires pour comprendre le média.
 
-### 30 secondes
-Ce qui a changé + pourquoi cela compte + niveau de preuve.
+## Règle visuelle
 
-### 3 minutes
-Avant → preuve → après + limites + prochaines étapes.
+L'identité vient de la hiérarchie éditoriale et de la valeur de l'information, pas d'un futurisme décoratif.
 
-### Expert
-Claims, contradictions, chronologie, sources, locators, méthodologie.
+Utiliser :
+- typographie forte ;
+- photographie, imagerie scientifique, illustration et data-viz lorsque pertinentes ;
+- compositions variées selon le contenu ;
+- repères temporels et de preuve clairs ;
+- densité mobile maîtrisée ;
+- accessibilité.
 
-### Agent
-Objet structuré, citations atomiques, temporalité, versions et deltas.
+Éviter :
+- glow/gradients IA génériques ;
+- grilles de cartes répétitives ;
+- chrome de dashboard ;
+- labels techniques décoratifs ;
+- visualisations suggérant une mesure inexistante.
 
-Le niveau de lecture change ; les faits canoniques ne changent pas.
+## Fraîcheur éditoriale
 
-## Le média est événementiel, pas calendaire
-
-Future Edition ne publie pas pour remplir une journée.
-
-Un événement éditorial est déclenché lorsqu'il existe :
-- une nouvelle preuve significative ;
-- une contradiction importante ;
-- une réplication ;
-- une correction/rétractation ;
-- un changement de statut ;
-- un jalon réellement atteint ;
-- un nouveau risque ou une nouvelle limite pertinente.
+Future Edition est événementiel, pas piloté par un quota.
 
 « Rien d'important n'a changé » est une sortie valide.
 
-## Le produit doit expliquer pourquoi quelque chose mérite l'attention
+Le site ne doit jamais utiliser une archive comme faux contenu actuel.
 
-Future Edition ne doit pas utiliser un score d'importance opaque.
+## Critère humain
 
-La sélection éditoriale doit pouvoir être expliquée par des dimensions observables :
-- nouveauté réelle ;
-- force de la preuve ;
-- taille du changement par rapport à l'état précédent ;
-- portée scientifique/technologique ;
-- impact potentiel ;
-- degré d'incertitude ;
-- nécessité de correction d'une perception publique.
+Un visiteur doit pouvoir répondre sans explication :
 
-## Corrections comme produit
+1. Qu'est-ce que c'est ?
+2. Qu'est-ce qui est important maintenant ?
+3. Pourquoi ce média est-il différent ?
+4. Pourquoi revenir ?
 
-Une correction n'est pas une note de bas de page.
+## Critère machine
 
-Elle doit :
-- modifier l'état courant ;
-- conserver l'ancien état ;
-- apparaître dans l'historique ;
-- être visible dans l'article concerné ;
-- être détectable dans la représentation machine ;
-- être propagée aux flux et agents.
-
-## Interaction avec les agents
-
-Future Edition doit rester fournisseur-neutre.
-
-L'accès machine peut être exposé via plusieurs adaptateurs :
-- HTTP/JSON ;
-- API versionnée ;
-- flux de changements ;
-- JSON-LD ;
-- protocoles agents pertinents, par exemple un adaptateur MCP si celui-ci reste utile.
-
-Aucun protocole externe ne devient la base de vérité.
-
-## Expérience publique cible
-
-### Pages de confiance
-- À propos
-- Responsabilité éditoriale
-- Politique de correction
-- Droit de réponse / signaler une erreur
-- Sources
-- Méthodologie
-- Politique d'accès machine
-- Mentions légales
-- Confidentialité
-- Contact
-
-### Distribution
-- RSS
-- newsletter
-- cartes sociales
-- scripts vidéo/audio
-- données structurées
-- change feed machine
-- alertes de corrections importantes
-
-## Identité visuelle
-
-Le logo définitif n'est pas gelé avant clearance du nom.
-
-Quand le gate marque sera franchi, produire :
-1. symbole ;
-2. wordmark FUTURE EDITION ;
-3. versions sombre/claire ;
-4. favicon ;
-5. grille, typographie, palette ;
-6. règles de data visualisation ;
-7. règles de citation/preuve visuelle ;
-8. grammaire visuelle du changement, du doute, de la contradiction et de la correction.
-
-## Principe de design
-
-Le média doit être immédiatement compréhensible par le grand public, mais chaque couche visible peut s'ouvrir vers la preuve et le détail expert.
-
-**Façade simple, infrastructure profonde.**
-
-Le design doit rendre visibles des concepts que les médias classiques cachent souvent dans la prose :
-- temps ;
-- changement ;
-- preuve ;
-- confiance ;
-- limites ;
-- contradiction ;
-- correction ;
-- prochaine condition de validation.
-
-## Critère de niveau international
-
-Le design ne doit pas imiter un site de news classique.
-
-Le produit doit rendre immédiatement perceptible :
-- ce qui a changé ;
-- par rapport à quoi ;
-- avec quelle preuve ;
-- à quelle date ;
-- avec quelle incertitude ;
-- ce qui pourrait changer ensuite.
-
-## North Star
-
-Future Edition devient réellement un média 2.0 lorsque :
-
-> un humain vient pour comprendre un changement et un agent vient pour obtenir le même changement sous forme structurée, temporelle et vérifiable — sans divergence entre les deux.
+Un agent doit pouvoir obtenir le même état de connaissance avec moins de reconstruction et une meilleure provenance qu'en repartant du web brut.
