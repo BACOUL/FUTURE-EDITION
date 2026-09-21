@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.17.5",
+  "authority_version": "0.17.6",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "live_collection_min_5_resolved_candidates_across_min_3_questions_with_dedup_and_primary_source_resolution",
+    "fe06r_next_required_proof": "rerun_with_question_specific_relevance_gate_and_balanced_selection",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -547,9 +547,16 @@
     "fe06r_r2_living_slice_runner": "pipeline/run-fe06r-r2-living-slice.mjs",
     "fe06r_r2_living_slice_test": "pipeline/test-fe06r-r2-living-slice.mjs",
     "fe06r_r2_living_slice_workflow": ".github/workflows/fe06r-r2-living-slice.yml",
-    "fe06r_r2_status": "IMPLEMENTED_AWAITING_LIVE_PROOF",
+    "fe06r_r2_status": "RELEVANCE_HARDENED_AWAITING_LIVE_PROOF",
     "fe06r_r2_candidate_only_safety": true,
-    "fe06r_r2_cutoff": "2026-06-01"
+    "fe06r_r2_cutoff": "2026-06-01",
+    "fe06r_r2_relevance_gate": "question_specific_title_v1",
+    "fe06r_r2_min_questions": 5,
+    "fe06r_r2_min_technology_questions": 2,
+    "fe06r_r2_first_live_run_id": 35645055357,
+    "fe06r_r2_first_live_run_technical_pass": true,
+    "fe06r_r2_first_live_run_product_verdict": "REJECTED_FOR_EDITORIAL_RELEVANCE",
+    "fe06r_r2_first_live_run_rejection_reason": "resolved candidates included question-mismatch false positives and balanced selection excluded Q-009"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

@@ -42,6 +42,41 @@ const plans = [
   }
 ];
 
+const normalizeTitle = (value) => String(value ?? "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+function titleRelevant(questionId, title) {
+  const t = normalizeTitle(title);
+  if (!t) return false;
+  const has = (re) => re.test(t);
+
+  if (questionId === "Q-001") {
+    return has(/cancer|carcinom|tumou?r|leukemi|lymphom|myelom/) &&
+      has(/trial|phase|therap|treat|survival|response|remission|immun|chemo|radio|targeted|adjuvant/) &&
+      !has(/cost-effect|staging|diagnos|screening|imaging only/);
+  }
+  if (questionId === "Q-003") {
+    return has(/spinal cord injury|paraplegi|tetraplegi/) &&
+      has(/motor|walk|locomot|movement|paralys|stimulation|neuromod|neuroprost|brain.?spine|recovery/) &&
+      !has(/cognitive impairment/);
+  }
+  if (questionId === "Q-007") {
+    return has(/crispr|gene edit|genome edit|base edit|prime edit|gene therap/) &&
+      !has(/diagnos|bacteria|pathogen|assay|detection platform/);
+  }
+  if (questionId === "Q-005") {
+    return has(/robot|humanoid|manipulation/) &&
+      has(/generaliz|autonom|long.?horizon|multi.?task|manipulation|contact.?rich|adapt/);
+  }
+  if (questionId === "Q-008") {
+    return has(/scientist|scientific|discovery|hypothesis|experiment/) &&
+      has(/\bai\b|agent|autonom|language model|llm/);
+  }
+  if (questionId === "Q-009") {
+    return has(/quantum/) && has(/error correction|logical qubit|fault.?tolerant|surface code|logical processor/);
+  }
+  return false;
+}
+
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function fetchRetry(url, options = {}, attempts = 4) {
@@ -190,13 +225,37 @@ export async function runLivingSlice({perPlan=3, retrievedAt=new Date().toISOStr
     deduped.push(row);
   }
 
-  const perQuestion = new Map();
+  const relevant = [];
+  const rejectedIrrelevant = [];
   for (const row of deduped) {
+    const qid = row.candidate.question_ids[0];
+    const title = row.resolution.source?.title ?? row.source_hint?.title ?? "";
+    const passed = titleRelevant(qid, title);
+    row.relevance_gate = {
+      passed,
+      method: "question_specific_title_v1",
+      question_id: qid,
+      title
+    };
+    (passed ? relevant : rejectedIrrelevant).push(row);
+  }
+
+  const questionOrder = plans.map((x) => x.question_id);
+  const perQuestion = new Map(questionOrder.map((qid) => [qid, []]));
+  for (const row of relevant) {
     const qid=row.candidate.question_ids[0];
     if(!perQuestion.has(qid)) perQuestion.set(qid,[]);
     if(perQuestion.get(qid).length<2) perQuestion.get(qid).push(row);
   }
-  const selected=[...perQuestion.values()].flat().slice(0,10);
+
+  const selected = [];
+  for (let round=0; round<2 && selected.length<12; round++) {
+    for (const qid of questionOrder) {
+      const row = perQuestion.get(qid)?.[round];
+      if (row) selected.push(row);
+      if (selected.length>=12) break;
+    }
+  }
 
   return {
     schema_version:"fe06r/r2-living-editorial-input/v1",
@@ -209,11 +268,20 @@ export async function runLivingSlice({perPlan=3, retrievedAt=new Date().toISOStr
       resolved:resolved.length,
       unresolved:unresolved.length,
       deduplicated_resolved:deduped.length,
+      relevance_passed:relevant.length,
+      relevance_rejected:rejectedIrrelevant.length,
       selected:selected.length,
       questions_covered:new Set(selected.flatMap((x)=>x.candidate.question_ids)).size,
       technology_questions_covered:new Set(selected.flatMap((x)=>x.candidate.question_ids).filter((x)=>["Q-005","Q-008","Q-009"].includes(x))).size
     },
     candidates:selected,
+    rejected_irrelevant:rejectedIrrelevant.map((x)=>({
+      candidate_id:x.candidate.id,
+      question_ids:x.candidate.question_ids,
+      title:x.resolution.source?.title ?? null,
+      provider:x.resolution.provider,
+      reason:"question_specific_title_relevance_failed"
+    })),
     unresolved:unresolved.map((x)=>({
       candidate_id:x.candidate.id,
       question_ids:x.candidate.question_ids,
