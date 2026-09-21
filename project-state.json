@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.16.0",
+  "authority_version": "0.17.0",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -335,7 +335,7 @@
     "fe06r_reference_home_future_graph_visual": true,
     "fe06r_current_vs_history_separation": true,
     "fe06r_reference_surfaces_completed": 4,
-    "fe06r_gate_version": "v1",
+    "fe06r_gate_version": "v2",
     "fe06r_gate_document": "docs/FE06R-GATE.md",
     "agent_native_contract_document": "docs/AGENT-NATIVE-MEDIA.md",
     "fe06r_gate_v1_verdict": "BLOCKED",
@@ -493,7 +493,22 @@
     "fe06r_pageshare_source_sha": "a0dd8c9361c3d025f00c9b912fda223578e543b4",
     "fe06r_pageshare_preview_published": true,
     "fe06r_pageshare_stylesheet": "/assets/styles-fe06r-v14.css",
-    "fe06r_pageshare_cache_bust_fix": true
+    "fe06r_pageshare_cache_bust_fix": true,
+    "fe06r_product_reset": true,
+    "fe06r_product_reset_date": "2026-09-21",
+    "fe06r_product_reset_document": "docs/PRODUCT-RESET.md",
+    "fe06r_public_surface_status": "REJECTED_PROTOTYPE",
+    "fe06r_public_surface_is_product_authority": false,
+    "fe06r_gate_v1_status": "HISTORICAL_SUPERSEDED_FOR_PRODUCT_ACCEPTANCE",
+    "fe06r_design_system_v1_status": "DEPRECATED_FOR_PRODUCT_AUTHORITY",
+    "fe06r_design_system_v2_document": "docs/DESIGN-SYSTEM-VISION.md",
+    "fe06r_information_architecture_v2_document": "docs/INFORMATION-ARCHITECTURE.md",
+    "fe06r_media_automated_points_authoritative": false,
+    "fe06r_first_real_canonical_change_required": true,
+    "fe06r_live_canonical_changes": 0,
+    "fe06r_live_canonical_assessments": 0,
+    "fe06r_live_canonical_reviews": 0,
+    "fe06r_next_work_item": "FE-06R1_FIRST_REAL_CANONICAL_CHANGE"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -577,11 +592,12 @@
     "authority": "docs/FE06R-GATE.md",
     "verdict": "BLOCKED",
     "required": [
-      "collect exactly 5 independent unbriefed human recognition evaluations under benchmarks/fe06r/recognition-test.protocol.json",
-      "freeze verbatim responses and binary rubric decisions in benchmarks/fe06r/recognition-test.results.json",
-      "run node benchmarks/fe06r/evaluate-recognition.mjs and require PASS on every frozen recognition threshold",
-      "rerun pipeline/audit-fe06r-final.mjs to obtain the final MEDIA score and overall gate verdict",
-      "mark FE-06R PROVED only if MEDIA>=85, INTELLIGENCE>=90, REFERENCE>=95, AGENT-NATIVE>=95 with zero veto; only then open FE-07"
+      "complete FE-06R1 with at least one real canonical Change backed by a real source/evidence chain and human review",
+      "build the V2 living editorial slice without reusing the rejected FE-06R public composition as product authority",
+      "build Home V2 + Article V2 + Observatory V2 + Evidence→Source + matching machine representation",
+      "pass every FE-06R Capability Gate v2 fundamental gate G1-G8",
+      "rerun scientific/reference/agent consistency checks on the exact frozen V2 candidate",
+      "only then mark FE-06R PROVED and open full FE-07"
     ]
   },
   "known_non_blocking_environment_constraints": [
