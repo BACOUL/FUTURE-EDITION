@@ -848,5 +848,25 @@
     "observed_at": "2026-09-20T14:45:00Z",
     "valid_from": "2000-11-02T00:00:00Z",
     "valid_to": null
+  },
+  {
+    "id": "SRC-050051",
+    "kind": "paper",
+    "tier": "A",
+    "title": "A multi-agent system for automating scientific discovery",
+    "canonical_url": "https://doi.org/10.1038/s41586-026-10652-y",
+    "external_ids": {
+      "doi": "10.1038/s41586-026-10652-y"
+    },
+    "author_ids": [],
+    "organization_ids": [],
+    "published_at": "2026-05-19",
+    "status": "active",
+    "version": 1,
+    "supersedes_source_id": null,
+    "review_state": "not_required",
+    "observed_at": "2026-09-21T18:20:00Z",
+    "valid_from": "2026-05-19T00:00:00Z",
+    "valid_to": null
   }
 ]
