@@ -1,0 +1,134 @@
+{
+  "schema_version": "fe06r/capability-gate-v2/v1",
+  "authority": "docs/FE06R-GATE.md",
+  "candidate": {
+    "r3_candidate_sha": "3f6738992187a1a2234a4042d00f461a70586111",
+    "r3_proof": "benchmarks/fe06r/r3-v2.proof.json",
+    "artifact_id": 10661100802,
+    "artifact_digest": "sha256:5b02ba82e1ac79d1c460895915012dcc5c4ded8b2f5ebccf8b7d781ace7d4526",
+    "browser_run_id": 35647661046,
+    "browser_widths": [
+      360,
+      390,
+      768,
+      1440
+    ],
+    "browser_checks": 16,
+    "browser_failures": 0
+  },
+  "frozen_surface_hashes": {
+    "index.html": "edc03094a678c4f54574a81c8e54588891ab6fe236b747e0f39dda5272f2145e",
+    "avance/robin-ia-hypothese-laboratoire/index.html": "22a410abc5e27406e61966fb85c9fa2bcd81ae92b22e61c8e5f3e7ce2a33c328",
+    "observatoires/ia-decouvertes-scientifiques/index.html": "d71af301abf3b5372cac27e748182d22dd98bcc39f2d6ddcdbc1fb6c41ca2a7d",
+    "preuves/ev-2026-008006/index.html": "beea36f7ada2e42d8091d49d6e6cbde7ba7afff0b3f2c4449386bc42e107f7f4",
+    "machine/changes/change-000001.json": "b8672e40fa1cf36534cfa535d30bc27b1c2c49aace84d03de026a75a03412f99",
+    "machine/manifest.json": "4079d5ec0feee242c879dfb5f1dda1df61c525c08759c800a7901c5f267df70d",
+    "assets/styles.css": "b6b11c575469393f95f0d3632210f5fa0c538b82dcfda80da231eee67ddeb19b"
+  },
+  "review_method": {
+    "type": "qualitative_product_review_on_frozen_rendered_surfaces",
+    "automation_decides_media_quality": false,
+    "review_basis": [
+      "final frozen Home, Article, Observatory and Evidence screenshots at desktop and mobile widths",
+      "R3 browser QA geometry and route integrity",
+      "direct inspection of editorial hierarchy, visual composition and progressive disclosure"
+    ],
+    "note": "G1-G8 are recorded as qualitative pass/fail judgments. Automated checks only verify invariants and frozen-candidate identity."
+  },
+  "preconditions": {
+    "verdict": "PASS",
+    "checks": {
+      "real_canonical_change_exists": true,
+      "previous_state_evidence_review_new_state_chain": true,
+      "human_and_machine_representations_match": true,
+      "home_has_multiple_real_editorial_items": true,
+      "evaluated_sha_frozen": true
+    },
+    "evidence": [
+      "CHANGE-000001",
+      "REVIEW-000001",
+      "REVIEW-000002",
+      "benchmarks/fe06r/r3-v2.proof.json"
+    ]
+  },
+  "gates": {
+    "G1": {
+      "verdict": "PASS",
+      "title": "Compréhension immédiate",
+      "rationale": "Le premier écran se lit comme une une scientifique : marque média, sujet Robin clairement formulé, enjeu explicité, CTA de lecture et preuve secondaire. Aucun vocabulaire interne n'est requis."
+    },
+    "G2": {
+      "verdict": "PASS",
+      "title": "Désir de poursuivre",
+      "rationale": "La Home mène vers une histoire forte, cinq enquêtes ouvertes, un Observatoire et une prochaine preuve à surveiller. L'Article privilégie récit, contexte et limites avant la couche de vérification."
+    },
+    "G3": {
+      "verdict": "PASS",
+      "title": "Densité éditoriale vivante",
+      "rationale": "La Home contient un changement canonique dominant, cinq signaux récents explicitement non promus, cinq questions/domaines couverts, un Observatoire en mouvement et une prochaine preuve à surveiller."
+    },
+    "G4": {
+      "verdict": "PASS",
+      "title": "Direction artistique",
+      "rationale": "La composition repose sur typographie éditoriale, grands aplats, illustration scientifique fonctionnelle, rythme asymétrique et contrastes papier/encres. Elle ne se présente ni comme dashboard SaaS ni comme interface IA générique."
+    },
+    "G5": {
+      "verdict": "PASS",
+      "title": "Qualité Article",
+      "rationale": "Titre, chapô, illustration, narration et contexte occupent les premiers écrans. La section preuve arrive après le récit, le changement expliqué et les limites."
+    },
+    "G6": {
+      "verdict": "PASS",
+      "title": "Qualité Observatoire",
+      "rationale": "L'Observatoire répond immédiatement à la grande question en langage naturel, puis montre trajectoire, état du jalon, étapes non évaluées, prochaine frontière et dernière mise à jour."
+    },
+    "G7": {
+      "verdict": "PASS",
+      "title": "Valeur distinctive Future Edition",
+      "rationale": "La surface montre au moins quatre capacités distinctives sans jargon : ce qui a réellement changé, la trajectoire temporelle d'une question, les limites de conclusion et la prochaine preuve susceptible de modifier la réponse, avec vérification à la source."
+    },
+    "G8": {
+      "verdict": "PASS",
+      "title": "Exécution mobile et desktop",
+      "rationale": "Les 4 surfaces conservent une hiérarchie éditoriale volontaire à 360, 390, 768 et 1440 px. Le run navigateur final compte 16 contrôles, zéro overflow et zéro échec ; la revue visuelle mobile/desktop ne montre pas d'effondrement de composition."
+    }
+  },
+  "ten_second_test": {
+    "verdict": "PASS",
+    "answers": {
+      "what_is_it": "Un média scientifique et technologique.",
+      "what_matters_now": "Une nouvelle preuve Robin renforce le niveau de confiance sur la validation expérimentale de découvertes issues d'IA.",
+      "why_different": "Future Edition sépare signal, changement confirmé, état de la grande question, limites et prochaine preuve, avec remontée directe vers la source."
+    }
+  },
+  "scientific_reference_invariants": {
+    "status": "AWAITING_CLEAN_RUN",
+    "required": [
+      "canonical collections valid",
+      "real Change state hashes valid",
+      "human-approved assessments and reviews",
+      "Claim → Evidence → Source → Locator intact",
+      "primary source remains SRC-050051",
+      "no fabricated milestone state",
+      "Future Graph deterministic"
+    ]
+  },
+  "agent_native_invariants": {
+    "status": "AWAITING_CLEAN_RUN",
+    "required": [
+      "stable canonical identity",
+      "claim-level citation atom",
+      "source locator",
+      "temporal as_of semantics",
+      "correction propagation",
+      "retraction propagation",
+      "supersession propagation",
+      "abstention on insufficient evidence",
+      "no fake citation on negative cases",
+      "deterministic delta reconstruction",
+      "human-machine truth consistency for CHANGE-000001"
+    ]
+  },
+  "overall_verdict": "AWAITING_AUTOMATED_VETO_PROOF",
+  "prohibited_legacy_scoring_used": false
+}

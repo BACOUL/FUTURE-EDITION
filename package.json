@@ -49,6 +49,7 @@
     "test:fe06r:r2": "node pipeline/test-fe06r-r2-living-slice.mjs",
     "build:fe06r:v2": "node pipeline/build-fe06r-v2-slice.mjs",
     "test:fe06r:r3": "node pipeline/test-fe06r-r3-v2-slice.mjs",
-    "qa:fe06r:r3": "node pipeline/qa-fe06r-r3-browser.mjs"
+    "qa:fe06r:r3": "node pipeline/qa-fe06r-r3-browser.mjs",
+    "test:fe06r:r4": "node pipeline/test-fe06r-r4-capability-gate.mjs"
   }
 }

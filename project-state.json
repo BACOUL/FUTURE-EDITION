@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.18.2",
+  "authority_version": "0.18.3",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -508,7 +508,7 @@
     "fe06r_live_canonical_changes": 1,
     "fe06r_live_canonical_assessments": 2,
     "fe06r_live_canonical_reviews": 2,
-    "fe06r_next_work_item": "FE-06R4_CAPABILITY_GATE_V2",
+    "fe06r_next_work_item": "FE-06R4_PROVE_SCIENTIFIC_REFERENCE_AGENT_VETOES",
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
     "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "evaluate_G1_to_G8_on_frozen_R3_V2_candidate_plus_scientific_reference_agent_invariants",
+    "fe06r_next_required_proof": "clean_runner_exact_surface_hashes_plus_scientific_reference_agent_native_and_determinism",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -614,7 +614,22 @@
     "fe06r_r3_v2_browser_checks": 16,
     "fe06r_r3_v2_browser_failures": 0,
     "fe06r_r3_v2_visual_review_passed": true,
-    "fe06r_r3_v2_public_raw_english_leaks": 0
+    "fe06r_r3_v2_public_raw_english_leaks": 0,
+    "fe06r_r4_v2_gate_file": "benchmarks/fe06r/r4-capability-gate.v2.json",
+    "fe06r_r4_v2_gate_test": "pipeline/test-fe06r-r4-capability-gate.mjs",
+    "fe06r_r4_v2_product_gates_passed": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7",
+      "G8"
+    ],
+    "fe06r_r4_v2_ten_second_test_passed": true,
+    "fe06r_r4_v2_legacy_scoring_used": false,
+    "fe06r_r4_v2_status": "PRODUCT_GATES_PASS_AWAITING_AUTOMATED_VETO_PROOF"
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",

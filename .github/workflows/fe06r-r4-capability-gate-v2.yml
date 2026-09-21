@@ -1,0 +1,38 @@
+name: FE06R R4 Capability Gate V2
+
+on:
+  push:
+    branches: [fe06r-r4-capability-gate-v2]
+
+permissions:
+  contents: read
+
+jobs:
+  prove-r4-capability-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate canonical scientific/reference truth
+        run: |
+          node pipeline/validate-data.mjs
+          node pipeline/validate-schemas.mjs
+          node pipeline/validate-relations.mjs
+          node pipeline/test-fe04-change-engine.mjs
+          node pipeline/test-fe06r-first-real-change.mjs
+      - name: Rebuild exact frozen R3 V2 surfaces
+        run: |
+          node pipeline/build-fe06r-v2-slice.mjs
+          node pipeline/test-fe06r-r3-v2-slice.mjs
+      - name: Prove agent-native lifecycle, abstention and delta behavior
+        run: node pipeline/test-fe06r-agent-native.mjs
+      - name: Prove Future Graph determinism
+        run: |
+          node pipeline/build-graph.mjs
+          node pipeline/validate-graph.mjs
+          node pipeline/verify-determinism.mjs
+      - name: Verify R4 gate and exact frozen surface hashes
+        run: node pipeline/test-fe06r-r4-capability-gate.mjs
