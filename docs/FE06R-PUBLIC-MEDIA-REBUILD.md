@@ -1,3 +1,5 @@
+> **SUPERSEDED PRODUCT DIRECTION (2026-09-21).** This document is retained for history. The current public-product authority is `docs/PRODUCT-RESET.md`, `docs/MEDIA-PRODUCT.md` v2 and `docs/FE06R-GATE.md` v2. The existing FE-06R public surfaces are a rejected prototype and must not be cosmetically patched as the V2 baseline.
+
 # FE-06R — Public Media Rebuild
 
 ## Pourquoi FE-06R existe
