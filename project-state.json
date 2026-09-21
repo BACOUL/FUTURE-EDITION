@@ -1,6 +1,6 @@
 {
   "project": "Future Edition",
-  "authority_version": "0.18.1",
+  "authority_version": "0.18.2",
   "current_stage": "FE-06R",
   "stage_status": {
     "FE-00": "PROVISIONAL_COMPLETE",
@@ -508,7 +508,7 @@
     "fe06r_live_canonical_changes": 1,
     "fe06r_live_canonical_assessments": 2,
     "fe06r_live_canonical_reviews": 2,
-    "fe06r_next_work_item": "FE-06R3_PROVE_HUMAN_VERTICAL_SLICE_V2",
+    "fe06r_next_work_item": "FE-06R4_CAPABILITY_GATE_V2",
     "fe06r_first_real_change_candidate": "FE06R-CHANGE-CANDIDATE-001",
     "fe06r_first_real_change_candidate_status": "CANONICALIZED",
     "fe06r_first_real_change_question_id": "Q-008",
@@ -521,7 +521,7 @@
     "fe06r_first_real_change_proposed_type": "evidence_upgrade",
     "production_canonical_changes": 1,
     "production_canonical_reviews": 2,
-    "fe06r_next_required_proof": "final_R3_V2_rerun_with_zero_raw_English_public_evidence_locator",
+    "fe06r_next_required_proof": "evaluate_G1_to_G8_on_frozen_R3_V2_candidate_plus_scientific_reference_agent_invariants",
     "fe06r_first_real_change_id": "CHANGE-000001",
     "fe06r_first_real_change_review_ids": [
       "REVIEW-000001",
@@ -593,7 +593,7 @@
     "fe06r_r3_v2_reference_change": "CHANGE-000001",
     "fe06r_r3_v2_reference_question": "Q-008",
     "fe06r_r3_v2_candidate_signals": 5,
-    "fe06r_r3_v2_status": "FINAL_LANGUAGE_FIX_AWAITING_PROOF",
+    "fe06r_r3_v2_status": "PROVED",
     "fe06r_r3_v2_failed_run_id": 35647023402,
     "fe06r_r3_v2_failed_job_id": 106489861725,
     "fe06r_r3_v2_failed_candidate_sha": "586005cf9ea7b4a379354e8ead112103d5c26f91",
@@ -604,7 +604,17 @@
     "fe06r_r3_v2_second_candidate_sha": "8fba7eb9e50a43c49170fa8a4d02554bab360d56",
     "fe06r_r3_v2_second_run_automation_passed": true,
     "fe06r_r3_v2_second_run_product_verdict": "ITERATE",
-    "fe06r_r3_v2_second_run_product_reason": "visual review accepted Home Article Observatory but Evidence locator still exposed raw English canonical wording"
+    "fe06r_r3_v2_second_run_product_reason": "visual review accepted Home Article Observatory but Evidence locator still exposed raw English canonical wording",
+    "fe06r_r3_v2_proof": "benchmarks/fe06r/r3-v2.proof.json",
+    "fe06r_r3_v2_proof_run_id": 35647661046,
+    "fe06r_r3_v2_proof_job_id": 106491974402,
+    "fe06r_r3_v2_proof_candidate_sha": "3f6738992187a1a2234a4042d00f461a70586111",
+    "fe06r_r3_v2_artifact_id": 10661100802,
+    "fe06r_r3_v2_artifact_digest": "sha256:5b02ba82e1ac79d1c460895915012dcc5c4ded8b2f5ebccf8b7d781ace7d4526",
+    "fe06r_r3_v2_browser_checks": 16,
+    "fe06r_r3_v2_browser_failures": 0,
+    "fe06r_r3_v2_visual_review_passed": true,
+    "fe06r_r3_v2_public_raw_english_leaks": 0
   },
   "open_preflight_gates": [
     "formal brand clearance before brand freeze/public launch",
@@ -688,12 +698,11 @@
     "authority": "docs/FE06R-GATE.md",
     "verdict": "BLOCKED",
     "required": [
-      "complete FE-06R1 with at least one real canonical Change backed by a real source/evidence chain and human review",
-      "build the V2 living editorial slice without reusing the rejected FE-06R public composition as product authority",
-      "build Home V2 + Article V2 + Observatory V2 + Evidence→Source + matching machine representation",
-      "pass every FE-06R Capability Gate v2 fundamental gate G1-G8",
-      "rerun scientific/reference/agent consistency checks on the exact frozen V2 candidate",
-      "only then mark FE-06R PROVED and open full FE-07"
+      "evaluate G1-G8 on frozen R3 V2 candidate",
+      "verify scientific/reference invariants on exact candidate",
+      "verify agent-native human-machine consistency on exact candidate",
+      "record R4 verdict without using automated MEDIA scoring",
+      "only if R4 is PROVED may FE-06R be marked PROVED and full FE-07 open"
     ]
   },
   "known_non_blocking_environment_constraints": [

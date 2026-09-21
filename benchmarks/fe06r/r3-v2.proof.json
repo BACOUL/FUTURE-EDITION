@@ -1,0 +1,64 @@
+{
+  "schema_version": "fe06r/r3-v2-proof/v1",
+  "verdict": "PROVED",
+  "proved_at": "2026-09-21T19:54:26Z",
+  "candidate_sha": "3f6738992187a1a2234a4042d00f461a70586111",
+  "reference_change": "CHANGE-000001",
+  "reference_question": "Q-008",
+  "surfaces": {
+    "home": "/",
+    "article": "/avance/robin-ia-hypothese-laboratoire/",
+    "observatory": "/observatoires/ia-decouvertes-scientifiques/",
+    "evidence": "/preuves/ev-2026-008006/",
+    "machine": "/machine/changes/change-000001.json"
+  },
+  "product_rules_verified": [
+    "isolated V2 generator does not use rejected FE-06R public composition as structural authority",
+    "human media first; technical identifiers absent from first-screen reading",
+    "Home contains one confirmed canonical change plus five explicitly candidate-only recent investigations",
+    "Article reads as editorial narrative before evidence/provenance detail",
+    "Observatory answers the question in natural language before milestones and evidence",
+    "Evidence page links directly to the original primary source",
+    "public French projection is separated from exact machine/canonical wording",
+    "same canonical Change, state hashes, claim, evidence and source power human and machine projections"
+  ],
+  "browser_qa": {
+    "run_id": 35647661046,
+    "job_id": 106491974402,
+    "widths": [
+      360,
+      390,
+      768,
+      1440
+    ],
+    "pages": 4,
+    "checks": 16,
+    "failures": 0,
+    "pass": true
+  },
+  "artifact": {
+    "id": 10661100802,
+    "digest": "sha256:5b02ba82e1ac79d1c460895915012dcc5c4ded8b2f5ebccf8b7d781ace7d4526"
+  },
+  "iteration_history": [
+    {
+      "run_id": 35647023402,
+      "candidate_sha": "586005cf9ea7b4a379354e8ead112103d5c26f91",
+      "verdict": "FAIL",
+      "reason": "browser QA marker mismatch; visual review also found raw English canonical prose in French public surfaces"
+    },
+    {
+      "run_id": 35647391285,
+      "candidate_sha": "8fba7eb9e50a43c49170fa8a4d02554bab360d56",
+      "verdict": "ITERATE",
+      "reason": "automation passed, but product review found one remaining raw English source locator in the human Evidence view"
+    },
+    {
+      "run_id": 35647661046,
+      "candidate_sha": "3f6738992187a1a2234a4042d00f461a70586111",
+      "verdict": "PROVED",
+      "reason": "canonical validation, human-machine consistency, French public projection and 16/16 browser QA checks all pass"
+    }
+  ],
+  "gate_scope": "R3 only; FE-06R overall remains blocked until Capability Gate v2 R4 is evaluated"
+}
