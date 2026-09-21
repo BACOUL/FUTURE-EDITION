@@ -1,77 +1,117 @@
 # Programme FE-00 → FE-CONTINUOUS
 
-Chaque stage possède : objectifs, artefacts, tests, critères de sortie et éléments gelés.
+## Fondations conservées
 
-## FE-00 — Constitution
-Mission, vocabulaire, principes, méthode, critères de réussite.
-**Gate :** aucune ambiguïté majeure sur ce qu’est Future Edition.
+### FE-00 — Constitution
+Mission, principes et méthode. Statut historique conservé.
 
-## FE-01 — Foundation
-Monorepo, scripts locaux, conventions, validation des données, site statique minimal.
-**Gate :** install, validate, graph build et web build reproductibles localement.
+### FE-01 — Foundation
+Repository, build local déterministe et validation. **PROVED.**
 
-## FE-02 — Future Graph
-Contrats Question, Technology, Milestone, Event, Claim, Evidence, Source, Organization, Person.
-**Gate :** données valides, IDs stables, relations vérifiées.
+### FE-02 — Future Graph
+Entités canoniques, IDs stables et relations. **PROVED.**
 
-## FE-03 — Evidence Engine
-Résolution de source primaire, statut publication, claims, preuves, limites, contradictions, rétractations.
-**Gate :** benchmark indépendant d’exemples vrais/faux/trompeurs.
+### FE-03 — Evidence Engine
+Résolution de source primaire, qualité de preuve, sécurité sémantique et holdout. **PROVED.**
 
-## FE-04 — Change Engine
-État avant → nouvelle preuve → état après ; type de changement.
-**Gate :** zéro modification de jalon sans justification traçable.
+### FE-04 — Change Engine
+Contrat traçable avant → preuve → après avec revue humaine. **PROVED comme moteur.**
 
-## FE-05 — Ten Observatories
-10 grandes questions, jalons, technologies, historique fondateur.
-**Gate :** minimum 5 événements vérifiés par question.
+### FE-05 — Ten Observatories
+10 questions de lancement et baseline historique. **PROVED comme baseline.**
 
-## FE-06 — Public Media
-Home, Aujourd’hui, questions, fiches avancées, preuves, radar, chronologie, méthode.
-**Gate :** QA mobile/desktop, accessibilité, performance, aucune affirmation orpheline.
+### FE-06 — Technical Public Media
+Socle technique de publication. **PROVED techniquement.**
 
-## FE-06R — Public Media Rebuild
-Reconstruction du produit public à partir du socle FE-06 : Home éditoriale, véritable modèle Avancée/Article, observatoire de référence, méthodologie complète, identité visuelle, distinction actualité/historique, pages de confiance et contrat agent-native.
-**Gate :** les quatre surfaces de référence passent `docs/FE06R-GATE.md` avec MEDIA ≥ 85, INTELLIGENCE ≥ 90, REFERENCE ≥ 95 et AGENT-NATIVE ≥ 95, sans veto. Les contrats sémantiques machine sont gelés ici afin que l'API future ne crée jamais une seconde vérité.
+Son modèle visuel/produit n'est pas autoritaire pour FE-06R v2.
+
+## FE-06R — Product proof
+
+**Current stage: IN_PROGRESS.**
+
+FE-06R ne signifie plus « terminer le site public existant ».
+
+Sa mission est de prouver que les moteurs existants peuvent devenir à la fois :
+- un média humain exceptionnel et vivant ;
+- une mémoire de connaissance réellement maintenue ;
+- une couche structurée utile aux agents IA.
+
+### FE-06R0 — Product authority reset
+Doivent être actuels :
+- `PRODUCT-RESET.md`;
+- `VISION.md`;
+- `MEDIA-PRODUCT.md`;
+- `DESIGN-SYSTEM-VISION.md`;
+- `INFORMATION-ARCHITECTURE.md`;
+- `FE06R-GATE.md`.
+
+### FE-06R1 — Premier vrai Change canonique
+Exécuter une information récente réelle de bout en bout :
+
+`source → evidence → état précédent → revue → Change → nouvel état`.
+
+Cela doit créer de vraies données canoniques d'assessment/review/change, pas seulement des cas synthétiques de benchmark.
+
+### FE-06R2 — Living editorial input slice
+Implémenter uniquement le minimum de détection/déduplication/résolution nécessaire pour faire remonter plusieurs candidats récents au prototype V2.
+
+Cette étape emprunte au futur FE-07 mais **n'ouvre pas FE-07** et ne le déclare pas terminé.
+
+### FE-06R3 — Human vertical slice V2
+Construire seulement :
+- Home V2 ;
+- un Article V2 excellent ;
+- un Observatoire V2 ;
+- le chemin Evidence → Source originale ;
+- la représentation machine du même objet canonique.
+
+Ne pas généraliser au reste du site avant validation.
+
+### FE-06R4 — Capability gate
+Appliquer `FE06R-GATE.md` v2.
+
+Seul un verdict **PROVED** ouvre FE-07 à pleine échelle.
 
 ## FE-07 — Editorial Intelligence
-Détection, déduplication, classification, source primaire, brouillon.
-**Gate :** précision mesurée sur benchmark gelé.
+Après FE-06R PROVED, industrialiser :
+- détection ;
+- déduplication ;
+- classification ;
+- résolution de source primaire ;
+- création de candidats ;
+- priorisation.
+
+**Gate :** précision benchmarkée et capacité démontrée à alimenter le média vivant sans bruit.
 
 ## FE-08 — Editorial Console
-File de validation : publier / rejeter / investiguer / corriger.
-**Gate :** opérable en quelques décisions quotidiennes.
+Décisions humaines : publier / rejeter / investiguer / corriger.
 
 ## FE-09 — Distribution Engine
-RSS, newsletter, social cards, scripts vidéo/audio, sitemaps, données structurées.
-**Gate :** une validation produit des formats cohérents sans modifier les faits.
+RSS, newsletter, social, distribution structurée.
 
 ## FE-10 — Ask Future Edition
-RAG sur Future Graph uniquement pour les affirmations Future Edition.
-**Gate :** citations obligatoires, refus en cas de preuve insuffisante.
+Interroger le Future Graph canonique avec citations et abstention.
 
-## FE-11 — Personalization
-Suivi de sujets et alertes uniquement lors d’un changement significatif.
-**Gate :** aucune notification de bruit.
+## FE-11 — Personalisation
+Suivre questions, technologies et changements matériels sans notifications de vanité.
 
 ## FE-12 — Continuous Observatory
-Ingestion et analyse régulières.
-**Gate :** supervision humaine limitée aux cas importants/sensibles.
+Ingestion régulière et maintenance supervisée des états.
 
 ## FE-13 — Scientific Intelligence
-Contradictions, accélérations, stagnations, transitions de maturité, convergences.
-**Gate :** analyses explicables et benchmarkées.
+Contradictions, accélérations, stagnations, transitions de maturité et convergences.
 
-## FE-14 — API
-Industrialisation des contrats agent-native gelés plus tôt : données et statuts structurés, delta feed, versionnage, auth/quotas et accès professionnels.
-**Gate :** versionnage, provenance, temporalité, correction propagation et limites documentés ; aucune nouvelle base de vérité.
+## FE-14 — API / Data
+Industrialiser les contrats machine : versionnage, delta feed, auth, quotas et accès professionnels.
 
 ## FE-15 — AI-native Media
-Validation à l'échelle de la représentation humaine + machine-readable de chaque fait important et de l'usage par agents.
-**Gate :** cohérence stricte entre article, graphe, Ask, API et historique des corrections ; benchmarks d'abstention, citations, temporalité et deltas PASS.
+Prouver à l'échelle la cohérence humain/machine et un usage agent réellement utile.
 
 ## FE-CONTINUOUS
-Boucle permanente : Observe → Propose → Test → Evaluate → Approve → Deploy → Measure.
+Observe → Propose → Verify → Review → Change → Publish → Measure → Correct.
 
-### Règle de progression
-Un stage n’est déclaré PROVED que si ses critères de sortie sont matérialisés dans le dépôt. « Ça marche » n’est pas une preuve.
+## Règle de progression
+
+Un stage n'est pas PROVED parce que la CI est verte.
+
+Un stage produit est PROVED uniquement lorsque **la chose dont l'utilisateur a besoin existe réellement** et passe les tests scientifiques, humains et machine appropriés.
